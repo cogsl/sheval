@@ -1,0 +1,1 @@
+pyshacl positive_recursion.ttl > results/positive_recursion_pyshacl.results
