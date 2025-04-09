@@ -1,0 +1,1 @@
+shaclex --validate --engine SHACLEX --data positive_recursion.ttl --validationReportFormat TURTLE --showValidationReport > results/positive_recursion_shaclex.results

@@ -1,0 +1,4 @@
+Example, Engine, Results, Comments
+Positive_recursion, SHACL_TQ, ":a@!:S, :b@!:S, :c@:S, :d@:S", Emits a warning about recursive shapes
+Positive_recursion, SHACLEX, ":a@:S, :b@:S, :c@:S, :d@:S", 
+Positive_recursion, Jena_SHACL, ":a@:S, :b@:S, :c@:S, :d@:S", Emits a warning about cycles

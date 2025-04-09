@@ -1,0 +1,28 @@
+prefix :       <http://example.org/> 
+prefix sh:     <http://www.w3.org/ns/shacl#> 
+prefix xsd:    <http://www.w3.org/2001/XMLSchema#>
+prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+
+:S a sh:NodeShape ;
+   sh:targetClass :Node ;
+   sh:or ( 
+      [ sh:property 
+          [ sh:path :p ;
+            # sh:qualifiedValueShape :S ;
+            # sh
+            sh:node :S ;
+            sh:minCount 1
+          ]
+      ]
+      [ sh:hasValue :d ] 
+   ) .
+
+:a a :Node .
+:b a :Node .
+:c a :Node .
+:d a :Node .
+
+:b :p :a .
+:a :p :b .
+:c :p :d .

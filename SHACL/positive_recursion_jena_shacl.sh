@@ -1,0 +1,1 @@
+shacl v positive_recursion.ttl > results/positive_recursion_jena_shacl.results

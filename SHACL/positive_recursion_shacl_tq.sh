@@ -1,0 +1,1 @@
+shaclvalidate.sh -datafile positive_recursion.ttl > results/positive_recursion_shacl_tq.results
