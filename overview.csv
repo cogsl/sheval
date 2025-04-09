@@ -1,5 +1,5 @@
 Example, Engine, Results, Comments
 Positive_recursion, SHACL_TQ, "Violations: a@:S, :b@:S", Emits a warning about recursive shapes
-Positive_recursion, SHACLEX, "No violations", 
+Positive_recursion, SHACLEX, "No violations", No warnings
 Positive_recursion, Jena_SHACL, "No violations", Emits a warning about cycles
 Positive_recursion, PySHACL, "No violations", Warning: A Recursive Shape was detected executing a recursive validation sequence 10 levels deep. Backing out.
