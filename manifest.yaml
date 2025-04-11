@@ -1,0 +1,19 @@
+shacl_folder: SHACL
+shex_folder: ShEx
+results_folder: results
+tests:
+    - name: positive_recursion1
+      filename: positive_recursion.ttl
+      engine: shacl
+      description: |
+        Example with positive recursion
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shape:
+        - ":S"
+        
+

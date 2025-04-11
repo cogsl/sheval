@@ -11,5 +11,6 @@ The experiment comapres how different implementations of SHACL and ShEx behave w
 - [Jena SHACL](https://jena.apache.org/documentation/shacl/). SHACL implementation in Java. It can be run with `shacl`
 - [RDF4j SHACL](https://rdf4j.org/documentation/programming/shacl/)
 - [PySHACL](https://github.com/RDFLib/pySHACL)
+- [Shawell](https://github.com/cem-okulmus/shawell)
 
 ### ShEx
