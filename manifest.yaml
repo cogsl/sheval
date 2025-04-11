@@ -1,9 +1,11 @@
+rdf_folder: RDF
 shacl_folder: SHACL
 shex_folder: ShEx
 results_folder: results
 tests:
     - name: positive_recursion1
-      filename: positive_recursion.ttl
+      data_graph: positive_recursion.ttl
+      shapes_graph: positive_recursion.shapes.ttl
       engine: shacl
       description: |
         Example with positive recursion
@@ -13,7 +15,7 @@ tests:
         - ":b"
         - ":c"
         - ":d"
-      shape:
+      shapes: 
         - ":S"
         
 

@@ -6,35 +6,31 @@ import rdflib
 
 shacl_prefix = "http://www.w3.org/ns/shacl#"
 
-def shacl_tq(folder, filename, name, results_folder, config):
-    complete_path = os.path.join(folder, filename)
+def shacl_tq(filename, name, results_folder, config):
     technology_name = "shacl_tq"
-    command = f"shaclvalidate.sh -datafile {complete_path} > {results_folder}/{name}_{technology_name}.results"
+    command = f"shaclvalidate.sh -datafile {filename} > {results_folder}/{name}_{technology_name}.results"
     if config['verbose'] > 0 :
         print(f"Running: {command}")
     os.system(command)
 
-def shacl_jena(folder, filename, name, results_folder, config):
-    complete_path = os.path.join(folder, filename)
+def shacl_jena(filename, name, results_folder, config):
     technology_name = "shacl_jena"
     # Construct the command to run the test
-    command = f"shacl v {complete_path} > {results_folder}/{name}_{technology_name}.results"
+    command = f"shacl v {filename} > {results_folder}/{name}_{technology_name}.results"
     if config['verbose'] > 0 :
         print(f"Running: {command}")
     os.system(command)
 
-def shaclex(folder, filename, name, results_folder, config):
-    complete_path = os.path.join(folder, filename)
+def shaclex(filename, name, results_folder, config):
     technology_name = "shaclex"
-    command = f"shaclex --validate --engine SHACLEX --data {complete_path} --validationReportFormat TURTLE --showValidationReport > {results_folder}/{name}_{technology_name}.results"
+    command = f"shaclex --validate --engine SHACLEX --data {filename} --validationReportFormat TURTLE --showValidationReport > {results_folder}/{name}_{technology_name}.results"
     if config['verbose'] > 0 :
         print(f"Running: {command}")
     os.system(command)
 
-def pyshacl(folder, filename, name, results_folder, config):
-    complete_path = os.path.join(folder, filename)
+def pyshacl(filename, name, results_folder, config):
     technology_name = "pyshacl"
-    command = f"pyshacl {complete_path} > {results_folder}/{name}_{technology_name}.results"
+    command = f"pyshacl {filename} > {results_folder}/{name}_{technology_name}.results"
     if config['verbose'] > 0 :
         print(f"Running: {command}")
     os.system(command)
@@ -75,22 +71,31 @@ if not os.path.exists(shacl_folder):
 
 for test in manifest['tests']:
     print(f"Running test: {test}")
-    filename = test['filename']
-    print(f"filename: {filename}")
     engine = test['engine']
     name = test['name']
+    prefix = test['default_prefix']
+    data_graph = os.path.join(manifest['rdf_folder'], test['data_graph'])
+    shapes_graph = os.path.join(manifest['shacl_folder'],test['shapes_graph'])
     g = rdflib.Graph()
-    shape = test['default_prefix'] + test['shape'].replace(":","",1)
+    g.parse(data_graph, format='turtle')
+    g.parse(shapes_graph, format='turtle')
 
     # Prepare target declarations
-    for node in test['nodes']:
-        clean_node = node.replace(":","",1)
-        print(f"node: {test['default_prefix']}{clean_node}")
-        g.add((rdflib.URIRef(shape), rdflib.URIRef(shacl_prefix + "targetNode"), rdflib.URIRef(node)))
-    print(f"g: {g}")
+    for shape in test['shapes']:
+        shape_iri = prefix + shape.replace(":","",1)
+        for node in test['nodes']:
+            node_iri = prefix + node.replace(":","",1)
+            print(f"{shape_iri} sh:targetNode {node_iri}")
+            g.add((rdflib.URIRef(shape_iri), rdflib.URIRef(shacl_prefix + "targetNode"), rdflib.URIRef(node_iri)))
 
+    print(f"Merged graph: {g.serialize(format='turtle')}")
+    # Save the merged graph to a file
+    merged_filename = os.path.join(temp, filename)
+    g.serialize(destination=merged_filename, format='turtle')
+    print(f"Serialized graph to {merged_filename}")
+    
     if engine == "shacl":
-        shacl_tq(shacl_folder,filename, name, results_folder, config)
-        shacl_jena(shacl_folder,filename, name, results_folder,config)
-        shaclex(shacl_folder,filename, name, results_folder,config)
-        pyshacl(shacl_folder,filename, name, results_folder,config)
+        shacl_tq(merged_filename, name, results_folder, config)
+        shacl_jena(merged_filename, name, results_folder,config)
+        shaclex(merged_filename, name, results_folder,config)
+        pyshacl(merged_filename, name, results_folder,config)
