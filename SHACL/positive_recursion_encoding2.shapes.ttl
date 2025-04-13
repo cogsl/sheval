@@ -4,14 +4,13 @@ prefix xsd:    <http://www.w3.org/2001/XMLSchema#>
 prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
 
+# Positive recursion with encoding with qualified value shapes
 :S a sh:NodeShape ;
    sh:or ( 
       [ sh:property 
           [ sh:path :p ;
-            # sh:qualifiedValueShape :S ;
-            # sh
-            sh:node :S ;
-            sh:minCount 1
+            sh:qualifiedValueShape :S ;
+            sh:qualifiedMinCount 1
           ]
       ]
       [ sh:hasValue :d ] 

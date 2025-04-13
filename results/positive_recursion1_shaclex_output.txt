@@ -1,164 +1,164 @@
-16:10:53.974 [main] DEBUG org.apache.jena.riot.system.stream.JenaIOEnvironment - Failed to find configuration: location-mapping.ttl;location-mapping.rdf;etc/location-mapping.rdf;etc/location-mapping.ttl
-16:10:54.970 [io-compute-blocker-11] INFO es.weso.shaclex.Main$ - Schema not specified. Extracting schema from data
-16:10:55.991 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Checking shape: http://example.org/S
-16:10:55.999 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target nodes of http://example.org/S = <http://example.org/d>,<http://example.org/c>,<http://example.org/b>,<http://example.org/a>
-16:10:56.002 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target classes of http://example.org/S = 
-16:10:56.011 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape http://example.org/S
-16:10:56.011 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.014 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,http://example.org/S)
-16:10:56.016 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
-16:10:56.023 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/d>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
-16:10:56.026 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
-16:10:56.033 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
-16:10:56.039 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape _:NodeLine7Col13
-16:10:56.039 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.040 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,_:NodeLine7Col13)
-16:10:56.040 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
-16:10:56.042 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, _:NodeLine7Col27)
-16:10:56.047 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - PropertyShape _:NodeLine7Col27
-16:10:56.050 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
-16:10:56.078 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.080 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.185 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(), attempt: Attempt(<http://example.org/d>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
-16:10:56.189 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.215 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/d>-http://example.org/S = Valid
+21:59:59.995 [main] DEBUG org.apache.jena.riot.system.stream.JenaIOEnvironment - Failed to find configuration: location-mapping.ttl;location-mapping.rdf;etc/location-mapping.rdf;etc/location-mapping.ttl
+22:00:01.378 [io-compute-blocker-7] INFO es.weso.shaclex.Main$ - Schema not specified. Extracting schema from data
+22:00:02.210 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Checking shape: http://example.org/S
+22:00:02.216 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target nodes of http://example.org/S = <http://example.org/d>,<http://example.org/c>,<http://example.org/b>,<http://example.org/a>
+22:00:02.219 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target classes of http://example.org/S = 
+22:00:02.228 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape http://example.org/S
+22:00:02.228 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.232 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,http://example.org/S)
+22:00:02.233 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
+22:00:02.240 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/d>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
+22:00:02.242 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
+22:00:02.248 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
+22:00:02.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape _:NodeLine7Col13
+22:00:02.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.251 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,_:NodeLine7Col13)
+22:00:02.251 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
+22:00:02.252 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, _:NodeLine7Col27)
+22:00:02.257 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - PropertyShape _:NodeLine7Col27
+22:00:02.259 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
+22:00:02.282 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.286 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.457 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(), attempt: Attempt(<http://example.org/d>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
+22:00:02.463 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.491 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.218 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.220 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.220 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.235 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - PropertyShape _:NodeLine7Col27: (<http://example.org/d>-http://example.org/S = Valid
+22:00:02.493 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.495 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.495 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.507 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - PropertyShape _:NodeLine7Col27: (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.236 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/d>,_:NodeLine7Col27)=(<http://example.org/d>-http://example.org/S = Valid
+22:00:02.508 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/d>,_:NodeLine7Col27)=(<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.237 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, _:NodeLine7Col27)=(<http://example.org/d>-http://example.org/S = Valid
+22:00:02.509 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, _:NodeLine7Col27)=(<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.238 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,_:NodeLine7Col13)=
+22:00:02.509 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,_:NodeLine7Col13)=
 (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.238 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape _:NodeLine7Col13)
+22:00:02.510 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape _:NodeLine7Col13)
 (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Not valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.239 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape _:NodeLine9Col40
-16:10:56.240 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.240 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,_:NodeLine9Col40)
-16:10:56.240 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
-16:10:56.240 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/d>,HasValue(IRIValue(<http://example.org/d>)))
-16:10:56.240 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(HasValue(IRIValue(<http://example.org/d>))
-16:10:56.242 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.246 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/d>-http://example.org/S = Valid
+22:00:02.511 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape _:NodeLine9Col40
+22:00:02.511 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.511 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,_:NodeLine9Col40)
+22:00:02.511 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
+22:00:02.511 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/d>,HasValue(IRIValue(<http://example.org/d>)))
+22:00:02.511 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(HasValue(IRIValue(<http://example.org/d>))
+22:00:02.513 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.517 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.247 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, )
-16:10:56.247 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, )=(<http://example.org/d>-http://example.org/S = Valid
+22:00:02.518 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, )
+22:00:02.519 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, )=(<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.247 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,_:NodeLine9Col40)=
+22:00:02.519 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,_:NodeLine9Col40)=
 (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.248 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape _:NodeLine9Col40)
+22:00:02.520 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape _:NodeLine9Col40)
 (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.248 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, )
-16:10:56.249 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, )=(<http://example.org/d>-http://example.org/S = Valid
+22:00:02.520 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, )
+22:00:02.521 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, )=(<http://example.org/d>-http://example.org/S = Valid
 ,true)
-16:10:56.249 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,http://example.org/S)=
+22:00:02.521 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,http://example.org/S)=
 (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.249 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape http://example.org/S)
+22:00:02.522 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape http://example.org/S)
 (<http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.249 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/c> - NodeShape http://example.org/S
-16:10:56.249 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.249 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/c>,http://example.org/S)
-16:10:56.249 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/c>,...)
-16:10:56.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/c>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
-16:10:56.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
-16:10:56.250 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
-16:10:56.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/c> - NodeShape _:NodeLine7Col13
-16:10:56.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/c>,_:NodeLine7Col13)
-16:10:56.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/c>,...)
-16:10:56.250 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/c>, _:NodeLine7Col27)
-16:10:56.251 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/c> - PropertyShape _:NodeLine7Col27
-16:10:56.251 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
-16:10:56.252 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.252 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.256 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/d>), attempt: Attempt(<http://example.org/c>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
-16:10:56.256 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.257 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/c>-http://example.org/S = Valid
+22:00:02.522 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/c> - NodeShape http://example.org/S
+22:00:02.522 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.522 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/c>,http://example.org/S)
+22:00:02.522 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/c>,...)
+22:00:02.523 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/c>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
+22:00:02.523 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
+22:00:02.524 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
+22:00:02.524 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/c> - NodeShape _:NodeLine7Col13
+22:00:02.524 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.524 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/c>,_:NodeLine7Col13)
+22:00:02.524 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/c>,...)
+22:00:02.524 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/c>, _:NodeLine7Col27)
+22:00:02.525 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/c> - PropertyShape _:NodeLine7Col27
+22:00:02.525 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
+22:00:02.526 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.526 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.530 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/d>), attempt: Attempt(<http://example.org/c>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
+22:00:02.531 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.531 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.257 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.257 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.257 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.259 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.265 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape http://example.org/S
-16:10:56.265 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.266 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,http://example.org/S)
-16:10:56.266 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
-16:10:56.267 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/d>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
-16:10:56.267 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
-16:10:56.267 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
-16:10:56.267 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape _:NodeLine7Col13
-16:10:56.267 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.267 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,_:NodeLine7Col13)
-16:10:56.267 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
-16:10:56.268 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, _:NodeLine7Col27)
-16:10:56.268 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - PropertyShape _:NodeLine7Col27
-16:10:56.268 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
-16:10:56.269 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.269 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.270 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(), attempt: Attempt(<http://example.org/d>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
-16:10:56.270 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.270 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/c>-http://example.org/S = Valid
+22:00:02.531 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.532 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.532 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.534 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.538 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape http://example.org/S
+22:00:02.538 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.540 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,http://example.org/S)
+22:00:02.540 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
+22:00:02.541 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/d>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
+22:00:02.541 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
+22:00:02.541 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
+22:00:02.542 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape _:NodeLine7Col13
+22:00:02.542 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.542 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,_:NodeLine7Col13)
+22:00:02.542 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
+22:00:02.543 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, _:NodeLine7Col27)
+22:00:02.544 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - PropertyShape _:NodeLine7Col27
+22:00:02.544 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
+22:00:02.546 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.546 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.547 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(), attempt: Attempt(<http://example.org/d>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
+22:00:02.548 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.548 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.271 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.271 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.271 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.273 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - PropertyShape _:NodeLine7Col27: (<http://example.org/c>-http://example.org/S = Valid
+22:00:02.548 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.549 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.549 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.551 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - PropertyShape _:NodeLine7Col27: (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.273 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/d>,_:NodeLine7Col27)=(<http://example.org/c>-http://example.org/S = Valid
+22:00:02.551 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/d>,_:NodeLine7Col27)=(<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.273 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, _:NodeLine7Col27)=(<http://example.org/c>-http://example.org/S = Valid
+22:00:02.551 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, _:NodeLine7Col27)=(<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.273 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,_:NodeLine7Col13)=
+22:00:02.551 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,_:NodeLine7Col13)=
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
@@ -166,7 +166,7 @@
 <http://example.org/d>-_:NodeLine7Col13 = Valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.274 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape _:NodeLine7Col13)
+22:00:02.552 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape _:NodeLine7Col13)
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
@@ -174,172 +174,172 @@
 <http://example.org/d>-_:NodeLine7Col13 = Not valid
 <http://example.org/d>-_:NodeLine7Col27 = Not valid
 ,false)
-16:10:56.274 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape _:NodeLine9Col40
-16:10:56.274 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.274 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,_:NodeLine9Col40)
-16:10:56.274 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
-16:10:56.275 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/d>,HasValue(IRIValue(<http://example.org/d>)))
-16:10:56.275 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(HasValue(IRIValue(<http://example.org/d>))
-16:10:56.275 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.275 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/c>-http://example.org/S = Valid
+22:00:02.552 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/d> - NodeShape _:NodeLine9Col40
+22:00:02.552 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.552 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/d>,_:NodeLine9Col40)
+22:00:02.552 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/d>,...)
+22:00:02.552 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/d>,HasValue(IRIValue(<http://example.org/d>)))
+22:00:02.553 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(HasValue(IRIValue(<http://example.org/d>))
+22:00:02.554 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.554 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.275 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, )
-16:10:56.276 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, )=(<http://example.org/c>-http://example.org/S = Valid
+22:00:02.555 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, )
+22:00:02.556 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, )=(<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.276 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,_:NodeLine9Col40)=
-(<http://example.org/c>-http://example.org/S = Valid
-<http://example.org/c>-_:NodeLine7Col13 = Valid
-<http://example.org/c>-_:NodeLine7Col27 = Valid
-<http://example.org/d>-http://example.org/S = Valid
-<http://example.org/d>-_:NodeLine9Col40 = Valid
-,true)
-16:10:56.276 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape _:NodeLine9Col40)
+22:00:02.556 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,_:NodeLine9Col40)=
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.276 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, )
-16:10:56.276 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, )=(<http://example.org/c>-http://example.org/S = Valid
-<http://example.org/c>-_:NodeLine7Col13 = Valid
-<http://example.org/c>-_:NodeLine7Col27 = Valid
-<http://example.org/d>-http://example.org/S = Valid
-,true)
-16:10:56.277 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,http://example.org/S)=
+22:00:02.557 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape _:NodeLine9Col40)
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.277 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape http://example.org/S)
+22:00:02.558 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/d>, )
+22:00:02.558 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/d>, )=(<http://example.org/c>-http://example.org/S = Valid
+<http://example.org/c>-_:NodeLine7Col13 = Valid
+<http://example.org/c>-_:NodeLine7Col27 = Valid
+<http://example.org/d>-http://example.org/S = Valid
+,true)
+22:00:02.559 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/d>,http://example.org/S)=
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 <http://example.org/d>-http://example.org/S = Valid
 <http://example.org/d>-_:NodeLine9Col40 = Valid
 ,true)
-16:10:56.278 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/c> - PropertyShape _:NodeLine7Col27: (<http://example.org/c>-http://example.org/S = Valid
+22:00:02.559 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/d> - NodeShape http://example.org/S)
+(<http://example.org/c>-http://example.org/S = Valid
+<http://example.org/c>-_:NodeLine7Col13 = Valid
+<http://example.org/c>-_:NodeLine7Col27 = Valid
+<http://example.org/d>-http://example.org/S = Valid
+<http://example.org/d>-_:NodeLine9Col40 = Valid
+,true)
+22:00:02.562 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/c> - PropertyShape _:NodeLine7Col27: (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.278 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/c>,_:NodeLine7Col27)=(<http://example.org/c>-http://example.org/S = Valid
+22:00:02.563 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/c>,_:NodeLine7Col27)=(<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.279 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/c>, _:NodeLine7Col27)=(<http://example.org/c>-http://example.org/S = Valid
+22:00:02.564 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/c>, _:NodeLine7Col27)=(<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.279 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/c>,_:NodeLine7Col13)=
+22:00:02.564 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/c>,_:NodeLine7Col13)=
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.279 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/c> - NodeShape _:NodeLine7Col13)
+22:00:02.564 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/c> - NodeShape _:NodeLine7Col13)
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.279 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/c>, )
-16:10:56.279 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/c>, )=(<http://example.org/c>-http://example.org/S = Valid
+22:00:02.565 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/c>, )
+22:00:02.566 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/c>, )=(<http://example.org/c>-http://example.org/S = Valid
 ,true)
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/c>,http://example.org/S)=
+22:00:02.566 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/c>,http://example.org/S)=
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/c> - NodeShape http://example.org/S)
+22:00:02.567 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/c> - NodeShape http://example.org/S)
 (<http://example.org/c>-http://example.org/S = Valid
 <http://example.org/c>-_:NodeLine7Col13 = Valid
 <http://example.org/c>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - NodeShape http://example.org/S
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/b>,http://example.org/S)
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/b>,...)
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/b>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - NodeShape _:NodeLine7Col13
-16:10:56.280 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.281 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/b>,_:NodeLine7Col13)
-16:10:56.281 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/b>,...)
-16:10:56.281 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/b>, _:NodeLine7Col27)
-16:10:56.281 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - PropertyShape _:NodeLine7Col27
-16:10:56.281 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
-16:10:56.282 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.282 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.283 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/a>), attempt: Attempt(<http://example.org/b>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
-16:10:56.283 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.284 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/b>-http://example.org/S = Valid
+22:00:02.567 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - NodeShape http://example.org/S
+22:00:02.567 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.567 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/b>,http://example.org/S)
+22:00:02.567 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/b>,...)
+22:00:02.568 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/b>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
+22:00:02.568 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
+22:00:02.569 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
+22:00:02.569 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - NodeShape _:NodeLine7Col13
+22:00:02.569 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.569 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/b>,_:NodeLine7Col13)
+22:00:02.569 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/b>,...)
+22:00:02.569 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/b>, _:NodeLine7Col27)
+22:00:02.570 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - PropertyShape _:NodeLine7Col27
+22:00:02.570 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
+22:00:02.571 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.571 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.573 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/a>), attempt: Attempt(<http://example.org/b>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
+22:00:02.573 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.573 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.284 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.284 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.284 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.285 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.286 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - NodeShape http://example.org/S
-16:10:56.286 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.286 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/a>,http://example.org/S)
-16:10:56.286 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/a>,...)
-16:10:56.286 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/a>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
-16:10:56.286 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
-16:10:56.286 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
-16:10:56.287 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - NodeShape _:NodeLine7Col13
-16:10:56.287 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.287 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/a>,_:NodeLine7Col13)
-16:10:56.287 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/a>,...)
-16:10:56.287 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/a>, _:NodeLine7Col27)
-16:10:56.287 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - PropertyShape _:NodeLine7Col27
-16:10:56.287 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
-16:10:56.288 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.288 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.289 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/b>), attempt: Attempt(<http://example.org/a>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
-16:10:56.290 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.290 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/b>-http://example.org/S = Valid
-<http://example.org/b>-_:NodeLine7Col13 = Valid
-<http://example.org/b>-_:NodeLine7Col27 = Valid
-<http://example.org/a>-http://example.org/S = Valid
-<http://example.org/a>-_:NodeLine7Col13 = Valid
-<http://example.org/a>-_:NodeLine7Col27 = Valid
-,true)
-16:10:56.290 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.291 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.291 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.292 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.295 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - PropertyShape _:NodeLine7Col27: (<http://example.org/b>-http://example.org/S = Valid
+22:00:02.573 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.574 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.574 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.576 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.576 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - NodeShape http://example.org/S
+22:00:02.576 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.577 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/a>,http://example.org/S)
+22:00:02.577 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/a>,...)
+22:00:02.577 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/a>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
+22:00:02.578 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
+22:00:02.578 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
+22:00:02.578 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - NodeShape _:NodeLine7Col13
+22:00:02.578 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.578 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/a>,_:NodeLine7Col13)
+22:00:02.578 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/a>,...)
+22:00:02.579 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/a>, _:NodeLine7Col27)
+22:00:02.579 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - PropertyShape _:NodeLine7Col27
+22:00:02.580 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
+22:00:02.581 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.581 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.584 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/b>), attempt: Attempt(<http://example.org/a>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
+22:00:02.584 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.584 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 <http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.295 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/a>,_:NodeLine7Col27)=(<http://example.org/b>-http://example.org/S = Valid
+22:00:02.585 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.586 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.586 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.588 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.590 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - PropertyShape _:NodeLine7Col27: (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 <http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.296 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/a>, _:NodeLine7Col27)=(<http://example.org/b>-http://example.org/S = Valid
+22:00:02.591 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/a>,_:NodeLine7Col27)=(<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 <http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.296 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/a>,_:NodeLine7Col13)=
+22:00:02.591 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/a>, _:NodeLine7Col27)=(<http://example.org/b>-http://example.org/S = Valid
+<http://example.org/b>-_:NodeLine7Col13 = Valid
+<http://example.org/b>-_:NodeLine7Col27 = Valid
+<http://example.org/a>-http://example.org/S = Valid
+<http://example.org/a>-_:NodeLine7Col13 = Valid
+<http://example.org/a>-_:NodeLine7Col27 = Valid
+,true)
+22:00:02.591 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/a>,_:NodeLine7Col13)=
 (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
@@ -347,7 +347,7 @@
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.297 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - NodeShape _:NodeLine7Col13)
+22:00:02.592 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - NodeShape _:NodeLine7Col13)
 (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
@@ -355,21 +355,13 @@
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.297 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/a>, )
-16:10:56.297 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/a>, )=(<http://example.org/b>-http://example.org/S = Valid
+22:00:02.592 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/a>, )
+22:00:02.592 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/a>, )=(<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 <http://example.org/a>-http://example.org/S = Valid
 ,true)
-16:10:56.298 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/a>,http://example.org/S)=
-(<http://example.org/b>-http://example.org/S = Valid
-<http://example.org/b>-_:NodeLine7Col13 = Valid
-<http://example.org/b>-_:NodeLine7Col27 = Valid
-<http://example.org/a>-http://example.org/S = Valid
-<http://example.org/a>-_:NodeLine7Col13 = Valid
-<http://example.org/a>-_:NodeLine7Col27 = Valid
-,true)
-16:10:56.298 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - NodeShape http://example.org/S)
+22:00:02.593 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/a>,http://example.org/S)=
 (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
@@ -377,118 +369,126 @@
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.299 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - PropertyShape _:NodeLine7Col27: (<http://example.org/b>-http://example.org/S = Valid
+22:00:02.593 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - NodeShape http://example.org/S)
+(<http://example.org/b>-http://example.org/S = Valid
+<http://example.org/b>-_:NodeLine7Col13 = Valid
+<http://example.org/b>-_:NodeLine7Col27 = Valid
+<http://example.org/a>-http://example.org/S = Valid
+<http://example.org/a>-_:NodeLine7Col13 = Valid
+<http://example.org/a>-_:NodeLine7Col27 = Valid
+,true)
+22:00:02.594 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - PropertyShape _:NodeLine7Col27: (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.300 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/b>,_:NodeLine7Col27)=(<http://example.org/b>-http://example.org/S = Valid
+22:00:02.594 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/b>,_:NodeLine7Col27)=(<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.300 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/b>, _:NodeLine7Col27)=(<http://example.org/b>-http://example.org/S = Valid
+22:00:02.595 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/b>, _:NodeLine7Col27)=(<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.300 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/b>,_:NodeLine7Col13)=
+22:00:02.595 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/b>,_:NodeLine7Col13)=
 (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.301 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - NodeShape _:NodeLine7Col13)
+22:00:02.595 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - NodeShape _:NodeLine7Col13)
 (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.301 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/b>, )
-16:10:56.301 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/b>, )=(<http://example.org/b>-http://example.org/S = Valid
+22:00:02.595 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/b>, )
+22:00:02.595 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/b>, )=(<http://example.org/b>-http://example.org/S = Valid
 ,true)
-16:10:56.302 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/b>,http://example.org/S)=
+22:00:02.596 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/b>,http://example.org/S)=
 (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.302 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - NodeShape http://example.org/S)
+22:00:02.596 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - NodeShape http://example.org/S)
 (<http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.302 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - NodeShape http://example.org/S
-16:10:56.302 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.303 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/a>,http://example.org/S)
-16:10:56.303 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/a>,...)
-16:10:56.303 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/a>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
-16:10:56.303 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
-16:10:56.303 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
-16:10:56.304 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - NodeShape _:NodeLine7Col13
-16:10:56.304 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.304 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/a>,_:NodeLine7Col13)
-16:10:56.304 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/a>,...)
-16:10:56.304 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/a>, _:NodeLine7Col27)
-16:10:56.305 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - PropertyShape _:NodeLine7Col27
-16:10:56.306 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
-16:10:56.307 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.307 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.309 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/b>), attempt: Attempt(<http://example.org/a>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
-16:10:56.309 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.309 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/a>-http://example.org/S = Valid
+22:00:02.596 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - NodeShape http://example.org/S
+22:00:02.596 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.596 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/a>,http://example.org/S)
+22:00:02.596 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/a>,...)
+22:00:02.596 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/a>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
+22:00:02.597 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
+22:00:02.597 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
+22:00:02.597 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - NodeShape _:NodeLine7Col13
+22:00:02.597 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.597 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/a>,_:NodeLine7Col13)
+22:00:02.597 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/a>,...)
+22:00:02.597 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/a>, _:NodeLine7Col27)
+22:00:02.598 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/a> - PropertyShape _:NodeLine7Col27
+22:00:02.598 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
+22:00:02.600 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.600 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.602 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/b>), attempt: Attempt(<http://example.org/a>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
+22:00:02.602 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.603 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.309 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.310 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.310 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.312 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.313 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - NodeShape http://example.org/S
-16:10:56.313 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.313 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/b>,http://example.org/S)
-16:10:56.313 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/b>,...)
-16:10:56.313 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/b>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
-16:10:56.314 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
-16:10:56.314 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
-16:10:56.314 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - NodeShape _:NodeLine7Col13
-16:10:56.314 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
-16:10:56.314 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/b>,_:NodeLine7Col13)
-16:10:56.314 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/b>,...)
-16:10:56.315 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/b>, _:NodeLine7Col27)
-16:10:56.315 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - PropertyShape _:NodeLine7Col27
-16:10:56.316 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
-16:10:56.316 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.317 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.319 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/a>), attempt: Attempt(<http://example.org/b>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
-16:10:56.319 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
-16:10:56.320 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/a>-http://example.org/S = Valid
-<http://example.org/a>-_:NodeLine7Col13 = Valid
-<http://example.org/a>-_:NodeLine7Col27 = Valid
-<http://example.org/b>-http://example.org/S = Valid
-<http://example.org/b>-_:NodeLine7Col13 = Valid
-<http://example.org/b>-_:NodeLine7Col27 = Valid
-,true)
-16:10:56.320 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.321 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.321 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
-16:10:56.324 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
-16:10:56.325 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - PropertyShape _:NodeLine7Col27: (<http://example.org/a>-http://example.org/S = Valid
+22:00:02.603 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.603 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.604 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.606 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.606 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - NodeShape http://example.org/S
+22:00:02.607 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.607 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/b>,http://example.org/S)
+22:00:02.607 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/b>,...)
+22:00:02.607 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponent(<http://example.org/b>,Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40))))
+22:00:02.607 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(Or(List(RefNode(_:NodeLine7Col13), RefNode(_:NodeLine9Col40)))
+22:00:02.607 [io-compute-5] DEBUG es.weso.shacl.validator.SHACLChecker$ - Failed: None of the components of or pass
+22:00:02.608 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - NodeShape _:NodeLine7Col13
+22:00:02.608 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node shape is deactivated? (false)
+22:00:02.608 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - checkNodeShape(<http://example.org/b>,_:NodeLine7Col13)
+22:00:02.608 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - chechComponents(<http://example.org/b>,...)
+22:00:02.608 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/b>, _:NodeLine7Col27)
+22:00:02.609 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Node <http://example.org/b> - PropertyShape _:NodeLine7Col27
+22:00:02.609 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: MinCount(1)
+22:00:02.610 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.610 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.611 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - minCount 1, os: List(<http://example.org/a>), attempt: Attempt(<http://example.org/b>,RefNode(_:NodeLine7Col27),,ViolationSeverity,Some(PredicatePath(<http://example.org/p>))), path: PredicatePath(<http://example.org/p>)
+22:00:02.612 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - condition(,...)
+22:00:02.612 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - result of condition: (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 <http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.325 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/b>,_:NodeLine7Col27)=(<http://example.org/a>-http://example.org/S = Valid
+22:00:02.612 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2PropertyChecker. propertyShape: PropertyShape(_:NodeLine7Col27,PredicatePath(<http://example.org/p>),List(MinCount(1), NodeComponent(RefNode(<http://example.org/S>))),List(),List(),false,List(),false,,None,,,None,None,None,List()), path: PredicatePath(<http://example.org/p>), component: NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.613 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.613 [io-compute-5] DEBUG org.apache.jena.shared.LockMRSW - Lock : io-compute-5
+22:00:02.615 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - component2Checker(NodeComponent(RefNode(<http://example.org/S>))
+22:00:02.617 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - PropertyShape _:NodeLine7Col27: (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 <http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.326 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/b>, _:NodeLine7Col27)=(<http://example.org/a>-http://example.org/S = Valid
+22:00:02.617 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/b>,_:NodeLine7Col27)=(<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 <http://example.org/b>-http://example.org/S = Valid
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.326 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/b>,_:NodeLine7Col13)=
+22:00:02.618 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/b>, _:NodeLine7Col27)=(<http://example.org/a>-http://example.org/S = Valid
+<http://example.org/a>-_:NodeLine7Col13 = Valid
+<http://example.org/a>-_:NodeLine7Col27 = Valid
+<http://example.org/b>-http://example.org/S = Valid
+<http://example.org/b>-_:NodeLine7Col13 = Valid
+<http://example.org/b>-_:NodeLine7Col27 = Valid
+,true)
+22:00:02.618 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/b>,_:NodeLine7Col13)=
 (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
@@ -496,7 +496,7 @@
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.326 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - NodeShape _:NodeLine7Col13)
+22:00:02.618 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - NodeShape _:NodeLine7Col13)
 (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
@@ -504,21 +504,13 @@
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.327 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/b>, )
-16:10:56.327 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/b>, )=(<http://example.org/a>-http://example.org/S = Valid
+22:00:02.618 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/b>, )
+22:00:02.619 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/b>, )=(<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 <http://example.org/b>-http://example.org/S = Valid
 ,true)
-16:10:56.327 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/b>,http://example.org/S)=
-(<http://example.org/a>-http://example.org/S = Valid
-<http://example.org/a>-_:NodeLine7Col13 = Valid
-<http://example.org/a>-_:NodeLine7Col27 = Valid
-<http://example.org/b>-http://example.org/S = Valid
-<http://example.org/b>-_:NodeLine7Col13 = Valid
-<http://example.org/b>-_:NodeLine7Col27 = Valid
-,true)
-16:10:56.327 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - NodeShape http://example.org/S)
+22:00:02.619 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/b>,http://example.org/S)=
 (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
@@ -526,49 +518,57 @@
 <http://example.org/b>-_:NodeLine7Col13 = Valid
 <http://example.org/b>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.328 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - PropertyShape _:NodeLine7Col27: (<http://example.org/a>-http://example.org/S = Valid
+22:00:02.619 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/b> - NodeShape http://example.org/S)
+(<http://example.org/a>-http://example.org/S = Valid
+<http://example.org/a>-_:NodeLine7Col13 = Valid
+<http://example.org/a>-_:NodeLine7Col27 = Valid
+<http://example.org/b>-http://example.org/S = Valid
+<http://example.org/b>-_:NodeLine7Col13 = Valid
+<http://example.org/b>-_:NodeLine7Col27 = Valid
+,true)
+22:00:02.620 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - PropertyShape _:NodeLine7Col27: (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.328 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/a>,_:NodeLine7Col27)=(<http://example.org/a>-http://example.org/S = Valid
+22:00:02.620 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of chechPropertyShape(<http://example.org/a>,_:NodeLine7Col27)=(<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.329 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/a>, _:NodeLine7Col27)=(<http://example.org/a>-http://example.org/S = Valid
+22:00:02.621 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/a>, _:NodeLine7Col27)=(<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.329 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/a>,_:NodeLine7Col13)=
+22:00:02.621 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/a>,_:NodeLine7Col13)=
 (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.329 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - NodeShape _:NodeLine7Col13)
+22:00:02.621 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - NodeShape _:NodeLine7Col13)
 (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.329 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/a>, )
-16:10:56.330 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/a>, )=(<http://example.org/a>-http://example.org/S = Valid
+22:00:02.621 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Check propertyShapes(<http://example.org/a>, )
+22:00:02.622 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of check propertyShapes(<http://example.org/a>, )=(<http://example.org/a>-http://example.org/S = Valid
 ,true)
-16:10:56.330 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/a>,http://example.org/S)=
+22:00:02.622 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of checkNodeShape(<http://example.org/a>,http://example.org/S)=
 (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.330 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - NodeShape http://example.org/S)
+22:00:02.622 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Result of node <http://example.org/a> - NodeShape http://example.org/S)
 (<http://example.org/a>-http://example.org/S = Valid
 <http://example.org/a>-_:NodeLine7Col13 = Valid
 <http://example.org/a>-_:NodeLine7Col27 = Valid
 ,true)
-16:10:56.342 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Checking shape: _:NodeLine9Col40
-16:10:56.342 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target nodes of _:NodeLine9Col40 = 
-16:10:56.342 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target classes of _:NodeLine9Col40 = 
-16:10:56.343 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Checking shape: _:NodeLine7Col13
-16:10:56.344 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target nodes of _:NodeLine7Col13 = 
-16:10:56.344 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target classes of _:NodeLine7Col13 = 
-16:10:56.345 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Checking shape: _:NodeLine7Col27
-16:10:56.346 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target nodes of _:NodeLine7Col27 = 
-16:10:56.346 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target classes of _:NodeLine7Col27 = 
+22:00:02.632 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Checking shape: _:NodeLine9Col40
+22:00:02.633 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target nodes of _:NodeLine9Col40 = 
+22:00:02.633 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target classes of _:NodeLine9Col40 = 
+22:00:02.635 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Checking shape: _:NodeLine7Col13
+22:00:02.635 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target nodes of _:NodeLine7Col13 = 
+22:00:02.635 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target classes of _:NodeLine7Col13 = 
+22:00:02.637 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Checking shape: _:NodeLine7Col27
+22:00:02.637 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target nodes of _:NodeLine7Col27 = 
+22:00:02.637 [io-compute-5] DEBUG es.weso.shacl.validator.Validator - Target classes of _:NodeLine7Col27 = 
 Result :b@:S, :b@_:NodeLine7Col13, :b@_:NodeLine7Col27, :a@:S, :a@_:NodeLine7Col13, :a@_:NodeLine7Col27, :c@:S, :c@_:NodeLine7Col13, :c@_:NodeLine7Col27, :d@:S, :d@_:NodeLine9Col40
 Validation report written to results/positive_recursion1_shaclex_results.ttl

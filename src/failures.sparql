@@ -1,0 +1,9 @@
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+SELECT ?focusNode ?sourceShape ?resultMessage
+WHERE {
+  ?s a sh:ValidationReport ;
+     sh:result ?failure .
+  ?failure sh:focusNode ?focusNode ;
+           sh:resultMessage ?resultMessage ;
+           sh:sourceShape ?sourceShape 
+}

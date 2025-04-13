@@ -1,116 +1,30 @@
 #!/usr/bin/python
 import os
+import sys
 import argparse
-import re
 import yaml
 import rdflib
+import csv
+from src.shacl_runners import *
 
 shacl_prefix = "http://www.w3.org/ns/shacl#"
-
-def shacl_tq(filename, name, results_folder, config, results):
-    technology_name = "shacl_tq"
-    temp = config['temp']
-    validation_report_file_temp = os.path.join(temp, f"{name}_{technology_name}_results_temp.ttl")
-    command = f"shaclvalidate.sh -datafile {filename} > {validation_report_file_temp}"
-    if config['verbose'] > 0 :
-        print(f"Running: {command}")
-    os.system(command)
-    validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results_temp.ttl")
-    validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-    regex = re.compile('.*Failure.*')
-    split_file_by_regex(validation_report_file_temp, regex, validation_output, validation_report_file)
-    result = analyze_validation_report(validation_report_file)
-    store_result(name, technology_name, result, results)
-
-def shacl_jena(filename, name, results_folder, config, results):
-    technology_name = "shacl_jena"
-    validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
-    # validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-    command = f"shacl v {filename} > {validation_report_file}"
-    if config['verbose'] > 0 :
-        print(f"Running: {command}")
-    os.system(command)
-    result = analyze_validation_report(validation_report_file)
-    store_result(name, technology_name, result, results)
-
-def shaclex(filename, name, results_folder, config, results):
-    technology_name = "shaclex"
-    validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
-    validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-    command = f"shaclex --validate --engine SHACLEX --data {filename} --validationReportFormat TURTLE --showValidationReport --validationReportFile {validation_report_file} > {validation_output}"
-    if config['verbose'] > 0 :
-        print(f"Running: {command}")
-    os.system(command)
-    result = analyze_validation_report(validation_report_file)
-    store_result(name, technology_name, result, results)
-
-def pyshacl(filename, name, results_folder, config, results):
-    technology_name = "pyshacl"
-    validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
-    validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-    command = f"pyshacl {filename} -o {validation_report_file} --format turtle > {validation_output}"
-    if config['verbose'] > 0 :
-        print(f"Running: {command}")
-    os.system(command)
-    result = analyze_validation_report(validation_report_file)
-    print(f"Result: {result}")
-    store_result(name, technology_name, result, results)
-
-def analyze_validation_report(filename):
-    # Load the validation report
-    g = rdflib.Graph()
-    g.parse(filename, format='turtle')
-
-    # Extract the number of violations
-    query = """
-        SELECT ?conforms
-        WHERE {
-            ?s a sh:ValidationResult .
-            ?s sh:conforms ?conforms .
-        }
-    """
-    result = g.query(query)
-    for row in result:
-        conforms = row[0]
-        if conforms == rdflib.Literal("true"):
-            print("The data graph conforms to the SHACL shapes.")
-        else:
-            print("The data graph does not conform to the SHACL shapes.")
-    return result
-
-
-# Split the file into two files based on a regex pattern
-def split_file_by_regex(source, regex, file1, file2):
-    with open(source, 'r') as infile, open(file1, 'w') as outfile1, open(file2, 'w') as outfile2:
-        for line in infile:
-            if regex.match(line):
-                outfile1.write(line)
-            else:
-                outfile2.write(line)
-
-def store_result(name, technology_name, result, results):
-    results.append({
-        "name": name,
-        "technology_name": technology_name,
-        "result": result
-    }) 
-    
-    
 parser = argparse.ArgumentParser(description="Execute Recursion Shapes experiments",
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("-v", "--verbose", help="increase verbosity", default = 0, action="count")
+parser.add_argument("--debug", help="debug info", default = 0, action="count")
 parser.add_argument("--temp", help="Temporal folder", default = "temp", action="store")
+parser.add_argument("--include-message", help="Include messages in output", default = False, action="store_true")
 parser.add_argument("-m", "--manifest", help="Manifest file (in YAML format)", default = "manifest.yaml", action="store")
+parser.add_argument("-o", "--output", help="Output file (in YAML format)", default = None, action="store")
+parser.add_argument("-f", "--format", help="Output format (yaml or csv)", default = "yaml", action="store")
 args = parser.parse_args()
 config = vars(args)
-print(f"Config options: {config}")
 
 
 # Load the YAML manifest file
 with open(config['manifest'], 'r') as file:
     manifest = yaml.safe_load(file)
-    if config['verbose'] > 0:
-        print(f"Manifest loaded: {manifest}")
+    debug(config, f"Manifest loaded: {manifest}")
 
 shacl_folder = manifest['shacl_folder']
 shex_folder = manifest['shex_folder']
@@ -131,7 +45,7 @@ if not os.path.exists(shacl_folder):
     exit(1)
 
 for test in manifest['tests']:
-    print(f"Running test: {test}")
+    info(config,f"Running test: {test}")
     engine = test['engine']
     name = test['name']
     prefix = test['default_prefix']
@@ -140,27 +54,58 @@ for test in manifest['tests']:
     g = rdflib.Graph()
     g.parse(data_graph, format='turtle')
     g.parse(shapes_graph, format='turtle')
-
-    # Prepare target declarations
+    nodes = []
+    shapes = []
+    # Prepare target declarations and list of nodes and shapes
     for shape in test['shapes']:
         shape_iri = prefix + shape.replace(":","",1)
+        shapes.append((shape, shape_iri))
         for node in test['nodes']:
             node_iri = prefix + node.replace(":","",1)
-            print(f"{shape_iri} sh:targetNode {node_iri}")
+            debug(config, f"{shape_iri} sh:targetNode {node_iri}")
+            nodes.append((node, node_iri))
             g.add((rdflib.URIRef(shape_iri), rdflib.URIRef(shacl_prefix + "targetNode"), rdflib.URIRef(node_iri)))
 
-    print(f"Merged graph: {g.serialize(format='turtle')}")
+    debug(config, f"Merged graph: {g.serialize(format='turtle')}")
     # Save the merged graph to a file
     merged_filename = os.path.join(temp, name + ".ttl")
     g.serialize(destination=merged_filename, format='turtle')
 
-    print(f"Serialized graph to {merged_filename}")
+    debug(config, f"Serialized graph to {merged_filename}")
     results = []
     if engine == "shacl":
-        shacl_tq(merged_filename, name, results_folder, config, results)
-        shacl_jena(merged_filename, name, results_folder,config, results)
-        shaclex(merged_filename, name, results_folder,config, results)
-        pyshacl(merged_filename, name, results_folder,config, results)
-    print(f"Results: {results}")
+        for technology in manifest['shacl_technologies']:
+            if technology == "shacl_tq":
+                shacl_tq(merged_filename, name, results_folder, config, results, nodes, shapes)
+            elif technology == "jena_shacl":
+                jena_shacl(merged_filename, name, results_folder, config, results, nodes, shapes)
+            elif technology == "shaclex":
+                shaclex(merged_filename, name, results_folder, config, results, nodes, shapes)
+            elif technology == "pyshacl":
+                pyshacl(merged_filename, name, results_folder, config, results, nodes, shapes)
+
+    if config['output'] is not None:
+        output_file = config['output']
+        file = open(output_file, 'w')
+    else:
+        file = sys.stdout
+    match config["format"]:
+        case "yaml":
+                yaml.dump(results, file)
+        case "csv":
+                writer = csv.writer(file)
+                writer.writerow(["name", "technology", "conforms", "failures"])
+                for entry in results:
+                    name = entry['name']
+                    technology_name = entry['technology_name']
+                    result = entry['result']
+                    conforms = result['conforms']
+                    failures = result['failures']
+                    writer.writerow([name, technology_name, conforms, failures])
+        case _:
+            print("Unknown format. Supported formats are yaml and csv.")
+            exit(1)
+
+    
 
 

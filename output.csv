@@ -1,0 +1,5 @@
+name,technology,conforms,failures
+positive_recursion_encoding2,pyshacl,True,[]
+positive_recursion_encoding2,shaclex,Exception,Command 'shaclex --validate --engine SHACLEX --data temp/positive_recursion_encoding2.ttl --validationReportFormat TURTLE --showValidationReport --validationReportFile results/positive_recursion_encoding2_shaclex_results.ttl > results/positive_recursion_encoding2_shaclex_output.txt' timed out after 2 seconds
+positive_recursion_encoding2,jena_shacl,Exception,Command 'shacl v temp/positive_recursion_encoding2.ttl > results/positive_recursion_encoding2_jena_shacl_results.ttl' timed out after 2 seconds
+positive_recursion_encoding2,shacl_tq,Exception,Command 'shaclvalidate.sh -datafile temp/positive_recursion_encoding2.ttl > temp/positive_recursion_encoding2_shacl_tq_results_temp.ttl' timed out after 2 seconds
