@@ -2,9 +2,11 @@ rdf_folder: RDF
 shacl_folder: SHACL
 shacl_technologies: 
   - pyshacl
-  - shaclex
+  - shaclex_shacl
   - jena_shacl
   - shacl_tq
+shex_technologies: 
+  - shacl_shex
 shex_folder: ShEx
 results_folder: results
 tests:
@@ -166,3 +168,17 @@ tests:
         - ":b"
       shapes: 
         - ":S1"
+    - name: positive_recursion1
+      data_graph: positive_recursion.ttl
+      shex_file: positive_recursion.shex
+      engine: shex
+      description: |
+        Positive recursion in ShEx
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"

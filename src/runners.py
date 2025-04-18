@@ -3,12 +3,15 @@ import os
 import re
 import subprocess
 import rdflib
+import json
 
 class CommandResult(Enum):
     OK = 0
     TIMEOUT = 1
     ERROR = 2
     EXCEPTION = 3
+
+shacl_prefix = "http://www.w3.org/ns/shacl#"
 
 def run(command, output_filename, timeout = 2, debug = False):
     result = CommandResult.ERROR
@@ -31,23 +34,52 @@ def run(command, output_filename, timeout = 2, debug = False):
 
 def mk_command(command, filename, output):
     return list(map(lambda x: 
-                       x.replace("$filename", filename)
+                       x.replace("$data_filename", filename)
                        .replace("$validation_report_file", output), command))
 
-pyshacl_cmd = ["bin/pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$filename" ]
+def mk_command_shex(command, data_filename, shex_filename, shapemap_filename, output):
+    return list(map(lambda x: 
+                       x.replace("$data_filename", data_filename)
+                       .replace("$shex_filename", shex_filename)
+                       .replace("$shapemap_filename", shapemap_filename)
+                       .replace("$output_filename", output), command))
 
-shacl_tq_cmd = ["bin/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$filename"]
+pyshacl_cmd = ["bin/pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$data_filename" ]
 
-shaclex_cmd = ["bin/shaclex-0.2.6/bin/shaclex","--validate","--engine","SHACLEX","--data", "$filename","--validationReportFormat","TURTLE","--showValidationReport","--validationReportFile", "$validation_report_file"]
+shacl_tq_cmd = ["bin/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$data_filename"]
 
-jena_shacl_cmd = ["bin/apache-jena-5.3.0/bin/shacl", "v", "--data", "$filename"]
+shaclex_shacl_cmd = ["bin/shaclex-0.2.6/bin/shaclex",
+                     "--validate",
+                     "--engine","SHACLEX",
+                     "--data", "$data_filename",
+                     "--validationReportFormat","TURTLE",
+                     "--showValidationReport",
+                     "--validationReportFile", "$validation_report_file"
+                     ]
+
+shaclex_shex_cmd = ["bin/shaclex-0.2.6/bin/shaclex", 
+                    "--dataFormat", "TURTLE", 
+                    "--data", "$data_filename", 
+                    "--schema", "$shex_filename", 
+                    "--schemaFormat", "SHEXC", 
+                    "--shapeMap", "$shapemap_filename", 
+                    "--validate", 
+                    "--engine", "SHEX", 
+                    "--trigger", "SHAPEMAP", 
+                    "--showResult", 
+                    "--resultFormat", "JSON", 
+                    "--outFile", "$output_filename"
+                    ] 
+
+
+jena_shacl_cmd = ["bin/apache-jena-5.3.0/bin/shacl", "v", "--data", "$data_filename"]
 
 def shacl_tq(filename, name, results_folder, config, results, nodes, shapes):
     try:
         technology_name = "shacl_tq"
         temp = config['temp']
         validation_report_file_temp = os.path.join(temp, f"{name}_{technology_name}_results_temp.ttl")
-        output_file_temp = os.path.join(temp, f"{name}_{technology_name}_output_temp.txt")
+        # output_file_temp = os.path.join(temp, f"{name}_{technology_name}_output_temp.txt")
         command = mk_command(shacl_tq_cmd, filename, validation_report_file_temp)
         result1 = run(command, validation_report_file_temp, 5, config['debug'])
         if result1 == CommandResult.OK:
@@ -83,12 +115,12 @@ def jena_shacl(filename, name, results_folder, config, results, nodes, shapes):
         result = { 'conforms': "Exception", 'failures': f"{e}" }
         store_result(name, technology_name, result, results)
 
-def shaclex(filename, name, results_folder, config, results, nodes, shapes):
+def shaclex_shacl(filename, name, results_folder, config, results, nodes, shapes):
     try:
-        technology_name = "shaclex"
+        technology_name = "shaclex_shacl"
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-        command = mk_command(shaclex_cmd, filename, validation_report_file)
+        command = mk_command(shaclex_shacl_cmd, filename, validation_report_file)
         info(config, f"Running: {command}")
         result1 = run(command, validation_output, 5, config['debug'])
         if result1 == CommandResult.OK:
@@ -102,6 +134,79 @@ def shaclex(filename, name, results_folder, config, results, nodes, shapes):
         result = { 'conforms': "Exception", 'failures': f"{e}" }
         store_result(name, technology_name, result, results)
 
+def shaclex_shex(filename, shex_filename, shapemap_filename, name, results_folder, config, results, nodes, shapes):
+    print(f"Shacl_shex: Nodes {nodes}")
+    try:
+        technology_name = "shex_s"
+        # output_shapemap = os.path.join(results_folder, f"{name}_{technology_name}_output_shapemap.txt")
+        validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.json")
+        command = mk_command_shex(shaclex_shex_cmd, filename, shex_filename, shapemap_filename, validation_output)
+        info(config, f"Running: {command}")
+        result1 = run(command, validation_output, 5, config['debug'])
+        if result1 == CommandResult.OK:
+            result = analyze_shapemap(validation_output,nodes,shapes,config)
+            store_result(name, technology_name, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, technology_name, result, results)
+    except Exception as e:
+        info(config, f"Error running {technology_name}: {e}")
+        result = { 'conforms': "Exception", 'failures': f"{e}" }
+        store_result(name, technology_name, result, results)
+
+def prepare_shapemap(nodes, shapes, prefix, merged_filename, config):
+    debug(config, f"Preparing shapemap for {nodes} and {shapes}")
+    strs = []
+    for (node, node_iri) in nodes:
+        for (shape, shape_iri) in shapes:
+            strs.append(f"<{node_iri}>@<{shape_iri}>")
+    shapemap = ",".join(strs)
+    with open(merged_filename, 'w') as outfile:
+        debug(config, f"Writing shapemap {shapemap}\n in file {merged_filename}")
+        outfile.write(shapemap)
+
+def analyze_shapemap(filename,nodes,shapes,config):
+    conforms = None
+    failures = []
+    successes = []
+    with open(filename, 'r') as infile:
+        json_result = json.load(infile)
+        conforms = json_result['valid']
+        for result in json_result['shapeMap']:
+            node = result['node']
+            shape = result['shape']
+            status = result['status']
+            node = remove_gt_lt(node)
+            shape = remove_gt_lt(shape)
+            maybe_node = find_qname(nodes, node)
+            maybe_shape = find_qname(shapes, shape)
+                 # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
+            if maybe_node is not None:
+                node = maybe_node
+                if maybe_shape is not None:
+                    shape = maybe_shape
+                    if status == "conformant":
+                        successes.append({'node': node, 'shape': shape})
+                    else:
+                        failures.append({'node': node, 'shape': shape})    
+                else:
+                    info(config, f"Shape {shape} not found in the shapes list: {shapes}")
+            else:
+                info(config, f"Node {node} not found in the nodes list: {nodes}")                                          
+    return { 'conforms': conforms, 'failures': failures, 'successes': successes }
+
+def remove_gt_lt(string):
+    """
+    Remove the < and > characters from the string
+    param:
+        string: the string to remove the characters from
+    return: the string without the characters
+    """
+    if string.startswith("<") and string.endswith(">"):
+        return string[1:-1]
+    else:
+        return string
+    
 # Run pyshacl validation
 def pyshacl(filename, name, results_folder, config, results, nodes, shapes):
     try:
@@ -190,6 +295,20 @@ def analyze_validation_report(filename,nodes,shapes,config):
                     info(config, f"Node {node} not found in the nodes list: {nodes}")                 
     return { 'conforms': conforms, 'failures': failures }
 
+def enrich_with_iris(nodes, prefix):
+    """
+    Enrich the nodes with their IRIs
+    param:
+        nodes: a list of nodes
+        prefix: the prefix to use for the IRIs
+    return: a list of pairs (node, node_iri) with the nodes and their IRIs
+    """
+    iris = []
+    for node in nodes:
+        node_iri = prefix + node.replace(":","",1)
+        iris.append((node, node_iri))
+    return iris
+
 # Find the qname of an entity in a list of entities
 def find_qname(entities, entity):
     for e in entities:
@@ -220,3 +339,23 @@ def info(config, string):
 def debug(config, string):
     if config['debug'] > 0:
         print(string)        
+
+# Prepare the target declarations for the SHACL validation
+def prepare_target_declarations(data_graph, shapes_graph, nodes, shapes, prefix, merged_filename, config):
+    info(config, f"Preparing target declarations for {data_graph} and {shapes_graph}")
+    g = rdflib.Graph()
+    g.parse(data_graph, format='turtle')
+    g.parse(shapes_graph, format='turtle')
+    # Prepare target declarations and list of nodes and shapes
+    for (shape, shape_iri) in shapes:
+        for (node, node_iri) in nodes:
+            debug(config, f"{shape_iri} sh:targetNode {node_iri}")
+            g.add((rdflib.URIRef(shape_iri), rdflib.URIRef(shacl_prefix + "targetNode"), rdflib.URIRef(node_iri)))
+
+            debug(config, f"Merged graph: {g.serialize(format='turtle')}")
+            # Save the merged graph to a temp file
+    g.serialize(destination=merged_filename, format='turtle')
+    debug(config, f"Serialized graph to {merged_filename}")
+    return
+
+    

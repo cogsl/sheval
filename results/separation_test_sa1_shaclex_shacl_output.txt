@@ -1,0 +1,2 @@
+Result :a@:S, :a@_:NodeLine6Col17
+Validation report written to results/separation_test_sa1_shaclex_shacl_results.ttl

@@ -1,53 +1,54 @@
-name,technology,conforms,failures
-positive_recursion_encoding1,pyshacl,True,[]
-positive_recursion_encoding1,shaclex,True,[]
-positive_recursion_encoding1,jena_shacl,True,[]
-positive_recursion_encoding1,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]"
-positive_recursion_encoding2,pyshacl,True,[]
-positive_recursion_encoding2,shaclex,Error,Error running commandCommandResult.TIMEOUT
-positive_recursion_encoding2,jena_shacl,True,[]
-positive_recursion_encoding2,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]"
-separation_test_sa1,pyshacl,True,[]
-separation_test_sa1,shaclex,True,[]
-separation_test_sa1,jena_shacl,True,[]
-separation_test_sa1,shacl_tq,True,[]
-separation_test_sa2,pyshacl,True,[]
-separation_test_sa2,shaclex,True,[]
-separation_test_sa2,jena_shacl,True,[]
-separation_test_sa2,shacl_tq,True,[]
-separation_test_sa3,pyshacl,Undefined,[]
-separation_test_sa3,shaclex,Error,Error running commandCommandResult.TIMEOUT
-separation_test_sa3,jena_shacl,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
-separation_test_sa3,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}]"
-sa3_single,pyshacl,Undefined,[]
-sa3_single,shaclex,Error,Error running commandCommandResult.TIMEOUT
-sa3_single,jena_shacl,False,"[{'node': ':a', 'shape': ':S'}]"
-sa3_single,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}]"
-consistency1,pyshacl,False,"[{'node': ':a', 'shape': ':S1'}]"
-consistency1,shaclex,Error,Error running commandCommandResult.TIMEOUT
-consistency1,jena_shacl,False,"[{'node': ':a', 'shape': ':S1'}]"
-consistency1,shacl_tq,False,"[{'node': ':a', 'shape': ':S1'}]"
-consistency1_individually_S,pyshacl,False,[]
-consistency1_individually_S,shaclex,Error,Error running commandCommandResult.TIMEOUT
-consistency1_individually_S,jena_shacl,False,[]
-consistency1_individually_S,shacl_tq,False,[]
-consistency1_individually_S1,pyshacl,False,"[{'node': ':a', 'shape': ':S1'}]"
-consistency1_individually_S1,shaclex,Error,Error running commandCommandResult.TIMEOUT
-consistency1_individually_S1,jena_shacl,False,"[{'node': ':a', 'shape': ':S1'}]"
-consistency1_individually_S1,shacl_tq,False,"[{'node': ':a', 'shape': ':S1'}]"
-consistency2_all,pyshacl,False,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
-consistency2_all,shaclex,Error,Error running commandCommandResult.TIMEOUT
-consistency2_all,jena_shacl,False,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
-consistency2_all,shacl_tq,False,[]
-consistency2_a_S,pyshacl,False,[]
-consistency2_a_S,shaclex,Error,Error running commandCommandResult.TIMEOUT
-consistency2_a_S,jena_shacl,False,[]
-consistency2_a_S,shacl_tq,True,[]
-consistency2_a_S_b_S,pyshacl,False,[]
-consistency2_a_S_b_S,shaclex,Error,Error running commandCommandResult.TIMEOUT
-consistency2_a_S_b_S,jena_shacl,False,[]
-consistency2_a_S_b_S,shacl_tq,False,[]
-consistency2_a_S1_b_S1,pyshacl,False,"[{'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
-consistency2_a_S1_b_S1,shaclex,Error,Error running commandCommandResult.TIMEOUT
-consistency2_a_S1_b_S1,jena_shacl,False,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
-consistency2_a_S1_b_S1,shacl_tq,True,[]
+name,technology,conforms,failures,successes
+positive_recursion_encoding1,pyshacl,True,[],[]
+positive_recursion_encoding1,shaclex_shacl,True,[],[]
+positive_recursion_encoding1,jena_shacl,True,[],[]
+positive_recursion_encoding1,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]",[]
+positive_recursion_encoding2,pyshacl,True,[],[]
+positive_recursion_encoding2,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+positive_recursion_encoding2,jena_shacl,True,[],[]
+positive_recursion_encoding2,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]",[]
+separation_test_sa1,pyshacl,True,[],[]
+separation_test_sa1,shaclex_shacl,True,[],[]
+separation_test_sa1,jena_shacl,True,[],[]
+separation_test_sa1,shacl_tq,True,[],[]
+separation_test_sa2,pyshacl,True,[],[]
+separation_test_sa2,shaclex_shacl,True,[],[]
+separation_test_sa2,jena_shacl,True,[],[]
+separation_test_sa2,shacl_tq,True,[],[]
+separation_test_sa3,pyshacl,Undefined,[],[]
+separation_test_sa3,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+separation_test_sa3,jena_shacl,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]",[]
+separation_test_sa3,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}]",[]
+sa3_single,pyshacl,Undefined,[],[]
+sa3_single,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+sa3_single,jena_shacl,False,"[{'node': ':a', 'shape': ':S'}]",[]
+sa3_single,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}]",[]
+consistency1,pyshacl,False,"[{'node': ':a', 'shape': ':S1'}]",[]
+consistency1,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+consistency1,jena_shacl,False,"[{'node': ':a', 'shape': ':S1'}]",[]
+consistency1,shacl_tq,False,"[{'node': ':a', 'shape': ':S1'}]",[]
+consistency1_individually_S,pyshacl,False,[],[]
+consistency1_individually_S,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+consistency1_individually_S,jena_shacl,False,[],[]
+consistency1_individually_S,shacl_tq,False,[],[]
+consistency1_individually_S1,pyshacl,False,"[{'node': ':a', 'shape': ':S1'}]",[]
+consistency1_individually_S1,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+consistency1_individually_S1,jena_shacl,False,"[{'node': ':a', 'shape': ':S1'}]",[]
+consistency1_individually_S1,shacl_tq,False,"[{'node': ':a', 'shape': ':S1'}]",[]
+consistency2_all,pyshacl,False,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]",[]
+consistency2_all,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+consistency2_all,jena_shacl,False,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]",[]
+consistency2_all,shacl_tq,False,[],[]
+consistency2_a_S,pyshacl,False,[],[]
+consistency2_a_S,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+consistency2_a_S,jena_shacl,False,[],[]
+consistency2_a_S,shacl_tq,True,[],[]
+consistency2_a_S_b_S,pyshacl,False,[],[]
+consistency2_a_S_b_S,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+consistency2_a_S_b_S,jena_shacl,False,[],[]
+consistency2_a_S_b_S,shacl_tq,False,[],[]
+consistency2_a_S1_b_S1,pyshacl,False,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]",[]
+consistency2_a_S1_b_S1,shaclex_shacl,Error,Error running commandCommandResult.TIMEOUT,[]
+consistency2_a_S1_b_S1,jena_shacl,False,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]",[]
+consistency2_a_S1_b_S1,shacl_tq,True,[],[]
+positive_recursion1,shex_s,True,[],"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]"

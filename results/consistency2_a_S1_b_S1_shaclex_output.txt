@@ -1,0 +1,2 @@
+Result # Empty shape map
+Validation report written to results/consistency2_a_S1_b_S1_shaclex_results.ttl

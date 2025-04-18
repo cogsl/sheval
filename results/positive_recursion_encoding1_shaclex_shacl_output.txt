@@ -1,0 +1,2 @@
+Result :b@:S, :b@_:NodeLine7Col13, :b@_:NodeLine7Col27, :a@:S, :a@_:NodeLine7Col13, :a@_:NodeLine7Col27, :c@:S, :c@_:NodeLine7Col13, :c@_:NodeLine7Col27, :d@:S, :d@_:NodeLine9Col40
+Validation report written to results/positive_recursion_encoding1_shaclex_shacl_results.ttl

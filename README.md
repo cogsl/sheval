@@ -7,13 +7,18 @@ The experiment comapres how different implementations of SHACL and ShEx behave w
 ### SHACL
 
 - [SHACL_TQ](https://github.com/TopQuadrant/shacl): SHACL implementation in Java. Download the release 1.4.4 [available here](https://github.com/TopQuadrant/shacl/releases/tag/v1.4.4). Once installed, it can be run with `shaclvalidate.sh`
-- [SHACLEX](https://github.com/weso/shaclex): SHACL implementation in Scala. Compiled the latest version available in the github repo. It can be run with `shaclex`
+- [SHACLEX](https://github.com/weso/shaclex): SHACL implementation in Scala. Compiled the latest version available in the github repo. It can be run with `shaclex` selecting `SHACLEX` as engine.
 - [Jena SHACL](https://jena.apache.org/documentation/shacl/). SHACL implementation in Java. It can be run with `shacl`
-- [RDF4j SHACL](https://rdf4j.org/documentation/programming/shacl/)
 - [PySHACL](https://github.com/RDFLib/pySHACL)
-- [Shawell](https://github.com/cem-okulmus/shawell)
 
 ### ShEx
+
+- [SHACLEX](https://github.com/weso/shaclex): ShEx implementation in Scala. Compiled the latest version available in the github repo. It can be run with `shaclex` and selecting `SHEX` as an engine.
+
+### Pending implementations
+
+- [RDF4j SHACL](https://rdf4j.org/documentation/programming/shacl/)
+- [Shawell](https://github.com/cem-okulmus/shawell)
 
 ## Running the experiments
 
@@ -71,7 +76,8 @@ For SHACL, the test runner will merge the RDF data graph and the shapes graph an
 For ShEx, the test runner will create a shape map with the corresponding nodes and shapes and run the ShEx validators using it.
 
 ```sh
-usage: run_all.py [-h] [-v] [--debug] [--temp TEMP] [--include-message] [-m MANIFEST] [-o OUTPUT] [-f FORMAT]
+usage: run_all.py [-h] [-v] [--debug] [--temp TEMP] [--include-message] [-n NAME] [-e ENGINE] [-t TECHNOLOGY] [-m MANIFEST] [-o OUTPUT]
+                  [-f FORMAT]
 
 Execute Recursion Shapes experiments
 
@@ -81,6 +87,11 @@ options:
   --debug               debug info (default: 0)
   --temp TEMP           Temporal folder (default: temp)
   --include-message     Include messages in output (default: False)
+  -n NAME, --name NAME  Name of test (default: None)
+  -e ENGINE, --engine ENGINE
+                        Engine (can be shacl or shex) (default: None)
+  -t TECHNOLOGY, --technology TECHNOLOGY
+                        Technology (specific technology like shacl_tq, shaclex, ...) (default: None)
   -m MANIFEST, --manifest MANIFEST
                         Manifest file (in YAML format) (default: manifest.yaml)
   -o OUTPUT, --output OUTPUT
@@ -88,3 +99,7 @@ options:
   -f FORMAT, --format FORMAT
                         Output format (yaml or csv) (default: yaml)
 ```
+
+It is possible to run all the tests from a manifest or to select the tests of one technology or engine.
+
+In the same way, it is also possible to run a single test by specifying its name.
