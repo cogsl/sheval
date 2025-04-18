@@ -1,25 +1,63 @@
+from enum import Enum
 import os
 import re
 import subprocess
 import rdflib
+
+class CommandResult(Enum):
+    OK = 0
+    TIMEOUT = 1
+    ERROR = 2
+    EXCEPTION = 3
+
+def run(command, output_filename, timeout = 2, debug = False):
+    result = CommandResult.ERROR
+    try:
+        with open(output_filename, "w") as output:
+            if debug:
+                command_str = " ".join(command) + " > " + str(output_filename)
+                print(f"Command: {command_str}")
+            subprocess.run(command, stdout = output, timeout=timeout)
+            result = CommandResult.OK
+    except subprocess.TimeoutExpired as timeoutErr:
+        print("Timeout expired running command: %s" % (command))
+        result = CommandResult.TIMEOUT
+    except subprocess.CalledProcessError as callProcessErr:
+        cmdErrStr = str(callProcessErr)
+        print("Error %s running command: %s" % (cmdErrStr, command))
+        result = CommandResult.EXCEPTION
+
+    return result
+
+def mk_command(command, filename, output):
+    return list(map(lambda x: 
+                       x.replace("$filename", filename)
+                       .replace("$validation_report_file", output), command))
+
+pyshacl_cmd = ["bin/pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$filename" ]
+
+shacl_tq_cmd = ["bin/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$filename"]
+
+shaclex_cmd = ["bin/shaclex-0.2.6/bin/shaclex","--validate","--engine","SHACLEX","--data", "$filename","--validationReportFormat","TURTLE","--showValidationReport","--validationReportFile", "$validation_report_file"]
+
+jena_shacl_cmd = ["bin/apache-jena-5.3.0/bin/shacl", "v", "--data", "$filename"]
 
 def shacl_tq(filename, name, results_folder, config, results, nodes, shapes):
     try:
         technology_name = "shacl_tq"
         temp = config['temp']
         validation_report_file_temp = os.path.join(temp, f"{name}_{technology_name}_results_temp.ttl")
-        command = f"shaclvalidate.sh -datafile {filename} > {validation_report_file_temp}"
-        info(config, f"Running {command}")
-        isRunOk , cmdOutStr = getCommandOutput(command, "utf-8", 2)
-        debug(config, f"Run OK:{isRunOk}\nCommand output:\n{cmdOutStr}")
-        # In the case of SHACL TQ the validation report includes the errors at the start of the file
-        # and the rest of the file is the proper validation report
-        # We split the file into two files, one with the errors and one with the validation report in Turtle
-        validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results_temp.ttl")
-        validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-        regex = re.compile('.*Failure.*')
-        split_file_by_regex(validation_report_file_temp, regex, validation_output, validation_report_file)
-        result = analyze_validation_report(validation_report_file, nodes, shapes,config)
+        output_file_temp = os.path.join(temp, f"{name}_{technology_name}_output_temp.txt")
+        command = mk_command(shacl_tq_cmd, filename, validation_report_file_temp)
+        result1 = run(command, validation_report_file_temp, 4, config['debug'])
+        if result1 == CommandResult.OK:
+            validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results_temp.ttl")
+            validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
+            regex = re.compile('.*Failure.*')
+            split_file_by_regex(validation_report_file_temp, regex, validation_output, validation_report_file)
+            result = analyze_validation_report(validation_report_file, nodes, shapes,config)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
         store_result(name, technology_name, result, results)
     except Exception as e:
         info(config, f"Error running {technology_name}: {e}")
@@ -30,13 +68,16 @@ def jena_shacl(filename, name, results_folder, config, results, nodes, shapes):
     try:
         technology_name = "jena_shacl"
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
-        # validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-        command = f"shacl v {filename} > {validation_report_file}"
-        info(config, f"Running: {command}")
-        isRunOk , cmdOutStr = getCommandOutput(command, "utf-8", 2)
-        debug(config, f"Run OK:{isRunOk}\nCommand output:\n{cmdOutStr}")
-        result = analyze_validation_report(validation_report_file,nodes,shapes,config)
-        store_result(name, technology_name, result, results)
+        # output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
+        command = mk_command(jena_shacl_cmd, filename, validation_report_file)
+        result1 = run(command, validation_report_file, 2, config['debug'])
+        if result1 == CommandResult.OK:
+            debug(config, f"Command result is OK...validation report file: {validation_report_file}")
+            result = analyze_validation_report(validation_report_file,nodes,shapes,config)
+            store_result(name, technology_name, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, technology_name, result, results)    
     except Exception as e:
         info(config, f"Error running {technology_name}: {e}")
         result = { 'conforms': "Exception", 'failures': f"{e}" }
@@ -47,12 +88,15 @@ def shaclex(filename, name, results_folder, config, results, nodes, shapes):
         technology_name = "shaclex"
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-        command = f"shaclex --validate --engine SHACLEX --data {filename} --validationReportFormat TURTLE --showValidationReport --validationReportFile {validation_report_file} > {validation_output}"
+        command = mk_command(shaclex_cmd, filename, validation_report_file)
         info(config, f"Running: {command}")
-        isRunOk , cmdOutStr = getCommandOutput(command, "utf-8", 2)
-        debug(config, f"Run OK:{isRunOk}\nCommand output:\n{cmdOutStr}")
-        result = analyze_validation_report(validation_report_file,nodes,shapes,config)
-        store_result(name, technology_name, result, results)
+        result1 = run(command, validation_output, 5, config['debug'])
+        if result1 == CommandResult.OK:
+            result = analyze_validation_report(validation_report_file,nodes,shapes,config)
+            store_result(name, technology_name, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, technology_name, result, results)
     except Exception as e:
         info(config, f"Error running {technology_name}: {e}")
         result = { 'conforms': "Exception", 'failures': f"{e}" }
@@ -64,52 +108,19 @@ def pyshacl(filename, name, results_folder, config, results, nodes, shapes):
         technology_name = "pyshacl"
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-        command = f"pyshacl {filename} -o {validation_report_file} --format turtle > {validation_output}"
-        info(config, f"Running: {command}")
-        isRunOk , cmdOutStr = getCommandOutput(command, "utf-8", 2)
-        debug(config, f"Run OK:{isRunOk}\nCommand output:\n{cmdOutStr}")
-        result = analyze_validation_report(validation_report_file, nodes, shapes, config)
-        store_result(name, technology_name, result, results)
+        command = mk_command(pyshacl_cmd, filename, validation_report_file)
+        result1 = run(command, validation_output, 2, config['debug'])
+        if result1 == CommandResult.OK:
+            result = analyze_validation_report(validation_report_file, nodes, shapes, config)
+            store_result(name, technology_name, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, technology_name, result, results)    
     except Exception as e:
-        info(config, f"Error running {technology_name}: {e}")
+        info(config, f"Error running {name} with {technology_name}: {e}")
         result = { 'conforms': "Exception", 'failures': f"{e}" }
         store_result(name, technology_name, result, results)
     
-# The following code has been borrowed from: https://stackoverflow.com/questions/41094707/setting-timeout-when-using-os-system-function 
-def getCommandOutput(consoleCommand, consoleOutputEncoding="utf-8", timeout=2):
-    """get command output from terminal
-
-    Args:
-        consoleCommand (str): console/terminal command string
-        consoleOutputEncoding (str): console output encoding, default is utf-8
-        timeout (int): wait max timeout for run console command
-    Returns:
-        console output (str)
-    Raises:
-    """
-    # print("getCommandOutput: consoleCommand=%s" % consoleCommand)
-    isRunCmdOk = False
-    consoleOutput = ""
-    try:
-        # consoleOutputByte = subprocess.check_output(consoleCommand)
-        consoleOutputByte = subprocess.check_output(consoleCommand, shell=True, timeout=timeout)
-
-        # commandPartList = consoleCommand.split(" ")
-        # print("commandPartList=%s" % commandPartList)
-        # consoleOutputByte = subprocess.check_output(commandPartList)
-        # print("type(consoleOutputByte)=%s" % type(consoleOutputByte)) # <class 'bytes'>
-        # print("consoleOutputByte=%s" % consoleOutputByte) # b'640x360\n'
-
-        consoleOutput = consoleOutputByte.decode(consoleOutputEncoding) # '640x360\n'
-        consoleOutput = consoleOutput.strip() # '640x360'
-        isRunCmdOk = True
-    except subprocess.CalledProcessError as callProcessErr:
-        cmdErrStr = str(callProcessErr)
-        print("Error %s for run command %s" % (cmdErrStr, consoleCommand))
-
-    # print("isRunCmdOk=%s, consoleOutput=%s" % (isRunCmdOk, consoleOutput))
-    return isRunCmdOk, consoleOutput
-
 def analyze_validation_report(filename,nodes,shapes,config):   
     """
     Analyze the validation report and extract the information about the failures and the conforms property 

@@ -14,3 +14,40 @@ The experiment comapres how different implementations of SHACL and ShEx behave w
 - [Shawell](https://github.com/cem-okulmus/shawell)
 
 ### ShEx
+
+## Running the experiments
+
+### Requirements
+
+It is required to have [Python 3](https://www.python.org/downloads/) and [Java](https://openjdk.org/) installed.
+
+The binaries for the validators are included in the `bin` folder.
+
+The script `run_all.py` runs all the experiments. It uses a `manifest.yaml` that describes each of the test cases.
+
+The default way to run the experiments and generate a CSV fle with the results is:
+
+```sh
+python3 run_all.py --manifest manifest.yaml -f csv -o output.csv
+```
+
+### Usage
+
+```sh
+usage: run_all.py [-h] [-v] [--debug] [--temp TEMP] [--include-message] [-m MANIFEST] [-o OUTPUT] [-f FORMAT]
+
+Execute Recursion Shapes experiments
+
+options:
+  -h, --help            show this help message and exit
+  -v, --verbose         increase verbosity (default: 0)
+  --debug               debug info (default: 0)
+  --temp TEMP           Temporal folder (default: temp)
+  --include-message     Include messages in output (default: False)
+  -m MANIFEST, --manifest MANIFEST
+                        Manifest file (in YAML format) (default: manifest.yaml)
+  -o OUTPUT, --output OUTPUT
+                        Output file (in YAML format) (default: None)
+  -f FORMAT, --format FORMAT
+                        Output format (yaml or csv) (default: yaml)
+```

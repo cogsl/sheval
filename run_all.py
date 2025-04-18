@@ -29,6 +29,7 @@ with open(config['manifest'], 'r') as file:
 shacl_folder = manifest['shacl_folder']
 shex_folder = manifest['shex_folder']
 results_folder = manifest['results_folder']
+results = []
 
 # Check if the results folder exists or create it
 if not os.path.exists(results_folder):
@@ -72,7 +73,6 @@ for test in manifest['tests']:
     g.serialize(destination=merged_filename, format='turtle')
 
     debug(config, f"Serialized graph to {merged_filename}")
-    results = []
     if engine == "shacl":
         for technology in manifest['shacl_technologies']:
             if technology == "shacl_tq":

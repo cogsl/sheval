@@ -1,0 +1,48 @@
+- name: positive_recursion_encoding1
+  result:
+    conforms: true
+    failures: []
+  technology_name: pyshacl
+- name: positive_recursion_encoding1
+  result:
+    conforms: true
+    failures: []
+  technology_name: shaclex
+- name: positive_recursion_encoding1
+  result:
+    conforms: true
+    failures: []
+  technology_name: jena_shacl
+- name: positive_recursion_encoding1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: shacl_tq
+- name: positive_recursion_encoding2
+  result:
+    conforms: true
+    failures: []
+  technology_name: pyshacl
+- name: positive_recursion_encoding2
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex
+- name: positive_recursion_encoding2
+  result:
+    conforms: true
+    failures: []
+  technology_name: jena_shacl
+- name: positive_recursion_encoding2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: shacl_tq

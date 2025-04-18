@@ -1,0 +1,21 @@
+rdf_folder: RDF
+shacl_folder: SHACL
+shacl_technologies: 
+  - pyshacl
+shex_folder: ShEx
+results_folder: results
+tests:
+    - name: positive_recursion_encoding1
+      data_graph: positive_recursion.ttl
+      shapes_graph: positive_recursion_encoding1.shapes.ttl
+      engine: shacl
+      description: |
+        Example with positive recursion, basic encoding with sh:node
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
