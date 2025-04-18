@@ -9,21 +9,21 @@ prefix schema: <http://schema.org/>
   sh:property 
           [ sh:path :p ;
             sh:qualifiedValueShape :S3 ;
-            sh:minCount 1
+            sh:qualifiedMinCount 1
           ] .
 
 :S2 a sh:NodeShape ;
   sh:property 
           [ sh:path :p ;
             sh:qualifiedValueShape :NotS3 ;
-            sh:minCount 1
+            sh:qualifiedMinCount 1
           ] .
 
 :S3 a sh:NodeShape ;
   sh:property 
           [ sh:path :p ;
             sh:qualifiedValueShape :S3 ;
-            sh:minCount 1
+            sh:qualifiedMinCount 1
           ] .
 
 :NotS3 a sh:NodeShape ;
