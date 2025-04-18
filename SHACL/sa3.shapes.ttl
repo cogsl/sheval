@@ -7,7 +7,7 @@ prefix schema: <http://schema.org/>
 # Separation test SA3
 :S a sh:NodeShape ;
   sh:and ( 
-      sh:node :S1
+      :S1
       [ sh:property 
           [ sh:path :p ;
             sh:minCount 1
@@ -16,7 +16,7 @@ prefix schema: <http://schema.org/>
 
 :S1 a sh:NodeShape ;
     sh:and ( 
-      sh:node :S 
+      :S 
       [ sh:property 
           [ sh:path :p ;
             sh:minCount 1

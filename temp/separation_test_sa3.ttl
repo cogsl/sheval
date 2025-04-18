@@ -4,14 +4,14 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :S a sh:NodeShape ;
-    sh:and ( sh:node :S1 [ sh:property [ sh:minCount 1 ;
+    sh:and ( :S1 [ sh:property [ sh:minCount 1 ;
                         sh:path :p ] ] ) ;
     sh:targetNode :a,
         :b,
         :c .
 
 :S1 a sh:NodeShape ;
-    sh:and ( sh:node :S [ sh:property [ sh:minCount 1 ;
+    sh:and ( :S [ sh:property [ sh:minCount 1 ;
                         sh:path :p ] ] ) ;
     sh:targetNode :a,
         :b,
