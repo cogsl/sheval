@@ -7,3 +7,15 @@ positive_recursion_encoding2,pyshacl,True,[]
 positive_recursion_encoding2,shaclex,Error,Error running commandCommandResult.TIMEOUT
 positive_recursion_encoding2,jena_shacl,True,[]
 positive_recursion_encoding2,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]"
+separation_test_sa1,pyshacl,True,[]
+separation_test_sa1,shaclex,True,[]
+separation_test_sa1,jena_shacl,True,[]
+separation_test_sa1,shacl_tq,True,[]
+separation_test_sa2,pyshacl,True,[]
+separation_test_sa2,shaclex,True,[]
+separation_test_sa2,jena_shacl,True,[]
+separation_test_sa2,shacl_tq,True,[]
+separation_test_sa3,pyshacl,Undefined,[]
+separation_test_sa3,shaclex,Error,Error running commandCommandResult.TIMEOUT
+separation_test_sa3,jena_shacl,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+separation_test_sa3,shacl_tq,False,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}]"

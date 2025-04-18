@@ -36,5 +36,42 @@ tests:
         - ":d"
       shapes: 
         - ":S"
+    - name: separation_test_sa1
+      data_graph: sa1.ttl
+      shapes_graph: sa1.shapes.ttl
+      engine: shacl
+      description: |
+        Separation test for sa1
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S"
+    - name: separation_test_sa2
+      data_graph: sa2.ttl
+      shapes_graph: sa2.shapes.ttl
+      engine: shacl
+      description: |
+        Separation test for sa2
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: separation_test_sa3
+      data_graph: sa3.ttl
+      shapes_graph: sa3.shapes.ttl
+      engine: shacl
+      description: |
+        Separation test for SA3
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+      shapes: 
+        - ":S"
+        - ":S1"
         
 
