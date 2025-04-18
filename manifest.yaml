@@ -73,5 +73,96 @@ tests:
       shapes: 
         - ":S"
         - ":S1"
-        
-
+    - name: sa3_single
+      data_graph: sa3.ttl
+      shapes_graph: sa3.shapes.ttl
+      engine: shacl
+      description: |
+        Single SA3
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S"
+    - name: consistency1
+      data_graph: consistency1.ttl
+      shapes_graph: consistency1.shapes.ttl
+      engine: shacl
+      description: |
+        Consistency test 1
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S"
+        - ":S1"
+    - name: consistency1_individually_S
+      data_graph: consistency1.ttl
+      shapes_graph: consistency1.shapes.ttl
+      engine: shacl
+      description: |
+        Consistency test 1
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S"
+    - name: consistency1_individually_S1
+      data_graph: consistency1.ttl
+      shapes_graph: consistency1.shapes.ttl
+      engine: shacl
+      description: |
+        Consistency test 1
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S1"        
+    - name: consistency2_all
+      data_graph: consistency2.ttl
+      shapes_graph: consistency2.shapes.ttl
+      engine: shacl
+      description: |
+        Consistency test 2
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+        - ":S1"
+    - name: consistency2_a_S
+      data_graph: consistency2.ttl
+      shapes_graph: consistency2.shapes.ttl
+      engine: shacl
+      description: |
+        Consistency test 2
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S"
+    - name: consistency2_a_S_b_S
+      data_graph: consistency2.ttl
+      shapes_graph: consistency2.shapes.ttl
+      engine: shacl
+      description: |
+        Consistency test 2
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: consistency2_a_S1_b_S1
+      data_graph: consistency2.ttl
+      shapes_graph: consistency2.shapes.ttl
+      engine: shacl
+      description: |
+        Consistency test 2
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S1"

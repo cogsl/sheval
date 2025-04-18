@@ -49,7 +49,7 @@ def shacl_tq(filename, name, results_folder, config, results, nodes, shapes):
         validation_report_file_temp = os.path.join(temp, f"{name}_{technology_name}_results_temp.ttl")
         output_file_temp = os.path.join(temp, f"{name}_{technology_name}_output_temp.txt")
         command = mk_command(shacl_tq_cmd, filename, validation_report_file_temp)
-        result1 = run(command, validation_report_file_temp, 4, config['debug'])
+        result1 = run(command, validation_report_file_temp, 5, config['debug'])
         if result1 == CommandResult.OK:
             validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results_temp.ttl")
             validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
@@ -70,7 +70,7 @@ def jena_shacl(filename, name, results_folder, config, results, nodes, shapes):
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
         # output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
         command = mk_command(jena_shacl_cmd, filename, validation_report_file)
-        result1 = run(command, validation_report_file, 2, config['debug'])
+        result1 = run(command, validation_report_file, 5, config['debug'])
         if result1 == CommandResult.OK:
             debug(config, f"Command result is OK...validation report file: {validation_report_file}")
             result = analyze_validation_report(validation_report_file,nodes,shapes,config)

@@ -13,18 +13,18 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:9e2ad5b469ba1ce111b9ef522aab4a44, _:082d10e42e1c1b1023ca98d5b6c4dd1c";
+                 sh:resultMessage              "Less than 1 values have shape :S1";
+                 sh:resultPath                 :p;
                  sh:resultSeverity             sh:Violation;
-                 sh:sourceConstraintComponent  sh:OrConstraintComponent;
-                 sh:sourceShape                :S;
-                 sh:value                      :a
+                 sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
+                 sh:sourceShape                [] 
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
-                 sh:focusNode                  :b;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:9e2ad5b469ba1ce111b9ef522aab4a44, _:082d10e42e1c1b1023ca98d5b6c4dd1c";
+                 sh:focusNode                  :a;
+                 sh:resultMessage              "Value has shape :S";
                  sh:resultSeverity             sh:Violation;
-                 sh:sourceConstraintComponent  sh:OrConstraintComponent;
-                 sh:sourceShape                :S;
-                 sh:value                      :b
+                 sh:sourceConstraintComponent  sh:NotConstraintComponent;
+                 sh:sourceShape                :S1;
+                 sh:value                      :a
                ]
 ] .

@@ -1,0 +1,2 @@
+11:18:54 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+11:18:54 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :a
