@@ -23,6 +23,8 @@ It is required to have [Python 3](https://www.python.org/downloads/) and [Java](
 
 The binaries for the validators are included in the `bin` folder.
 
+### Usage
+
 The script `run_all.py` runs all the experiments. It uses a `manifest.yaml` that describes each of the test cases.
 
 The default way to run the experiments and generate a CSV fle with the results is:
@@ -31,7 +33,42 @@ The default way to run the experiments and generate a CSV fle with the results i
 python3 run_all.py --manifest manifest.yaml -f csv -o output.csv
 ```
 
-### Usage
+The contents of `manifest.yaml` declare the experiments that can be run. It consists of a list of configuration entries like:
+
+```yaml
+rdf_folder: RDF 
+shacl_folder: SHACL
+shacl_technologies: 
+  - pyshacl
+  - shaclex
+  - jena_shacl
+  - shacl_tq
+shex_folder: ShEx
+results_folder: results
+```
+
+Followed by a list of test entries like:
+
+```yaml
+tests:
+    - name: test_name                       # Name of the test
+      data_graph: data.ttl                  # File with RDF data
+      shapes_graph: shapes.ttl              # File with Shapes data
+      engine: shacl                         # Type of engine shacl or shex
+      description: Example                  # Short description of the test
+      default_prefix: "http://example.org/" # Default prefix used for nodes and shapes
+      nodes:                                # List of target nodes
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes:                               # List of shapes
+        - ":S"
+```
+
+For SHACL, the test runner will merge the RDF data graph and the shapes graph and add the corresponding target declarations, creating a file in the `temp` folder. It will run the SHACL or ShEx validators and generate a validation report in Turtle which will be analyzed to check if the result is conforming or if there are any violations.
+
+For ShEx, the test runner will create a shape map with the corresponding nodes and shapes and run the ShEx validators using it.
 
 ```sh
 usage: run_all.py [-h] [-v] [--debug] [--temp TEMP] [--include-message] [-m MANIFEST] [-o OUTPUT] [-f FORMAT]
