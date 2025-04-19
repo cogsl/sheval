@@ -191,6 +191,34 @@ tests:
         - ":d"
       shapes: 
         - ":R"
+    - name: safe1
+      data_graph: safe1.ttl
+      shapes_graph: safe1.shapes.ttl
+      engine: shacl
+      description: |
+        Separation test - Safe-1 (SHACL)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+    - name: safe1_shex
+      data_graph: safe1.ttl
+      shex_file: safe1.shex
+      engine: shex
+      description: |
+        Separation test - Safe-1 (ShEx)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
     - name: consistency1
       data_graph: consistency1.ttl
       shapes_graph: consistency1.shapes.ttl
@@ -273,7 +301,7 @@ tests:
         - ":b"
       shapes: 
         - ":S1"
-    - name: assignment_isolation_1
+    - name: isolation1
       data_graph: assignment_isolation.ttl
       shapes_graph: assignment_isolation.shapes.ttl
       engine: shacl
@@ -284,7 +312,7 @@ tests:
         - ":a"
       shapes: 
         - ":S1"
-    - name: assignment_isolation_1_shex
+    - name: isolation1_shex
       data_graph: assignment_isolation.ttl
       shex_file: assignment_isolation.shex
       engine: shex
