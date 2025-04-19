@@ -219,6 +219,120 @@ tests:
         - ":d"
       shapes: 
         - ":S"
+    - name: reach2
+      data_graph: reach2.ttl
+      shapes_graph: reach2.shapes.ttl
+      engine: shacl
+      description: |
+        Separation test - reach2 (SHACL)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+        - ":R"
+    - name: reach2_shex
+      data_graph: reach2.ttl
+      shex_file: reach2.shex
+      engine: shex
+      description: |
+        Separation test - reach2 (ShEx)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+        - ":R"
+    - name: safe2
+      data_graph: safe2.ttl
+      shapes_graph: safe2.shapes.ttl
+      engine: shacl
+      description: |
+        Separation test - safe2 (SHACL)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":R"
+        - ":S"
+    - name: safe2_shex
+      data_graph: safe2.ttl
+      shex_file: safe2.shex
+      engine: shex
+      description: |
+        Separation test - safe2 (ShEx)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":R"
+        - ":S"
+    - name: nostratnocycle
+      data_graph: nostratnocycle.ttl
+      shapes_graph: nostratnocycle.shapes.ttl
+      engine: shacl
+      description: |
+        Feature test - Non-stratified negation without cyclic data -- nostratnocycle (SHACL)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+        - ":e"
+      shapes: 
+        - ":S"
+    - name: nostratnocycle_shex
+      data_graph: nostratnocycle.ttl
+      shex_file: nostratnocycle.shex
+      engine: shex
+      description: |
+         Feature test - Non-stratified negation without cyclic data -- nostratnocycle (ShEx)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+        - ":e"
+      shapes: 
+        - ":S"
+    - name: nostratcycle
+      data_graph: nostratcycle.ttl
+      shapes_graph: nostratcycle.shapes.ttl
+      engine: shacl
+      description: |
+        Feature test - Non-stratified negation with cyclic data -- nostratcycle (SHACL)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: nostratcycle_shex
+      data_graph: nostratcycle.ttl
+      shex_file: nostratcycle.shex
+      engine: shex
+      description: |
+         Feature test - Non-stratified negation with cyclic data -- nostratcycle (ShEx)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
     - name: consistency1
       data_graph: consistency1.ttl
       shapes_graph: consistency1.shapes.ttl

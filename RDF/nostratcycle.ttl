@@ -4,6 +4,6 @@ prefix xsd:    <http://www.w3.org/2001/XMLSchema#>
 prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
 
-# Separation test -- sa4
-:a :p :a .
-:b :p :b .
+# Feature test -- nostratcycle
+:a :p :b .
+:b :p :a .

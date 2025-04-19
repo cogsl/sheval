@@ -1,0 +1,50 @@
+@prefix : <http://example.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] a sh:ValidationReport ;
+    sh:conforms false ;
+    sh:result [ a sh:ValidationResult ;
+            sh:focusNode :a ;
+            sh:resultMessage "Focus node does not conform to shape MinCount 1: [ sh:not [ sh:node :S ] ]" ;
+            sh:resultPath :p ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
+            sh:sourceShape _:nf8d9efd7a8c946f39d3e112fa320435cb1 ],
+        [ a sh:ValidationResult ;
+            sh:focusNode :e ;
+            sh:resultMessage "Focus node does not conform to shape MinCount 1: [ sh:not [ sh:node :S ] ]" ;
+            sh:resultPath :p ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
+            sh:sourceShape _:nf8d9efd7a8c946f39d3e112fa320435cb1 ],
+        [ a sh:ValidationResult ;
+            sh:focusNode :d ;
+            sh:resultMessage "Focus node does not conform to shape MinCount 1: [ sh:not [ sh:node :S ] ]" ;
+            sh:resultPath :p ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
+            sh:sourceShape _:nf8d9efd7a8c946f39d3e112fa320435cb1 ],
+        [ a sh:ValidationResult ;
+            sh:focusNode :b ;
+            sh:resultMessage "Focus node does not conform to shape MinCount 1: [ sh:not [ sh:node :S ] ]" ;
+            sh:resultPath :p ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
+            sh:sourceShape _:nf8d9efd7a8c946f39d3e112fa320435cb1 ],
+        [ a sh:ValidationResult ;
+            sh:focusNode :c ;
+            sh:resultMessage "Focus node does not conform to shape MinCount 1: [ sh:not [ sh:node :S ] ]" ;
+            sh:resultPath :p ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
+            sh:sourceShape _:nf8d9efd7a8c946f39d3e112fa320435cb1 ] .
+
+_:N72572a2d3be244c9958bf31e60e2638d sh:node :S .
+
+_:Ne0fa75cf8b1544ce86b81b105f4300e8 sh:not _:N72572a2d3be244c9958bf31e60e2638d .
+
+_:nf8d9efd7a8c946f39d3e112fa320435cb1 sh:path :p ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape _:Ne0fa75cf8b1544ce86b81b105f4300e8 .
+

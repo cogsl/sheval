@@ -4,6 +4,14 @@ prefix xsd:    <http://www.w3.org/2001/XMLSchema#>
 prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
 
-# Separation test -- sa4
-:a :p :a .
-:b :p :b .
+# Separation test reach2
+:S a sh:NodeShape ;
+  sh:not [ sh:hasValue :a ] ;
+  sh:property 
+          [ sh:path :p ;
+            sh:node :S ;
+          ] 
+   .
+
+:R a sh:NodeShape ;
+  :not [ sh:node :S] .

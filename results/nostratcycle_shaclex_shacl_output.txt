@@ -1,0 +1,2 @@
+Result :b@:S, :b@_:NodeLine6Col17, :a@:S, :a@_:NodeLine6Col17
+Validation report written to results/nostratcycle_shaclex_shacl_results.ttl

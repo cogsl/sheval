@@ -1,0 +1,54 @@
+PREFIX :        <http://example.org/>
+PREFIX dash:    <http://datashapes.org/dash#>
+PREFIX graphql: <http://datashapes.org/graphql#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sh:      <http://www.w3.org/ns/shacl#>
+PREFIX swa:     <http://topbraid.org/swa#>
+PREFIX tosh:    <http://topbraid.org/tosh#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+[ rdf:type     sh:ValidationReport;
+  sh:conforms  false;
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :a;
+                 sh:resultMessage              "Less than 1 values have shape _:62d6137954e6bdd0fa6d89fe70954a9d";
+                 sh:resultPath                 :p;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
+                 sh:sourceShape                _:b0
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :b;
+                 sh:resultMessage              "Less than 1 values have shape _:62d6137954e6bdd0fa6d89fe70954a9d";
+                 sh:resultPath                 :p;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
+                 sh:sourceShape                _:b0
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :e;
+                 sh:resultMessage              "Less than 1 values have shape _:62d6137954e6bdd0fa6d89fe70954a9d";
+                 sh:resultPath                 :p;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
+                 sh:sourceShape                _:b0
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :c;
+                 sh:resultMessage              "Less than 1 values have shape _:62d6137954e6bdd0fa6d89fe70954a9d";
+                 sh:resultPath                 :p;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
+                 sh:sourceShape                _:b0
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :d;
+                 sh:resultMessage              "Less than 1 values have shape _:62d6137954e6bdd0fa6d89fe70954a9d";
+                 sh:resultPath                 :p;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
+                 sh:sourceShape                _:b0
+               ]
+] .
