@@ -10,7 +10,7 @@ shex_technologies:
 shex_folder: ShEx
 results_folder: results
 tests:
-    - name: positive_recursion_encoding1
+    - name: pr1
       data_graph: positive_recursion.ttl
       shapes_graph: positive_recursion_encoding1.shapes.ttl
       engine: shacl
@@ -24,7 +24,7 @@ tests:
         - ":d"
       shapes: 
         - ":S"
-    - name: positive_recursion_encoding1_shex
+    - name: pr_shex
       data_graph: positive_recursion.ttl
       shex_file: positive_recursion.shex
       engine: shex
@@ -38,7 +38,7 @@ tests:
         - ":d"
       shapes: 
         - ":S"
-    - name: positive_recursion_encoding2
+    - name: pr2
       data_graph: positive_recursion.ttl
       shapes_graph: positive_recursion_encoding2.shapes.ttl
       engine: shacl
@@ -52,7 +52,7 @@ tests:
         - ":d"
       shapes: 
         - ":S"
-    - name: separation_test_sa1
+    - name: sa1
       data_graph: sa1.ttl
       shapes_graph: sa1.shapes.ttl
       engine: shacl
@@ -63,7 +63,7 @@ tests:
         - ":a"
       shapes: 
         - ":S"
-    - name: separation_test_sa1_shex
+    - name: sa1_shex
       data_graph: sa1.ttl
       shex_file: sa1.shex
       engine: shex
@@ -74,7 +74,7 @@ tests:
         - ":a"
       shapes: 
         - ":S"
-    - name: separation_test_sa2
+    - name: sa2
       data_graph: sa2.ttl
       shapes_graph: sa2.shapes.ttl
       engine: shacl
@@ -86,7 +86,7 @@ tests:
         - ":b"
       shapes: 
         - ":S"
-    - name: separation_test_sa2_shex
+    - name: sa2_shex
       data_graph: sa2.ttl
       shex_file: sa2.shex
       engine: shex
@@ -98,7 +98,7 @@ tests:
         - ":b"
       shapes: 
         - ":S"
-    - name: separation_test_sa3
+    - name: sa3
       data_graph: sa3.ttl
       shapes_graph: sa3.shapes.ttl
       engine: shacl
@@ -112,12 +112,12 @@ tests:
       shapes: 
         - ":S"
         - ":S1"
-    - name: separation_test_sa3_shex
+    - name: sa3_shex
       data_graph: sa3.ttl
       shex_file: sa3.shex
       engine: shex
       description: |
-        Separation test for sa3 (ShEx)
+        Separation test - sa3 (ShEx)
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
@@ -131,12 +131,66 @@ tests:
       shapes_graph: sa3.shapes.ttl
       engine: shacl
       description: |
-        Single SA3
+        Single SA3 (SHACL)
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
       shapes: 
         - ":S"
+    - name: sa4
+      data_graph: sa4.ttl
+      shapes_graph: sa4.shapes.ttl
+      engine: shacl
+      description: |
+        Separation test - sa4 (SHACL)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+        - ":S1"
+    - name: sa4_shex
+      data_graph: sa4.ttl
+      shex_file: sa4.shex
+      engine: shex
+      description: |
+        Separation test - sa4 (ShEx)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+        - ":S1"
+    - name: reach1
+      data_graph: reach1.ttl
+      shapes_graph: reach1.shapes.ttl
+      engine: shacl
+      description: |
+        Separation test - reach1 (SHACL)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":R"
+    - name: reach1_shex
+      data_graph: reach1.ttl
+      shex_file: reach1.shex
+      engine: shex
+      description: |
+        Separation test - reach1 (ShEx)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":R"
     - name: consistency1
       data_graph: consistency1.ttl
       shapes_graph: consistency1.shapes.ttl

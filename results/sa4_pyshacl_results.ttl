@@ -1,0 +1,21 @@
+@prefix : <http://example.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] a sh:ValidationReport ;
+    sh:conforms false ;
+    sh:result [ a sh:ValidationResult ;
+            sh:focusNode :b ;
+            sh:resultMessage "Node :b must not conform to shape [ sh:node :S ]" ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:NotConstraintComponent ;
+            sh:sourceShape :S1 ;
+            sh:value :b ],
+        [ a sh:ValidationResult ;
+            sh:focusNode :a ;
+            sh:resultMessage "Node :a must not conform to shape [ sh:node :S ]" ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:NotConstraintComponent ;
+            sh:sourceShape :S1 ;
+            sh:value :a ] .
+
