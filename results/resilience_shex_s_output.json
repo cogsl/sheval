@@ -1,0 +1,140 @@
+{
+  "valid" : false,
+  "type" : "Result",
+  "message" : "Validated with errors",
+  "shapeMap" : [
+    {
+      "node" : "<http://example.org/b>",
+      "shape" : "<http://example.org/S>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+        ]
+      },
+      "reason" : ""
+    },
+    {
+      "node" : "<http://example.org/b>",
+      "shape" : "<http://example.org/S1>",
+      "status" : "nonconformant",
+      "appInfo" : {
+        "errors" : [
+          "Error: Failed NOT(@:S) because node :b satisfies it"
+        ]
+      },
+      "reason" : "Error: Failed NOT(@:S) because node :b satisfies it"
+    },
+    {
+      "node" : "<http://example.org/c>",
+      "shape" : "<http://example.org/S1>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":c satisfies not(@:S)",
+          ":c satisfies not(@:S)"
+        ]
+      },
+      "reason" : ":c satisfies not(@:S)\n:c satisfies not(@:S)"
+    },
+    {
+      "node" : "<http://example.org/c>",
+      "shape" : "<http://example.org/S>",
+      "status" : "nonconformant",
+      "appInfo" : {
+        "errors" : [
+          {
+            "type" : "ErrorMatchingRegularExpression",
+            "node" : {
+              "lexicalForm" : "http://example.org/c",
+              "location" : [
+                [
+                  {
+                    "line" : 9,
+                    "col" : 7,
+                    "type" : "PREFIXED_NAME"
+                  }
+                ]
+              ]
+            },
+            "error" : {
+              "type" : "RequiredPropertiesNotFound",
+              "interval" : ":p+",
+              "regularExpression" : ":p+",
+              "propertiesFound" : "{|  |}",
+              "extraProperties" : [
+                {
+                  "property" : ":p",
+                  "times" : "1"
+                }
+              ],
+              "open" : false
+            },
+            "shape" : "http://example.org/S",
+            "bag" : "{|  |}",
+            "regularExpression" : ":p+",
+            "candidateLine" : [
+            ],
+            "table" : {
+              "type" : "ConstraintTable",
+              "pathsMap" : [
+                {
+                  "path" : "<http://example.org/p>",
+                  "constraintRef" : [
+                    ":p"
+                  ]
+                }
+              ]
+            },
+            "attempt" : {
+              "node" : "http://example.org/c",
+              "shape" : {
+                "type" : "Shape",
+                "label" : "http://example.org/S",
+                "location" : {
+                  "line" : 8,
+                  "col" : 0,
+                  "type" : "label"
+                }
+              },
+              "location" : [
+                [
+                  {
+                    "line" : 9,
+                    "col" : 7,
+                    "type" : "PREFIXED_NAME"
+                  }
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "reason" : "Error matching expression.\n Error: es.weso.rbe.NonNullableError: Required properties not found: :p+\nRegular expression: :p+\nProperties found: {|  |}\nExtra symbols: :p/1 \nOpen?: false\n\n Attempt: Attempt: [<http://example.org/c>,<http://example.org/S>]\npath:  \n Candidate line:\n Candidate line:\n \n  which corresponds to bag:\n  {|  |} \n does not match expression: \n  :p+\n Table:Constraints:\n:p->@<http://example.org/S1>\nPaths:\n<http://example.org/p>->:p\n---endTable\n "
+    }
+  ],
+  "errors" : [
+    {
+      "type" : "ErrorInfo",
+      "error" : "Error: Failed NOT(@:S) because node :b satisfies it"
+    },
+    {
+      "type" : "ErrorInfo",
+      "error" : "Error matching expression.\n Error: es.weso.rbe.NonNullableError: Required properties not found: :p+\nRegular expression: :p+\nProperties found: {|  |}\nExtra symbols: :p/1 \nOpen?: false\n\n Attempt: Attempt: [<http://example.org/c>,<http://example.org/S>]\npath:  \n Candidate line:\n Candidate line:\n \n  which corresponds to bag:\n  {|  |} \n does not match expression: \n  :p+\n Table:Constraints:\n:p->@<http://example.org/S1>\nPaths:\n<http://example.org/p>->:p\n---endTable\n "
+    }
+  ],
+  "nodesPrefixMap" : {
+    "" : "http://example.org/",
+    "schema" : "http://schema.org/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "sh" : "http://www.w3.org/ns/shacl#"
+  },
+  "shapesPrefixMap" : {
+    "" : "http://example.org/",
+    "schema" : "http://schema.org/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "sh" : "http://www.w3.org/ns/shacl#"
+  },
+  "validationReport" : ""
+}

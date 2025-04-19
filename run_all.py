@@ -47,7 +47,16 @@ if not os.path.exists(shacl_folder):
     exit(1)
 
 for test in manifest['tests']:
-    name = test['name']
+    if 'name' in test:
+        name = test['name']
+    else:
+        name = "??"
+
+    if 'description' in test:
+        description = test['description']
+    else:
+        description = ""
+
     if config['name'] is None or name == config['name']:
         info(config,f"Test name: {name}")
         engine = test['engine']
@@ -55,29 +64,40 @@ for test in manifest['tests']:
             info(config,f"Test engine: {engine}")
             prefix = test['default_prefix']
             data_graph = os.path.join(manifest['rdf_folder'], test['data_graph'])
-            nodes = test['nodes']
-            shapes = test['shapes']
+            if 'nodes' in test:
+                nodes = test['nodes']
+            else:
+                nodes = []
+            if 'shapes' in test:
+                shapes = test['shapes']
+            else:
+                shapes = []
+            if 'pairs' in test:
+                pairs = test['pairs']
+            else:
+                pairs = []
             prefix = test['default_prefix']
             nodes = enrich_with_iris(nodes,prefix)
             shapes = enrich_with_iris(shapes,prefix)
-            
+            pairs = enrich_pairs_with_iris(pairs,prefix)
+
             if engine == "shacl":
                 shapes_graph = os.path.join(manifest['shacl_folder'],test['shapes_graph'])
                 merged_filename = os.path.join(config['temp'], test['name'] + ".ttl")
-                prepare_target_declarations(data_graph, shapes_graph, nodes, shapes, prefix, merged_filename, config)
+                prepare_target_declarations(data_graph, shapes_graph, nodes, shapes, pairs, merged_filename, config)
                 if config['technology'] is not None:
                     technologies = [config['technology']]
                 else:
                     technologies = manifest['shacl_technologies']
                 for technology in technologies:
                     if technology == "shacl_tq":
-                        shacl_tq(merged_filename, name, results_folder, config, results, nodes, shapes)
+                        shacl_tq(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     elif technology == "jena_shacl":
-                        jena_shacl(merged_filename, name, results_folder, config, results, nodes, shapes)
+                        jena_shacl(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     elif technology == "shaclex_shacl":
-                        shaclex_shacl(merged_filename, name, results_folder, config, results, nodes, shapes)
+                        shaclex_shacl(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     elif technology == "pyshacl":
-                        pyshacl(merged_filename, name, results_folder, config, results, nodes, shapes)
+                        pyshacl(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     else:
                         print(f"Unknown technology: {technology}")
                         exit(1)
@@ -86,14 +106,14 @@ for test in manifest['tests']:
                 data_file = os.path.join(manifest['rdf_folder'], test['data_graph'])
                 shex_file = os.path.join(manifest['shex_folder'], test['shex_file'] )
                 shapemap_file = os.path.join(config['temp'], test['name'] + ".sm" )
-                prepare_shapemap(nodes, shapes, prefix, shapemap_file, config)
+                prepare_shapemap(nodes, shapes, pairs, shapemap_file, config)
                 if config['technology'] is not None:
                     technologies = [config['technology']]
                 else:
                     technologies = manifest['shex_technologies']
                 for technology in manifest['shex_technologies']:
                     if technology == "shacl_shex":
-                        shaclex_shex(data_file, shex_file, shapemap_file, name, results_folder, config, results, nodes, shapes)
+                        shaclex_shex(data_file, shex_file, shapemap_file, name, description, results_folder, config, results, nodes, shapes, pairs)
                     else:
                         print(f"Unknown technology: {technology}")
                         exit(1)    
@@ -107,18 +127,23 @@ for test in manifest['tests']:
                   yaml.dump(results, file)
                 case "csv":
                     writer = csv.writer(file)
-                    writer.writerow(["name", "technology", "conforms", "failures", "successes"])
+                    writer.writerow(["name", "engine", "technology", "description", "conforms", "successes", "failures"])
                     for entry in results:
                         name = entry['name']
                         technology_name = entry['technology_name']
+                        engine_name = entry['engine_name']
+                        description = entry['description']
                         result = entry['result']
                         conforms = result['conforms']
-                        failures = result['failures']
                         if 'successes' in result:
                             successes = result['successes']
                         else:
                             successes = []
-                        writer.writerow([name, technology_name, conforms, failures, successes])
+                        if 'failures' in result:
+                            failures = result['failures']
+                        else:
+                            failures = []
+                        writer.writerow([name, engine_name, technology_name, description, conforms, successes, failures])
                 case _:
                     print("Unknown format. Supported formats are yaml and csv.")
                     exit(1)

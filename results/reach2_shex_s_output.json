@@ -1,0 +1,165 @@
+{
+  "valid" : false,
+  "type" : "Result",
+  "message" : "Validated with errors",
+  "shapeMap" : [
+    {
+      "node" : "<http://example.org/c>",
+      "shape" : "<http://example.org/S>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":c satisfies not(NodeConstraint:[<http://example.org/a>])",
+          ":c satisfies not(NodeConstraint:[<http://example.org/a>])"
+        ]
+      },
+      "reason" : ":c satisfies not(NodeConstraint:[<http://example.org/a>])\n:c satisfies not(NodeConstraint:[<http://example.org/a>])"
+    },
+    {
+      "node" : "<http://example.org/c>",
+      "shape" : "<http://example.org/R>",
+      "status" : "nonconformant",
+      "appInfo" : {
+        "errors" : [
+          "Error: Failed NOT(@:S) because node :c satisfies it"
+        ]
+      },
+      "reason" : "Error: Failed NOT(@:S) because node :c satisfies it"
+    },
+    {
+      "node" : "<http://example.org/d>",
+      "shape" : "<http://example.org/S>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":d satisfies not(NodeConstraint:[<http://example.org/a>])",
+          ":d satisfies not(NodeConstraint:[<http://example.org/a>])"
+        ]
+      },
+      "reason" : ":d satisfies not(NodeConstraint:[<http://example.org/a>])\n:d satisfies not(NodeConstraint:[<http://example.org/a>])"
+    },
+    {
+      "node" : "<http://example.org/d>",
+      "shape" : "<http://example.org/R>",
+      "status" : "nonconformant",
+      "appInfo" : {
+        "errors" : [
+          "Error: Failed NOT(@:S) because node :d satisfies it"
+        ]
+      },
+      "reason" : "Error: Failed NOT(@:S) because node :d satisfies it"
+    },
+    {
+      "node" : "<http://example.org/b>",
+      "shape" : "<http://example.org/R>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":b satisfies not(@:S)"
+        ]
+      },
+      "reason" : ":b satisfies not(@:S)"
+    },
+    {
+      "node" : "<http://example.org/b>",
+      "shape" : "<http://example.org/S>",
+      "status" : "nonconformant",
+      "appInfo" : {
+        "errors" : [
+          {
+            "type" : "HasNoType",
+            "label" : "http://example.org/S",
+            "node" : {
+              "lexicalForm" : "http://example.org/a",
+              "location" : [
+                [
+                  {
+                    "line" : 8,
+                    "col" : 1,
+                    "type" : "PREFIXED_NAME"
+                  },
+                  {
+                    "line" : 9,
+                    "col" : 7,
+                    "type" : "PREFIXED_NAME"
+                  }
+                ]
+              ]
+            },
+            "shapeTyping" : {
+              "<http://example.org/b>" : {
+                ":S" : {
+                  "evidences" : [
+                  ]
+                }
+              },
+              "<http://example.org/a>" : {
+                ":S" : {
+                  "errors" : [
+                    "Error: Failed NOT(NodeConstraint:[<http://example.org/a>]) because node :a satisfies it"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "reason" : ":a doesn't have shape :S in :b@+:S| :a@  -:S"
+    },
+    {
+      "node" : "<http://example.org/a>",
+      "shape" : "<http://example.org/R>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":a satisfies not(@:S)"
+        ]
+      },
+      "reason" : ":a satisfies not(@:S)"
+    },
+    {
+      "node" : "<http://example.org/a>",
+      "shape" : "<http://example.org/S>",
+      "status" : "nonconformant",
+      "appInfo" : {
+        "errors" : [
+          "Error: Failed NOT(NodeConstraint:[<http://example.org/a>]) because node :a satisfies it"
+        ]
+      },
+      "reason" : "Error: Failed NOT(NodeConstraint:[<http://example.org/a>]) because node :a satisfies it"
+    }
+  ],
+  "errors" : [
+    {
+      "type" : "ErrorInfo",
+      "error" : "Error: Failed NOT(@:S) because node :c satisfies it"
+    },
+    {
+      "type" : "ErrorInfo",
+      "error" : "Error: Failed NOT(@:S) because node :d satisfies it"
+    },
+    {
+      "type" : "ErrorInfo",
+      "error" : ":a doesn't have shape :S in :b@+:S| :a@  -:S"
+    },
+    {
+      "type" : "ErrorInfo",
+      "error" : "Error: Failed NOT(NodeConstraint:[<http://example.org/a>]) because node :a satisfies it"
+    }
+  ],
+  "nodesPrefixMap" : {
+    "" : "http://example.org/",
+    "schema" : "http://schema.org/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "sh" : "http://www.w3.org/ns/shacl#"
+  },
+  "shapesPrefixMap" : {
+    "" : "http://example.org/",
+    "schema" : "http://schema.org/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "sh" : "http://www.w3.org/ns/shacl#"
+  },
+  "validationReport" : ""
+}

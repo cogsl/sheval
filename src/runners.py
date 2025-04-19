@@ -74,9 +74,10 @@ shaclex_shex_cmd = ["bin/shaclex-0.2.6/bin/shaclex",
 
 jena_shacl_cmd = ["bin/apache-jena-5.3.0/bin/shacl", "v", "--data", "$data_filename"]
 
-def shacl_tq(filename, name, results_folder, config, results, nodes, shapes):
+def shacl_tq(filename, name, descr, results_folder, config, results, nodes, shapes,pairs):
     try:
         technology_name = "shacl_tq"
+        engine = "shacl"
         temp = config['temp']
         validation_report_file_temp = os.path.join(temp, f"{name}_{technology_name}_results_temp.ttl")
         # output_file_temp = os.path.join(temp, f"{name}_{technology_name}_output_temp.txt")
@@ -87,85 +88,120 @@ def shacl_tq(filename, name, results_folder, config, results, nodes, shapes):
             validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
             regex = re.compile('.*Failure.*')
             split_file_by_regex(validation_report_file_temp, regex, validation_output, validation_report_file)
-            result = analyze_validation_report(validation_report_file, nodes, shapes,config)
+            result = analyze_validation_report(validation_report_file, nodes, shapes,pairs,config)
         else:
             result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
-        store_result(name, technology_name, result, results)
+        store_result(name, engine, technology_name, descr, result, results)
     except Exception as e:
         info(config, f"Error running {technology_name}: {e}")
         result = { 'conforms': "Exception", 'failures': f"{e}" }
-        store_result(name, technology_name, result, results)
+        store_result(name, engine, technology_name, descr, result, results)
 
-def jena_shacl(filename, name, results_folder, config, results, nodes, shapes):
+def jena_shacl(filename, name, descr, results_folder, config, results, nodes, shapes,pairs):
     try:
         technology_name = "jena_shacl"
+        engine = "shacl"
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
         # output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
         command = mk_command(jena_shacl_cmd, filename, validation_report_file)
         result1 = run(command, validation_report_file, 5, config['debug'])
         if result1 == CommandResult.OK:
             debug(config, f"Command result is OK...validation report file: {validation_report_file}")
-            result = analyze_validation_report(validation_report_file,nodes,shapes,config)
-            store_result(name, technology_name, result, results)
+            result = analyze_validation_report(validation_report_file,nodes,shapes,pairs,config)
+            store_result(name, engine, technology_name, descr, result, results)
         else:
             result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
-            store_result(name, technology_name, result, results)    
+            store_result(name, engine, technology_name, descr, result, results)    
     except Exception as e:
         info(config, f"Error running {technology_name}: {e}")
         result = { 'conforms': "Exception", 'failures': f"{e}" }
-        store_result(name, technology_name, result, results)
+        store_result(name, engine, technology_name, descr, result, results)
 
-def shaclex_shacl(filename, name, results_folder, config, results, nodes, shapes):
+def shaclex_shacl(filename, name, descr, results_folder, config, results, nodes, shapes,pairs):
     try:
         technology_name = "shaclex_shacl"
+        engine = "shacl"
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
         command = mk_command(shaclex_shacl_cmd, filename, validation_report_file)
         info(config, f"Running: {command}")
         result1 = run(command, validation_output, 5, config['debug'])
         if result1 == CommandResult.OK:
-            result = analyze_validation_report(validation_report_file,nodes,shapes,config)
-            store_result(name, technology_name, result, results)
+            result = analyze_validation_report(validation_report_file,nodes,shapes,pairs,config)
+            store_result(name, engine, technology_name, descr, result, results)
         else:
             result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
-            store_result(name, technology_name, result, results)
+            store_result(name, engine, technology_name, descr, result, results)
     except Exception as e:
         info(config, f"Error running {technology_name}: {e}")
         result = { 'conforms': "Exception", 'failures': f"{e}" }
-        store_result(name, technology_name, result, results)
+        store_result(name, engine, technology_name, descr, result, results)
 
-def shaclex_shex(filename, shex_filename, shapemap_filename, name, results_folder, config, results, nodes, shapes):
-    print(f"Shacl_shex: Nodes {nodes}")
+def shaclex_shex(filename, shex_filename, shapemap_filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
     try:
         technology_name = "shex_s"
+        engine = "shacl"
         # output_shapemap = os.path.join(results_folder, f"{name}_{technology_name}_output_shapemap.txt")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.json")
         command = mk_command_shex(shaclex_shex_cmd, filename, shex_filename, shapemap_filename, validation_output)
         info(config, f"Running: {command}")
         result1 = run(command, validation_output, 5, config['debug'])
         if result1 == CommandResult.OK:
-            result = analyze_shapemap(validation_output,nodes,shapes,config)
-            store_result(name, technology_name, result, results)
+            result = analyze_shapemap(validation_output,nodes,shapes,pairs,config)
+            store_result(name, engine, technology_name, descr, result, results)
         else:
             result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
-            store_result(name, technology_name, result, results)
+            store_result(name, engine, technology_name, descr, result, results)
     except Exception as e:
         info(config, f"Error running {technology_name}: {e}")
         result = { 'conforms': "Exception", 'failures': f"{e}" }
-        store_result(name, technology_name, result, results)
+        store_result(name, engine, technology_name, descr, result, results)
 
-def prepare_shapemap(nodes, shapes, prefix, merged_filename, config):
-    debug(config, f"Preparing shapemap for {nodes} and {shapes}")
+# Run pyshacl validation
+def pyshacl(filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
+    try:
+        technology_name = "pyshacl"
+        engine = "shacl"
+        validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
+        validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
+        command = mk_command(pyshacl_cmd, filename, validation_report_file)
+        result1 = run(command, validation_output, 2, config['debug'])
+        if result1 == CommandResult.OK:
+            result = analyze_validation_report(validation_report_file, nodes, shapes, pairs, config)
+            store_result(name, engine, technology_name, descr, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, engine, technology_name, descr, result, results)    
+    except Exception as e:
+        info(config, f"Error running {name} with {technology_name}: {e}")
+        result = { 'conforms': "Exception", 'failures': f"{e}" }
+        store_result(name, engine, technology_name, descr, result, results)
+
+def prepare_shapemap(nodes, shapes, pairs, merged_filename, config):
+    if not nodes and not shapes and not pairs:
+        print("No nodes, shapes or pairs to prepare shapemap")
+        return
+    
     strs = []
     for (node, node_iri) in nodes:
         for (shape, shape_iri) in shapes:
             strs.append(f"<{node_iri}>@<{shape_iri}>")
+    for pair in pairs:
+        node_iri = pair['node'][1]
+        shape_iri = pair['shape'][1]
+        strs.append(f"<{node_iri}>@<{shape_iri}>")
     shapemap = ",".join(strs)
     with open(merged_filename, 'w') as outfile:
         debug(config, f"Writing shapemap {shapemap}\n in file {merged_filename}")
         outfile.write(shapemap)
 
-def analyze_shapemap(filename,nodes,shapes,config):
+def analyze_shapemap(filename,nodes,shapes,pairs,config):
+    # Extend nodes and shapes with the individual ones declared using pairs
+    # so they can be found in the shapemap
+    for pair in pairs:
+        nodes.append(pair['node'])
+        shapes.append(pair['shape'])
+
     conforms = None
     failures = []
     successes = []
@@ -207,26 +243,7 @@ def remove_gt_lt(string):
     else:
         return string
     
-# Run pyshacl validation
-def pyshacl(filename, name, results_folder, config, results, nodes, shapes):
-    try:
-        technology_name = "pyshacl"
-        validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
-        validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-        command = mk_command(pyshacl_cmd, filename, validation_report_file)
-        result1 = run(command, validation_output, 2, config['debug'])
-        if result1 == CommandResult.OK:
-            result = analyze_validation_report(validation_report_file, nodes, shapes, config)
-            store_result(name, technology_name, result, results)
-        else:
-            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
-            store_result(name, technology_name, result, results)    
-    except Exception as e:
-        info(config, f"Error running {name} with {technology_name}: {e}")
-        result = { 'conforms': "Exception", 'failures': f"{e}" }
-        store_result(name, technology_name, result, results)
-    
-def analyze_validation_report(filename,nodes,shapes,config):   
+def analyze_validation_report(filename,nodes,shapes,pairs,config):   
     """
     Analyze the validation report and extract the information about the failures and the conforms property 
     Each failure is a dictionary with the node, message and shape
@@ -234,8 +251,13 @@ def analyze_validation_report(filename,nodes,shapes,config):
         filename: the name of the file to analyze which must contain a SHACL validation report
         nodes: a list of pairs (node, node_iri) with the nodes that we are interested in
         shapes: a list of pairs (shape, shape_iri) with the shapes that we are interested in
+        pairs: a list of pairs (node, shape) with the nodes and shapes that we are interested in
     return: a dictionary with the conforms property and a list of failures
     """
+    for pair in pairs:
+        nodes.append(pair['node'])
+        shapes.append(pair['shape'])
+
     # Load the validation report
     g = rdflib.Graph()
     g.parse(filename, format='turtle')
@@ -309,6 +331,18 @@ def enrich_with_iris(nodes, prefix):
         iris.append((node, node_iri))
     return iris
 
+def enrich_pairs_with_iris(pairs, prefix):
+    """
+    Enrich the pairs of node shape with their IRIs
+    """
+    enriched = []
+    for pair in pairs:
+        node_iri = prefix + pair['node'].replace(":","",1)
+        shape_iri = prefix + pair['shape'].replace(":","",1)
+        enriched_pair = { 'node': (pair['node'], node_iri), 'shape': (pair['shape'], shape_iri) }
+        enriched.append(enriched_pair)
+    return enriched
+
 # Find the qname of an entity in a list of entities
 def find_qname(entities, entity):
     for e in entities:
@@ -325,10 +359,12 @@ def split_file_by_regex(source, regex, file1, file2):
             else:
                 outfile2.write(line)
 
-def store_result(name, technology_name, result, results):
+def store_result(name, engine, technology_name, descr, result, results):
     results.append({
         "name": name,
+        "engine_name": engine,
         "technology_name": technology_name,
+        "description": descr,
         "result": result
     }) 
 
@@ -340,20 +376,32 @@ def debug(config, string):
     if config['debug'] > 0:
         print(string)        
 
-# Prepare the target declarations for the SHACL validation
-def prepare_target_declarations(data_graph, shapes_graph, nodes, shapes, prefix, merged_filename, config):
-    info(config, f"Preparing target declarations for {data_graph} and {shapes_graph}")
+def prepare_target_declarations(data_graph, shapes_graph, nodes, shapes, pairs, merged_filename, config):
+    """
+    Prepare the target declarations for the SHACL shapes
+    It creates a new graph which is the result of mergin the data graph, 
+    the shapes graph and the target declarations that are obtained from the manifest file
+    """
+    if not nodes and not shapes and not pairs:
+        print("No nodes, shapes or pairs to prepare target declarations")
+        return
+    
     g = rdflib.Graph()
     g.parse(data_graph, format='turtle')
     g.parse(shapes_graph, format='turtle')
-    # Prepare target declarations and list of nodes and shapes
+    
     for (shape, shape_iri) in shapes:
         for (node, node_iri) in nodes:
             debug(config, f"{shape_iri} sh:targetNode {node_iri}")
             g.add((rdflib.URIRef(shape_iri), rdflib.URIRef(shacl_prefix + "targetNode"), rdflib.URIRef(node_iri)))
 
-            debug(config, f"Merged graph: {g.serialize(format='turtle')}")
-            # Save the merged graph to a temp file
+    for pair in pairs:
+        node_iri = pair['node'][1]
+        shape_iri = pair['shape'][1]
+        g.add((rdflib.URIRef(shape_iri), rdflib.URIRef(shacl_prefix + "targetNode"), rdflib.URIRef(node_iri)))
+    
+    debug(config, f"Merged graph: {g.serialize(format='turtle')}")
+    # Save the merged graph to a temp file
     g.serialize(destination=merged_filename, format='turtle')
     debug(config, f"Serialized graph to {merged_filename}")
     return

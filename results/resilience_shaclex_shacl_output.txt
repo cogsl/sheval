@@ -1,0 +1,6 @@
+sh:ShapesFailed FocusNode: :c LiteralValue("<http://example.org/c> does not have nodeShape http://example.org/S because some shapes failed.")
+sh:ShapesFailed FocusNode: :c LiteralValue("Property shape failed")
+sh:QualifiedShapeConstraintComponent FocusNode: :c LiteralValue("qualified shape error. Expected <http://example.org/c> to satisfy qualifiedValueShape. Value = 0, min: 1, max: -")
+sh:ShapesFailed FocusNode: :b LiteralValue("<http://example.org/b> does not have nodeShape http://example.org/S1 because some shapes failed.")
+sh:notShape FocusNode: :b LiteralValue("Not failed because <http://example.org/b> has shape RefNode(<http://example.org/S>) and it should not have")
+Validation report written to results/resilience_shaclex_shacl_results.ttl

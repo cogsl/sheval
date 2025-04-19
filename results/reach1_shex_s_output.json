@@ -1,0 +1,75 @@
+{
+  "valid" : true,
+  "type" : "Result",
+  "message" : "Validated",
+  "shapeMap" : [
+    {
+      "node" : "<http://example.org/b>",
+      "shape" : "<http://example.org/R>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":b passes OR"
+        ]
+      },
+      "reason" : ":b passes OR"
+    },
+    {
+      "node" : "<http://example.org/c>",
+      "shape" : "<http://example.org/R>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":c passes OR",
+          ":c passes OR",
+          ":c passes OR"
+        ]
+      },
+      "reason" : ":c passes OR\n:c passes OR\n:c passes OR"
+    },
+    {
+      "node" : "<http://example.org/d>",
+      "shape" : "<http://example.org/R>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":d passes OR",
+          ":d passes OR",
+          ":d passes OR"
+        ]
+      },
+      "reason" : ":d passes OR\n:d passes OR\n:d passes OR"
+    },
+    {
+      "node" : "<http://example.org/a>",
+      "shape" : "<http://example.org/R>",
+      "status" : "conformant",
+      "appInfo" : {
+        "evidences" : [
+          ":a is equal to :a",
+          ":a passes OR",
+          ":a is equal to :a",
+          ":a passes OR"
+        ]
+      },
+      "reason" : ":a is equal to :a\n:a passes OR\n:a is equal to :a\n:a passes OR"
+    }
+  ],
+  "errors" : [
+  ],
+  "nodesPrefixMap" : {
+    "" : "http://example.org/",
+    "schema" : "http://schema.org/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "sh" : "http://www.w3.org/ns/shacl#"
+  },
+  "shapesPrefixMap" : {
+    "" : "http://example.org/",
+    "schema" : "http://schema.org/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "sh" : "http://www.w3.org/ns/shacl#"
+  },
+  "validationReport" : ""
+}

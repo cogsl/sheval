@@ -1,0 +1,87 @@
+{
+  "valid" : false,
+  "type" : "Result",
+  "message" : "Validated with errors",
+  "shapeMap" : [
+    {
+      "node" : "<http://example.org/a>",
+      "shape" : "<http://example.org/S>",
+      "status" : "nonconformant",
+      "appInfo" : {
+        "errors" : [
+          {
+            "type" : "HasNoType",
+            "label" : "http://example.org/S1",
+            "node" : {
+              "lexicalForm" : "http://example.org/a",
+              "location" : [
+                [
+                  {
+                    "line" : 7,
+                    "col" : 1,
+                    "type" : "PREFIXED_NAME"
+                  },
+                  {
+                    "line" : 7,
+                    "col" : 7,
+                    "type" : "PREFIXED_NAME"
+                  }
+                ]
+              ]
+            },
+            "shapeTyping" : {
+              "<http://example.org/a>" : {
+                ":S" : {
+                  "evidences" : [
+                  ]
+                },
+                ":S1" : {
+                  "errors" : [
+                    "Error: Failed NOT(@:S) because node :a satisfies it"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "reason" : ":a doesn't have shape :S1 in :a@+:S -:S1"
+    },
+    {
+      "node" : "<http://example.org/a>",
+      "shape" : "<http://example.org/S1>",
+      "status" : "nonconformant",
+      "appInfo" : {
+        "errors" : [
+          "Error: Failed NOT(@:S) because node :a satisfies it"
+        ]
+      },
+      "reason" : "Error: Failed NOT(@:S) because node :a satisfies it"
+    }
+  ],
+  "errors" : [
+    {
+      "type" : "ErrorInfo",
+      "error" : ":a doesn't have shape :S1 in :a@+:S -:S1"
+    },
+    {
+      "type" : "ErrorInfo",
+      "error" : "Error: Failed NOT(@:S) because node :a satisfies it"
+    }
+  ],
+  "nodesPrefixMap" : {
+    "" : "http://example.org/",
+    "schema" : "http://schema.org/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "sh" : "http://www.w3.org/ns/shacl#"
+  },
+  "shapesPrefixMap" : {
+    "" : "http://example.org/",
+    "schema" : "http://schema.org/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "sh" : "http://www.w3.org/ns/shacl#"
+  },
+  "validationReport" : ""
+}

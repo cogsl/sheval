@@ -1,0 +1,26 @@
+21:58:16 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+21:58:16 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:3a466ea760142078ef6a10f2e642b965 has produced a failure for focus node :b
+21:58:16 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+21:58:16 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:3a466ea760142078ef6a10f2e642b965 has produced a failure for focus node :b
+PREFIX :        <http://example.org/>
+PREFIX dash:    <http://datashapes.org/dash#>
+PREFIX graphql: <http://datashapes.org/graphql#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sh:      <http://www.w3.org/ns/shacl#>
+PREFIX swa:     <http://topbraid.org/swa#>
+PREFIX tosh:    <http://topbraid.org/tosh#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+[ rdf:type     sh:ValidationReport;
+  sh:conforms  false;
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :a;
+                 sh:resultMessage              "Less than 1 values have shape :S3";
+                 sh:resultPath                 :p;
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
+                 sh:sourceShape                [] 
+               ]
+] .
