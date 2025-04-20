@@ -12,6 +12,7 @@ parser.add_argument("-v", "--verbose", help="increase verbosity", default = 0, a
 parser.add_argument("--debug", help="debug info", default = 0, action="count")
 parser.add_argument("--temp", help="Temporal folder", default = "temp", action="store")
 parser.add_argument("--include-message", help="Include messages in output", default = False, action="store_true")
+parser.add_argument("--include-description", help="Include descriptions in output", default = False, action="store_true")
 parser.add_argument("-n", "--name", help="Name of test", default = None, action="store")
 parser.add_argument("-e", "--engine", help="Engine (can be shacl or shex)", default = None, action="store")
 parser.add_argument("-t", "--technology", help="Technology (specific technology like shacl_tq, shaclex, ...)", default = None, action="store")
@@ -127,7 +128,10 @@ for test in manifest['tests']:
                   yaml.dump(results, file)
                 case "csv":
                     writer = csv.writer(file)
-                    writer.writerow(["name", "engine", "technology", "description", "conforms", "successes", "failures"])
+                    if config['include_description']:
+                        writer.writerow(["name", "engine", "technology", "description", "conforms", "message", "successes", "failures"])
+                    else:
+                        writer.writerow(["name", "engine", "technology", "conforms", "message", "successes", "failures"])
                     for entry in results:
                         name = entry['name']
                         technology_name = entry['technology_name']
@@ -135,6 +139,10 @@ for test in manifest['tests']:
                         description = entry['description']
                         result = entry['result']
                         conforms = result['conforms']
+                        if 'message' in result:
+                            message = result['message']
+                        else:
+                            message = ""
                         if 'successes' in result:
                             successes = result['successes']
                         else:
@@ -143,7 +151,10 @@ for test in manifest['tests']:
                             failures = result['failures']
                         else:
                             failures = []
-                        writer.writerow([name, engine_name, technology_name, description, conforms, successes, failures])
+                        if config['include_description']:
+                            writer.writerow([name, engine_name, technology_name, description, conforms, message, successes, failures])
+                        else:    
+                            writer.writerow([name, engine_name, technology_name, conforms, message,successes, failures])
                 case _:
                     print("Unknown format. Supported formats are yaml and csv.")
                     exit(1)

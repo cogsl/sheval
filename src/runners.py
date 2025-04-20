@@ -48,7 +48,7 @@ pyshacl_cmd = ["bin/pyshacl", "-o", "$validation_report_file", "--format", "turt
 
 shacl_tq_cmd = ["bin/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$data_filename"]
 
-shaclex_shacl_cmd = ["bin/shaclex-0.2.6/bin/shaclex",
+shaclex_shacl_cmd = ["bin/shaclex-0.2.7/bin/shaclex",
                      "--validate",
                      "--engine","SHACLEX",
                      "--data", "$data_filename",
@@ -57,7 +57,7 @@ shaclex_shacl_cmd = ["bin/shaclex-0.2.6/bin/shaclex",
                      "--validationReportFile", "$validation_report_file"
                      ]
 
-shaclex_shex_cmd = ["bin/shaclex-0.2.6/bin/shaclex", 
+shaclex_shex_cmd = ["bin/shaclex-0.2.7/bin/shaclex", 
                     "--dataFormat", "TURTLE", 
                     "--data", "$data_filename", 
                     "--schema", "$shex_filename", 
@@ -68,7 +68,8 @@ shaclex_shex_cmd = ["bin/shaclex-0.2.6/bin/shaclex",
                     "--trigger", "SHAPEMAP", 
                     "--showResult", 
                     "--resultFormat", "JSON", 
-                    "--outFile", "$output_filename"
+                    "--outFile", "$output_filename",
+                    "--checkWellFormed"
                     ] 
 
 
@@ -140,13 +141,14 @@ def shaclex_shacl(filename, name, descr, results_folder, config, results, nodes,
 def shaclex_shex(filename, shex_filename, shapemap_filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
     try:
         technology_name = "shex_s"
-        engine = "shacl"
+        engine = "shex"
         # output_shapemap = os.path.join(results_folder, f"{name}_{technology_name}_output_shapemap.txt")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.json")
         command = mk_command_shex(shaclex_shex_cmd, filename, shex_filename, shapemap_filename, validation_output)
         info(config, f"Running: {command}")
         result1 = run(command, validation_output, 5, config['debug'])
         if result1 == CommandResult.OK:
+            print(f"Command result is OK...before analyzing shapemap file: {validation_output}")
             result = analyze_shapemap(validation_output,nodes,shapes,pairs,config)
             store_result(name, engine, technology_name, descr, result, results)
         else:
@@ -207,29 +209,37 @@ def analyze_shapemap(filename,nodes,shapes,pairs,config):
     successes = []
     with open(filename, 'r') as infile:
         json_result = json.load(infile)
+        print(f"JSON result: {json_result}")
         conforms = json_result['valid']
-        for result in json_result['shapeMap']:
-            node = result['node']
-            shape = result['shape']
-            status = result['status']
-            node = remove_gt_lt(node)
-            shape = remove_gt_lt(shape)
-            maybe_node = find_qname(nodes, node)
-            maybe_shape = find_qname(shapes, shape)
+        if 'message' in json_result:
+            message = json_result['message']
+        else:
+            message = ""
+
+        if 'shapeMap' in json_result and type(json_result['shapeMap']) is list:
+            for result in json_result['shapeMap']:
+                node = result['node']
+                shape = result['shape']
+                status = result['status']
+                node = remove_gt_lt(node)
+                shape = remove_gt_lt(shape)
+                maybe_node = find_qname(nodes, node)
+                maybe_shape = find_qname(shapes, shape)
                  # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
-            if maybe_node is not None:
-                node = maybe_node
-                if maybe_shape is not None:
-                    shape = maybe_shape
-                    if status == "conformant":
-                        successes.append({'node': node, 'shape': shape})
+                if maybe_node is not None:
+                    node = maybe_node
+                    if maybe_shape is not None:
+                        shape = maybe_shape
+                        if status == "conformant":
+                            successes.append({'node': node, 'shape': shape})
+                        else:
+                            failures.append({'node': node, 'shape': shape})    
                     else:
-                        failures.append({'node': node, 'shape': shape})    
+                        info(config, f"Shape {shape} not found in the shapes list: {shapes}")
                 else:
-                    info(config, f"Shape {shape} not found in the shapes list: {shapes}")
-            else:
-                info(config, f"Node {node} not found in the nodes list: {nodes}")                                          
-    return { 'conforms': conforms, 'failures': failures, 'successes': successes }
+                    info(config, f"Node {node} not found in the nodes list: {nodes}")                                          
+    print(f"After analyzing shapemap, Conforms: {conforms}")                    
+    return { 'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes }
 
 def remove_gt_lt(string):
     """
