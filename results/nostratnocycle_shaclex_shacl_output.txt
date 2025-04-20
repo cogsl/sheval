@@ -1,3 +1,4 @@
+Validation failed: Not valid
 sh:ShapesFailed FocusNode: :a LiteralValue("<http://example.org/a> does not have nodeShape http://example.org/S because some shapes failed.")
 sh:ShapesFailed FocusNode: :a LiteralValue("Property shape failed")
 sh:QualifiedShapeConstraintComponent FocusNode: :a LiteralValue("qualified shape error. Expected <http://example.org/a> to satisfy qualifiedValueShape. Value = 0, min: 1, max: -")

@@ -1,46 +1,15 @@
 {
-  "valid" : true,
+  "valid" : false,
   "type" : "Result",
-  "message" : "Validated",
-  "shapeMap" : [
-    {
-      "node" : "<http://example.org/a>",
-      "shape" : "<http://example.org/S>",
-      "status" : "conformant",
-      "appInfo" : {
-        "evidences" : [
-          ":b satisfies not(@:S)"
-        ]
-      },
-      "reason" : ":b satisfies not(@:S)"
-    },
-    {
-      "node" : "<http://example.org/b>",
-      "shape" : "<http://example.org/S>",
-      "status" : "conformant",
-      "appInfo" : {
-        "evidences" : [
-          ":a satisfies not(@:S)"
-        ]
-      },
-      "reason" : ":a satisfies not(@:S)"
-    }
-  ],
+  "message" : "Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))",
+  "shapeMap" : "No solutions",
   "errors" : [
   ],
   "nodesPrefixMap" : {
-    "" : "http://example.org/",
-    "schema" : "http://schema.org/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "sh" : "http://www.w3.org/ns/shacl#"
+    
   },
   "shapesPrefixMap" : {
-    "" : "http://example.org/",
-    "schema" : "http://schema.org/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "sh" : "http://www.w3.org/ns/shacl#"
+    
   },
   "validationReport" : ""
 }

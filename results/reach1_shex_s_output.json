@@ -65,11 +65,7 @@
     "sh" : "http://www.w3.org/ns/shacl#"
   },
   "shapesPrefixMap" : {
-    "" : "http://example.org/",
-    "schema" : "http://schema.org/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "sh" : "http://www.w3.org/ns/shacl#"
+    "" : "http://example.org/"
   },
   "validationReport" : ""
 }

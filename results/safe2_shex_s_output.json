@@ -1,123 +1,15 @@
 {
   "valid" : false,
   "type" : "Result",
-  "message" : "Validated with errors",
-  "shapeMap" : [
-    {
-      "node" : "<http://example.org/c>",
-      "shape" : "<http://example.org/S>",
-      "status" : "conformant",
-      "appInfo" : {
-        "evidences" : [
-          ":c satisfies not(@:R)",
-          ":c satisfies not(@:R)"
-        ]
-      },
-      "reason" : ":c satisfies not(@:R)\n:c satisfies not(@:R)"
-    },
-    {
-      "node" : "<http://example.org/c>",
-      "shape" : "<http://example.org/R>",
-      "status" : "conformant",
-      "appInfo" : {
-        "evidences" : [
-          ":c passes OR"
-        ]
-      },
-      "reason" : ":c passes OR"
-    },
-    {
-      "node" : "<http://example.org/d>",
-      "shape" : "<http://example.org/S>",
-      "status" : "conformant",
-      "appInfo" : {
-        "evidences" : [
-          ":d satisfies not(@:R)",
-          ":d satisfies not(@:R)"
-        ]
-      },
-      "reason" : ":d satisfies not(@:R)\n:d satisfies not(@:R)"
-    },
-    {
-      "node" : "<http://example.org/d>",
-      "shape" : "<http://example.org/R>",
-      "status" : "conformant",
-      "appInfo" : {
-        "evidences" : [
-          ":d passes OR"
-        ]
-      },
-      "reason" : ":d passes OR"
-    },
-    {
-      "node" : "<http://example.org/b>",
-      "shape" : "<http://example.org/S>",
-      "status" : "conformant",
-      "appInfo" : {
-        "evidences" : [
-          ":b satisfies not(@:R)"
-        ]
-      },
-      "reason" : ":b satisfies not(@:R)"
-    },
-    {
-      "node" : "<http://example.org/b>",
-      "shape" : "<http://example.org/R>",
-      "status" : "nonconformant",
-      "appInfo" : {
-        "errors" : [
-          "Error: None of the alternatives of OR(NodeConstraint:[<http://example.org/a>],Shape(<http://example.org/p> @<http://example.org/S>+, closed= None)) is valid for node :b"
-        ]
-      },
-      "reason" : "Error: None of the alternatives of OR(NodeConstraint:[<http://example.org/a>],Shape(<http://example.org/p> @<http://example.org/S>+, closed= None)) is valid for node :b"
-    },
-    {
-      "node" : "<http://example.org/a>",
-      "shape" : "<http://example.org/R>",
-      "status" : "conformant",
-      "appInfo" : {
-        "evidences" : [
-          ":a is equal to :a",
-          ":a passes OR"
-        ]
-      },
-      "reason" : ":a is equal to :a\n:a passes OR"
-    },
-    {
-      "node" : "<http://example.org/a>",
-      "shape" : "<http://example.org/S>",
-      "status" : "nonconformant",
-      "appInfo" : {
-        "errors" : [
-          "Error: Failed NOT(@:R) because node :a satisfies it"
-        ]
-      },
-      "reason" : "Error: Failed NOT(@:R) because node :a satisfies it"
-    }
-  ],
+  "message" : "Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/R>)),(IRILabel(<http://example.org/R>),IRILabel(<http://example.org/S>))",
+  "shapeMap" : "No solutions",
   "errors" : [
-    {
-      "type" : "ErrorInfo",
-      "error" : "Error: None of the alternatives of OR(NodeConstraint:[<http://example.org/a>],Shape(<http://example.org/p> @<http://example.org/S>+, closed= None)) is valid for node :b"
-    },
-    {
-      "type" : "ErrorInfo",
-      "error" : "Error: Failed NOT(@:R) because node :a satisfies it"
-    }
   ],
   "nodesPrefixMap" : {
-    "" : "http://example.org/",
-    "schema" : "http://schema.org/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "sh" : "http://www.w3.org/ns/shacl#"
+    
   },
   "shapesPrefixMap" : {
-    "" : "http://example.org/",
-    "schema" : "http://schema.org/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "sh" : "http://www.w3.org/ns/shacl#"
+    
   },
   "validationReport" : ""
 }

@@ -1,7 +1,7 @@
-22:53:51 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:53:51 ERROR FailureLog :: SHACL Failure: Constraint NotConstraintComponent at :S1 has produced a failure for focus node :b
-22:53:51 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:53:51 ERROR FailureLog :: SHACL Failure: Constraint NotConstraintComponent at :S1 has produced a failure for focus node :a
+12:27:31 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:27:31 ERROR FailureLog :: SHACL Failure: Constraint NotConstraintComponent at :S1 has produced a failure for focus node :b
+12:27:31 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:27:31 ERROR FailureLog :: SHACL Failure: Constraint NotConstraintComponent at :S1 has produced a failure for focus node :a
 PREFIX :        <http://example.org/>
 PREFIX dash:    <http://datashapes.org/dash#>
 PREFIX graphql: <http://datashapes.org/graphql#>

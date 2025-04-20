@@ -1,9 +1,10 @@
 - description: "Positive recursion in ShEx \n"
-  engine_name: shacl
+  engine_name: shex
   name: pr
   result:
     conforms: true
     failures: []
+    message: Validated
     successes:
     - node: :b
       shape: :S
@@ -133,11 +134,12 @@
 - description: 'Separation test for sa1 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: sa1
   result:
     conforms: true
     failures: []
+    message: Validated
     successes:
     - node: :a
       shape: :S
@@ -175,17 +177,18 @@
   engine_name: shacl
   name: sa2
   result:
-    conforms: true
-    failures: []
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
   technology_name: shacl_tq
 - description: 'Separation test for sa2 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: sa2
   result:
     conforms: true
     failures: []
+    message: Validated
     successes:
     - node: :a
       shape: :S
@@ -251,24 +254,11 @@
 - description: 'Separation test - sa3 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: sa3
   result:
-    conforms: true
-    failures: []
-    successes:
-    - node: :b
-      shape: :S
-    - node: :b
-      shape: :S1
-    - node: :c
-      shape: :S
-    - node: :c
-      shape: :S1
-    - node: :a
-      shape: :S
-    - node: :a
-      shape: :S1
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
   technology_name: shex_s
 - description: 'Single SA3 (SHACL)
 
@@ -318,9 +308,9 @@
   result:
     conforms: false
     failures:
-    - node: :a
-      shape: :S1
     - node: :b
+      shape: :S1
+    - node: :a
       shape: :S1
   technology_name: pyshacl
 - description: 'Separation test - sa4 (SHACL)
@@ -357,20 +347,13 @@
 - description: 'Separation test - sa4 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: sa4
   result:
     conforms: false
-    failures:
-    - node: :a
-      shape: :S1
-    - node: :b
-      shape: :S1
-    successes:
-    - node: :a
-      shape: :S
-    - node: :b
-      shape: :S
+    failures: []
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
+    successes: []
   technology_name: shex_s
 - description: 'Separation test - reach1 (SHACL)
 
@@ -415,11 +398,12 @@
 - description: 'Separation test - reach1 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: reach1
   result:
     conforms: true
     failures: []
+    message: Validated
     successes:
     - node: :b
       shape: :R
@@ -475,7 +459,7 @@
 - description: 'Separation test - Safe-1 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: safe1
   result:
     conforms: false
@@ -484,6 +468,7 @@
       shape: :S
     - node: :a
       shape: :S
+    message: Validated with errors
     successes:
     - node: :c
       shape: :S
@@ -535,28 +520,13 @@
 - description: 'Separation test - reach2 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: reach2
   result:
     conforms: false
-    failures:
-    - node: :c
-      shape: :R
-    - node: :d
-      shape: :R
-    - node: :b
-      shape: :S
-    - node: :a
-      shape: :S
-    successes:
-    - node: :c
-      shape: :S
-    - node: :d
-      shape: :S
-    - node: :b
-      shape: :R
-    - node: :a
-      shape: :R
+    failures: []
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
+    successes: []
   technology_name: shex_s
 - description: 'Separation test - safe2 (SHACL)
 
@@ -566,13 +536,13 @@
   result:
     conforms: false
     failures:
-    - node: :a
-      shape: :S
     - node: :b
+      shape: :S
+    - node: :c
       shape: :S
     - node: :d
       shape: :S
-    - node: :c
+    - node: :a
       shape: :S
   technology_name: pyshacl
 - description: 'Separation test - safe2 (SHACL)
@@ -621,28 +591,13 @@
 - description: 'Separation test - safe2 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: safe2
   result:
     conforms: false
-    failures:
-    - node: :b
-      shape: :R
-    - node: :a
-      shape: :S
-    successes:
-    - node: :c
-      shape: :S
-    - node: :c
-      shape: :R
-    - node: :d
-      shape: :S
-    - node: :d
-      shape: :R
-    - node: :b
-      shape: :S
-    - node: :a
-      shape: :R
+    failures: []
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/R>)),(IRILabel(<http://example.org/R>),IRILabel(<http://example.org/S>))'
+    successes: []
   technology_name: shex_s
 - description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
     (SHACL)
@@ -688,22 +643,13 @@
     (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: nostratnocycle
   result:
     conforms: false
-    failures:
-    - node: :a
-      shape: :S
-    - node: :c
-      shape: :S
-    - node: :e
-      shape: :S
-    successes:
-    - node: :b
-      shape: :S
-    - node: :d
-      shape: :S
+    failures: []
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
+    successes: []
   technology_name: shex_s
 - description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
     (SHACL)
@@ -749,16 +695,13 @@
     (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: nostratcycle
   result:
-    conforms: true
+    conforms: false
     failures: []
-    successes:
-    - node: :a
-      shape: :S
-    - node: :b
-      shape: :S
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
+    successes: []
   technology_name: shex_s
 - description: 'Consistency test 1
 
@@ -805,15 +748,12 @@
 - description: 'Feature test - Consistency1 (ShEx)
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: consistency1
   result:
     conforms: false
-    failures:
-    - node: :a
-      shape: :S
-    - node: :a
-      shape: :S1
+    failures: []
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
     successes: []
   technology_name: shex_s
 - description: 'Consistency test 1
@@ -941,20 +881,13 @@
 - description: 'Consistency test 2
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: consistency2_all
   result:
-    conforms: true
+    conforms: false
     failures: []
-    successes:
-    - node: :a
-      shape: :S1
-    - node: :a
-      shape: :S
-    - node: :b
-      shape: :S1
-    - node: :b
-      shape: :S
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
+    successes: []
   technology_name: shex_s
 - description: 'Consistency test 2
 
@@ -1117,20 +1050,13 @@
 - description: 'Feature test: Resilience
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: resilience
   result:
     conforms: false
-    failures:
-    - node: :b
-      shape: :S1
-    - node: :c
-      shape: :S
-    successes:
-    - node: :b
-      shape: :S
-    - node: :c
-      shape: :S1
+    failures: []
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
+    successes: []
   technology_name: shex_s
 - description: 'Assignment isolation test
 
@@ -1171,11 +1097,12 @@
 - description: 'Assignment isolation test 1
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: isolation1
   result:
     conforms: true
     failures: []
+    message: Validated
     successes:
     - node: :a
       shape: :S1
@@ -1219,13 +1146,14 @@
 - description: 'Assignment isolation test 2
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: isolation2
   result:
     conforms: false
     failures:
     - node: :b
       shape: :S2
+    message: Validated with errors
     successes: []
   technology_name: shex_s
 - description: 'Assignment isolation test
@@ -1267,13 +1195,14 @@
 - description: 'Assignment isolation test 3
 
     '
-  engine_name: shacl
+  engine_name: shex
   name: isolation3
   result:
     conforms: false
     failures:
     - node: :b
       shape: :S2
+    message: Validated with errors
     successes:
     - node: :a
       shape: :S1

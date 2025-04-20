@@ -1,15 +1,15 @@
-22:52:32 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:52:32 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :d
-22:52:32 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:52:32 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :c
-22:52:32 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:52:32 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:ba0514469a9512eea0db7b901a8c15eb has produced a failure for focus node :d
-22:52:32 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:52:32 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:ba0514469a9512eea0db7b901a8c15eb has produced a failure for focus node :c
-22:52:32 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:52:32 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:ba0514469a9512eea0db7b901a8c15eb has produced a failure for focus node :d
-22:52:32 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:52:32 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:ba0514469a9512eea0db7b901a8c15eb has produced a failure for focus node :d
+12:26:02 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:26:02 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :d
+12:26:02 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:26:02 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :c
+12:26:02 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:26:02 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:95ae5fbb5730a3a50dc3c01a7b01f3f1 has produced a failure for focus node :d
+12:26:02 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:26:02 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:95ae5fbb5730a3a50dc3c01a7b01f3f1 has produced a failure for focus node :c
+12:26:02 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:26:02 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:95ae5fbb5730a3a50dc3c01a7b01f3f1 has produced a failure for focus node :d
+12:26:02 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:26:02 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:95ae5fbb5730a3a50dc3c01a7b01f3f1 has produced a failure for focus node :d
 PREFIX :        <http://example.org/>
 PREFIX dash:    <http://datashapes.org/dash#>
 PREFIX graphql: <http://datashapes.org/graphql#>
@@ -25,7 +25,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Value has shape _:ee61c263e73bc982916d39dcef1d95da";
+                 sh:resultMessage              "Value has shape _:fac4d50276ca7007a1b583a7614d642f";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:NotConstraintComponent;
                  sh:sourceShape                :S;
@@ -33,7 +33,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :b;
-                 sh:resultMessage              "Value has shape _:ee61c263e73bc982916d39dcef1d95da";
+                 sh:resultMessage              "Value has shape _:fac4d50276ca7007a1b583a7614d642f";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:NotConstraintComponent;
                  sh:sourceShape                :S;
@@ -41,7 +41,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :c;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:e6a7c0c2bc7eb5c002fc2f0b79da6fb0, _:cef219a448f4a1404bcbf140759d28e1";
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:2cd9927898f3f5b705ff8a5df18c7558, _:772514aa7fd21fa1a1bc5f721534093a";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:OrConstraintComponent;
                  sh:sourceShape                :R;
@@ -49,7 +49,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :d;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:e6a7c0c2bc7eb5c002fc2f0b79da6fb0, _:cef219a448f4a1404bcbf140759d28e1";
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:2cd9927898f3f5b705ff8a5df18c7558, _:772514aa7fd21fa1a1bc5f721534093a";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:OrConstraintComponent;
                  sh:sourceShape                :R;
