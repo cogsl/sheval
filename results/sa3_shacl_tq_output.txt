@@ -1,12 +1,12 @@
-15:11:13 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:11:13 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :c
-15:11:14 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:11:14 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :b
-15:11:14 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:11:14 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :a
-15:11:14 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:11:14 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :c
-15:11:14 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:11:14 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :b
-15:11:14 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:11:14 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :a
+20:49:36 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:49:36 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :c
+20:49:36 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:49:36 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :b
+20:49:36 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:49:36 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :a
+20:49:36 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:49:36 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :c
+20:49:36 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:49:36 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :b
+20:49:36 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:49:36 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :a

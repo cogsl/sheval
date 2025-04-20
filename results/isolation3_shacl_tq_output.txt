@@ -1,4 +1,4 @@
-15:14:23 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:14:23 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:0cac8ad2fa4d1a309acf46aa9da6c23b has produced a failure for focus node :b
-15:14:23 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:14:23 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:0cac8ad2fa4d1a309acf46aa9da6c23b has produced a failure for focus node :b
+20:52:52 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:52:52 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:942d6d0035fcbdd76e62088fe70175e1 has produced a failure for focus node :b
+20:52:52 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:52:52 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:942d6d0035fcbdd76e62088fe70175e1 has produced a failure for focus node :b

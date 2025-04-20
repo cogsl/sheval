@@ -1,2 +1,2 @@
-15:12:45 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-15:12:45 ERROR FailureLog :: SHACL Failure: Constraint NotConstraintComponent at :S1 has produced a failure for focus node :a
+20:51:11 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+20:51:11 ERROR FailureLog :: SHACL Failure: Constraint NotConstraintComponent at :S1 has produced a failure for focus node :a
