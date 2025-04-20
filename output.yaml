@@ -1,43 +1,51 @@
-- name: positive_recursion_encoding1
+- description: "Positive recursion in ShEx \n"
+  engine_name: shacl
+  name: pr
   result:
     conforms: true
     failures: []
-  technology_name: pyshacl
-- name: positive_recursion_encoding1
-  result:
-    conforms: true
-    failures: []
-  technology_name: shaclex
-- name: positive_recursion_encoding1
-  result:
-    conforms: true
-    failures: []
-  technology_name: jena_shacl
-- name: positive_recursion_encoding1
-  result:
-    conforms: false
-    failures:
-    - node: :a
-      shape: :S
+    successes:
     - node: :b
       shape: :S
-  technology_name: shacl_tq
-- name: positive_recursion_encoding2
+    - node: :a
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
+  technology_name: shex_s
+- description: 'Example with positive recursion, encoding using qualified value shapes
+
+    '
+  engine_name: shacl
+  name: pr
   result:
     conforms: true
     failures: []
   technology_name: pyshacl
-- name: positive_recursion_encoding2
+- description: 'Example with positive recursion, encoding using qualified value shapes
+
+    '
+  engine_name: shacl
+  name: pr
   result:
     conforms: Error
     failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex
-- name: positive_recursion_encoding2
+  technology_name: shaclex_shacl
+- description: 'Example with positive recursion, encoding using qualified value shapes
+
+    '
+  engine_name: shacl
+  name: pr
   result:
     conforms: true
     failures: []
   technology_name: jena_shacl
-- name: positive_recursion_encoding2
+- description: 'Example with positive recursion, encoding using qualified value shapes
+
+    '
+  engine_name: shacl
+  name: pr
   result:
     conforms: false
     failures:
@@ -46,3 +54,1227 @@
     - node: :b
       shape: :S
   technology_name: shacl_tq
+- description: 'Example with positive recursion, basic encoding with sh:node
+
+    '
+  engine_name: shacl
+  name: pr_node
+  result:
+    conforms: true
+    failures: []
+  technology_name: pyshacl
+- description: 'Example with positive recursion, basic encoding with sh:node
+
+    '
+  engine_name: shacl
+  name: pr_node
+  result:
+    conforms: true
+    failures: []
+  technology_name: shaclex_shacl
+- description: 'Example with positive recursion, basic encoding with sh:node
+
+    '
+  engine_name: shacl
+  name: pr_node
+  result:
+    conforms: true
+    failures: []
+  technology_name: jena_shacl
+- description: 'Example with positive recursion, basic encoding with sh:node
+
+    '
+  engine_name: shacl
+  name: pr_node
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: shacl_tq
+- description: 'Separation test for sa1
+
+    '
+  engine_name: shacl
+  name: sa1
+  result:
+    conforms: true
+    failures: []
+  technology_name: pyshacl
+- description: 'Separation test for sa1
+
+    '
+  engine_name: shacl
+  name: sa1
+  result:
+    conforms: true
+    failures: []
+  technology_name: shaclex_shacl
+- description: 'Separation test for sa1
+
+    '
+  engine_name: shacl
+  name: sa1
+  result:
+    conforms: true
+    failures: []
+  technology_name: jena_shacl
+- description: 'Separation test for sa1
+
+    '
+  engine_name: shacl
+  name: sa1
+  result:
+    conforms: true
+    failures: []
+  technology_name: shacl_tq
+- description: 'Separation test for sa1 (ShEx)
+
+    '
+  engine_name: shacl
+  name: sa1
+  result:
+    conforms: true
+    failures: []
+    successes:
+    - node: :a
+      shape: :S
+  technology_name: shex_s
+- description: 'Separation test for sa2
+
+    '
+  engine_name: shacl
+  name: sa2
+  result:
+    conforms: true
+    failures: []
+  technology_name: pyshacl
+- description: 'Separation test for sa2
+
+    '
+  engine_name: shacl
+  name: sa2
+  result:
+    conforms: true
+    failures: []
+  technology_name: shaclex_shacl
+- description: 'Separation test for sa2
+
+    '
+  engine_name: shacl
+  name: sa2
+  result:
+    conforms: true
+    failures: []
+  technology_name: jena_shacl
+- description: 'Separation test for sa2
+
+    '
+  engine_name: shacl
+  name: sa2
+  result:
+    conforms: true
+    failures: []
+  technology_name: shacl_tq
+- description: 'Separation test for sa2 (ShEx)
+
+    '
+  engine_name: shacl
+  name: sa2
+  result:
+    conforms: true
+    failures: []
+    successes:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: shex_s
+- description: 'Separation test for SA3
+
+    '
+  engine_name: shacl
+  name: sa3
+  result:
+    conforms: Undefined
+    failures: []
+  technology_name: pyshacl
+- description: 'Separation test for SA3
+
+    '
+  engine_name: shacl
+  name: sa3
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Separation test for SA3
+
+    '
+  engine_name: shacl
+  name: sa3
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+  technology_name: jena_shacl
+- description: 'Separation test for SA3
+
+    '
+  engine_name: shacl
+  name: sa3
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S1
+  technology_name: shacl_tq
+- description: 'Separation test - sa3 (ShEx)
+
+    '
+  engine_name: shacl
+  name: sa3
+  result:
+    conforms: true
+    failures: []
+    successes:
+    - node: :b
+      shape: :S
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S
+    - node: :c
+      shape: :S1
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S1
+  technology_name: shex_s
+- description: 'Single SA3 (SHACL)
+
+    '
+  engine_name: shacl
+  name: sa3_single
+  result:
+    conforms: Undefined
+    failures: []
+  technology_name: pyshacl
+- description: 'Single SA3 (SHACL)
+
+    '
+  engine_name: shacl
+  name: sa3_single
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Single SA3 (SHACL)
+
+    '
+  engine_name: shacl
+  name: sa3_single
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: jena_shacl
+- description: 'Single SA3 (SHACL)
+
+    '
+  engine_name: shacl
+  name: sa3_single
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: shacl_tq
+- description: 'Separation test - sa4 (SHACL)
+
+    '
+  engine_name: shacl
+  name: sa4
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+  technology_name: pyshacl
+- description: 'Separation test - sa4 (SHACL)
+
+    '
+  engine_name: shacl
+  name: sa4
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Separation test - sa4 (SHACL)
+
+    '
+  engine_name: shacl
+  name: sa4
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+  technology_name: jena_shacl
+- description: 'Separation test - sa4 (SHACL)
+
+    '
+  engine_name: shacl
+  name: sa4
+  result:
+    conforms: true
+    failures: []
+  technology_name: shacl_tq
+- description: 'Separation test - sa4 (ShEx)
+
+    '
+  engine_name: shacl
+  name: sa4
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+    successes:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: shex_s
+- description: 'Separation test - reach1 (SHACL)
+
+    '
+  engine_name: shacl
+  name: reach1
+  result:
+    conforms: true
+    failures: []
+  technology_name: pyshacl
+- description: 'Separation test - reach1 (SHACL)
+
+    '
+  engine_name: shacl
+  name: reach1
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Separation test - reach1 (SHACL)
+
+    '
+  engine_name: shacl
+  name: reach1
+  result:
+    conforms: true
+    failures: []
+  technology_name: jena_shacl
+- description: 'Separation test - reach1 (SHACL)
+
+    '
+  engine_name: shacl
+  name: reach1
+  result:
+    conforms: false
+    failures:
+    - node: :c
+      shape: :R
+    - node: :d
+      shape: :R
+  technology_name: shacl_tq
+- description: 'Separation test - reach1 (ShEx)
+
+    '
+  engine_name: shacl
+  name: reach1
+  result:
+    conforms: true
+    failures: []
+    successes:
+    - node: :b
+      shape: :R
+    - node: :c
+      shape: :R
+    - node: :d
+      shape: :R
+    - node: :a
+      shape: :R
+  technology_name: shex_s
+- description: 'Separation test - Safe-1 (SHACL)
+
+    '
+  engine_name: shacl
+  name: safe1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: pyshacl
+- description: 'Separation test - Safe-1 (SHACL)
+
+    '
+  engine_name: shacl
+  name: safe1
+  result:
+    conforms: false
+    failures: []
+  technology_name: shaclex_shacl
+- description: 'Separation test - Safe-1 (SHACL)
+
+    '
+  engine_name: shacl
+  name: safe1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: jena_shacl
+- description: 'Separation test - Safe-1 (SHACL)
+
+    '
+  engine_name: shacl
+  name: safe1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: shacl_tq
+- description: 'Separation test - Safe-1 (ShEx)
+
+    '
+  engine_name: shacl
+  name: safe1
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S
+    successes:
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
+  technology_name: shex_s
+- description: 'Separation test - reach2 (SHACL)
+
+    '
+  engine_name: shacl
+  name: reach2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: pyshacl
+- description: 'Separation test - reach2 (SHACL)
+
+    '
+  engine_name: shacl
+  name: reach2
+  result:
+    conforms: false
+    failures: []
+  technology_name: shaclex_shacl
+- description: 'Separation test - reach2 (SHACL)
+
+    '
+  engine_name: shacl
+  name: reach2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: jena_shacl
+- description: 'Separation test - reach2 (SHACL)
+
+    '
+  engine_name: shacl
+  name: reach2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: shacl_tq
+- description: 'Separation test - reach2 (ShEx)
+
+    '
+  engine_name: shacl
+  name: reach2
+  result:
+    conforms: false
+    failures:
+    - node: :c
+      shape: :R
+    - node: :d
+      shape: :R
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S
+    successes:
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
+    - node: :b
+      shape: :R
+    - node: :a
+      shape: :R
+  technology_name: shex_s
+- description: 'Separation test - safe2 (SHACL)
+
+    '
+  engine_name: shacl
+  name: safe2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :d
+      shape: :S
+    - node: :c
+      shape: :S
+  technology_name: pyshacl
+- description: 'Separation test - safe2 (SHACL)
+
+    '
+  engine_name: shacl
+  name: safe2
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Separation test - safe2 (SHACL)
+
+    '
+  engine_name: shacl
+  name: safe2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
+  technology_name: jena_shacl
+- description: 'Separation test - safe2 (SHACL)
+
+    '
+  engine_name: shacl
+  name: safe2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :R
+    - node: :d
+      shape: :R
+  technology_name: shacl_tq
+- description: 'Separation test - safe2 (ShEx)
+
+    '
+  engine_name: shacl
+  name: safe2
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :R
+    - node: :a
+      shape: :S
+    successes:
+    - node: :c
+      shape: :S
+    - node: :c
+      shape: :R
+    - node: :d
+      shape: :S
+    - node: :d
+      shape: :R
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :R
+  technology_name: shex_s
+- description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratnocycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: pyshacl
+- description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratnocycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: shaclex_shacl
+- description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratnocycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: jena_shacl
+- description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratnocycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: shacl_tq
+- description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
+    (ShEx)
+
+    '
+  engine_name: shacl
+  name: nostratnocycle
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :e
+      shape: :S
+    successes:
+    - node: :b
+      shape: :S
+    - node: :d
+      shape: :S
+  technology_name: shex_s
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratcycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: pyshacl
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratcycle
+  result:
+    conforms: true
+    failures: []
+  technology_name: shaclex_shacl
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratcycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: jena_shacl
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratcycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: shacl_tq
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (ShEx)
+
+    '
+  engine_name: shacl
+  name: nostratcycle
+  result:
+    conforms: true
+    failures: []
+    successes:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: shex_s
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+  technology_name: pyshacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+  technology_name: jena_shacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+  technology_name: shacl_tq
+- description: 'Feature test - Consistency1 (ShEx)
+
+    '
+  engine_name: shacl
+  name: consistency1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S1
+    successes: []
+  technology_name: shex_s
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1_individually_S
+  result:
+    conforms: false
+    failures: []
+  technology_name: pyshacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1_individually_S
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1_individually_S
+  result:
+    conforms: false
+    failures: []
+  technology_name: jena_shacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1_individually_S
+  result:
+    conforms: false
+    failures: []
+  technology_name: shacl_tq
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1_individually_S1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+  technology_name: pyshacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1_individually_S1
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1_individually_S1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+  technology_name: jena_shacl
+- description: 'Consistency test 1
+
+    '
+  engine_name: shacl
+  name: consistency1_individually_S1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+  technology_name: shacl_tq
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_all
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+  technology_name: pyshacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_all
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_all
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+  technology_name: jena_shacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_all
+  result:
+    conforms: false
+    failures: []
+  technology_name: shacl_tq
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_all
+  result:
+    conforms: true
+    failures: []
+    successes:
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S1
+    - node: :b
+      shape: :S
+  technology_name: shex_s
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S
+  result:
+    conforms: false
+    failures: []
+  technology_name: pyshacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S
+  result:
+    conforms: false
+    failures: []
+  technology_name: jena_shacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S
+  result:
+    conforms: true
+    failures: []
+  technology_name: shacl_tq
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S_b_S
+  result:
+    conforms: false
+    failures: []
+  technology_name: pyshacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S_b_S
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S_b_S
+  result:
+    conforms: false
+    failures: []
+  technology_name: jena_shacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S_b_S
+  result:
+    conforms: false
+    failures: []
+  technology_name: shacl_tq
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S1_b_S1
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+    - node: :a
+      shape: :S1
+  technology_name: pyshacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S1_b_S1
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S1_b_S1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+  technology_name: jena_shacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_a_S1_b_S1
+  result:
+    conforms: true
+    failures: []
+  technology_name: shacl_tq
+- description: 'Feature test: Resilience
+
+    '
+  engine_name: shacl
+  name: resilience
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+  technology_name: pyshacl
+- description: 'Feature test: Resilience
+
+    '
+  engine_name: shacl
+  name: resilience
+  result:
+    conforms: false
+    failures: []
+  technology_name: shaclex_shacl
+- description: 'Feature test: Resilience
+
+    '
+  engine_name: shacl
+  name: resilience
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+  technology_name: jena_shacl
+- description: 'Feature test: Resilience
+
+    '
+  engine_name: shacl
+  name: resilience
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+  technology_name: shacl_tq
+- description: 'Feature test: Resilience
+
+    '
+  engine_name: shacl
+  name: resilience
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S
+    successes:
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S1
+  technology_name: shex_s
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation1
+  result:
+    conforms: true
+    failures: []
+  technology_name: pyshacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation1
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation1
+  result:
+    conforms: true
+    failures: []
+  technology_name: jena_shacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation1
+  result:
+    conforms: false
+    failures: []
+  technology_name: shacl_tq
+- description: 'Assignment isolation test 1
+
+    '
+  engine_name: shacl
+  name: isolation1
+  result:
+    conforms: true
+    failures: []
+    successes:
+    - node: :a
+      shape: :S1
+  technology_name: shex_s
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation2
+  result:
+    conforms: false
+    failures: []
+  technology_name: pyshacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation2
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation2
+  result:
+    conforms: false
+    failures: []
+  technology_name: jena_shacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation2
+  result:
+    conforms: true
+    failures: []
+  technology_name: shacl_tq
+- description: 'Assignment isolation test 2
+
+    '
+  engine_name: shacl
+  name: isolation2
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S2
+    successes: []
+  technology_name: shex_s
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation3
+  result:
+    conforms: false
+    failures: []
+  technology_name: pyshacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation3
+  result:
+    conforms: Error
+    failures: Error running commandCommandResult.TIMEOUT
+  technology_name: shaclex_shacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation3
+  result:
+    conforms: false
+    failures: []
+  technology_name: jena_shacl
+- description: 'Assignment isolation test
+
+    '
+  engine_name: shacl
+  name: isolation3
+  result:
+    conforms: false
+    failures: []
+  technology_name: shacl_tq
+- description: 'Assignment isolation test 3
+
+    '
+  engine_name: shacl
+  name: isolation3
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S2
+    successes:
+    - node: :a
+      shape: :S1
+  technology_name: shex_s

@@ -13,7 +13,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:b2765c72e77bef1930af556a0982d55f, _:32a7ec9b9e67307cc4ced0f4dd084dcb";
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:de8ccfe104e9118334745f6b897af2bc, _:db2c8538205bd6053cfc60e83a7d2cae";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:OrConstraintComponent;
                  sh:sourceShape                :S;
@@ -21,7 +21,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :b;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:b2765c72e77bef1930af556a0982d55f, _:32a7ec9b9e67307cc4ced0f4dd084dcb";
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:de8ccfe104e9118334745f6b897af2bc, _:db2c8538205bd6053cfc60e83a7d2cae";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:OrConstraintComponent;
                  sh:sourceShape                :S;
