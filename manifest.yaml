@@ -7,6 +7,7 @@ shacl_technologies:
   - shacl_tq
 shex_technologies: 
   - shacl_shex
+  - jena_shex
 shex_folder: ShEx
 results_folder: results
 tests:

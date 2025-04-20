@@ -1,5 +1,5 @@
-12:25:13 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-12:25:13 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :a
+15:11:27 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+15:11:27 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :a
 PREFIX :        <http://example.org/>
 PREFIX dash:    <http://datashapes.org/dash#>
 PREFIX graphql: <http://datashapes.org/graphql#>
@@ -15,7 +15,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Value must have all of the following shapes: :S1, _:ea9896ad2301804473e290a7b4eeb8d1";
+                 sh:resultMessage              "Value must have all of the following shapes: :S1, _:2edce55530e2ae84b405e13126b1f001";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S;

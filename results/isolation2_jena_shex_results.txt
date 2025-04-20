@@ -1,0 +1,1 @@
+<http://example.org/b> @ <http://example.org/S2> :: Focus = <http://example.org/b>, Status = nonconformant, Reason = NOT: Term reject because it conforms

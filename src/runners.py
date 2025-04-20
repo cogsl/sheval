@@ -75,6 +75,8 @@ shaclex_shex_cmd = ["bin/shaclex-0.2.7/bin/shaclex",
 
 jena_shacl_cmd = ["bin/apache-jena-5.3.0/bin/shacl", "v", "--data", "$data_filename"]
 
+jena_shex_cmd = ["bin/apache-jena-5.3.0/bin/shex", "v", "--data", "$data_filename", "--schema", "$shex_filename", "--map", "$shapemap_filename"]
+
 def shacl_tq(filename, name, descr, results_folder, config, results, nodes, shapes,pairs):
     try:
         technology_name = "shacl_tq"
@@ -118,6 +120,30 @@ def jena_shacl(filename, name, descr, results_folder, config, results, nodes, sh
         result = { 'conforms': "Exception", 'failures': f"{e}" }
         store_result(name, engine, technology_name, descr, result, results)
 
+def jena_shex(filename, shex_filename, shapemap_filename, name, descr, results_folder, config, results, nodes, shapes,pairs):
+    try:
+        print(f"Running Jena Shex for {name}")
+        technology_name = "jena_shex"
+        engine = "shex"
+        output_file = os.path.join(results_folder, f"{name}_{technology_name}_results.txt")
+        # output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
+        print(f"Output file: {output_file}")
+        command = mk_command_shex(jena_shex_cmd, filename, shex_filename, shapemap_filename, output_file)
+        print(f"Command: {command}")
+        result1 = run(command, output_file, 5, config['debug'])
+        print(f"Result of running command: {result1}")
+        if result1 == CommandResult.OK:
+            debug(config, f"Command result is OK...validation report file: {output_file}")
+            result = analyze_result_jena_shex(output_file,nodes,shapes,pairs,config)
+            store_result(name, engine, technology_name, descr, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, engine, technology_name, descr, result, results)    
+    except Exception as e:
+        info(config, f"Error running {technology_name}: {e}")
+        result = { 'conforms': "Exception", 'failures': f"{e}" }
+        store_result(name, engine, technology_name, descr, result, results)
+
 def shaclex_shacl(filename, name, descr, results_folder, config, results, nodes, shapes,pairs):
     try:
         technology_name = "shaclex_shacl"
@@ -142,7 +168,6 @@ def shaclex_shex(filename, shex_filename, shapemap_filename, name, descr, result
     try:
         technology_name = "shex_s"
         engine = "shex"
-        # output_shapemap = os.path.join(results_folder, f"{name}_{technology_name}_output_shapemap.txt")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.json")
         command = mk_command_shex(shaclex_shex_cmd, filename, shex_filename, shapemap_filename, validation_output)
         info(config, f"Running: {command}")
@@ -240,6 +265,44 @@ def analyze_shapemap(filename,nodes,shapes,pairs,config):
                     info(config, f"Node {node} not found in the nodes list: {nodes}")                                          
     print(f"After analyzing shapemap, Conforms: {conforms}")                    
     return { 'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes }
+
+def analyze_result_jena_shex(filename,nodes,shapes,pairs,config):
+    conforms = True
+    failures = []
+    successes = []
+    message = ""
+    for pair in pairs:
+        nodes.append(pair['node'])
+        shapes.append(pair['shape'])
+
+    with open(filename, 'r') as infile:
+        for line in infile:
+            (node, shape, status) = parse_jena_result_line(line)
+
+            maybe_node = find_qname(nodes, node)
+            maybe_shape = find_qname(shapes, shape)
+            if maybe_node is not None:
+                node = maybe_node
+                if maybe_shape is not None:
+                    shape = maybe_shape
+                    if status == "conformant":
+                        successes.append({'node': node, 'shape': shape})
+                    else:
+                        failures.append({'node': node, 'shape': shape})    
+                        conforms = False
+                else:
+                    info(config, f"Shape {shape} not found in the shapes list: {shapes}")
+            else:
+                info(config, f"Node {node} not found in the nodes list: {nodes}")
+    
+    print(f"After analyzing shapemap, Conforms: {conforms}")                    
+    return { 'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes }
+
+def parse_jena_result_line(line):
+    regex = re.compile(r'^\s<([^>]+)>\s@\s<([^>]+)>\s.*Status\s=\s(.*)$')
+    m = regex.match(line)
+    (node, shape, conforms) = m.groups(1,2,3)
+    return (node, shape, conforms)
 
 def remove_gt_lt(string):
     """

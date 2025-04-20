@@ -1,7 +1,7 @@
-12:24:20 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-12:24:20 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :S has produced a failure for focus node :b
-12:24:20 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-12:24:20 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :S has produced a failure for focus node :a
+15:10:49 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+15:10:49 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :S has produced a failure for focus node :b
+15:10:49 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+15:10:49 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :S has produced a failure for focus node :a
 PREFIX :        <http://example.org/>
 PREFIX dash:    <http://datashapes.org/dash#>
 PREFIX graphql: <http://datashapes.org/graphql#>
@@ -17,7 +17,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:cbc4d37e932e8947ece41aba22700832, _:f0ac4e090205653bad62a29505525491";
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:0609ef57ffb5cef5bfa660aa9f549afd, _:ab0d05e5807165219211f958a16d4fa1";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:OrConstraintComponent;
                  sh:sourceShape                :S;
@@ -25,7 +25,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :b;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:cbc4d37e932e8947ece41aba22700832, _:f0ac4e090205653bad62a29505525491";
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:0609ef57ffb5cef5bfa660aa9f549afd, _:ab0d05e5807165219211f958a16d4fa1";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:OrConstraintComponent;
                  sh:sourceShape                :S;

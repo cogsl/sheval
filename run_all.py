@@ -112,9 +112,11 @@ for test in manifest['tests']:
                     technologies = [config['technology']]
                 else:
                     technologies = manifest['shex_technologies']
-                for technology in manifest['shex_technologies']:
+                for technology in technologies:
                     if technology == "shacl_shex":
                         shaclex_shex(data_file, shex_file, shapemap_file, name, description, results_folder, config, results, nodes, shapes, pairs)
+                    elif technology == "jena_shex":
+                        jena_shex(data_file, shex_file, shapemap_file, name, description, results_folder, config, results, nodes, shapes, pairs)
                     else:
                         print(f"Unknown technology: {technology}")
                         exit(1)    

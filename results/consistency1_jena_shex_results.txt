@@ -1,0 +1,2 @@
+<http://example.org/a> @ <http://example.org/S> :: Focus = <http://example.org/a>, Status = nonconformant, Reason = Cardinality violation (min=1): 0
+<http://example.org/a> @ <http://example.org/S1> :: Focus = <http://example.org/a>, Status = nonconformant, Reason = NOT: Term reject because it conforms
