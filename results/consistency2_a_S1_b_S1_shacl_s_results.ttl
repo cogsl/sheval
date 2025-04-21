@@ -1,0 +1,33 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+[ a            sh:ValidationReport ;
+  sh:conforms  false ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/b> ;
+                 sh:resultMessage              "<http://example.org/b> does not have nodeShape http://example.org/S1 because some shapes failed." ;
+                 sh:resultSeverity             sh:Info ;
+                 sh:sourceConstraintComponent  sh:ShapesFailed ;
+                 sh:sourceShape                <http://example.org/S1>
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/b> ;
+                 sh:resultMessage              "Not failed because <http://example.org/b> has shape RefNode(<http://example.org/S>) and it should not have" ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:notShape ;
+                 sh:sourceShape                <http://example.org/S1>
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/a> ;
+                 sh:resultMessage              "<http://example.org/a> does not have nodeShape http://example.org/S1 because some shapes failed." ;
+                 sh:resultSeverity             sh:Info ;
+                 sh:sourceConstraintComponent  sh:ShapesFailed ;
+                 sh:sourceShape                <http://example.org/S1>
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/a> ;
+                 sh:resultMessage              "Not failed because <http://example.org/a> has shape RefNode(<http://example.org/S>) and it should not have" ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:notShape ;
+                 sh:sourceShape                <http://example.org/S1>
+               ]
+] .

@@ -2,7 +2,8 @@ rdf_folder: RDF
 shacl_folder: SHACL
 shacl_technologies: 
   - pyshacl
-  - shaclex_shacl
+  # - shaclex_shacl
+  - shacl_s
   - jena_shacl
   - shacl_tq
 shex_technologies: 

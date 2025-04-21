@@ -87,7 +87,11 @@ for test in manifest['tests']:
                 merged_filename = os.path.join(config['temp'], test['name'] + ".ttl")
                 prepare_target_declarations(data_graph, shapes_graph, nodes, shapes, pairs, merged_filename, config)
                 if config['technology'] is not None:
-                    technologies = [config['technology']]
+                    technology = config['technology']
+                    if technology in manifest['shacl_technologies']:
+                        technologies = [technology]
+                    else:
+                        technologies = []
                 else:
                     technologies = manifest['shacl_technologies']
                 for technology in technologies:
@@ -97,6 +101,8 @@ for test in manifest['tests']:
                         jena_shacl(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     elif technology == "shaclex_shacl":
                         shaclex_shacl(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
+                    elif technology == "shacl_s":
+                        shacl_s(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     elif technology == "pyshacl":
                         pyshacl(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     else:
@@ -109,7 +115,11 @@ for test in manifest['tests']:
                 shapemap_file = os.path.join(config['temp'], test['name'] + ".sm" )
                 prepare_shapemap(nodes, shapes, pairs, shapemap_file, config)
                 if config['technology'] is not None:
-                    technologies = [config['technology']]
+                    technology = config['technology']
+                    if technology in manifest['shex_technologies']:
+                        technologies = [technology]
+                    else:
+                        technologies = []
                 else:
                     technologies = manifest['shex_technologies']
                 for technology in technologies:

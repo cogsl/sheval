@@ -15,6 +15,23 @@
     - node: :d
       shape: :S
   technology_name: shex_s
+- description: "Positive recursion in ShEx \n"
+  engine_name: shex
+  name: pr
+  result:
+    conforms: true
+    failures: []
+    message: ''
+    successes:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
+  technology_name: jena_shex
 - description: 'Example with positive recursion, encoding using qualified value shapes
 
     '
@@ -30,9 +47,9 @@
   engine_name: shacl
   name: pr
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: true
+    failures: []
+  technology_name: shacl_s
 - description: 'Example with positive recursion, encoding using qualified value shapes
 
     '
@@ -72,7 +89,7 @@
   result:
     conforms: true
     failures: []
-  technology_name: shaclex_shacl
+  technology_name: shacl_s
 - description: 'Example with positive recursion, basic encoding with sh:node
 
     '
@@ -112,7 +129,7 @@
   result:
     conforms: true
     failures: []
-  technology_name: shaclex_shacl
+  technology_name: shacl_s
 - description: 'Separation test for sa1
 
     '
@@ -144,6 +161,19 @@
     - node: :a
       shape: :S
   technology_name: shex_s
+- description: 'Separation test for sa1 (ShEx)
+
+    '
+  engine_name: shex
+  name: sa1
+  result:
+    conforms: true
+    failures: []
+    message: ''
+    successes:
+    - node: :a
+      shape: :S
+  technology_name: jena_shex
 - description: 'Separation test for sa2
 
     '
@@ -161,7 +191,7 @@
   result:
     conforms: true
     failures: []
-  technology_name: shaclex_shacl
+  technology_name: shacl_s
 - description: 'Separation test for sa2
 
     '
@@ -177,8 +207,8 @@
   engine_name: shacl
   name: sa2
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
+    conforms: true
+    failures: []
   technology_name: shacl_tq
 - description: 'Separation test for sa2 (ShEx)
 
@@ -195,6 +225,21 @@
     - node: :b
       shape: :S
   technology_name: shex_s
+- description: 'Separation test for sa2 (ShEx)
+
+    '
+  engine_name: shex
+  name: sa2
+  result:
+    conforms: true
+    failures: []
+    message: ''
+    successes:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: jena_shex
 - description: 'Separation test for SA3
 
     '
@@ -212,7 +257,7 @@
   result:
     conforms: Error
     failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+  technology_name: shacl_s
 - description: 'Separation test for SA3
 
     '
@@ -257,9 +302,46 @@
   engine_name: shex
   name: sa3
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
+    conforms: true
+    failures: []
+    message: Validated
+    successes:
+    - node: :b
+      shape: :S
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S
+    - node: :c
+      shape: :S1
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S1
   technology_name: shex_s
+- description: 'Separation test - sa3 (ShEx)
+
+    '
+  engine_name: shex
+  name: sa3
+  result:
+    conforms: true
+    failures: []
+    message: ''
+    successes:
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S
+    - node: :c
+      shape: :S1
+  technology_name: jena_shex
 - description: 'Single SA3 (SHACL)
 
     '
@@ -277,7 +359,7 @@
   result:
     conforms: Error
     failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+  technology_name: shacl_s
 - description: 'Single SA3 (SHACL)
 
     '
@@ -308,9 +390,9 @@
   result:
     conforms: false
     failures:
-    - node: :b
-      shape: :S1
     - node: :a
+      shape: :S1
+    - node: :b
       shape: :S1
   technology_name: pyshacl
 - description: 'Separation test - sa4 (SHACL)
@@ -319,9 +401,17 @@
   engine_name: shacl
   name: sa4
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+    - node: :b
+      shape: :S1
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S1
+  technology_name: shacl_s
 - description: 'Separation test - sa4 (SHACL)
 
     '
@@ -355,6 +445,25 @@
     message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
     successes: []
   technology_name: shex_s
+- description: 'Separation test - sa4 (ShEx)
+
+    '
+  engine_name: shex
+  name: sa4
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
+    message: ''
+    successes:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: jena_shex
 - description: 'Separation test - reach1 (SHACL)
 
     '
@@ -370,9 +479,9 @@
   engine_name: shacl
   name: reach1
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: true
+    failures: []
+  technology_name: shacl_s
 - description: 'Separation test - reach1 (SHACL)
 
     '
@@ -414,6 +523,25 @@
     - node: :a
       shape: :R
   technology_name: shex_s
+- description: 'Separation test - reach1 (ShEx)
+
+    '
+  engine_name: shex
+  name: reach1
+  result:
+    conforms: true
+    failures: []
+    message: ''
+    successes:
+    - node: :a
+      shape: :R
+    - node: :b
+      shape: :R
+    - node: :c
+      shape: :R
+    - node: :d
+      shape: :R
+  technology_name: jena_shex
 - description: 'Separation test - Safe-1 (SHACL)
 
     '
@@ -432,8 +560,14 @@
   name: safe1
   result:
     conforms: false
-    failures: []
-  technology_name: shaclex_shacl
+    failures:
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S
+  technology_name: shacl_s
 - description: 'Separation test - Safe-1 (SHACL)
 
     '
@@ -475,6 +609,25 @@
     - node: :d
       shape: :S
   technology_name: shex_s
+- description: 'Separation test - Safe-1 (ShEx)
+
+    '
+  engine_name: shex
+  name: safe1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    message: ''
+    successes:
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
+  technology_name: jena_shex
 - description: 'Separation test - reach2 (SHACL)
 
     '
@@ -493,8 +646,14 @@
   name: reach2
   result:
     conforms: false
-    failures: []
-  technology_name: shaclex_shacl
+    failures:
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S
+  technology_name: shacl_s
 - description: 'Separation test - reach2 (SHACL)
 
     '
@@ -528,6 +687,33 @@
     message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
     successes: []
   technology_name: shex_s
+- description: 'Separation test - reach2 (ShEx)
+
+    '
+  engine_name: shex
+  name: reach2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :R
+    - node: :d
+      shape: :R
+    message: ''
+    successes:
+    - node: :a
+      shape: :R
+    - node: :b
+      shape: :R
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
+  technology_name: jena_shex
 - description: 'Separation test - safe2 (SHACL)
 
     '
@@ -536,13 +722,13 @@
   result:
     conforms: false
     failures:
+    - node: :a
+      shape: :S
     - node: :b
       shape: :S
     - node: :c
       shape: :S
     - node: :d
-      shape: :S
-    - node: :a
       shape: :S
   technology_name: pyshacl
 - description: 'Separation test - safe2 (SHACL)
@@ -551,9 +737,25 @@
   engine_name: shacl
   name: safe2
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :d
+      shape: :S
+    - node: :d
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S
+    - node: :c
+      shape: :S
+  technology_name: shacl_s
 - description: 'Separation test - safe2 (SHACL)
 
     '
@@ -599,6 +801,33 @@
     message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/R>)),(IRILabel(<http://example.org/R>),IRILabel(<http://example.org/S>))'
     successes: []
   technology_name: shex_s
+- description: 'Separation test - safe2 (ShEx)
+
+    '
+  engine_name: shex
+  name: safe2
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :R
+    message: ''
+    successes:
+    - node: :a
+      shape: :R
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :R
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :R
+    - node: :d
+      shape: :S
+  technology_name: jena_shex
 - description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
     (SHACL)
 
@@ -617,8 +846,18 @@
   name: nostratnocycle
   result:
     conforms: false
-    failures: []
-  technology_name: shaclex_shacl
+    failures:
+    - node: :c
+      shape: :S
+    - node: :e
+      shape: :S
+    - node: :d
+      shape: :S
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: shacl_s
 - description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
     (SHACL)
 
@@ -651,6 +890,28 @@
     message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
     successes: []
   technology_name: shex_s
+- description: 'Feature test - Non-stratified negation without cyclic data -- nostratnocycle
+    (ShEx)
+
+    '
+  engine_name: shex
+  name: nostratnocycle
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :e
+      shape: :S
+    message: ''
+    successes:
+    - node: :b
+      shape: :S
+    - node: :d
+      shape: :S
+  technology_name: jena_shex
 - description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
     (SHACL)
 
@@ -666,43 +927,63 @@
 
     '
   engine_name: shacl
+  name: nostratcycle
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S
+  technology_name: shacl_s
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratcycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: jena_shacl
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (SHACL)
+
+    '
+  engine_name: shacl
+  name: nostratcycle
+  result:
+    conforms: false
+    failures: []
+  technology_name: shacl_tq
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (ShEx)
+
+    '
+  engine_name: shex
+  name: nostratcycle
+  result:
+    conforms: false
+    failures: []
+    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
+    successes: []
+  technology_name: shex_s
+- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
+    (ShEx)
+
+    '
+  engine_name: shex
   name: nostratcycle
   result:
     conforms: true
     failures: []
-  technology_name: shaclex_shacl
-- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
-    (SHACL)
-
-    '
-  engine_name: shacl
-  name: nostratcycle
-  result:
-    conforms: false
-    failures: []
-  technology_name: jena_shacl
-- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
-    (SHACL)
-
-    '
-  engine_name: shacl
-  name: nostratcycle
-  result:
-    conforms: false
-    failures: []
-  technology_name: shacl_tq
-- description: 'Feature test - Non-stratified negation with cyclic data -- nostratcycle
-    (ShEx)
-
-    '
-  engine_name: shex
-  name: nostratcycle
-  result:
-    conforms: false
-    failures: []
-    message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
-    successes: []
-  technology_name: shex_s
+    message: ''
+    successes:
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S
+  technology_name: jena_shex
 - description: 'Consistency test 1
 
     '
@@ -720,9 +1001,15 @@
   engine_name: shacl
   name: consistency1
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S1
+  technology_name: shacl_s
 - description: 'Consistency test 1
 
     '
@@ -756,6 +1043,21 @@
     message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
     successes: []
   technology_name: shex_s
+- description: 'Feature test - Consistency1 (ShEx)
+
+    '
+  engine_name: shex
+  name: consistency1
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S1
+    message: ''
+    successes: []
+  technology_name: jena_shex
 - description: 'Consistency test 1
 
     '
@@ -771,9 +1073,11 @@
   engine_name: shacl
   name: consistency1_individually_S
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: shacl_s
 - description: 'Consistency test 1
 
     '
@@ -809,9 +1113,13 @@
   engine_name: shacl
   name: consistency1_individually_S1
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S1
+  technology_name: shacl_s
 - description: 'Consistency test 1
 
     '
@@ -842,20 +1150,32 @@
   result:
     conforms: false
     failures:
+    - node: :b
+      shape: :S1
+    - node: :a
+      shape: :S1
+  technology_name: pyshacl
+- description: 'Consistency test 2
+
+    '
+  engine_name: shacl
+  name: consistency2_all
+  result:
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S
     - node: :a
       shape: :S1
     - node: :b
       shape: :S1
-  technology_name: pyshacl
-- description: 'Consistency test 2
-
-    '
-  engine_name: shacl
-  name: consistency2_all
-  result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    - node: :b
+      shape: :S1
+    - node: :b
+      shape: :S
+  technology_name: shacl_s
 - description: 'Consistency test 2
 
     '
@@ -892,6 +1212,25 @@
 - description: 'Consistency test 2
 
     '
+  engine_name: shex
+  name: consistency2_all
+  result:
+    conforms: true
+    failures: []
+    message: ''
+    successes:
+    - node: :a
+      shape: :S
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S
+    - node: :b
+      shape: :S1
+  technology_name: jena_shex
+- description: 'Consistency test 2
+
+    '
   engine_name: shacl
   name: consistency2_a_S
   result:
@@ -904,9 +1243,11 @@
   engine_name: shacl
   name: consistency2_a_S
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :a
+      shape: :S
+  technology_name: shacl_s
 - description: 'Consistency test 2
 
     '
@@ -940,9 +1281,13 @@
   engine_name: shacl
   name: consistency2_a_S_b_S
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S
+    - node: :a
+      shape: :S
+  technology_name: shacl_s
 - description: 'Consistency test 2
 
     '
@@ -969,9 +1314,9 @@
   result:
     conforms: false
     failures:
-    - node: :b
-      shape: :S1
     - node: :a
+      shape: :S1
+    - node: :b
       shape: :S1
   technology_name: pyshacl
 - description: 'Consistency test 2
@@ -980,9 +1325,17 @@
   engine_name: shacl
   name: consistency2_a_S1_b_S1
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+    - node: :b
+      shape: :S1
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S1
+  technology_name: shacl_s
 - description: 'Consistency test 2
 
     '
@@ -1023,8 +1376,20 @@
   name: resilience
   result:
     conforms: false
-    failures: []
-  technology_name: shaclex_shacl
+    failures:
+    - node: :b
+      shape: :S1
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S1
+    - node: :c
+      shape: :S1
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S
+  technology_name: shacl_s
 - description: 'Feature test: Resilience
 
     '
@@ -1058,6 +1423,25 @@
     message: 'Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
     successes: []
   technology_name: shex_s
+- description: 'Feature test: Resilience
+
+    '
+  engine_name: shex
+  name: resilience
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S
+    message: ''
+    successes:
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S1
+  technology_name: jena_shex
 - description: 'Assignment isolation test
 
     '
@@ -1073,9 +1457,9 @@
   engine_name: shacl
   name: isolation1
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: true
+    failures: []
+  technology_name: shacl_s
 - description: 'Assignment isolation test
 
     '
@@ -1107,6 +1491,19 @@
     - node: :a
       shape: :S1
   technology_name: shex_s
+- description: 'Assignment isolation test 1
+
+    '
+  engine_name: shex
+  name: isolation1
+  result:
+    conforms: true
+    failures: []
+    message: ''
+    successes:
+    - node: :a
+      shape: :S1
+  technology_name: jena_shex
 - description: 'Assignment isolation test
 
     '
@@ -1122,9 +1519,11 @@
   engine_name: shacl
   name: isolation2
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S2
+  technology_name: shacl_s
 - description: 'Assignment isolation test
 
     '
@@ -1156,6 +1555,19 @@
     message: Validated with errors
     successes: []
   technology_name: shex_s
+- description: 'Assignment isolation test 2
+
+    '
+  engine_name: shex
+  name: isolation2
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S2
+    message: ''
+    successes: []
+  technology_name: jena_shex
 - description: 'Assignment isolation test
 
     '
@@ -1171,9 +1583,11 @@
   engine_name: shacl
   name: isolation3
   result:
-    conforms: Error
-    failures: Error running commandCommandResult.TIMEOUT
-  technology_name: shaclex_shacl
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S2
+  technology_name: shacl_s
 - description: 'Assignment isolation test
 
     '
@@ -1207,3 +1621,18 @@
     - node: :a
       shape: :S1
   technology_name: shex_s
+- description: 'Assignment isolation test 3
+
+    '
+  engine_name: shex
+  name: isolation3
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S2
+    message: ''
+    successes:
+    - node: :a
+      shape: :S1
+  technology_name: jena_shex

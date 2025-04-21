@@ -48,6 +48,12 @@ pyshacl_cmd = ["bin/pyshacl", "-o", "$validation_report_file", "--format", "turt
 
 shacl_tq_cmd = ["bin/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$data_filename"]
 
+shacl_s_cmd = ["bin/shacl_s-0.1.87/bin/shacl_s",
+                     "--data", "$data_filename",
+                     "--output", "$validation_report_file"
+               ]
+
+# Shaclex has been replaced by SHACL_S
 shaclex_shacl_cmd = ["bin/shaclex-0.2.7/bin/shaclex",
                      "--validate",
                      "--engine","SHACLEX",
@@ -147,6 +153,26 @@ def shaclex_shacl(filename, name, descr, results_folder, config, results, nodes,
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
         command = mk_command(shaclex_shacl_cmd, filename, validation_report_file)
+        info(config, f"Running: {command}")
+        result1 = run(command, validation_output, 5, config['debug'])
+        if result1 == CommandResult.OK:
+            result = analyze_validation_report(validation_report_file,nodes,shapes,pairs,config)
+            store_result(name, engine, technology_name, descr, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, engine, technology_name, descr, result, results)
+    except Exception as e:
+        info(config, f"Error running {technology_name}: {e}")
+        result = { 'conforms': "Exception", 'failures': f"{e}" }
+        store_result(name, engine, technology_name, descr, result, results)
+
+def shacl_s(filename, name, descr, results_folder, config, results, nodes, shapes,pairs):
+    try:
+        technology_name = "shacl_s"
+        engine = "shacl"
+        validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
+        validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
+        command = mk_command(shacl_s_cmd, filename, validation_report_file)
         info(config, f"Running: {command}")
         result1 = run(command, validation_output, 5, config['debug'])
         if result1 == CommandResult.OK:
@@ -322,6 +348,7 @@ def analyze_validation_report(filename,nodes,shapes,pairs,config):
         pairs: a list of pairs (node, shape) with the nodes and shapes that we are interested in
     return: a dictionary with the conforms property and a list of failures
     """
+    info(config, f"Analyzing validation report {filename}")
     for pair in pairs:
         nodes.append(pair['node'])
         shapes.append(pair['shape'])
