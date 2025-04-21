@@ -1,2 +1,0 @@
-Result # Empty shape map
-Validation report written to results/positive_recursion_encoding1_shaclex_results.ttl

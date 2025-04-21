@@ -1,2 +1,0 @@
-Result :b@:S, :b@_:NodeLine6Col17, :a@:S, :a@_:NodeLine6Col17
-Validation report written to results/sa2_shaclex_shacl_results.ttl

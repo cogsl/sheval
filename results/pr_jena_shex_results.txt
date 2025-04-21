@@ -1,4 +1,0 @@
-<http://example.org/a> @ <http://example.org/S> :: Focus = <http://example.org/a>, Status = conformant
-<http://example.org/b> @ <http://example.org/S> :: Focus = <http://example.org/b>, Status = conformant
-<http://example.org/c> @ <http://example.org/S> :: Focus = <http://example.org/c>, Status = conformant
-<http://example.org/d> @ <http://example.org/S> :: Focus = <http://example.org/d>, Status = conformant

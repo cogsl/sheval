@@ -1,2 +1,0 @@
-Result # Empty shape map
-Validation report written to results/separation_test_sa2_shaclex_results.ttl

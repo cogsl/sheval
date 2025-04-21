@@ -13,22 +13,8 @@ shex_folder: ShEx
 results_folder: results
 tests:
     - name: pr
-      data_graph: positive_recursion.ttl
-      shex_file: positive_recursion.shex
-      engine: shex
-      description: |
-        Positive recursion in ShEx 
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":S"
-    - name: pr
-      data_graph: positive_recursion.ttl
-      shapes_graph: positive_recursion_encoding2.shapes.ttl
+      data_graph: pr.ttl
+      shapes_graph: pr.shapes.ttl
       engine: shacl
       description: |
         Example with positive recursion, encoding using qualified value shapes
@@ -40,9 +26,23 @@ tests:
         - ":d"
       shapes: 
         - ":S"
+    - name: pr
+      data_graph: pr.ttl
+      shex_file: pr.shex
+      engine: shex
+      description: |
+        Positive recursion in ShEx 
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
     - name: pr_node
-      data_graph: positive_recursion.ttl
-      shapes_graph: positive_recursion_encoding1.shapes.ttl
+      data_graph: pr.ttl
+      shapes_graph: pr_node.shapes.ttl
       engine: shacl
       description: |
         Example with positive recursion, basic encoding with sh:node

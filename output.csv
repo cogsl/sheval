@@ -1,10 +1,10 @@
 name,engine,technology,conforms,message,successes,failures
-pr,shex,shex_s,True,Validated,"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]",[]
-pr,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]",[]
 pr,shacl,pyshacl,True,,[],[]
 pr,shacl,shacl_s,True,,[],[]
 pr,shacl,jena_shacl,True,,[],[]
 pr,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]"
+pr,shex,shex_s,Exception,,[],Expecting value: line 1 column 1 (char 0)
+pr,shex,jena_shex,True,,[],[]
 pr_node,shacl,pyshacl,True,,[],[]
 pr_node,shacl,shacl_s,True,,[],[]
 pr_node,shacl,jena_shacl,True,,[],[]
@@ -55,14 +55,14 @@ reach2,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S'}]"
 reach2,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}]"
 reach2,shex,shex_s,False,"Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))",[],[]
 reach2,shex,jena_shex,False,,"[{'node': ':a', 'shape': ':R'}, {'node': ':b', 'shape': ':R'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]","[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}]"
-safe2,shacl,pyshacl,False,,[],"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]"
-safe2,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]"
+safe2,shacl,pyshacl,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}]"
+safe2,shacl,shacl_s,False,,[],"[{'node': ':c', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]"
 safe2,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]"
 safe2,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}]"
 safe2,shex,shex_s,False,"Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/R>)),(IRILabel(<http://example.org/R>),IRILabel(<http://example.org/S>))",[],[]
 safe2,shex,jena_shex,False,,"[{'node': ':a', 'shape': ':R'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':R'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':R'}, {'node': ':d', 'shape': ':S'}]","[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':R'}]"
 nostratnocycle,shacl,pyshacl,False,,[],[]
-nostratnocycle,shacl,shacl_s,False,,[],"[{'node': ':d', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':e', 'shape': ':S'}]"
+nostratnocycle,shacl,shacl_s,False,,[],"[{'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':e', 'shape': ':S'}]"
 nostratnocycle,shacl,jena_shacl,False,,[],[]
 nostratnocycle,shacl,shacl_tq,False,,[],[]
 nostratnocycle,shex,shex_s,False,"Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))",[],[]
@@ -88,7 +88,7 @@ consistency1_individually_S1,shacl,shacl_s,False,,[],"[{'node': ':a', 'shape': '
 consistency1_individually_S1,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
 consistency1_individually_S1,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
 consistency2_all,shacl,pyshacl,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
-consistency2_all,shacl,shacl_s,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
+consistency2_all,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
 consistency2_all,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
 consistency2_all,shacl,shacl_tq,False,,[],[]
 consistency2_all,shex,shex_s,False,"Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))",[],[]
@@ -106,7 +106,7 @@ consistency2_a_S1_b_S1,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S1'},
 consistency2_a_S1_b_S1,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
 consistency2_a_S1_b_S1,shacl,shacl_tq,True,,[],[]
 resilience,shacl,pyshacl,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
-resilience,shacl,shacl_s,False,,[],"[{'node': ':c', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}]"
+resilience,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S1'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S1'}, {'node': ':c', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}]"
 resilience,shacl,jena_shacl,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
 resilience,shacl,shacl_tq,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
 resilience,shex,shex_s,False,"Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))",[],[]

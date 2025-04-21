@@ -1,37 +1,3 @@
-- description: "Positive recursion in ShEx \n"
-  engine_name: shex
-  name: pr
-  result:
-    conforms: true
-    failures: []
-    message: Validated
-    successes:
-    - node: :b
-      shape: :S
-    - node: :a
-      shape: :S
-    - node: :c
-      shape: :S
-    - node: :d
-      shape: :S
-  technology_name: shex_s
-- description: "Positive recursion in ShEx \n"
-  engine_name: shex
-  name: pr
-  result:
-    conforms: true
-    failures: []
-    message: ''
-    successes:
-    - node: :a
-      shape: :S
-    - node: :b
-      shape: :S
-    - node: :c
-      shape: :S
-    - node: :d
-      shape: :S
-  technology_name: jena_shex
 - description: 'Example with positive recursion, encoding using qualified value shapes
 
     '
@@ -72,6 +38,22 @@
     - node: :b
       shape: :S
   technology_name: shacl_tq
+- description: "Positive recursion in ShEx \n"
+  engine_name: shex
+  name: pr
+  result:
+    conforms: Exception
+    failures: 'Expecting value: line 1 column 1 (char 0)'
+  technology_name: shex_s
+- description: "Positive recursion in ShEx \n"
+  engine_name: shex
+  name: pr
+  result:
+    conforms: true
+    failures: []
+    message: ''
+    successes: []
+  technology_name: jena_shex
 - description: 'Example with positive recursion, basic encoding with sh:node
 
     '
@@ -390,9 +372,9 @@
   result:
     conforms: false
     failures:
-    - node: :a
-      shape: :S1
     - node: :b
+      shape: :S1
+    - node: :a
       shape: :S1
   technology_name: pyshacl
 - description: 'Separation test - sa4 (SHACL)
@@ -722,13 +704,13 @@
   result:
     conforms: false
     failures:
+    - node: :d
+      shape: :S
     - node: :a
       shape: :S
     - node: :b
       shape: :S
     - node: :c
-      shape: :S
-    - node: :d
       shape: :S
   technology_name: pyshacl
 - description: 'Separation test - safe2 (SHACL)
@@ -739,21 +721,21 @@
   result:
     conforms: false
     failures:
-    - node: :d
-      shape: :S
-    - node: :d
-      shape: :S
     - node: :c
       shape: :S
     - node: :b
+      shape: :S
+    - node: :d
+      shape: :S
+    - node: :a
       shape: :S
     - node: :a
       shape: :S
     - node: :b
       shape: :S
-    - node: :a
-      shape: :S
     - node: :c
+      shape: :S
+    - node: :d
       shape: :S
   technology_name: shacl_s
 - description: 'Separation test - safe2 (SHACL)
@@ -847,13 +829,13 @@
   result:
     conforms: false
     failures:
-    - node: :c
+    - node: :d
       shape: :S
     - node: :e
       shape: :S
-    - node: :d
-      shape: :S
     - node: :a
+      shape: :S
+    - node: :c
       shape: :S
     - node: :b
       shape: :S
@@ -1150,9 +1132,9 @@
   result:
     conforms: false
     failures:
-    - node: :b
-      shape: :S1
     - node: :a
+      shape: :S1
+    - node: :b
       shape: :S1
   technology_name: pyshacl
 - description: 'Consistency test 2
@@ -1163,18 +1145,18 @@
   result:
     conforms: false
     failures:
-    - node: :a
-      shape: :S1
-    - node: :a
-      shape: :S
-    - node: :a
-      shape: :S1
-    - node: :b
-      shape: :S1
     - node: :b
       shape: :S1
     - node: :b
       shape: :S
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S
+    - node: :b
+      shape: :S1
   technology_name: shacl_s
 - description: 'Consistency test 2
 
@@ -1378,17 +1360,17 @@
     conforms: false
     failures:
     - node: :b
-      shape: :S1
-    - node: :b
       shape: :S
-    - node: :c
-      shape: :S1
     - node: :c
       shape: :S1
     - node: :b
       shape: :S1
     - node: :c
       shape: :S
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S1
   technology_name: shacl_s
 - description: 'Feature test: Resilience
 

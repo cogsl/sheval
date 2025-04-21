@@ -3,3 +3,4 @@ run_all:
 
 clean:
 	rm results/*
+	rm temp/*

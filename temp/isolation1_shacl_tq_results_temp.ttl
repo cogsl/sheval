@@ -1,5 +1,5 @@
-17:58:41 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-17:58:41 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:d1e0b410181f8393f4eb5ccdb010ae6b has produced a failure for focus node :b
+22:46:16 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+22:46:16 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:4d4bb15318ae8db5d0e04f03fd392375 has produced a failure for focus node :b
 PREFIX :        <http://example.org/>
 PREFIX dash:    <http://datashapes.org/dash#>
 PREFIX graphql: <http://datashapes.org/graphql#>
