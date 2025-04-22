@@ -1,15 +1,15 @@
-22:44:09 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:44:09 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :c
-22:44:09 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:44:09 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :b
-22:44:09 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:44:09 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :a
-22:44:09 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:44:09 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :c
-22:44:09 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:44:09 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :b
-22:44:09 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-22:44:09 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :a
+06:49:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+06:49:34 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :c
+06:49:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+06:49:34 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :b
+06:49:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+06:49:34 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S1 has produced a failure for focus node :a
+06:49:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+06:49:34 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :c
+06:49:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+06:49:34 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :b
+06:49:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+06:49:34 ERROR FailureLog :: SHACL Failure: Constraint AndConstraintComponent at :S has produced a failure for focus node :a
 PREFIX :        <http://example.org/>
 PREFIX dash:    <http://datashapes.org/dash#>
 PREFIX graphql: <http://datashapes.org/graphql#>
@@ -25,7 +25,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Value must have all of the following shapes: :S1, _:f1eec3c215d7ef450d3d9bb597bf881b";
+                 sh:resultMessage              "Value must have all of the following shapes: :S1, _:5ec644f807938249371d1ffcae39bd6a";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S;
@@ -33,7 +33,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :b;
-                 sh:resultMessage              "Value must have all of the following shapes: :S1, _:f1eec3c215d7ef450d3d9bb597bf881b";
+                 sh:resultMessage              "Value must have all of the following shapes: :S1, _:5ec644f807938249371d1ffcae39bd6a";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S;
@@ -41,7 +41,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :c;
-                 sh:resultMessage              "Value must have all of the following shapes: :S1, _:f1eec3c215d7ef450d3d9bb597bf881b";
+                 sh:resultMessage              "Value must have all of the following shapes: :S1, _:5ec644f807938249371d1ffcae39bd6a";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S;
@@ -49,7 +49,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Value must have all of the following shapes: :S, _:6e061c8b615d388f64c359c2d8748fca";
+                 sh:resultMessage              "Value must have all of the following shapes: :S, _:2ea60a75840893e07161d4838f1a9d0d";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S1;
@@ -57,7 +57,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :b;
-                 sh:resultMessage              "Value must have all of the following shapes: :S, _:6e061c8b615d388f64c359c2d8748fca";
+                 sh:resultMessage              "Value must have all of the following shapes: :S, _:2ea60a75840893e07161d4838f1a9d0d";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S1;
@@ -65,7 +65,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :c;
-                 sh:resultMessage              "Value must have all of the following shapes: :S, _:6e061c8b615d388f64c359c2d8748fca";
+                 sh:resultMessage              "Value must have all of the following shapes: :S, _:2ea60a75840893e07161d4838f1a9d0d";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S1;
