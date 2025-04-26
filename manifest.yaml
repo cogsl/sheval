@@ -2,12 +2,11 @@ rdf_folder: RDF
 shacl_folder: SHACL
 shacl_technologies: 
   - pyshacl
-  # - shaclex_shacl
   - shacl_s
   - jena_shacl
   - shacl_tq
 shex_technologies: 
-  - shacl_shex
+  - shex_s
   - jena_shex
 shex_folder: ShEx
 results_folder: results

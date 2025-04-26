@@ -78,6 +78,15 @@ shaclex_shex_cmd = ["bin/shaclex-0.2.7/bin/shaclex",
                     "--checkWellFormed"
                     ] 
 
+shex_s_cmd = ["bin/shexs-0.2.34/bin/shexs", 
+              "validate",
+              "--data", "$data_filename", 
+              "--schema", "$shex_filename", 
+              "--shapeMap", "$shapemap_filename", 
+              "--showResultFormat", "JSON", 
+              "--output", "$output_filename",
+              ] 
+
 
 jena_shacl_cmd = ["bin/apache-jena-5.3.0/bin/shacl", "v", "--data", "$data_filename"]
 
@@ -186,9 +195,29 @@ def shacl_s(filename, name, descr, results_folder, config, results, nodes, shape
         result = { 'conforms': "Exception", 'failures': f"{e}" }
         store_result(name, engine, technology_name, descr, result, results)
 
-def shaclex_shex(filename, shex_filename, shapemap_filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
+def shex_s(filename, shex_filename, shapemap_filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
     try:
         technology_name = "shex_s"
+        engine = "shex"
+        validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.json")
+        command = mk_command_shex(shex_s_cmd, filename, shex_filename, shapemap_filename, validation_output)
+        info(config, f"Running: {command}")
+        result1 = run(command, validation_output, 5, config['debug'])
+        if result1 == CommandResult.OK:
+            print(f"Command result is OK...before analyzing shapemap file: {validation_output}")
+            result = analyze_shapemap_shex_s(validation_output,nodes,shapes,pairs,config)
+            store_result(name, engine, technology_name, descr, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, engine, technology_name, descr, result, results)
+    except Exception as e:
+        info(config, f"Error running {technology_name}: {e}")
+        result = { 'conforms': "Exception", 'failures': f"{e}" }
+        store_result(name, engine, technology_name, descr, result, results)
+
+def shaclex_shex(filename, shex_filename, shapemap_filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
+    try:
+        technology_name = "shaclex_shex"
         engine = "shex"
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.json")
         command = mk_command_shex(shaclex_shex_cmd, filename, shex_filename, shapemap_filename, validation_output)
@@ -196,7 +225,7 @@ def shaclex_shex(filename, shex_filename, shapemap_filename, name, descr, result
         result1 = run(command, validation_output, 5, config['debug'])
         if result1 == CommandResult.OK:
             print(f"Command result is OK...before analyzing shapemap file: {validation_output}")
-            result = analyze_shapemap(validation_output,nodes,shapes,pairs,config)
+            result = analyze_shapemap_shaclex(validation_output,nodes,shapes,pairs,config)
             store_result(name, engine, technology_name, descr, result, results)
         else:
             result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
@@ -244,7 +273,7 @@ def prepare_shapemap(nodes, shapes, pairs, merged_filename, config):
         debug(config, f"Writing shapemap {shapemap}\n in file {merged_filename}")
         outfile.write(shapemap)
 
-def analyze_shapemap(filename,nodes,shapes,pairs,config):
+def analyze_shapemap_shaclex(filename,nodes,shapes,pairs,config):
     # Extend nodes and shapes with the individual ones declared using pairs
     # so they can be found in the shapemap
     for pair in pairs:
@@ -256,7 +285,7 @@ def analyze_shapemap(filename,nodes,shapes,pairs,config):
     successes = []
     with open(filename, 'r') as infile:
         json_result = json.load(infile)
-        print(f"JSON result: {json_result}")
+        debug(config,f"JSON result: {json_result}")
         conforms = json_result['valid']
         if 'message' in json_result:
             message = json_result['message']
@@ -286,6 +315,54 @@ def analyze_shapemap(filename,nodes,shapes,pairs,config):
                 else:
                     info(config, f"Node {node} not found in the nodes list: {nodes}")                                          
     print(f"After analyzing shapemap, Conforms: {conforms}")                    
+    return { 'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes }
+
+def analyze_shapemap_shex_s(filename,nodes,shapes,pairs,config):
+    # Extend nodes and shapes with the individual ones declared using pairs
+    # so they can be found in the shapemap
+    for pair in pairs:
+        nodes.append(pair['node'])
+        shapes.append(pair['shape'])
+
+    conforms = None
+    failures = []
+    successes = []
+    with open(filename, 'r') as infile:
+        json_result = json.load(infile)
+        debug(config,f"JSON result: {json_result}")
+        if isinstance(json_result, list): 
+            for result in json_result:
+                debug(config,f"Result: {result}")
+                node = result['node']
+                shape = result['shape']
+                status = result['status']
+                node = remove_gt_lt(node)
+                shape = remove_gt_lt(shape)
+                maybe_node = find_qname(nodes, node)
+                maybe_shape = find_qname(shapes, shape)
+                # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
+                if maybe_node is not None:
+                    node = maybe_node
+                    if maybe_shape is not None:
+                        shape = maybe_shape
+                        if status == "conformant":
+                            successes.append({'node': node, 'shape': shape})
+                        else:
+                            failures.append({'node': node, 'shape': shape})    
+                    else:
+                            info(config, f"Shape {shape} not found in the shapes list: {shapes}")
+                else:
+                    info(config, f"Node {node} not found in the nodes list: {nodes}")
+            if failures:
+                conforms = False
+                message = "Some nodes are not conformant"
+            else:
+                conforms = True
+                message = "No failures"
+        else:
+            message = "No results in shapemap"
+            conforms = False             
+    debug(config, f"After analyzing shapemap, Conforms: {conforms}")                    
     return { 'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes }
 
 def analyze_result_jena_shex(filename,nodes,shapes,pairs,config):
@@ -368,6 +445,7 @@ def analyze_validation_report(filename,nodes,shapes,pairs,config):
     """
     result = g.query(query)
     conforms = None
+    
     failures = []
 
     if result.__len__() == 0:
