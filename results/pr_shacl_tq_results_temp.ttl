@@ -1,0 +1,30 @@
+PREFIX :        <http://example.org/>
+PREFIX dash:    <http://datashapes.org/dash#>
+PREFIX graphql: <http://datashapes.org/graphql#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sh:      <http://www.w3.org/ns/shacl#>
+PREFIX swa:     <http://topbraid.org/swa#>
+PREFIX tosh:    <http://topbraid.org/tosh#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+[ rdf:type     sh:ValidationReport;
+  sh:conforms  false;
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :a;
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:dfb2cc6b089fe57e0be181e400fc059e, _:49230d3c1292cf23d4cf360443254a36";
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:OrConstraintComponent;
+                 sh:sourceShape                :S;
+                 sh:value                      :a
+               ];
+  sh:result    [ rdf:type                      sh:ValidationResult;
+                 sh:focusNode                  :b;
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:dfb2cc6b089fe57e0be181e400fc059e, _:49230d3c1292cf23d4cf360443254a36";
+                 sh:resultSeverity             sh:Violation;
+                 sh:sourceConstraintComponent  sh:OrConstraintComponent;
+                 sh:sourceShape                :S;
+                 sh:value                      :b
+               ]
+] .

@@ -1,0 +1,33 @@
+[
+  {
+    "node" : "<http://example.org/a>",
+    "shape" : "<http://example.org/S1>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+      ]
+    },
+    "reason" : ""
+  },
+  {
+    "node" : "<http://example.org/b>",
+    "shape" : "<http://example.org/S3>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+      ]
+    },
+    "reason" : ""
+  },
+  {
+    "node" : "<http://example.org/b>",
+    "shape" : "<http://example.org/S2>",
+    "status" : "nonconformant",
+    "appInfo" : {
+      "errors" : [
+        "Error: Failed NOT(@:S3) because node :b satisfies it"
+      ]
+    },
+    "reason" : "Error: Failed NOT(@:S3) because node :b satisfies it"
+  }
+]

@@ -1,0 +1,16 @@
+08:42:01 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+08:42:01 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:c2a5ef1d77859e8aed6627de2e5b9f9a has produced a failure for focus node :b
+PREFIX :        <http://example.org/>
+PREFIX dash:    <http://datashapes.org/dash#>
+PREFIX graphql: <http://datashapes.org/graphql#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sh:      <http://www.w3.org/ns/shacl#>
+PREFIX swa:     <http://topbraid.org/swa#>
+PREFIX tosh:    <http://topbraid.org/tosh#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+[ rdf:type     sh:ValidationReport;
+  sh:conforms  true
+] .

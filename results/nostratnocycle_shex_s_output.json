@@ -1,0 +1,2 @@
+Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))
+Error Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))

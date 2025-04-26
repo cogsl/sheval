@@ -1,0 +1,74 @@
+[
+  {
+    "node" : "<http://example.org/b>",
+    "shape" : "<http://example.org/S>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        "Node :b: number of values (0) for path :p fits card *",
+        "Node :b: number of values (0) for path :p fits card *"
+      ]
+    },
+    "reason" : "Node :b: number of values (0) for path :p fits card *\nNode :b: number of values (0) for path :p fits card *"
+  },
+  {
+    "node" : "<http://example.org/b>",
+    "shape" : "<http://example.org/S1>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        "Node :b: number of values (0) for path :p fits card *",
+        "Node :b: number of values (0) for path :p fits card *"
+      ]
+    },
+    "reason" : "Node :b: number of values (0) for path :p fits card *\nNode :b: number of values (0) for path :p fits card *"
+  },
+  {
+    "node" : "<http://example.org/c>",
+    "shape" : "<http://example.org/S>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        "Node :c: number of values (2) for path :p fits card *",
+        "Node :c: number of values (2) for path :p fits card *"
+      ]
+    },
+    "reason" : "Node :c: number of values (2) for path :p fits card *\nNode :c: number of values (2) for path :p fits card *"
+  },
+  {
+    "node" : "<http://example.org/c>",
+    "shape" : "<http://example.org/S1>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        "Node :c: number of values (2) for path :p fits card *",
+        "Node :c: number of values (2) for path :p fits card *"
+      ]
+    },
+    "reason" : "Node :c: number of values (2) for path :p fits card *\nNode :c: number of values (2) for path :p fits card *"
+  },
+  {
+    "node" : "<http://example.org/a>",
+    "shape" : "<http://example.org/S>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        "Node :a: number of values (0) for path :p fits card *",
+        "Node :a: number of values (0) for path :p fits card *"
+      ]
+    },
+    "reason" : "Node :a: number of values (0) for path :p fits card *\nNode :a: number of values (0) for path :p fits card *"
+  },
+  {
+    "node" : "<http://example.org/a>",
+    "shape" : "<http://example.org/S1>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        "Node :a: number of values (0) for path :p fits card *",
+        "Node :a: number of values (0) for path :p fits card *"
+      ]
+    },
+    "reason" : "Node :a: number of values (0) for path :p fits card *\nNode :a: number of values (0) for path :p fits card *"
+  }
+]

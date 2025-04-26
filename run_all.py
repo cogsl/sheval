@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import os
 import sys
 import argparse
@@ -18,7 +18,7 @@ parser.add_argument("-e", "--engine", help="Engine (can be shacl or shex)", defa
 parser.add_argument("-t", "--technology", help="Technology (specific technology like shacl_tq, shaclex, ...)", default = None, action="store")
 parser.add_argument("-m", "--manifest", help="Manifest file (in YAML format)", default = "manifest.yaml", action="store")
 parser.add_argument("-o", "--output", help="Output file (in YAML format)", default = None, action="store")
-parser.add_argument("-f", "--format", help="Output format (yaml or csv)", default = "yaml", action="store")
+parser.add_argument("-f", "--format", help="Output format (yaml or csv)", default = "yaml", action="store", nargs='*')
 args = parser.parse_args()
 config = vars(args)
 
@@ -132,15 +132,20 @@ for test in manifest['tests']:
                     else:
                         print(f"Unknown technology: {technology}")
                         exit(1)    
-            if config['output'] is not None:
-                output_file = config['output']
-                file = open(output_file, 'w')
-            else:
-                file = sys.stdout
-            match config["format"]:
-                case "yaml":
+            for format in config["format"]:
+                if format == "yaml":
+                  if config['output'] is not None:
+                    output_file = config['output'] + ".yaml"
+                    file = open(output_file, 'w')
+                  else:
+                    file = sys.stdout
                   yaml.dump(results, file)
-                case "csv":
+                elif format == "csv":  
+                    if config['output'] is not None:
+                      output_file = config['output'] + ".csv"
+                      file = open(output_file, 'w')
+                    else:
+                      file = sys.stdout
                     writer = csv.writer(file)
                     if config['include_description']:
                         writer.writerow(["name", "engine", "technology", "description", "conforms", "message", "successes", "failures"])
@@ -169,7 +174,7 @@ for test in manifest['tests']:
                             writer.writerow([name, engine_name, technology_name, description, conforms, message, successes, failures])
                         else:    
                             writer.writerow([name, engine_name, technology_name, conforms, message,successes, failures])
-                case _:
+                else:
                     print("Unknown format. Supported formats are yaml and csv.")
                     exit(1)
 

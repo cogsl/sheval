@@ -1,0 +1,29 @@
+@prefix : <http://example.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] a sh:ValidationReport ;
+    sh:conforms false ;
+    sh:result [ a sh:ValidationResult ;
+            sh:focusNode :b ;
+            sh:resultMessage "Focus node does not conform to shape MinCount 1: [ sh:not [ sh:node :S ] ]" ;
+            sh:resultPath :p ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
+            sh:sourceShape _:n15836ed0685148e3bd070ba0bb765e30b1 ],
+        [ a sh:ValidationResult ;
+            sh:focusNode :a ;
+            sh:resultMessage "Focus node does not conform to shape MinCount 1: [ sh:not [ sh:node :S ] ]" ;
+            sh:resultPath :p ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
+            sh:sourceShape _:n15836ed0685148e3bd070ba0bb765e30b1 ] .
+
+_:N46e793c4475745aea6b585cfadd8565b sh:node :S .
+
+_:Nceea75720de34a2a9a2ed44d2121c938 sh:not _:N46e793c4475745aea6b585cfadd8565b .
+
+_:n15836ed0685148e3bd070ba0bb765e30b1 sh:path :p ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape _:Nceea75720de34a2a9a2ed44d2121c938 .
+

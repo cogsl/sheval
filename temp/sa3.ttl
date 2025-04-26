@@ -1,0 +1,22 @@
+@prefix : <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:S a sh:NodeShape ;
+    sh:and ( :S1 [ sh:property [ sh:minCount 1 ;
+                        sh:path :p ] ] ) ;
+    sh:targetNode :a,
+        :b,
+        :c .
+
+:S1 a sh:NodeShape ;
+    sh:and ( :S [ sh:property [ sh:minCount 1 ;
+                        sh:path :p ] ] ) ;
+    sh:targetNode :a,
+        :b,
+        :c .
+
+:c :p :a,
+        :b .
+
