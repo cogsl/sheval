@@ -2,12 +2,12 @@
   {
     "node" : "<http://example.org/b>",
     "shape" : "<http://example.org/S2>",
-    "status" : "nonconformant",
+    "status" : "conformant",
     "appInfo" : {
-      "errors" : [
-        "Error: Failed NOT(@:S3) because node :b satisfies it"
+      "evidences" : [
+        "Node :b conforms empty shape"
       ]
     },
-    "reason" : "Error: Failed NOT(@:S3) because node :b satisfies it"
+    "reason" : "Node :b conforms empty shape"
   }
 ]

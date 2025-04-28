@@ -7,12 +7,12 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 [ rdf:type     sh:ValidationReport;
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
-                 sh:focusNode                  :a;
-                 sh:resultMessage              "Not[NodeShape[http://example.org/S]] at focusNode <http://example.org/a>";
+                 sh:focusNode                  :c;
+                 sh:resultMessage              "QualifiedValueShape[1,_,false]: Min = 1 but got 0 validations";
+                 sh:resultPath                 :p;
                  sh:resultSeverity             sh:Violation;
-                 sh:sourceConstraintComponent  sh:NotConstraintComponent;
-                 sh:sourceShape                :S1;
-                 sh:value                      :a
+                 sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
+                 sh:sourceShape                [] 
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :b;

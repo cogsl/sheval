@@ -8,7 +8,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Not[NodeShape[_:1e0966af908ce1289f1d8902ffcd1a20]] at focusNode <http://example.org/a>";
+                 sh:resultMessage              "Not[NodeShape[_:19718c244a49e9d46c7d6e800c67995e]] at focusNode <http://example.org/a>";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:NotConstraintComponent;
                  sh:sourceShape                :S1;
@@ -16,7 +16,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :b;
-                 sh:resultMessage              "Not[NodeShape[_:1e0966af908ce1289f1d8902ffcd1a20]] at focusNode <http://example.org/b>";
+                 sh:resultMessage              "Not[NodeShape[_:19718c244a49e9d46c7d6e800c67995e]] at focusNode <http://example.org/b>";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:NotConstraintComponent;
                  sh:sourceShape                :S1;

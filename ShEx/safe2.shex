@@ -2,6 +2,7 @@ prefix :       <http://example.org/>
 
 # Separation test Safe1
 :R [:a] OR {
-    :p @:S +
+    :p @:R + ;
+    :p . *
 }
 :S NOT @:R 

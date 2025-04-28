@@ -3,8 +3,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:c :p :a,
-        :b .
+:b :p :c .
 
 :S a sh:NodeShape ;
     sh:and ( :S1 [ sh:property [ sh:minCount 1 ;
@@ -14,4 +13,6 @@
 :S1 a sh:NodeShape ;
     sh:and ( :S [ sh:property [ sh:minCount 1 ;
                         sh:path :p ] ] ) .
+
+:a :p :c .
 

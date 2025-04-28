@@ -5,11 +5,11 @@
     "status" : "conformant",
     "appInfo" : {
       "evidences" : [
-        "Node :b: number of values (0) for path :p fits card *",
-        "Node :b: number of values (0) for path :p fits card *"
+        "Node :b: number of values (1) for path :p fits card +",
+        "Node :b: number of values (1) for path :p fits card +"
       ]
     },
-    "reason" : "Node :b: number of values (0) for path :p fits card *\nNode :b: number of values (0) for path :p fits card *"
+    "reason" : "Node :b: number of values (1) for path :p fits card +\nNode :b: number of values (1) for path :p fits card +"
   },
   {
     "node" : "<http://example.org/b>",
@@ -17,35 +17,189 @@
     "status" : "conformant",
     "appInfo" : {
       "evidences" : [
-        "Node :b: number of values (0) for path :p fits card *",
-        "Node :b: number of values (0) for path :p fits card *"
+        "Node :b: number of values (1) for path :p fits card +",
+        "Node :b: number of values (1) for path :p fits card +"
       ]
     },
-    "reason" : "Node :b: number of values (0) for path :p fits card *\nNode :b: number of values (0) for path :p fits card *"
+    "reason" : "Node :b: number of values (1) for path :p fits card +\nNode :b: number of values (1) for path :p fits card +"
   },
   {
     "node" : "<http://example.org/c>",
     "shape" : "<http://example.org/S>",
-    "status" : "conformant",
+    "status" : "nonconformant",
     "appInfo" : {
-      "evidences" : [
-        "Node :c: number of values (2) for path :p fits card *",
-        "Node :c: number of values (2) for path :p fits card *"
+      "errors" : [
+        {
+          "type" : "HasNoType",
+          "label" : "http://example.org/S1",
+          "node" : {
+            "lexicalForm" : "http://example.org/c",
+            "location" : [
+              [
+                {
+                  "line" : 8,
+                  "col" : 7,
+                  "type" : "PREFIXED_NAME"
+                },
+                {
+                  "line" : 9,
+                  "col" : 7,
+                  "type" : "PREFIXED_NAME"
+                }
+              ]
+            ]
+          },
+          "shapeTyping" : {
+            "<http://example.org/c>" : {
+              ":S" : {
+                "evidences" : [
+                ]
+              },
+              ":S1" : {
+                "errors" : [
+                  {
+                    "type" : "ErrCardinality",
+                    "node" : {
+                      "lexicalForm" : "http://example.org/c",
+                      "location" : [
+                        [
+                          {
+                            "line" : 8,
+                            "col" : 7,
+                            "type" : "PREFIXED_NAME"
+                          },
+                          {
+                            "line" : 9,
+                            "col" : 7,
+                            "type" : "PREFIXED_NAME"
+                          }
+                        ]
+                      ]
+                    },
+                    "attempt" : {
+                      "node" : "http://example.org/c",
+                      "shape" : {
+                        "type" : "Shape",
+                        "label" : "http://example.org/S1",
+                        "location" : {
+                          "line" : 8,
+                          "col" : 0,
+                          "type" : "label"
+                        }
+                      },
+                      "location" : [
+                        [
+                          {
+                            "line" : 8,
+                            "col" : 7,
+                            "type" : "PREFIXED_NAME"
+                          },
+                          {
+                            "line" : 9,
+                            "col" : 7,
+                            "type" : "PREFIXED_NAME"
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
       ]
     },
-    "reason" : "Node :c: number of values (2) for path :p fits card *\nNode :c: number of values (2) for path :p fits card *"
+    "reason" : ":c doesn't have shape :S1 in :c@+:S -:S1"
   },
   {
     "node" : "<http://example.org/c>",
     "shape" : "<http://example.org/S1>",
-    "status" : "conformant",
+    "status" : "nonconformant",
     "appInfo" : {
-      "evidences" : [
-        "Node :c: number of values (2) for path :p fits card *",
-        "Node :c: number of values (2) for path :p fits card *"
+      "errors" : [
+        {
+          "type" : "HasNoType",
+          "label" : "http://example.org/S",
+          "node" : {
+            "lexicalForm" : "http://example.org/c",
+            "location" : [
+              [
+                {
+                  "line" : 8,
+                  "col" : 7,
+                  "type" : "PREFIXED_NAME"
+                },
+                {
+                  "line" : 9,
+                  "col" : 7,
+                  "type" : "PREFIXED_NAME"
+                }
+              ]
+            ]
+          },
+          "shapeTyping" : {
+            "<http://example.org/c>" : {
+              ":S1" : {
+                "evidences" : [
+                ]
+              },
+              ":S" : {
+                "errors" : [
+                  {
+                    "type" : "ErrCardinality",
+                    "node" : {
+                      "lexicalForm" : "http://example.org/c",
+                      "location" : [
+                        [
+                          {
+                            "line" : 8,
+                            "col" : 7,
+                            "type" : "PREFIXED_NAME"
+                          },
+                          {
+                            "line" : 9,
+                            "col" : 7,
+                            "type" : "PREFIXED_NAME"
+                          }
+                        ]
+                      ]
+                    },
+                    "attempt" : {
+                      "node" : "http://example.org/c",
+                      "shape" : {
+                        "type" : "Shape",
+                        "label" : "http://example.org/S",
+                        "location" : {
+                          "line" : 4,
+                          "col" : 0,
+                          "type" : "label"
+                        }
+                      },
+                      "location" : [
+                        [
+                          {
+                            "line" : 8,
+                            "col" : 7,
+                            "type" : "PREFIXED_NAME"
+                          },
+                          {
+                            "line" : 9,
+                            "col" : 7,
+                            "type" : "PREFIXED_NAME"
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
       ]
     },
-    "reason" : "Node :c: number of values (2) for path :p fits card *\nNode :c: number of values (2) for path :p fits card *"
+    "reason" : ":c doesn't have shape :S in :c@+:S1 -:S"
   },
   {
     "node" : "<http://example.org/a>",
@@ -53,11 +207,11 @@
     "status" : "conformant",
     "appInfo" : {
       "evidences" : [
-        "Node :a: number of values (0) for path :p fits card *",
-        "Node :a: number of values (0) for path :p fits card *"
+        "Node :a: number of values (1) for path :p fits card +",
+        "Node :a: number of values (1) for path :p fits card +"
       ]
     },
-    "reason" : "Node :a: number of values (0) for path :p fits card *\nNode :a: number of values (0) for path :p fits card *"
+    "reason" : "Node :a: number of values (1) for path :p fits card +\nNode :a: number of values (1) for path :p fits card +"
   },
   {
     "node" : "<http://example.org/a>",
@@ -65,10 +219,10 @@
     "status" : "conformant",
     "appInfo" : {
       "evidences" : [
-        "Node :a: number of values (0) for path :p fits card *",
-        "Node :a: number of values (0) for path :p fits card *"
+        "Node :a: number of values (1) for path :p fits card +",
+        "Node :a: number of values (1) for path :p fits card +"
       ]
     },
-    "reason" : "Node :a: number of values (0) for path :p fits card *\nNode :a: number of values (0) for path :p fits card *"
+    "reason" : "Node :a: number of values (1) for path :p fits card +\nNode :a: number of values (1) for path :p fits card +"
   }
 ]

@@ -2,5 +2,6 @@ prefix :       <http://example.org/>
 
 # Reachability test - reach1
 :R [:a] OR {
-    :p @:R +
+    :p @:R + ;
+    :p . *
 }

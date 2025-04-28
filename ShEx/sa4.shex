@@ -2,7 +2,8 @@ prefix :       <http://example.org/>
 
 # Separation test SA4
 :S {
-    :p @:S +
+    :p @:S + ;
+    :p . *
 }
 
 :S1 NOT @:S 

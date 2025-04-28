@@ -2,7 +2,7 @@ prefix :       <http://example.org/>
 
 # Reachability test - reach2
 :S NOT [:a] AND {
-    :p @:S +
+    :p @:S *
 }
 
 :R NOT @:S

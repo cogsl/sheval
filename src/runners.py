@@ -204,7 +204,7 @@ def shex_s(filename, shex_filename, shapemap_filename, name, descr, results_fold
         info(config, f"Running: {command}")
         result1 = run(command, validation_output, 5, config['debug'])
         if result1 == CommandResult.OK:
-            print(f"Command result is OK...before analyzing shapemap file: {validation_output}")
+            debug(config, f"Command result is OK...before analyzing shapemap file: {validation_output}")
             result = analyze_shapemap_shex_s(validation_output,nodes,shapes,pairs,config)
             store_result(name, engine, technology_name, descr, result, results)
         else:
@@ -224,7 +224,7 @@ def shaclex_shex(filename, shex_filename, shapemap_filename, name, descr, result
         info(config, f"Running: {command}")
         result1 = run(command, validation_output, 5, config['debug'])
         if result1 == CommandResult.OK:
-            print(f"Command result is OK...before analyzing shapemap file: {validation_output}")
+            debug(config, f"Command result is OK...before analyzing shapemap file: {validation_output}")
             result = analyze_shapemap_shaclex(validation_output,nodes,shapes,pairs,config)
             store_result(name, engine, technology_name, descr, result, results)
         else:
@@ -328,40 +328,46 @@ def analyze_shapemap_shex_s(filename,nodes,shapes,pairs,config):
     failures = []
     successes = []
     with open(filename, 'r') as infile:
-        json_result = json.load(infile)
-        debug(config,f"JSON result: {json_result}")
-        if isinstance(json_result, list): 
-            for result in json_result:
-                debug(config,f"Result: {result}")
-                node = result['node']
-                shape = result['shape']
-                status = result['status']
-                node = remove_gt_lt(node)
-                shape = remove_gt_lt(shape)
-                maybe_node = find_qname(nodes, node)
-                maybe_shape = find_qname(shapes, shape)
-                # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
-                if maybe_node is not None:
-                    node = maybe_node
-                    if maybe_shape is not None:
-                        shape = maybe_shape
-                        if status == "conformant":
-                            successes.append({'node': node, 'shape': shape})
+        try:
+            json_result = json.load(infile) 
+            debug(config,f"JSON result: {json_result}")
+            if isinstance(json_result, list): 
+                for result in json_result:
+                    debug(config,f"Result: {result}")
+                    node = result['node']
+                    shape = result['shape']
+                    status = result['status']
+                    node = remove_gt_lt(node)
+                    shape = remove_gt_lt(shape)
+                    maybe_node = find_qname(nodes, node)
+                    maybe_shape = find_qname(shapes, shape)
+                    # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
+                    if maybe_node is not None:
+                        node = maybe_node
+                        if maybe_shape is not None:
+                            shape = maybe_shape
+                            if status == "conformant":
+                                successes.append({'node': node, 'shape': shape})
+                            else:
+                                failures.append({'node': node, 'shape': shape})    
                         else:
-                            failures.append({'node': node, 'shape': shape})    
+                                info(config, f"Shape {shape} not found in the shapes list: {shapes}")
                     else:
-                            info(config, f"Shape {shape} not found in the shapes list: {shapes}")
+                        info(config, f"Node {node} not found in the nodes list: {nodes}")
+                if failures:
+                    conforms = False
+                    message = "Some nodes are not conformant"
                 else:
-                    info(config, f"Node {node} not found in the nodes list: {nodes}")
-            if failures:
-                conforms = False
-                message = "Some nodes are not conformant"
+                    conforms = True
+                    message = "No failures"
             else:
-                conforms = True
-                message = "No failures"
-        else:
-            message = "No results in shapemap"
-            conforms = False             
+                message = "No results in shapemap"
+                conforms = False             
+        except json.JSONDecodeError as e:
+            infile.seek(0)
+            lines = [line.rstrip() for line in infile]
+            message = lines[0]
+            conforms = False        
     debug(config, f"After analyzing shapemap, Conforms: {conforms}")                    
     return { 'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes }
 

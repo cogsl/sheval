@@ -2,7 +2,8 @@ prefix :       <http://example.org/>
 
 # Feature test -- consistency2
 :S {
-    :p @:S1 +
+    :p @:S1 + ;
+    :p . *
 }
 
 :S1 NOT @:S

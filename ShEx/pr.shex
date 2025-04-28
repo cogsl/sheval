@@ -1,6 +1,7 @@
 prefix :       <http://example.org/> 
 
-# Positive recursion with direct encoding
-:S [ :d] OR {
-    :p @:S
-}
+# Positive recursion 
+:S {
+    :p @:S + ;
+    :p . *
+} OR [ :d ]

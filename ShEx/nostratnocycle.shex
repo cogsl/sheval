@@ -2,5 +2,6 @@ prefix :       <http://example.org/>
 
 # Feature test - Non-stratified negation without cyclic data -- nostratnocycle
 :S {
-    :p NOT @:S +
+    :p NOT @:S + ;
+    :p . *
 }

@@ -2,5 +2,6 @@ prefix :       <http://example.org/>
 
 # Separation test SA2
 :S {
-    :p @:S
+    :p @:S + ;
+    :p . *
 }

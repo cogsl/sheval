@@ -7,35 +7,19 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 [ rdf:type     sh:ValidationReport;
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
-                 sh:focusNode                  :a;
-                 sh:resultMessage              "And at focusNode <http://example.org/a>";
+                 sh:focusNode                  :c;
+                 sh:resultMessage              "And at focusNode <http://example.org/c>";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S;
-                 sh:value                      :a
+                 sh:value                      :c
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
-                 sh:focusNode                  :b;
-                 sh:resultMessage              "And at focusNode <http://example.org/b>";
-                 sh:resultSeverity             sh:Violation;
-                 sh:sourceConstraintComponent  sh:AndConstraintComponent;
-                 sh:sourceShape                :S;
-                 sh:value                      :b
-               ];
-  sh:result    [ rdf:type                      sh:ValidationResult;
-                 sh:focusNode                  :a;
-                 sh:resultMessage              "And at focusNode <http://example.org/a>";
+                 sh:focusNode                  :c;
+                 sh:resultMessage              "And at focusNode <http://example.org/c>";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:AndConstraintComponent;
                  sh:sourceShape                :S1;
-                 sh:value                      :a
-               ];
-  sh:result    [ rdf:type                      sh:ValidationResult;
-                 sh:focusNode                  :b;
-                 sh:resultMessage              "And at focusNode <http://example.org/b>";
-                 sh:resultSeverity             sh:Violation;
-                 sh:sourceConstraintComponent  sh:AndConstraintComponent;
-                 sh:sourceShape                :S1;
-                 sh:value                      :b
+                 sh:value                      :c
                ]
 ] .

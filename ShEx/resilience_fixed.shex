@@ -1,0 +1,12 @@
+prefix :       <http://example.org/> 
+
+# Feature test -- resilience
+:S {
+    :p NOT @:S + ;
+    :p . *
+}
+
+:S1 { 
+    :p @:S + ;
+    :p . *
+} OR [ :b ]

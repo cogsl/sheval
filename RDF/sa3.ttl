@@ -5,5 +5,5 @@ prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
 
 # Separation test -- sa3
-:c :p :b .
-:c :p :a .
+:b :p :c .
+:a :p :c .

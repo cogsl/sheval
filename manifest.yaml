@@ -354,7 +354,7 @@ tests:
         - ":a"
       shapes: 
         - ":S1"        
-    - name: consistency2_all
+    - name: consistency2
       data_graph: consistency2.ttl
       shapes_graph: consistency2.shapes.ttl
       engine: shacl
@@ -366,7 +366,7 @@ tests:
       shapes: 
         - ":S"
         - ":S1"
-    - name: consistency2_all
+    - name: consistency2
       data_graph: consistency2.ttl
       shex_file: consistency2.shex
       engine: shex
@@ -377,38 +377,6 @@ tests:
         - ":b"
       shapes: 
         - ":S"
-        - ":S1"
-    - name: consistency2_a_S
-      data_graph: consistency2.ttl
-      shapes_graph: consistency2.shapes.ttl
-      engine: shacl
-      description: Consistency test 2
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-      shapes: 
-        - ":S"
-    - name: consistency2_a_S_b_S
-      data_graph: consistency2.ttl
-      shapes_graph: consistency2.shapes.ttl
-      engine: shacl
-      description: Consistency test 2
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
-        - ":S"
-    - name: consistency2_a_S1_b_S1
-      data_graph: consistency2.ttl
-      shapes_graph: consistency2.shapes.ttl
-      engine: shacl
-      description: Consistency test 2
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
         - ":S1"
     - name: resilience
       data_graph: resilience.ttl
@@ -423,6 +391,30 @@ tests:
         - ":S"
         - ":S1"
     - name: resilience
+      data_graph: resilience.ttl
+      shex_file: resilience.shex
+      engine: shex
+      description: Feature test Resilience
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":b"
+        - ":c"
+      shapes: 
+        - ":S"
+        - ":S1"
+    - name: resilience_fixed
+      data_graph: resilience.ttl
+      shapes_graph: resilience.shapes.ttl
+      engine: shacl
+      description: Feature test Resilience
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":b"
+        - ":c"
+      shapes: 
+        - ":S"
+        - ":S1"
+    - name: resilience_fixed
       data_graph: resilience.ttl
       shex_file: resilience.shex
       engine: shex

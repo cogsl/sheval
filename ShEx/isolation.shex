@@ -2,13 +2,16 @@ prefix :       <http://example.org/>
 
 # Assignment isolation test
 :S1 {
-    :p @:S3 *
+    :p @:S3 * ;
+    :p . *
 }
 
 :S2 {
-    :p NOT @:S3 *
+    :p NOT @:S3 * ;
+    :p . *
 }
 
 :S3 {
-    :p @:S3 *
+    :p @:S3 * ;
+    :p . *
 }

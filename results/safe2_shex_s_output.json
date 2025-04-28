@@ -1,2 +1,97 @@
-Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/R>)),(IRILabel(<http://example.org/R>),IRILabel(<http://example.org/S>))
-Error Schema is not well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/R>)),(IRILabel(<http://example.org/R>),IRILabel(<http://example.org/S>))
+[
+  {
+    "node" : "<http://example.org/b>",
+    "shape" : "<http://example.org/R>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        ":b passes OR"
+      ]
+    },
+    "reason" : ":b passes OR"
+  },
+  {
+    "node" : "<http://example.org/b>",
+    "shape" : "<http://example.org/S>",
+    "status" : "nonconformant",
+    "appInfo" : {
+      "errors" : [
+        "Error: Failed NOT(@:R) because node :b satisfies it"
+      ]
+    },
+    "reason" : "Error: Failed NOT(@:R) because node :b satisfies it"
+  },
+  {
+    "node" : "<http://example.org/c>",
+    "shape" : "<http://example.org/R>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        ":c passes OR",
+        ":c passes OR",
+        ":c passes OR"
+      ]
+    },
+    "reason" : ":c passes OR\n:c passes OR\n:c passes OR"
+  },
+  {
+    "node" : "<http://example.org/c>",
+    "shape" : "<http://example.org/S>",
+    "status" : "nonconformant",
+    "appInfo" : {
+      "errors" : [
+        "Error: Failed NOT(@:R) because node :c satisfies it"
+      ]
+    },
+    "reason" : "Error: Failed NOT(@:R) because node :c satisfies it"
+  },
+  {
+    "node" : "<http://example.org/d>",
+    "shape" : "<http://example.org/R>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        ":d passes OR",
+        ":d passes OR",
+        ":d passes OR"
+      ]
+    },
+    "reason" : ":d passes OR\n:d passes OR\n:d passes OR"
+  },
+  {
+    "node" : "<http://example.org/d>",
+    "shape" : "<http://example.org/S>",
+    "status" : "nonconformant",
+    "appInfo" : {
+      "errors" : [
+        "Error: Failed NOT(@:R) because node :d satisfies it"
+      ]
+    },
+    "reason" : "Error: Failed NOT(@:R) because node :d satisfies it"
+  },
+  {
+    "node" : "<http://example.org/a>",
+    "shape" : "<http://example.org/R>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        ":a is equal to :a",
+        ":a passes OR",
+        ":a is equal to :a",
+        ":a passes OR"
+      ]
+    },
+    "reason" : ":a is equal to :a\n:a passes OR\n:a is equal to :a\n:a passes OR"
+  },
+  {
+    "node" : "<http://example.org/a>",
+    "shape" : "<http://example.org/S>",
+    "status" : "nonconformant",
+    "appInfo" : {
+      "errors" : [
+        "Error: Failed NOT(@:R) because node :a satisfies it"
+      ]
+    },
+    "reason" : "Error: Failed NOT(@:R) because node :a satisfies it"
+  }
+]

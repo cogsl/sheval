@@ -228,13 +228,9 @@
   result:
     conforms: false
     failures:
-    - node: :a
+    - node: :c
       shape: :S
-    - node: :b
-      shape: :S
-    - node: :a
-      shape: :S1
-    - node: :b
+    - node: :c
       shape: :S1
   technology_name: jena_shacl
 - description: Separation test for SA3
@@ -260,17 +256,17 @@
   engine_name: shex
   name: sa3
   result:
-    conforms: true
-    failures: []
-    message: No failures
+    conforms: false
+    failures:
+    - node: :c
+      shape: :S
+    - node: :c
+      shape: :S1
+    message: Some nodes are not conformant
     successes:
     - node: :b
       shape: :S
     - node: :b
-      shape: :S1
-    - node: :c
-      shape: :S
-    - node: :c
       shape: :S1
     - node: :a
       shape: :S
@@ -281,8 +277,12 @@
   engine_name: shex
   name: sa3
   result:
-    conforms: true
-    failures: []
+    conforms: false
+    failures:
+    - node: :c
+      shape: :S
+    - node: :c
+      shape: :S1
     message: ''
     successes:
     - node: :a
@@ -292,10 +292,6 @@
     - node: :b
       shape: :S
     - node: :b
-      shape: :S1
-    - node: :c
-      shape: :S
-    - node: :c
       shape: :S1
   technology_name: jena_shex
 - description: Single SA3 (SHACL)
@@ -316,10 +312,8 @@
   engine_name: shacl
   name: sa3_single
   result:
-    conforms: false
-    failures:
-    - node: :a
-      shape: :S
+    conforms: true
+    failures: []
   technology_name: jena_shacl
 - description: Single SA3 (SHACL)
   engine_name: shacl
@@ -652,13 +646,13 @@
   result:
     conforms: false
     failures:
-    - node: :b
+    - node: :a
       shape: :S
-    - node: :c
+    - node: :b
       shape: :S
     - node: :d
       shape: :S
-    - node: :a
+    - node: :c
       shape: :S
   technology_name: pyshacl
 - description: Separation test - safe2 (SHACL)
@@ -673,15 +667,15 @@
       shape: :S
     - node: :d
       shape: :S
-    - node: :a
+    - node: :b
+      shape: :S
+    - node: :c
       shape: :S
     - node: :d
       shape: :S
     - node: :b
       shape: :S
-    - node: :c
-      shape: :S
-    - node: :b
+    - node: :a
       shape: :S
   technology_name: shacl_s
 - description: Separation test - safe2 (SHACL)
@@ -718,8 +712,26 @@
   engine_name: shex
   name: safe2
   result:
-    conforms: Exception
-    failures: 'Expecting value: line 1 column 1 (char 0)'
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
+    - node: :a
+      shape: :S
+    message: Some nodes are not conformant
+    successes:
+    - node: :b
+      shape: :R
+    - node: :c
+      shape: :R
+    - node: :d
+      shape: :R
+    - node: :a
+      shape: :R
   technology_name: shex_s
 - description: Separation test - safe2 (ShEx)
   engine_name: shex
@@ -730,21 +742,21 @@
     - node: :a
       shape: :S
     - node: :b
-      shape: :R
+      shape: :S
+    - node: :c
+      shape: :S
+    - node: :d
+      shape: :S
     message: ''
     successes:
     - node: :a
       shape: :R
     - node: :b
-      shape: :S
-    - node: :c
       shape: :R
     - node: :c
-      shape: :S
-    - node: :d
       shape: :R
     - node: :d
-      shape: :S
+      shape: :R
   technology_name: jena_shex
 - description: Feature test - Non-stratified negation without cyclic data -- nostratnocycle
     (SHACL)
@@ -761,15 +773,15 @@
   result:
     conforms: false
     failures:
-    - node: :c
-      shape: :S
     - node: :a
       shape: :S
     - node: :b
       shape: :S
-    - node: :e
+    - node: :c
       shape: :S
     - node: :d
+      shape: :S
+    - node: :e
       shape: :S
   technology_name: shacl_s
 - description: Feature test - Non-stratified negation without cyclic data -- nostratnocycle
@@ -793,8 +805,10 @@
   engine_name: shex
   name: nostratnocycle
   result:
-    conforms: Exception
-    failures: 'Expecting value: line 1 column 1 (char 0)'
+    conforms: false
+    failures: []
+    message: 'Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
+    successes: []
   technology_name: shex_s
 - description: Feature test - Non-stratified negation without cyclic data -- nostratnocycle
     (ShEx)
@@ -857,8 +871,10 @@
   engine_name: shex
   name: nostratcycle
   result:
-    conforms: Exception
-    failures: 'Expecting value: line 1 column 1 (char 0)'
+    conforms: false
+    failures: []
+    message: 'Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))'
+    successes: []
   technology_name: shex_s
 - description: Feature test - Non-stratified negation with cyclic data -- nostratcycle
     (ShEx)
@@ -918,8 +934,10 @@
   engine_name: shex
   name: consistency1
   result:
-    conforms: Exception
-    failures: 'Expecting value: line 1 column 1 (char 0)'
+    conforms: false
+    failures: []
+    message: 'Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
+    successes: []
   technology_name: shex_s
 - description: Feature test - Consistency1 (ShEx)
   engine_name: shex
@@ -1004,37 +1022,37 @@
   technology_name: shacl_tq
 - description: Consistency test 2
   engine_name: shacl
-  name: consistency2_all
+  name: consistency2
   result:
     conforms: false
     failures:
-    - node: :b
-      shape: :S1
     - node: :a
+      shape: :S1
+    - node: :b
       shape: :S1
   technology_name: pyshacl
 - description: Consistency test 2
   engine_name: shacl
-  name: consistency2_all
+  name: consistency2
   result:
     conforms: false
     failures:
-    - node: :a
-      shape: :S1
     - node: :b
       shape: :S
+    - node: :b
+      shape: :S1
+    - node: :a
+      shape: :S1
+    - node: :a
+      shape: :S1
+    - node: :b
+      shape: :S1
     - node: :a
       shape: :S
-    - node: :b
-      shape: :S1
-    - node: :a
-      shape: :S1
-    - node: :b
-      shape: :S1
   technology_name: shacl_s
 - description: Consistency test 2
   engine_name: shacl
-  name: consistency2_all
+  name: consistency2
   result:
     conforms: false
     failures:
@@ -1045,21 +1063,23 @@
   technology_name: jena_shacl
 - description: Consistency test 2
   engine_name: shacl
-  name: consistency2_all
+  name: consistency2
   result:
     conforms: false
     failures: []
   technology_name: shacl_tq
 - description: Consistency test 2
   engine_name: shex
-  name: consistency2_all
+  name: consistency2
   result:
-    conforms: Exception
-    failures: 'Expecting value: line 1 column 1 (char 0)'
+    conforms: false
+    failures: []
+    message: 'Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
+    successes: []
   technology_name: shex_s
 - description: Consistency test 2
   engine_name: shex
-  name: consistency2_all
+  name: consistency2
   result:
     conforms: true
     failures: []
@@ -1074,112 +1094,6 @@
     - node: :b
       shape: :S1
   technology_name: jena_shex
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S
-  result:
-    conforms: false
-    failures: []
-  technology_name: pyshacl
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S
-  result:
-    conforms: false
-    failures:
-    - node: :a
-      shape: :S
-  technology_name: shacl_s
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S
-  result:
-    conforms: false
-    failures: []
-  technology_name: jena_shacl
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S
-  result:
-    conforms: true
-    failures: []
-  technology_name: shacl_tq
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S_b_S
-  result:
-    conforms: false
-    failures: []
-  technology_name: pyshacl
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S_b_S
-  result:
-    conforms: false
-    failures:
-    - node: :b
-      shape: :S
-    - node: :a
-      shape: :S
-  technology_name: shacl_s
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S_b_S
-  result:
-    conforms: false
-    failures: []
-  technology_name: jena_shacl
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S_b_S
-  result:
-    conforms: false
-    failures: []
-  technology_name: shacl_tq
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S1_b_S1
-  result:
-    conforms: false
-    failures:
-    - node: :b
-      shape: :S1
-    - node: :a
-      shape: :S1
-  technology_name: pyshacl
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S1_b_S1
-  result:
-    conforms: false
-    failures:
-    - node: :b
-      shape: :S1
-    - node: :b
-      shape: :S1
-    - node: :a
-      shape: :S1
-    - node: :a
-      shape: :S1
-  technology_name: shacl_s
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S1_b_S1
-  result:
-    conforms: false
-    failures:
-    - node: :a
-      shape: :S1
-    - node: :b
-      shape: :S1
-  technology_name: jena_shacl
-- description: Consistency test 2
-  engine_name: shacl
-  name: consistency2_a_S1_b_S1
-  result:
-    conforms: true
-    failures: []
-  technology_name: shacl_tq
 - description: Feature test Resilience
   engine_name: shacl
   name: resilience
@@ -1195,18 +1109,18 @@
   result:
     conforms: false
     failures:
+    - node: :c
+      shape: :S1
+    - node: :c
+      shape: :S1
     - node: :b
       shape: :S1
     - node: :c
       shape: :S
-    - node: :c
-      shape: :S1
-    - node: :c
+    - node: :b
       shape: :S1
     - node: :b
       shape: :S
-    - node: :b
-      shape: :S1
   technology_name: shacl_s
 - description: Feature test Resilience
   engine_name: shacl
@@ -1230,12 +1144,86 @@
   engine_name: shex
   name: resilience
   result:
-    conforms: Exception
-    failures: 'Expecting value: line 1 column 1 (char 0)'
+    conforms: false
+    failures: []
+    message: 'Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
+    successes: []
   technology_name: shex_s
 - description: Feature test Resilience
   engine_name: shex
   name: resilience
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S
+    message: ''
+    successes:
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S1
+  technology_name: jena_shex
+- description: Feature test Resilience
+  engine_name: shacl
+  name: resilience_fixed
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+  technology_name: pyshacl
+- description: Feature test Resilience
+  engine_name: shacl
+  name: resilience_fixed
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+    - node: :c
+      shape: :S1
+    - node: :b
+      shape: :S
+    - node: :c
+      shape: :S1
+    - node: :c
+      shape: :S
+    - node: :b
+      shape: :S1
+  technology_name: shacl_s
+- description: Feature test Resilience
+  engine_name: shacl
+  name: resilience_fixed
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+  technology_name: jena_shacl
+- description: Feature test Resilience
+  engine_name: shacl
+  name: resilience_fixed
+  result:
+    conforms: false
+    failures:
+    - node: :b
+      shape: :S1
+  technology_name: shacl_tq
+- description: Feature test Resilience
+  engine_name: shex
+  name: resilience_fixed
+  result:
+    conforms: false
+    failures: []
+    message: 'Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))'
+    successes: []
+  technology_name: shex_s
+- description: Feature test Resilience
+  engine_name: shex
+  name: resilience_fixed
   result:
     conforms: false
     failures:
@@ -1334,23 +1322,23 @@
   engine_name: shex
   name: isolation2
   result:
-    conforms: false
-    failures:
+    conforms: true
+    failures: []
+    message: No failures
+    successes:
     - node: :b
       shape: :S2
-    message: Some nodes are not conformant
-    successes: []
   technology_name: shex_s
 - description: Assignment isolation test 2
   engine_name: shex
   name: isolation2
   result:
-    conforms: false
-    failures:
+    conforms: true
+    failures: []
+    message: ''
+    successes:
     - node: :b
       shape: :S2
-    message: ''
-    successes: []
   technology_name: jena_shex
 - description: Assignment isolation test
   engine_name: shacl
@@ -1386,25 +1374,25 @@
   engine_name: shex
   name: isolation3
   result:
-    conforms: false
-    failures:
-    - node: :b
-      shape: :S2
-    message: Some nodes are not conformant
+    conforms: true
+    failures: []
+    message: No failures
     successes:
     - node: :a
       shape: :S1
+    - node: :b
+      shape: :S2
   technology_name: shex_s
 - description: Assignment isolation test 3
   engine_name: shex
   name: isolation3
   result:
-    conforms: false
-    failures:
-    - node: :b
-      shape: :S2
+    conforms: true
+    failures: []
     message: ''
     successes:
     - node: :a
       shape: :S1
+    - node: :b
+      shape: :S2
   technology_name: jena_shex

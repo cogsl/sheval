@@ -1,4 +1,4 @@
-08:39:01 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-08:39:01 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :S has produced a failure for focus node :b
-08:39:01 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-08:39:01 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :S has produced a failure for focus node :a
+10:07:03 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+10:07:03 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :S has produced a failure for focus node :b
+10:07:03 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+10:07:03 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :S has produced a failure for focus node :a
