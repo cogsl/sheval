@@ -6,14 +6,24 @@ The code can be used to compare results of evaluating shapes with different grap
 
 More concretely, the code has been used to compare how different implementations of SHACL and ShEx behave with recursive shapes.
 
-## Implementations
+## Running the code
+
+The code is prepared to be run in a reproducible way using Docker.
+
+Build a docker image with:
+
+```sh
+docker build -t sheval .
+```
+
+## Engines available
 
 ### SHACL
 
-- [SHACL_TQ](https://github.com/TopQuadrant/shacl): SHACL implementation in Java. Download the release 1.4.4 [available here](https://github.com/TopQuadrant/shacl/releases/tag/v1.4.4). Once installed, it can be run with `shaclvalidate.sh`
-- [SHACLEX](https://github.com/weso/shaclex): SHACL implementation in Scala. Compiled the latest version available in the github repo. It can be run with `shaclex` selecting `SHACLEX` as engine.
-- [Jena SHACL](https://jena.apache.org/documentation/shacl/). SHACL implementation in Java. It can be run with `shacl`
-- [PySHACL](https://github.com/RDFLib/pySHACL)
+- shacl_tq: [SHACL_TQ](https://github.com/TopQuadrant/shacl): SHACL implementation in Java. Download the release 1.4.4 [available here](https://github.com/TopQuadrant/shacl/releases/tag/v1.4.4). Once installed, it can be run with `shaclvalidate.sh`
+- shaclex: [SHACLEX](https://github.com/weso/shaclex): SHACL implementation in Scala. Compiled the latest version available in the github repo. It can be run with `shaclex` selecting `SHACLEX` as engine.
+- jena: [Jena SHACL](https://jena.apache.org/documentation/shacl/). SHACL implementation in Java. It can be run with `shacl`
+- pyshacl: [PySHACL](https://github.com/RDFLib/pySHACL)
 
 ### ShEx
 

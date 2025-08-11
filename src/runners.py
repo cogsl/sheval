@@ -79,7 +79,7 @@ def mk_command_shex(command, data_filename, shex_filename, shapemap_filename, ou
                        .replace("$shapemap_filename", shapemap_filename)
                        .replace("$output_filename", output), command))
 
-pyshacl_cmd = ["binaries/pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$data_filename" ]
+pyshacl_cmd = ["pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$data_filename" ]
 
 shacl_tq_cmd = ["binaries/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$data_filename"]
 
