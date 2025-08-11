@@ -17,5 +17,5 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT ["python", "run_all.py"]
+ENTRYPOINT ["python", "sheval.py"]
 CMD ["--help"]

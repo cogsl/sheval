@@ -6,8 +6,10 @@ import yaml
 import csv
 from src.runners import *
 
-parser = argparse.ArgumentParser(description="Execute Recursion Shapes experiments",
-                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser = argparse.ArgumentParser(
+    prog = sheval,
+    description="Execute Recursion Shapes experiments",
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("-v", "--verbose", help="increase verbosity", default = 0, action="count")
 parser.add_argument("--debug", help="debug info", default = 0, action="count")
 parser.add_argument("--temp", help="Temporal folder", default = "temp", action="store")

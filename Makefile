@@ -1,5 +1,5 @@
-run_all:
-	./run_all.sh
+sheval:
+	./sheval.sh
 
 clean:
 	rm results/*

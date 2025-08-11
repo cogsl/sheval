@@ -34,12 +34,12 @@ The binaries for the validators are included in the `bin` folder.
 
 ### Usage
 
-The script `run_all.py` runs all the experiments. It uses a `manifest.yaml` that describes each of the test cases.
+The script `sheval.py` runs all the experiments. It uses a `manifest.yaml` that describes each of the test cases.
 
 The default way to run the experiments and generate a CSV fle with the results is:
 
 ```sh
-python3 run_all.py --manifest manifest.yaml -f csv -o output.csv
+python3 sheval.py --manifest manifest.yaml -f csv -o output.csv
 ```
 
 The contents of `manifest.yaml` declare the experiments that can be run. It consists of a list of configuration entries like:
@@ -80,7 +80,7 @@ For SHACL, the test runner will merge the RDF data graph and the shapes graph an
 For ShEx, the test runner will create a shape map with the corresponding nodes and shapes and run the ShEx validators using it.
 
 ```sh
-usage: run_all.py [-h] [-v] [--debug] [--temp TEMP] [--include-message] [--include-description] [-n NAME] [-e ENGINE] [-t TECHNOLOGY] [-m MANIFEST] [-o OUTPUT]
+usage: sheval.py [-h] [-v] [--debug] [--temp TEMP] [--include-message] [--include-description] [-n NAME] [-e ENGINE] [-t TECHNOLOGY] [-m MANIFEST] [-o OUTPUT]
                   [-f FORMAT]
 
 Execute Recursion Shapes experiments
@@ -111,13 +111,13 @@ It is possible to run all the tests from a manifest or to select the tests of on
 For example, to run all the tests and generate a YAML output with the results:
 
 ```sh
-python3 run_all.py -f yaml -o output.yaml
+python3 sheval.py -f yaml -o output.yaml
 ```
 
 To run all the tests and generate a CSV output with the results:
 
 ```sh
-python3 run_all.py -f csv -o output.csv
+python3 sheval.py -f csv -o output.csv
 ```
 
 ### Running some specific test
@@ -127,19 +127,19 @@ It is also possible to run a single test by specifying its name.
 For example, to run only the test `consistency1`, you can use:
 
 ```sh
-python3 run_all.py -f csv -o output.csv -n consistency1
+python3 sheval.py -f csv -o output.csv -n consistency1
 ```
 
 It is also possible to specify one engine, which can be either `shex` or `shacl`:
 
 ```sh
-python3 run_all.py -f csv -o output.csv -n consistency1 -e shex
+python3 sheval.py -f csv -o output.csv -n consistency1 -e shex
 ```
 
 Or one specific technology, like `pyshacl`, `shaclex`, etc.
 
 ```sh
-python3 run_all.py -f csv -o output.csv -n consistency1 -e shex -t pyshacl
+python3 sheval.py -f csv -o output.csv -n consistency1 -e shex -t pyshacl
 ```
 
 If you want to see which command is executed, you can add `--debug`
