@@ -6,6 +6,9 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 COPY binaries/ ./binaries/
 
+# Setup environment variables
+ENV SHACL_HOME=./binaries/shacl-1.4.4
+
 # Set the working directory inside the container
 WORKDIR /app
 
