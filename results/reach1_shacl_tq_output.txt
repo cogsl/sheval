@@ -1,6 +1,6 @@
-10:07:58 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-10:07:58 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :d
-10:07:58 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-10:07:58 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :c
-10:07:58 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-10:07:58 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:ee499fe3ed7e1a15a0debcd0d314fcbc has produced a failure for focus node :d
+10:18:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+10:18:34 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :d
+10:18:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+10:18:34 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :c
+10:18:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+10:18:34 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:c56628729d69a17cce48598daa617d49 has produced a failure for focus node :d

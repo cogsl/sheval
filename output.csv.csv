@@ -1,0 +1,165 @@
+name,engine,technology,conforms,message,successes,failures
+pr,shacl,pyshacl,True,,[],[]
+pr,shacl,shacl_s,True,,[],[]
+pr,shacl,jena_shacl,True,,[],[]
+pr,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]"
+pr,shacl,rudof,True,,[],[]
+pr,shex,shex_s,True,No failures,"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]",[]
+pr,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]",[]
+pr,shex,rudof,True,No failures,"[{'node': ':c', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]",[]
+pr_node,shacl,pyshacl,True,,[],[]
+pr_node,shacl,shacl_s,True,,[],[]
+pr_node,shacl,jena_shacl,True,,[],[]
+pr_node,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]"
+pr_node,shacl,rudof,Undefined,,[],[]
+sa1,shacl,pyshacl,True,,[],[]
+sa1,shacl,shacl_s,True,,[],[]
+sa1,shacl,jena_shacl,True,,[],[]
+sa1,shacl,shacl_tq,True,,[],[]
+sa1,shacl,rudof,True,,[],[]
+sa1,shex,shex_s,True,No failures,"[{'node': ':a', 'shape': ':S'}]",[]
+sa1,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':S'}]",[]
+sa1,shex,rudof,True,No failures,"[{'node': ':a', 'shape': ':S'}]",[]
+sa2,shacl,pyshacl,True,,[],[]
+sa2,shacl,shacl_s,True,,[],[]
+sa2,shacl,jena_shacl,True,,[],[]
+sa2,shacl,shacl_tq,True,,[],[]
+sa2,shacl,rudof,True,,[],[]
+sa2,shex,shex_s,True,No failures,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]",[]
+sa2,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]",[]
+sa2,shex,rudof,True,No failures,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]",[]
+sa3,shacl,pyshacl,Undefined,,[],[]
+sa3,shacl,shacl_s,Error,,[],Error running commandCommandResult.TIMEOUT
+sa3,shacl,jena_shacl,False,,[],"[{'node': ':c', 'shape': ':S'}, {'node': ':c', 'shape': ':S1'}]"
+sa3,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}]"
+sa3,shacl,rudof,Undefined,,[],[]
+sa3,shex,shex_s,False,Some nodes are not conformant,"[{'node': ':b', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}]","[{'node': ':c', 'shape': ':S'}, {'node': ':c', 'shape': ':S1'}]"
+sa3,shex,jena_shex,False,,"[{'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}]","[{'node': ':c', 'shape': ':S'}, {'node': ':c', 'shape': ':S1'}]"
+sa3,shex,rudof,False,Some nodes are not conformant,"[{'node': ':a', 'shape': ':S1'}, {'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}, {'node': ':b', 'shape': ':S'}]","[{'node': ':c', 'shape': ':S1'}, {'node': ':c', 'shape': ':S'}]"
+sa3_single,shacl,pyshacl,Undefined,,[],[]
+sa3_single,shacl,shacl_s,Error,,[],Error running commandCommandResult.TIMEOUT
+sa3_single,shacl,jena_shacl,True,,[],[]
+sa3_single,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}]"
+sa3_single,shacl,rudof,Undefined,,[],[]
+sa4,shacl,pyshacl,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+sa4,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
+sa4,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+sa4,shacl,shacl_tq,True,,[],[]
+sa4,shacl,rudof,False,,[],"[{'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
+sa4,shex,shex_s,False,Some nodes are not conformant,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]","[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+sa4,shex,jena_shex,False,,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]","[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+sa4,shex,rudof,False,Some nodes are not conformant,"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]","[{'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
+reach1,shacl,pyshacl,True,,[],[]
+reach1,shacl,shacl_s,True,,[],[]
+reach1,shacl,jena_shacl,True,,[],[]
+reach1,shacl,shacl_tq,False,,[],"[{'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}]"
+reach1,shacl,rudof,True,,[],[]
+reach1,shex,shex_s,True,No failures,"[{'node': ':b', 'shape': ':R'}, {'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}, {'node': ':a', 'shape': ':R'}]",[]
+reach1,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':R'}, {'node': ':b', 'shape': ':R'}, {'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}]",[]
+reach1,shex,rudof,True,No failures,"[{'node': ':a', 'shape': ':R'}, {'node': ':b', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}, {'node': ':c', 'shape': ':R'}]",[]
+safe1,shacl,pyshacl,False,,[],"[{'node': ':a', 'shape': ':S'}]"
+safe1,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+safe1,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S'}]"
+safe1,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}]"
+safe1,shacl,rudof,Undefined,,[],[]
+safe1,shex,shex_s,False,Some nodes are not conformant,"[{'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]","[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+safe1,shex,jena_shex,False,,"[{'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]","[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]"
+safe1,shex,rudof,False,Some nodes are not conformant,"[{'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]","[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+reach2,shacl,pyshacl,False,,[],"[{'node': ':a', 'shape': ':S'}]"
+reach2,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+reach2,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S'}]"
+reach2,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}]"
+reach2,shacl,rudof,Undefined,,[],[]
+reach2,shex,shex_s,False,Some nodes are not conformant,"[{'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':b', 'shape': ':R'}, {'node': ':a', 'shape': ':R'}]","[{'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}, {'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+reach2,shex,jena_shex,False,,"[{'node': ':a', 'shape': ':R'}, {'node': ':b', 'shape': ':R'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]","[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}]"
+reach2,shex,rudof,False,Some nodes are not conformant,"[{'node': ':d', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':b', 'shape': ':R'}, {'node': ':a', 'shape': ':R'}]","[{'node': ':d', 'shape': ':R'}, {'node': ':c', 'shape': ':R'}, {'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+safe2,shacl,pyshacl,False,,[],"[{'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]"
+safe2,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+safe2,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]"
+safe2,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}]"
+safe2,shacl,rudof,False,,[],"[{'node': ':c', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]"
+safe2,shex,shex_s,False,Some nodes are not conformant,"[{'node': ':b', 'shape': ':R'}, {'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}, {'node': ':a', 'shape': ':R'}]","[{'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+safe2,shex,jena_shex,False,,"[{'node': ':a', 'shape': ':R'}, {'node': ':b', 'shape': ':R'}, {'node': ':c', 'shape': ':R'}, {'node': ':d', 'shape': ':R'}]","[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]"
+safe2,shex,rudof,False,Some nodes are not conformant,"[{'node': ':d', 'shape': ':R'}, {'node': ':b', 'shape': ':R'}, {'node': ':c', 'shape': ':R'}, {'node': ':a', 'shape': ':R'}]","[{'node': ':d', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+nostratnocycle,shacl,pyshacl,False,,[],[]
+nostratnocycle,shacl,shacl_s,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}, {'node': ':e', 'shape': ':S'}]"
+nostratnocycle,shacl,jena_shacl,False,,[],[]
+nostratnocycle,shacl,shacl_tq,False,,[],[]
+nostratnocycle,shacl,rudof,True,,[],[]
+nostratnocycle,shex,shex_s,False,"Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))",[],[]
+nostratnocycle,shex,jena_shex,False,,"[{'node': ':b', 'shape': ':S'}, {'node': ':d', 'shape': ':S'}]","[{'node': ':a', 'shape': ':S'}, {'node': ':c', 'shape': ':S'}, {'node': ':e', 'shape': ':S'}]"
+nostratnocycle,shex,rudof,Exception,,[],list index out of range
+nostratcycle,shacl,pyshacl,False,,[],[]
+nostratcycle,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S'}, {'node': ':a', 'shape': ':S'}]"
+nostratcycle,shacl,jena_shacl,False,,[],[]
+nostratcycle,shacl,shacl_tq,False,,[],[]
+nostratcycle,shacl,rudof,True,,[],[]
+nostratcycle,shex,shex_s,False,"Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S>))",[],[]
+nostratcycle,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S'}]",[]
+nostratcycle,shex,rudof,Exception,,[],list index out of range
+consistency1,shacl,pyshacl,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
+consistency1,shacl,shacl_s,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
+consistency1,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
+consistency1,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
+consistency1,shacl,rudof,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
+consistency1,shex,shex_s,False,"Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))",[],[]
+consistency1,shex,jena_shex,False,,[],"[{'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}]"
+consistency1,shex,rudof,Exception,,[],list index out of range
+consistency1_individually_S,shacl,pyshacl,False,,[],[]
+consistency1_individually_S,shacl,shacl_s,False,,[],"[{'node': ':a', 'shape': ':S'}]"
+consistency1_individually_S,shacl,jena_shacl,False,,[],[]
+consistency1_individually_S,shacl,shacl_tq,False,,[],[]
+consistency1_individually_S,shacl,rudof,True,,[],[]
+consistency1_individually_S1,shacl,pyshacl,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
+consistency1_individually_S1,shacl,shacl_s,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
+consistency1_individually_S1,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
+consistency1_individually_S1,shacl,shacl_tq,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
+consistency1_individually_S1,shacl,rudof,False,,[],"[{'node': ':a', 'shape': ':S1'}]"
+consistency2,shacl,pyshacl,False,,[],"[{'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}]"
+consistency2,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}, {'node': ':a', 'shape': ':S1'}, {'node': ':a', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}, {'node': ':b', 'shape': ':S'}]"
+consistency2,shacl,jena_shacl,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+consistency2,shacl,shacl_tq,False,,[],[]
+consistency2,shacl,rudof,False,,[],"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+consistency2,shex,shex_s,False,"Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))",[],[]
+consistency2,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':S'}, {'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}]",[]
+consistency2,shex,rudof,Exception,,[],list index out of range
+resilience,shacl,pyshacl,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
+resilience,shacl,shacl_s,False,,[],"[{'node': ':c', 'shape': ':S1'}, {'node': ':b', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S'}]"
+resilience,shacl,jena_shacl,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
+resilience,shacl,shacl_tq,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
+resilience,shacl,rudof,False,,[],"[{'node': ':c', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+resilience,shex,shex_s,False,"Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))",[],[]
+resilience,shex,jena_shex,False,,"[{'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S1'}]","[{'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S'}]"
+resilience,shex,rudof,Exception,,[],list index out of range
+resilience_fixed,shacl,pyshacl,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
+resilience_fixed,shacl,shacl_s,False,,[],"[{'node': ':c', 'shape': ':S'}, {'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}, {'node': ':c', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}, {'node': ':b', 'shape': ':S'}]"
+resilience_fixed,shacl,jena_shacl,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
+resilience_fixed,shacl,shacl_tq,False,,[],"[{'node': ':b', 'shape': ':S1'}]"
+resilience_fixed,shacl,rudof,False,,[],"[{'node': ':c', 'shape': ':S1'}, {'node': ':b', 'shape': ':S1'}]"
+resilience_fixed,shex,shex_s,False,"Schema is NOT well formed: Negative cycles: (IRILabel(<http://example.org/S1>),IRILabel(<http://example.org/S>)),(IRILabel(<http://example.org/S>),IRILabel(<http://example.org/S1>))",[],[]
+resilience_fixed,shex,jena_shex,False,,"[{'node': ':b', 'shape': ':S'}, {'node': ':c', 'shape': ':S1'}]","[{'node': ':b', 'shape': ':S1'}, {'node': ':c', 'shape': ':S'}]"
+resilience_fixed,shex,rudof,Exception,,[],list index out of range
+isolation1,shacl,pyshacl,True,,[],[]
+isolation1,shacl,shacl_s,True,,[],[]
+isolation1,shacl,jena_shacl,True,,[],[]
+isolation1,shacl,shacl_tq,False,,[],[]
+isolation1,shacl,rudof,True,,[],[]
+isolation1,shex,shex_s,True,No failures,"[{'node': ':a', 'shape': ':S1'}]",[]
+isolation1,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':S1'}]",[]
+isolation1,shex,rudof,True,No failures,"[{'node': ':a', 'shape': ':S1'}]",[]
+isolation2,shacl,pyshacl,False,,[],[]
+isolation2,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S2'}]"
+isolation2,shacl,jena_shacl,False,,[],[]
+isolation2,shacl,shacl_tq,True,,[],[]
+isolation2,shacl,rudof,True,,[],[]
+isolation2,shex,shex_s,True,No failures,"[{'node': ':b', 'shape': ':S2'}]",[]
+isolation2,shex,jena_shex,True,,"[{'node': ':b', 'shape': ':S2'}]",[]
+isolation2,shex,rudof,True,No failures,"[{'node': ':b', 'shape': ':S2'}]",[]
+isolation3,shacl,pyshacl,False,,[],[]
+isolation3,shacl,shacl_s,False,,[],"[{'node': ':b', 'shape': ':S2'}]"
+isolation3,shacl,jena_shacl,False,,[],[]
+isolation3,shacl,shacl_tq,False,,[],[]
+isolation3,shacl,rudof,True,,[],[]
+isolation3,shex,shex_s,True,No failures,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S2'}]",[]
+isolation3,shex,jena_shex,True,,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S2'}]",[]
+isolation3,shex,rudof,True,No failures,"[{'node': ':a', 'shape': ':S1'}, {'node': ':b', 'shape': ':S2'}]",[]

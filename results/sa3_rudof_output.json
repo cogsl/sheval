@@ -1,0 +1,138 @@
+[
+  {
+    "node": "http://example.org/c",
+    "shape": "http://example.org/S",
+    "status": "nonconformant",
+    "appInfo": [
+      "todo",
+      "errors"
+    ],
+    "reason": "Error #And error: shape expression @1 failed for node http://example.org/c:   ShapeRef fails for node http://example.org/c with idx: 1\n: 0\n"
+  },
+  {
+    "node": "http://example.org/c",
+    "shape": "http://example.org/S1",
+    "status": "nonconformant",
+    "appInfo": [
+      "todo",
+      "errors"
+    ],
+    "reason": "Error #And error: shape expression @0 failed for node http://example.org/c:   ShapeRef fails for node http://example.org/c with idx: 0\n: 0\n"
+  },
+  {
+    "node": "http://example.org/b",
+    "shape": "http://example.org/S1",
+    "status": "conformant",
+    "appInfo": [
+      {
+        "node": "http://example.org/b",
+        "reasons": [
+          [
+            {
+              "idx": "0",
+              "node": "http://example.org/b",
+              "type": "ShapeRefPassed"
+            }
+          ],
+          [
+            {
+              "node": "http://example.org/b",
+              "shape": "Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n",
+              "type": "ShapePassed"
+            }
+          ]
+        ],
+        "shape_expr": "@0 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n",
+        "type": "ShapeAndPassed"
+      }
+    ],
+    "reason": "Reason #AND passed. Node http://example.org/b, and: @0 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, reasons:[ShapeRef passed. Node http://example.org/b, idx: 0, ], [Shape passed. Node http://example.org/b, shape: Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, ], : 0\n"
+  },
+  {
+    "node": "http://example.org/b",
+    "shape": "http://example.org/S",
+    "status": "conformant",
+    "appInfo": [
+      {
+        "node": "http://example.org/b",
+        "reasons": [
+          [
+            {
+              "idx": "1",
+              "node": "http://example.org/b",
+              "type": "ShapeRefPassed"
+            }
+          ],
+          [
+            {
+              "node": "http://example.org/b",
+              "shape": "Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n",
+              "type": "ShapePassed"
+            }
+          ]
+        ],
+        "shape_expr": "@1 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n",
+        "type": "ShapeAndPassed"
+      }
+    ],
+    "reason": "Reason #AND passed. Node http://example.org/b, and: @1 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, reasons:[ShapeRef passed. Node http://example.org/b, idx: 1, ], [Shape passed. Node http://example.org/b, shape: Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, ], : 0\n"
+  },
+  {
+    "node": "http://example.org/a",
+    "shape": "http://example.org/S",
+    "status": "conformant",
+    "appInfo": [
+      {
+        "node": "http://example.org/a",
+        "reasons": [
+          [
+            {
+              "idx": "1",
+              "node": "http://example.org/a",
+              "type": "ShapeRefPassed"
+            }
+          ],
+          [
+            {
+              "node": "http://example.org/a",
+              "shape": "Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n",
+              "type": "ShapePassed"
+            }
+          ]
+        ],
+        "shape_expr": "@1 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n",
+        "type": "ShapeAndPassed"
+      }
+    ],
+    "reason": "Reason #AND passed. Node http://example.org/a, and: @1 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, reasons:[ShapeRef passed. Node http://example.org/a, idx: 1, ], [Shape passed. Node http://example.org/a, shape: Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, ], : 0\n"
+  },
+  {
+    "node": "http://example.org/a",
+    "shape": "http://example.org/S1",
+    "status": "conformant",
+    "appInfo": [
+      {
+        "node": "http://example.org/a",
+        "reasons": [
+          [
+            {
+              "idx": "0",
+              "node": "http://example.org/a",
+              "type": "ShapeRefPassed"
+            }
+          ],
+          [
+            {
+              "node": "http://example.org/a",
+              "shape": "Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n",
+              "type": "ShapePassed"
+            }
+          ]
+        ],
+        "shape_expr": "@0 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n",
+        "type": "ShapeAndPassed"
+      }
+    ],
+    "reason": "Reason #AND passed. Node http://example.org/a, and: @0 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, reasons:[ShapeRef passed. Node http://example.org/a, idx: 0, ], [Shape passed. Node http://example.org/a, shape: Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, ], : 0\n"
+  }
+]

@@ -5,9 +5,11 @@ shacl_technologies:
   - shacl_s
   - jena_shacl
   - shacl_tq
+  - rudof
 shex_technologies: 
   - shex_s
   - jena_shex
+  - rudof
 shex_folder: ShEx
 results_folder: results
 tests:

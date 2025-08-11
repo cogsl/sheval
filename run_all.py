@@ -105,6 +105,8 @@ for test in manifest['tests']:
                         shacl_s(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     elif technology == "pyshacl":
                         pyshacl(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
+                    elif technology == "rudof":
+                        rudof_shacl(merged_filename, name, description, results_folder, config, results, nodes, shapes, pairs)
                     else:
                         print(f"Unknown technology: {technology}")
                         exit(1)
@@ -125,10 +127,12 @@ for test in manifest['tests']:
                 for technology in technologies:
                     if technology == "shacl_shex":
                         shaclex_shex(data_file, shex_file, shapemap_file, name, description, results_folder, config, results, nodes, shapes, pairs)
-                    if technology == "shex_s":
+                    elif technology == "shex_s":
                         shex_s(data_file, shex_file, shapemap_file, name, description, results_folder, config, results, nodes, shapes, pairs)
                     elif technology == "jena_shex":
                         jena_shex(data_file, shex_file, shapemap_file, name, description, results_folder, config, results, nodes, shapes, pairs)
+                    elif technology == "rudof":
+                        rudof_shex(data_file, shex_file, shapemap_file, name, description, results_folder, config, results, nodes, shapes, pairs)
                     else:
                         print(f"Unknown technology: {technology}")
                         exit(1)    

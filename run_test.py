@@ -5,10 +5,10 @@ from src.shacl_runners import *
 filename = "temp/positive_recursion_encoding1.ttl"
 validation_report_file = "temp/positive_recursion_encoding_report.ttl"
 validation_output = "temp/positive_recursion_encoding_output.ttl"
-pyshacl = ["bin/pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$filename" ]
+pyshacl = ["binaries/pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$filename" ]
 
-shacl_tq = ["bin/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$filename"]
-jena_shacl = ["bin/apache-jena-5.3.0/bin/shacl", "v", "--data", "$filename"]
+shacl_tq = ["binaries/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$filename"]
+jena_shacl = ["binaries/apache-jena-5.3.0/bin/shacl", "v", "--data", "$filename"]
 
 
 shaclex = ["shaclex","--validate","--engine","SHACLEX","--data", "$filename","--validationReportFormat","TURTLE","--showValidationReport","--validationReportFile", "$validation_report_file"]

@@ -5,6 +5,39 @@ import subprocess
 import rdflib
 import json
 
+class Runner:
+    def __init__(self, engine, technology_name, command):
+        self.engine = engine
+        self.technology_name = technology_name
+        self.command = command
+
+    def run(self, filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
+        try:
+            print("Running command for name: %s" % self.name)
+            temp = config['temp']
+            validation_report_file_temp = os.path.join(temp, f"{self.name}_{self.technology_name}_results_temp.ttl")
+            command = mk_command(shacl_tq_cmd, filename, validation_report_file_temp)
+            result1 = run(command, validation_report_file_temp, 5, config['debug'])
+            if result1 == CommandResult.OK:
+                validation_report_file = os.path.join(results_folder, f"{name}_{self.technology_name}_results_temp.ttl")
+                validation_output = os.path.join(results_folder, f"{name}_{self.technology_name}_output.txt")
+                regex = re.compile('.*Failure.*')
+                split_file_by_regex(validation_report_file_temp, regex, validation_output, validation_report_file)
+                result = analyze_validation_report(validation_report_file, nodes, shapes,pairs,config)
+            else:
+                result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(self.name, self.engine, self.technology_name, descr, result, results)
+        except Exception as e:
+            info(config, f"Error running {self.technology_name}: {e}")
+            result = { 'conforms': "Exception", 'failures': f"{e}" }
+            store_result(self.name, self.engine, self.technology_name, descr, result, results)
+
+    
+
+
+
+
+
 class CommandResult(Enum):
     OK = 0
     TIMEOUT = 1
@@ -35,7 +68,9 @@ def run(command, output_filename, timeout = 2, debug = False):
 def mk_command(command, filename, output):
     return list(map(lambda x: 
                        x.replace("$data_filename", filename)
-                       .replace("$validation_report_file", output), command))
+                       .replace("$validation_report_file", output)
+                       .replace("$output_filename", output)
+                       , command))
 
 def mk_command_shex(command, data_filename, shex_filename, shapemap_filename, output):
     return list(map(lambda x: 
@@ -44,17 +79,17 @@ def mk_command_shex(command, data_filename, shex_filename, shapemap_filename, ou
                        .replace("$shapemap_filename", shapemap_filename)
                        .replace("$output_filename", output), command))
 
-pyshacl_cmd = ["bin/pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$data_filename" ]
+pyshacl_cmd = ["binaries/pyshacl", "-o", "$validation_report_file", "--format", "turtle", "$data_filename" ]
 
-shacl_tq_cmd = ["bin/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$data_filename"]
+shacl_tq_cmd = ["binaries/shacl-1.4.4/bin/shaclvalidate.sh","-datafile", "$data_filename"]
 
-shacl_s_cmd = ["bin/shacl_s-0.1.87/bin/shacl_s",
+shacl_s_cmd = ["binaries/shacl_s-0.1.87/bin/shacl_s",
                      "--data", "$data_filename",
                      "--output", "$validation_report_file"
                ]
 
 # Shaclex has been replaced by SHACL_S
-shaclex_shacl_cmd = ["bin/shaclex-0.2.7/bin/shaclex",
+shaclex_shacl_cmd = ["binaries/shaclex-0.2.7/bin/shaclex",
                      "--validate",
                      "--engine","SHACLEX",
                      "--data", "$data_filename",
@@ -63,7 +98,7 @@ shaclex_shacl_cmd = ["bin/shaclex-0.2.7/bin/shaclex",
                      "--validationReportFile", "$validation_report_file"
                      ]
 
-shaclex_shex_cmd = ["bin/shaclex-0.2.7/bin/shaclex", 
+shaclex_shex_cmd = ["binaries/shaclex-0.2.7/bin/shaclex", 
                     "--dataFormat", "TURTLE", 
                     "--data", "$data_filename", 
                     "--schema", "$shex_filename", 
@@ -78,7 +113,7 @@ shaclex_shex_cmd = ["bin/shaclex-0.2.7/bin/shaclex",
                     "--checkWellFormed"
                     ] 
 
-shex_s_cmd = ["bin/shexs-0.2.34/bin/shexs", 
+shex_s_cmd = ["binaries/shexs-0.2.34/bin/shexs", 
               "validate",
               "--data", "$data_filename", 
               "--schema", "$shex_filename", 
@@ -88,11 +123,22 @@ shex_s_cmd = ["bin/shexs-0.2.34/bin/shexs",
               ] 
 
 
-jena_shacl_cmd = ["bin/apache-jena-5.3.0/bin/shacl", "v", "--data", "$data_filename"]
+jena_shacl_cmd = ["binaries/apache-jena-5.3.0/bin/shacl", 
+                  "v", 
+                  "--data", "$data_filename"
+                  ]
 
-jena_shex_cmd = ["bin/apache-jena-5.3.0/bin/shex", "v", "--data", "$data_filename", "--schema", "$shex_filename", "--map", "$shapemap_filename"]
 
-def shacl_tq(filename, name, descr, results_folder, config, results, nodes, shapes,pairs):
+rudof_shacl_cmd = ["binaries/rudof/rudof",
+                    "shacl-validate","$data_filename", 
+                    "--result-format", "turtle", 
+                    "--force-overwrite", 
+                    "--output-file", "$output_filename"]
+
+jena_shex_cmd = ["binaries/apache-jena-5.3.0/bin/shex", "v", "--data", "$data_filename", "--schema", "$shex_filename", "--map", "$shapemap_filename"]
+rudof_shex_cmd = ["binaries/rudof/rudof","shex-validate","--schema", "$shex_filename", "--shapemap", "$shapemap_filename", "$data_filename", "--result-format", "json", "--force-overwrite", "--output-file", "$output_filename"]
+
+def shacl_tq(filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
     try:
         technology_name = "shacl_tq"
         engine = "shacl"
@@ -235,6 +281,26 @@ def shaclex_shex(filename, shex_filename, shapemap_filename, name, descr, result
         result = { 'conforms': "Exception", 'failures': f"{e}" }
         store_result(name, engine, technology_name, descr, result, results)
 
+def rudof_shex(filename, shex_filename, shapemap_filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
+    try:
+        technology_name = "rudof"
+        engine = "shex"
+        validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.json")
+        command = mk_command_shex(rudof_shex_cmd, filename, shex_filename, shapemap_filename, validation_output)
+        info(config, f"Running: {command}")
+        result1 = run(command, validation_output, 5, config['debug'])
+        if result1 == CommandResult.OK:
+            debug(config, f"Command result is OK...before analyzing shapemap file: {validation_output}")
+            result = analyze_shapemap_shex_s(validation_output,nodes,shapes,pairs,config)
+            store_result(name, engine, technology_name, descr, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, engine, technology_name, descr, result, results)
+    except Exception as e:
+        info(config, f"Error running {technology_name}: {e}")
+        result = { 'conforms': "Exception", 'failures': f"{e}" }
+        store_result(name, engine, technology_name, descr, result, results)
+
 # Run pyshacl validation
 def pyshacl(filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
     try:
@@ -243,6 +309,26 @@ def pyshacl(filename, name, descr, results_folder, config, results, nodes, shape
         validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
         validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
         command = mk_command(pyshacl_cmd, filename, validation_report_file)
+        result1 = run(command, validation_output, 2, config['debug'])
+        if result1 == CommandResult.OK:
+            result = analyze_validation_report(validation_report_file, nodes, shapes, pairs, config)
+            store_result(name, engine, technology_name, descr, result, results)
+        else:
+            result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
+            store_result(name, engine, technology_name, descr, result, results)    
+    except Exception as e:
+        info(config, f"Error running {name} with {technology_name}: {e}")
+        result = { 'conforms': "Exception", 'failures': f"{e}" }
+        store_result(name, engine, technology_name, descr, result, results)
+
+# Run pyshacl validation
+def rudof_shacl(filename, name, descr, results_folder, config, results, nodes, shapes, pairs):
+    try:
+        technology_name = "rudof"
+        engine = "shacl"
+        validation_report_file = os.path.join(results_folder, f"{name}_{technology_name}_results.ttl")
+        validation_output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
+        command = mk_command(rudof_shacl_cmd, filename, validation_report_file)
         result1 = run(command, validation_output, 2, config['debug'])
         if result1 == CommandResult.OK:
             result = analyze_validation_report(validation_report_file, nodes, shapes, pairs, config)

@@ -1,0 +1,11 @@
+ShaclProcessor.validate with shape <http://example.org/S>
+Shape.validate with shape <http://example.org/S> and source shape: <http://example.org/S>
+NativeEngine, evaluate with shape <http://example.org/S>
+Shape.validate with shape _:b2d0c44b11e12c001a685d1331e1346c and source shape: _:b2d0c44b11e12c001a685d1331e1346c
+Shape.validate with shape _:c238408274eb53ad90447d6225ebe62e and source shape: _:b2d0c44b11e12c001a685d1331e1346c
+Shape.validate with shape _:b2d0c44b11e12c001a685d1331e1346c and source shape: _:b2d0c44b11e12c001a685d1331e1346c
+Shape.validate with shape _:c238408274eb53ad90447d6225ebe62e and source shape: _:b2d0c44b11e12c001a685d1331e1346c
+Shape.validate with shape _:b2d0c44b11e12c001a685d1331e1346c and source shape: _:b2d0c44b11e12c001a685d1331e1346c
+Shape.validate with shape _:c238408274eb53ad90447d6225ebe62e and source shape: _:b2d0c44b11e12c001a685d1331e1346c
+Shape.validate with shape _:b2d0c44b11e12c001a685d1331e1346c and source shape: _:b2d0c44b11e12c001a685d1331e1346c
+Shape.validate with shape _:c238408274eb53ad90447d6225ebe62e and source shape: _:b2d0c44b11e12c001a685d1331e1346c

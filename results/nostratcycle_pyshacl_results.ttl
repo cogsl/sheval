@@ -10,20 +10,18 @@
             sh:resultPath :p ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
-            sh:sourceShape _:n538692fcf62c40d7a66356b9667dfd8eb1 ],
+            sh:sourceShape _:n6d24055df5284b85a142bb96be60da77b1 ],
         [ a sh:ValidationResult ;
             sh:focusNode :a ;
             sh:resultMessage "Focus node does not conform to shape MinCount 1: [ sh:not [ sh:node :S ] ]" ;
             sh:resultPath :p ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
-            sh:sourceShape _:n538692fcf62c40d7a66356b9667dfd8eb1 ] .
+            sh:sourceShape _:n6d24055df5284b85a142bb96be60da77b1 ] .
 
-_:N3dccca48747a4bde9cc9e9c5f554f911 sh:node :S .
+_:Nad3ca21d9f2a4f86919d7fb329f66d4d sh:not [ sh:node :S ] .
 
-_:N9133e3c7b312449e8da080ec1420f6d2 sh:not _:N3dccca48747a4bde9cc9e9c5f554f911 .
-
-_:n538692fcf62c40d7a66356b9667dfd8eb1 sh:path :p ;
+_:n6d24055df5284b85a142bb96be60da77b1 sh:path :p ;
     sh:qualifiedMinCount 1 ;
-    sh:qualifiedValueShape _:N9133e3c7b312449e8da080ec1420f6d2 .
+    sh:qualifiedValueShape _:Nad3ca21d9f2a4f86919d7fb329f66d4d .
 

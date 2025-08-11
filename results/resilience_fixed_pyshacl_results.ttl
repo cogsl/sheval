@@ -5,12 +5,12 @@
 [] a sh:ValidationReport ;
     sh:conforms false ;
     sh:result [ a sh:ValidationResult ;
-            sh:focusNode :c ;
+            sh:focusNode :b ;
             sh:resultMessage "Focus node does not conform to shape MinCount 1: :S1" ;
             sh:resultPath :p ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
-            sh:sourceShape _:nae0c8c442023429882b69dd529c046a1b1 ],
+            sh:sourceShape _:ne00dec15111a4b75bfa0ad1d019053e9b1 ],
         [ a sh:ValidationResult ;
             sh:focusNode :b ;
             sh:resultMessage "Node :b must not conform to shape :S" ;
@@ -19,14 +19,14 @@
             sh:sourceShape :S1 ;
             sh:value :b ],
         [ a sh:ValidationResult ;
-            sh:focusNode :b ;
+            sh:focusNode :c ;
             sh:resultMessage "Focus node does not conform to shape MinCount 1: :S1" ;
             sh:resultPath :p ;
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:QualifiedMinCountConstraintComponent ;
-            sh:sourceShape _:nae0c8c442023429882b69dd529c046a1b1 ] .
+            sh:sourceShape _:ne00dec15111a4b75bfa0ad1d019053e9b1 ] .
 
-_:nae0c8c442023429882b69dd529c046a1b1 sh:path :p ;
+_:ne00dec15111a4b75bfa0ad1d019053e9b1 sh:path :p ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape :S1 .
 

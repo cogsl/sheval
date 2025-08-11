@@ -1,6 +1,6 @@
 # Recursive shapes experiment
 
-The experiment comapres how different implementations of SHACL and ShEx behave with recursive shapes.
+The experiment compares how different implementations of SHACL and ShEx behave with recursive shapes.
 
 ## Implementations
 
