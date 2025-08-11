@@ -1,6 +1,10 @@
-# Recursive shapes experiment
+# ShEval - SHACL/ShEx Engines Evaluation
 
-The experiment compares how different implementations of SHACL and ShEx behave with recursive shapes.
+This repo contains code to compare different SHACL and ShEx engines.
+
+The code can be used to compare results of evaluating shapes with different graphs and target declarations or shape maps. 
+
+More concretely, the code has been used to compare how different implementations of SHACL and ShEx behave with recursive shapes.
 
 ## Implementations
 
