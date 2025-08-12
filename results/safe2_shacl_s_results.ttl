@@ -12,6 +12,7 @@
   sh:result    [ a                             sh:ValidationResult ;
                  sh:focusNode                  <http://example.org/a> ;
                  sh:resultMessage              "Not failed because <http://example.org/a> has shape RefNode(_:NodeLine7Col12) and it should not have" ;
+<<<<<<< HEAD
                  sh:resultSeverity             sh:Violation ;
                  sh:sourceConstraintComponent  sh:notShape ;
                  sh:sourceShape                <http://example.org/S>
@@ -26,6 +27,8 @@
   sh:result    [ a                             sh:ValidationResult ;
                  sh:focusNode                  <http://example.org/b> ;
                  sh:resultMessage              "Not failed because <http://example.org/b> has shape RefNode(_:NodeLine7Col12) and it should not have" ;
+=======
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
                  sh:resultSeverity             sh:Violation ;
                  sh:sourceConstraintComponent  sh:notShape ;
                  sh:sourceShape                <http://example.org/S>
@@ -38,8 +41,13 @@
                  sh:sourceShape                <http://example.org/S>
                ] ;
   sh:result    [ a                             sh:ValidationResult ;
+<<<<<<< HEAD
                  sh:focusNode                  <http://example.org/a> ;
                  sh:resultMessage              "<http://example.org/a> does not have nodeShape http://example.org/S because some shapes failed." ;
+=======
+                 sh:focusNode                  <http://example.org/c> ;
+                 sh:resultMessage              "<http://example.org/c> does not have nodeShape http://example.org/S because some shapes failed." ;
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
                  sh:resultSeverity             sh:Info ;
                  sh:sourceConstraintComponent  sh:ShapesFailed ;
                  sh:sourceShape                <http://example.org/S>
@@ -57,5 +65,22 @@
                  sh:resultSeverity             sh:Info ;
                  sh:sourceConstraintComponent  sh:ShapesFailed ;
                  sh:sourceShape                <http://example.org/S>
+<<<<<<< HEAD
+=======
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/b> ;
+                 sh:resultMessage              "Not failed because <http://example.org/b> has shape RefNode(_:NodeLine7Col12) and it should not have" ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:notShape ;
+                 sh:sourceShape                <http://example.org/S>
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/a> ;
+                 sh:resultMessage              "<http://example.org/a> does not have nodeShape http://example.org/S because some shapes failed." ;
+                 sh:resultSeverity             sh:Info ;
+                 sh:sourceConstraintComponent  sh:ShapesFailed ;
+                 sh:sourceShape                <http://example.org/S>
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
                ]
 ] .

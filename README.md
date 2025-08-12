@@ -16,6 +16,30 @@ Build a docker image with:
 docker build -t sheval .
 ```
 
+And run the tests with the command:
+
+```sh
+docker run -it sheval test
+```
+
+The sheval command has several options which can be accessed with the `--help` argument:
+
+```sh
+docker run -it sheval --help
+```
+
+For example, if you want to get the results in CSV format, you can use:
+
+```sh
+docker run -it sheval test -f csv
+```
+
+If you want to store the results in a file, you can use the `-o` option with a filename. However, notice that if you want that file to be stored in your local machine, you need to mount the volume in docker, so the command could be something like:
+
+```sh
+docker run --rm --mount type=bind,src=.,dst=/app -it sheval test -o docker_output -f csv
+```
+
 ## Engines available
 
 ### SHACL

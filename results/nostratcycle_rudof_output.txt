@@ -1,3 +1,7 @@
 ShaclProcessor.validate with shape <http://example.org/S>
 Shape.validate with shape <http://example.org/S> and source shape: <http://example.org/S>
+<<<<<<< HEAD
 Shape.validate with shape _:e6ff6da6b0f0d88a9cbb0ce87e08d3f9 and source shape: <http://example.org/S>
+=======
+Shape.validate with shape _:d482a8cf9ddd642e10f7d88a0bc0b5f6 and source shape: <http://example.org/S>
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df

@@ -7,6 +7,23 @@
     sh:result [ a sh:ValidationResult ;
             sh:focusNode :d ;
             sh:resultMessage "Node :d must not conform to shape [ sh:node :R ]" ;
+<<<<<<< HEAD
+=======
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:NotConstraintComponent ;
+            sh:sourceShape :S ;
+            sh:value :d ],
+        [ a sh:ValidationResult ;
+            sh:focusNode :b ;
+            sh:resultMessage "Node :b must not conform to shape [ sh:node :R ]" ;
+            sh:resultSeverity sh:Violation ;
+            sh:sourceConstraintComponent sh:NotConstraintComponent ;
+            sh:sourceShape :S ;
+            sh:value :b ],
+        [ a sh:ValidationResult ;
+            sh:focusNode :c ;
+            sh:resultMessage "Node :c must not conform to shape [ sh:node :R ]" ;
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:NotConstraintComponent ;
             sh:sourceShape :S ;
@@ -17,6 +34,7 @@
             sh:resultSeverity sh:Violation ;
             sh:sourceConstraintComponent sh:NotConstraintComponent ;
             sh:sourceShape :S ;
+<<<<<<< HEAD
             sh:value :a ],
         [ a sh:ValidationResult ;
             sh:focusNode :b ;
@@ -32,4 +50,7 @@
             sh:sourceConstraintComponent sh:NotConstraintComponent ;
             sh:sourceShape :S ;
             sh:value :c ] .
+=======
+            sh:value :a ] .
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
 

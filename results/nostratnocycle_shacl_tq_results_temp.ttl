@@ -13,7 +13,11 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
+<<<<<<< HEAD
                  sh:resultMessage              "Less than 1 values have shape _:1ae8efa2d81fd092bc038851cb5204dd";
+=======
+                 sh:resultMessage              "Less than 1 values have shape _:8fa0b7b062714d6b78828d57a77755f5";
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
                  sh:resultPath                 :p;
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
@@ -21,7 +25,11 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :b;
+<<<<<<< HEAD
                  sh:resultMessage              "Less than 1 values have shape _:1ae8efa2d81fd092bc038851cb5204dd";
+=======
+                 sh:resultMessage              "Less than 1 values have shape _:8fa0b7b062714d6b78828d57a77755f5";
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
                  sh:resultPath                 :p;
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
@@ -29,7 +37,11 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :e;
+<<<<<<< HEAD
                  sh:resultMessage              "Less than 1 values have shape _:1ae8efa2d81fd092bc038851cb5204dd";
+=======
+                 sh:resultMessage              "Less than 1 values have shape _:8fa0b7b062714d6b78828d57a77755f5";
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
                  sh:resultPath                 :p;
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
@@ -37,7 +49,11 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :c;
+<<<<<<< HEAD
                  sh:resultMessage              "Less than 1 values have shape _:1ae8efa2d81fd092bc038851cb5204dd";
+=======
+                 sh:resultMessage              "Less than 1 values have shape _:8fa0b7b062714d6b78828d57a77755f5";
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
                  sh:resultPath                 :p;
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
@@ -45,7 +61,11 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :d;
+<<<<<<< HEAD
                  sh:resultMessage              "Less than 1 values have shape _:1ae8efa2d81fd092bc038851cb5204dd";
+=======
+                 sh:resultMessage              "Less than 1 values have shape _:8fa0b7b062714d6b78828d57a77755f5";
+>>>>>>> ed1719870340f721c775f0099538882619e6c9df
                  sh:resultPath                 :p;
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:QualifiedMinCountConstraintComponent;
