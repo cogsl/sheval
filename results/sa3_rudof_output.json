@@ -1,5 +1,25 @@
 [
   {
+    "node": "http://example.org/c",
+    "shape": "http://example.org/S",
+    "status": "nonconformant",
+    "appInfo": [
+      "todo",
+      "errors"
+    ],
+    "reason": "Error #And error: shape expression @1 failed for node http://example.org/c:   ShapeRef fails for node http://example.org/c with idx: 1\n: 0\n"
+  },
+  {
+    "node": "http://example.org/c",
+    "shape": "http://example.org/S1",
+    "status": "nonconformant",
+    "appInfo": [
+      "todo",
+      "errors"
+    ],
+    "reason": "Error #And error: shape expression @0 failed for node http://example.org/c:   ShapeRef fails for node http://example.org/c with idx: 0\n: 0\n"
+  },
+  {
     "node": "http://example.org/b",
     "shape": "http://example.org/S1",
     "status": "conformant",
@@ -56,26 +76,6 @@
       }
     ],
     "reason": "Reason #AND passed. Node http://example.org/b, and: @1 AND Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, reasons:[ShapeRef passed. Node http://example.org/b, idx: 1, ], [Shape passed. Node http://example.org/b, shape: Shape  Preds: http://example.org/p\nRBE: C0+\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p .\n\n, ], : 0\n"
-  },
-  {
-    "node": "http://example.org/c",
-    "shape": "http://example.org/S",
-    "status": "nonconformant",
-    "appInfo": [
-      "todo",
-      "errors"
-    ],
-    "reason": "Error #And error: shape expression @1 failed for node http://example.org/c:   ShapeRef fails for node http://example.org/c with idx: 1\n: 0\n"
-  },
-  {
-    "node": "http://example.org/c",
-    "shape": "http://example.org/S1",
-    "status": "nonconformant",
-    "appInfo": [
-      "todo",
-      "errors"
-    ],
-    "reason": "Error #And error: shape expression @0 failed for node http://example.org/c:   ShapeRef fails for node http://example.org/c with idx: 0\n: 0\n"
   },
   {
     "node": "http://example.org/a",

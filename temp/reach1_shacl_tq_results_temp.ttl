@@ -1,9 +1,9 @@
-10:18:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-10:18:34 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :d
-10:18:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-10:18:34 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :c
-10:18:34 ERROR FailureLog :: SHACL Failure: Unsupported recursion
-10:18:34 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:c56628729d69a17cce48598daa617d49 has produced a failure for focus node :d
+12:53:08 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:53:08 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :d
+12:53:08 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:53:08 ERROR FailureLog :: SHACL Failure: Constraint OrConstraintComponent at :R has produced a failure for focus node :c
+12:53:08 ERROR FailureLog :: SHACL Failure: Unsupported recursion
+12:53:08 ERROR FailureLog :: SHACL Failure: Constraint QualifiedMinCountConstraintComponent at _:2a9c6871f675b1ea3b589226acf5ce7b has produced a failure for focus node :d
 PREFIX :        <http://example.org/>
 PREFIX dash:    <http://datashapes.org/dash#>
 PREFIX graphql: <http://datashapes.org/graphql#>
@@ -19,7 +19,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :c;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:f6121dde0184bd291c027a51574b9bb4, _:dff64bbaa1b7554b68e610e51362d8dc";
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:bfbd7d93b001feea328e75d01cb9cc0c, _:c5263993c07349d7280b382d681ae395";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:OrConstraintComponent;
                  sh:sourceShape                :R;
@@ -27,7 +27,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
                ];
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :d;
-                 sh:resultMessage              "Value must have at least one of the following shapes: _:f6121dde0184bd291c027a51574b9bb4, _:dff64bbaa1b7554b68e610e51362d8dc";
+                 sh:resultMessage              "Value must have at least one of the following shapes: _:bfbd7d93b001feea328e75d01cb9cc0c, _:c5263993c07349d7280b382d681ae395";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:OrConstraintComponent;
                  sh:sourceShape                :R;

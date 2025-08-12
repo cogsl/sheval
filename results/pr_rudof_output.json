@@ -1,18 +1,5 @@
 [
   {
-    "node": "http://example.org/a",
-    "shape": "http://example.org/S",
-    "status": "conformant",
-    "appInfo": [
-      {
-        "node": "http://example.org/a",
-        "shape_expr": "Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n",
-        "type": "ShapeOrPassed"
-      }
-    ],
-    "reason": "Reason #Shape OR passed. Node http://example.org/a, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n, reasons:   Shape passed. Node http://example.org/a, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n\n: 0\n"
-  },
-  {
     "node": "http://example.org/d",
     "shape": "http://example.org/S",
     "status": "conformant",
@@ -37,6 +24,19 @@
       }
     ],
     "reason": "Reason #Shape OR passed. Node http://example.org/b, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n, reasons:   Shape passed. Node http://example.org/b, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n\n: 0\n"
+  },
+  {
+    "node": "http://example.org/a",
+    "shape": "http://example.org/S",
+    "status": "conformant",
+    "appInfo": [
+      {
+        "node": "http://example.org/a",
+        "shape_expr": "Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n",
+        "type": "ShapeOrPassed"
+      }
+    ],
+    "reason": "Reason #Shape OR passed. Node http://example.org/a, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n, reasons:   Shape passed. Node http://example.org/a, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n\n: 0\n"
   },
   {
     "node": "http://example.org/c",

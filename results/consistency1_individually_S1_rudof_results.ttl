@@ -4,7 +4,7 @@ _:1 sh:conforms false ;
 	sh:result _:2 .
 _:2 sh:sourceConstraintComponent sh:not ;
 	sh:sourceShape <http://example.org/S1> ;
-	sh:resultSeverity sh:Violation ;
+	a sh:ValidationResult ;
 	sh:resultMessage "No message" ;
 	sh:focusNode <http://example.org/a> ;
-	a sh:ValidationResult .
+	sh:resultSeverity sh:Violation .

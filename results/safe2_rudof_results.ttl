@@ -2,27 +2,27 @@
 _:1 sh:result _:2 , _:3 , _:4 , _:5 ;
 	a sh:ValidationReport ;
 	sh:conforms false .
-_:2 sh:resultSeverity sh:Violation ;
-	sh:sourceShape <http://example.org/S> ;
-	sh:focusNode <http://example.org/c> ;
-	sh:sourceConstraintComponent sh:not ;
-	a sh:ValidationResult ;
-	sh:resultMessage "No message" .
-_:3 sh:resultSeverity sh:Violation ;
-	sh:sourceShape <http://example.org/S> ;
-	sh:focusNode <http://example.org/b> ;
-	sh:sourceConstraintComponent sh:not ;
-	a sh:ValidationResult ;
-	sh:resultMessage "No message" .
-_:4 sh:resultSeverity sh:Violation ;
-	sh:sourceShape <http://example.org/S> ;
-	sh:focusNode <http://example.org/a> ;
-	sh:sourceConstraintComponent sh:not ;
-	a sh:ValidationResult ;
-	sh:resultMessage "No message" .
-_:5 sh:resultSeverity sh:Violation ;
+_:2 a sh:ValidationResult ;
+	sh:resultSeverity sh:Violation ;
 	sh:sourceShape <http://example.org/S> ;
 	sh:focusNode <http://example.org/d> ;
-	sh:sourceConstraintComponent sh:not ;
-	a sh:ValidationResult ;
-	sh:resultMessage "No message" .
+	sh:resultMessage "No message" ;
+	sh:sourceConstraintComponent sh:not .
+_:3 a sh:ValidationResult ;
+	sh:resultSeverity sh:Violation ;
+	sh:sourceShape <http://example.org/S> ;
+	sh:focusNode <http://example.org/b> ;
+	sh:resultMessage "No message" ;
+	sh:sourceConstraintComponent sh:not .
+_:4 a sh:ValidationResult ;
+	sh:resultSeverity sh:Violation ;
+	sh:sourceShape <http://example.org/S> ;
+	sh:focusNode <http://example.org/a> ;
+	sh:resultMessage "No message" ;
+	sh:sourceConstraintComponent sh:not .
+_:5 a sh:ValidationResult ;
+	sh:resultSeverity sh:Violation ;
+	sh:sourceShape <http://example.org/S> ;
+	sh:focusNode <http://example.org/c> ;
+	sh:resultMessage "No message" ;
+	sh:sourceConstraintComponent sh:not .
