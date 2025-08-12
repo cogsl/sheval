@@ -1,13 +1,26 @@
 [
   {
-    "node": "http://example.org/a",
+    "node": "http://example.org/b",
+    "shape": "http://example.org/S",
+    "status": "conformant",
+    "appInfo": [
+      {
+        "node": "http://example.org/b",
+        "shape": "Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n",
+        "type": "ShapePassed"
+      }
+    ],
+    "reason": "Reason #Shape passed. Node http://example.org/b, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n: 0\n"
+  },
+  {
+    "node": "http://example.org/b",
     "shape": "http://example.org/S1",
     "status": "nonconformant",
     "appInfo": [
       "todo",
       "errors"
     ],
-    "reason": "Error #Shape Not error: failed for node http://example.org/a because it passed NOT @0 with   ShapeRef passed. Node http://example.org/a, idx: 0\n: 0\n"
+    "reason": "Error #Shape Not error: failed for node http://example.org/b because it passed NOT @0 with   ShapeRef passed. Node http://example.org/b, idx: 0\n: 0\n"
   },
   {
     "node": "http://example.org/a",
@@ -23,26 +36,13 @@
     "reason": "Reason #Shape passed. Node http://example.org/a, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n: 0\n"
   },
   {
-    "node": "http://example.org/b",
+    "node": "http://example.org/a",
     "shape": "http://example.org/S1",
     "status": "nonconformant",
     "appInfo": [
       "todo",
       "errors"
     ],
-    "reason": "Error #Shape Not error: failed for node http://example.org/b because it passed NOT @0 with   ShapeRef passed. Node http://example.org/b, idx: 0\n: 0\n"
-  },
-  {
-    "node": "http://example.org/b",
-    "shape": "http://example.org/S",
-    "status": "conformant",
-    "appInfo": [
-      {
-        "node": "http://example.org/b",
-        "shape": "Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n",
-        "type": "ShapePassed"
-      }
-    ],
-    "reason": "Reason #Shape passed. Node http://example.org/b, shape: Shape  Preds: http://example.org/p,http://example.org/p\nRBE: C0+;C1*;\nKeys:\n http://example.org/p -> [ C0 C1 ]\nComponents:\n C0 -> http://example.org/p @0\n C1 -> http://example.org/p .\n\n: 0\n"
+    "reason": "Error #Shape Not error: failed for node http://example.org/a because it passed NOT @0 with   ShapeRef passed. Node http://example.org/a, idx: 0\n: 0\n"
   }
 ]

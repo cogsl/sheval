@@ -1,5 +1,44 @@
 [
   {
+    "node": "http://example.org/d",
+    "shape": "http://example.org/S",
+    "status": "conformant",
+    "appInfo": [
+      {
+        "node": "http://example.org/d",
+        "reasons": [
+          [
+            {
+              "node": "http://example.org/d",
+              "shape_expr": "NOT Node constraint: :S",
+              "type": "ShapeNotPassed"
+            }
+          ],
+          [
+            {
+              "node": "http://example.org/d",
+              "shape": "Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n",
+              "type": "ShapePassed"
+            }
+          ]
+        ],
+        "shape_expr": "NOT Node constraint: :S AND Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n",
+        "type": "ShapeAndPassed"
+      }
+    ],
+    "reason": "Reason #AND passed. Node http://example.org/d, and: NOT Node constraint: :S AND Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n, reasons:[Shape NOT passed. Node http://example.org/d, shape: NOT Node constraint: :S, errors:   Values failed: http://example.org/d not in [http://example.org/a ]\n, ], [Shape passed. Node http://example.org/d, shape: Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n, ], : 0\n"
+  },
+  {
+    "node": "http://example.org/b",
+    "shape": "http://example.org/S",
+    "status": "nonconformant",
+    "appInfo": [
+      "todo",
+      "errors"
+    ],
+    "reason": "Error #And error: shape expression Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n failed for node http://example.org/b:   Shape fails for node http://example.org/b with shape Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n\n: 0\n"
+  },
+  {
     "node": "http://example.org/c",
     "shape": "http://example.org/S",
     "status": "conformant",
@@ -29,16 +68,6 @@
     "reason": "Reason #AND passed. Node http://example.org/c, and: NOT Node constraint: :S AND Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n, reasons:[Shape NOT passed. Node http://example.org/c, shape: NOT Node constraint: :S, errors:   Values failed: http://example.org/c not in [http://example.org/a ]\n, ], [Shape passed. Node http://example.org/c, shape: Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n, ], : 0\n"
   },
   {
-    "node": "http://example.org/b",
-    "shape": "http://example.org/S",
-    "status": "nonconformant",
-    "appInfo": [
-      "todo",
-      "errors"
-    ],
-    "reason": "Error #And error: shape expression Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n failed for node http://example.org/b:   Shape fails for node http://example.org/b with shape Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n\n: 0\n"
-  },
-  {
     "node": "http://example.org/a",
     "shape": "http://example.org/S",
     "status": "nonconformant",
@@ -47,34 +76,5 @@
       "errors"
     ],
     "reason": "Error #And error: shape expression NOT Node constraint: :S failed for node http://example.org/a:   Shape Not error: failed for node http://example.org/a because it passed NOT Node constraint: :S with   Node constraint passed. Node: http://example.org/a, Constraint: :S\n\n: 0\n"
-  },
-  {
-    "node": "http://example.org/d",
-    "shape": "http://example.org/S",
-    "status": "conformant",
-    "appInfo": [
-      {
-        "node": "http://example.org/d",
-        "reasons": [
-          [
-            {
-              "node": "http://example.org/d",
-              "shape_expr": "NOT Node constraint: :S",
-              "type": "ShapeNotPassed"
-            }
-          ],
-          [
-            {
-              "node": "http://example.org/d",
-              "shape": "Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n",
-              "type": "ShapePassed"
-            }
-          ]
-        ],
-        "shape_expr": "NOT Node constraint: :S AND Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n",
-        "type": "ShapeAndPassed"
-      }
-    ],
-    "reason": "Reason #AND passed. Node http://example.org/d, and: NOT Node constraint: :S AND Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n, reasons:[Shape NOT passed. Node http://example.org/d, shape: NOT Node constraint: :S, errors:   Values failed: http://example.org/d not in [http://example.org/a ]\n, ], [Shape passed. Node http://example.org/d, shape: Shape  Preds: http://example.org/p\nRBE: C0*\nKeys:\n http://example.org/p -> [ C0 ]\nComponents:\n C0 -> http://example.org/p @0\n\n, ], : 0\n"
   }
 ]
