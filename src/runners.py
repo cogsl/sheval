@@ -39,32 +39,38 @@ class ShExParams:
     include_descr: bool
 
 
+class SHACLRunner:
+    def __init__(self, name, bin_command, command_pattern, run_shacl):
+        self.name = name
+        self.bin_command = bin_command
+        self.command_pattern = command_pattern
+        self.run_shacl = run_shacl
 
-class Runner:
-    def __init__(self, engine, technology_name, command):
-        self.engine = engine
-        self.technology_name = technology_name
-        self.command = command
-
-    def run(self, filename, name, descr, results_folder, temp, results, nodes, shapes, pairs, include_message):
+    def run(self, params: SHACLParams, results: list) -> None:
+        logging.info(f"Running SHACL for {params.name} with technology {params.technology}")
         try:
-            logging.info("Running command for name: %s" % self.name)
-            validation_report_file_temp = os.path.join(temp, f"{self.name}_{self.technology_name}_results_temp.ttl")
-            command = mk_command(shacl_tq_cmd, filename, validation_report_file_temp)
-            result1 = run(command, validation_report_file_temp, 5)
-            if result1 == CommandResult.OK:
-                validation_report_file = os.path.join(results_folder, f"{name}_{self.technology_name}_results_temp.ttl")
-                validation_output = os.path.join(results_folder, f"{name}_{self.technology_name}_output.txt")
-                regex = re.compile('.*Failure.*')
-                split_file_by_regex(validation_report_file_temp, regex, validation_output, validation_report_file)
-                result = analyze_validation_report(validation_report_file, nodes, shapes, pairs, include_message)
-            else:
-                result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }    
-            store_result(self.name, self.engine, self.technology_name, descr, result, results)
+            self.run_shacl(params, results)
         except Exception as e:
-            logging.info(f"Error running {self.technology_name}: {e}")
-            result = { 'conforms': "Exception", 'failures': f"{e}" }
-            store_result(self.name, self.engine, self.technology_name, descr, result, results)
+            logging.error(f"Error running SHACL for {params.name} with technology {params.technology}: {e}")
+            result = {'conforms': "Exception", 'failures': f"{e}"}
+            store_result(params.name, params.technology, params.description, result, results)
+
+
+class ShExRunner:
+    def __init__(self, name, bin_command, command_pattern, run_shex):
+        self.name = name
+        self.bin_command = bin_command
+        self.command_pattern = command_pattern
+        self.run_shex = run_shex
+
+    def run(self, params: ShExParams, results: list) -> None:
+        logging.info(f"Running ShEx for {params.name} with technology {params.technology}")
+        try:
+            self.run_shex(params, results)
+        except Exception as e:
+            logging.error(f"Error running ShEx for {params.name} with technology {params.technology}: {e}")
+            result = {'conforms': "Exception", 'failures': f"{e}"}
+            store_result(params.name, params.technology, params.description, result, results)
 
 
 class CommandResult(Enum):
@@ -75,19 +81,19 @@ class CommandResult(Enum):
 
 shacl_prefix = "http://www.w3.org/ns/shacl#"
 
-
-def run_args(command: list[str]) -> None: 
+def run_args(command: list[str]): 
     logging.debug(f"Before running command: {command}")
     result = CommandResult.ERROR
     try:
-        subprocess.run(command, check=True)
+        result = subprocess.run(command, check=True)
     except subprocess.CalledProcessError as callProcessErr:
         cmdErrStr = str(callProcessErr)
         print("Error %s running command: %s" % (cmdErrStr, command))
         result = CommandResult.EXCEPTION
     except Exception as e:
         logging.error(f"Error running command {command}: {e}")
-    return
+        result = CommandResult.EXCEPTION
+    return result
 
 def run(command, output_filename, timeout = 2):
     result = CommandResult.ERROR
@@ -104,10 +110,9 @@ def run(command, output_filename, timeout = 2):
         cmdErrStr = str(callProcessErr)
         print("Error %s running command: %s" % (cmdErrStr, command))
         result = CommandResult.EXCEPTION
-
     return result
 
-def mk_command(command, filename, output):
+def mk_command_shacl(command, filename, output):
     return list(map(lambda x: 
                        x.replace("$data_filename", filename)
                        .replace("$validation_report_file", output)
@@ -193,7 +198,7 @@ def shacl_tq(params: SHACLParams, results: list) -> None:
         engine = "shacl"
         validation_report_file_temp = os.path.join(params.temp, f"{params.name}_{technology_name}_results_temp.ttl")
         # output_file_temp = os.path.join(temp, f"{name}_{technology_name}_output_temp.txt")
-        command = mk_command(shacl_tq_cmd, params.filename, validation_report_file_temp)
+        command = mk_command_shacl(shacl_tq_cmd, params.filename, validation_report_file_temp)
         result1 = run(command, validation_report_file_temp, 5)
         if result1 == CommandResult.OK:
             validation_report_file = os.path.join(params.results_folder, f"{params.name}_{technology_name}_results_temp.ttl")
@@ -215,7 +220,7 @@ def jena_shacl(params: SHACLParams, results: list) -> None:
         engine = "shacl"
         validation_report_file = os.path.join(params.results_folder, f"{params.name}_{technology_name}_results.ttl")
         # output = os.path.join(results_folder, f"{name}_{technology_name}_output.txt")
-        command = mk_command(jena_shacl_cmd, params.filename, validation_report_file)
+        command = mk_command_shacl(jena_shacl_cmd, params.filename, validation_report_file)
         result1 = run(command, validation_report_file, 5)
         if result1 == CommandResult.OK:
             logging.debug(f"Command result is OK...validation report file: {validation_report_file}")
@@ -255,7 +260,7 @@ def shaclex_shacl(params: SHACLParams, results: list) -> None:
         engine = "shacl"
         validation_report_file = os.path.join(params.results_folder, f"{params.name}_{technology_name}_results.ttl")
         validation_output = os.path.join(params.results_folder, f"{params.name}_{technology_name}_output.txt")
-        command = mk_command(shaclex_shacl_cmd, params.filename, validation_report_file)
+        command = mk_command_shacl(shaclex_shacl_cmd, params.filename, validation_report_file)
         logging.info(f"Running: {command}")
         result1 = run(command, validation_output, 5)
         if result1 == CommandResult.OK:
@@ -275,7 +280,7 @@ def shacl_s(params: SHACLParams, results: list) -> None:
         engine = "shacl"
         validation_report_file = os.path.join(params.results_folder, f"{params.name}_{technology_name}_results.ttl")
         validation_output = os.path.join(params.results_folder, f"{params.name}_{technology_name}_output.txt")
-        command = mk_command(shacl_s_cmd, params.filename, validation_report_file)
+        command = mk_command_shacl(shacl_s_cmd, params.filename, validation_report_file)
         logging.info(f"Running: {command}")
         result1 = run(command, validation_output, 5)
         if result1 == CommandResult.OK:
@@ -356,7 +361,7 @@ def pyshacl(params: SHACLParams, results: list) -> None:
         engine = "shacl"
         validation_report_file = os.path.join(params.results_folder, f"{params.name}_{technology_name}_results.ttl")
         validation_output = os.path.join(params.results_folder, f"{params.name}_{technology_name}_output.txt")
-        command = mk_command(pyshacl_cmd, params.filename, validation_report_file)
+        command = mk_command_shacl(pyshacl_cmd, params.filename, validation_report_file)
         result1 = run(command, validation_output, 2)
         if result1 == CommandResult.OK:
             result = analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message)
@@ -376,7 +381,7 @@ def rudof_shacl(params: SHACLParams, results: list) -> None:
         engine = "shacl"
         validation_report_file = os.path.join(params.results_folder, f"{params.name}_{technology_name}_results.ttl")
         validation_output = os.path.join(params.results_folder, f"{params.name}_{technology_name}_output.txt")
-        command = mk_command(rudof_shacl_cmd, params.filename, validation_report_file)
+        command = mk_command_shacl(rudof_shacl_cmd, params.filename, validation_report_file)
         result1 = run(command, validation_output, 2)
         if result1 == CommandResult.OK:
             result = analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message)
@@ -710,5 +715,3 @@ def prepare_target_declarations(data_graph, shapes_graph, nodes, shapes, pairs, 
     g.serialize(destination=merged_filename, format='turtle')
     logging.debug(f"Serialized graph to {merged_filename}")
     return
-
-    

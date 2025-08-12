@@ -161,19 +161,33 @@ It is also possible to run a single test by specifying its name.
 For example, to run only the test `consistency1`, you can use:
 
 ```sh
-python3 sheval.py -f csv -o output.csv -n consistency1
+python3 sheval.py test -f csv -o output.csv -n consistency1
 ```
 
 It is also possible to specify one engine, which can be either `shex` or `shacl`:
 
 ```sh
-python3 sheval.py -f csv -o output.csv -n consistency1 -e shex
+python3 sheval.py test -f csv -o output.csv -n consistency1 -e shex
 ```
 
 Or one specific technology, like `pyshacl`, `shaclex`, etc.
 
 ```sh
-python3 sheval.py -f csv -o output.csv -n consistency1 -e shex -t pyshacl
+python3 sheval.py test -f csv -o output.csv -n consistency1 -e shex -t pyshacl
 ```
 
-If you want to see which command is executed, you can add `--debug`
+If you want to see which command is executed, you can add `--logging debug`
+
+### Running ShEx or SHACL technologies
+
+It is possible to run the sheval script to launch different SHACL/ShEx technologies using a uniform interface. 
+
+As an example, the following command command runs ShEx validation with `rudof`:
+
+```sh
+python3 sheval.py shex -d RDF/example21.ttl -s ShEx/example21.shex -m ShapeMaps/example21.sm -t rudof -o results/example21.result_shex
+```
+
+If you replace `-t rudof` by `-t jena_shex` the command will be run using Jena ShEx.
+
+

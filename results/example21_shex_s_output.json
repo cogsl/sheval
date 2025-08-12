@@ -1,0 +1,46 @@
+[
+  {
+    "node" : "<http://example.org/a>",
+    "shape" : "<http://example.org/S>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+      ]
+    },
+    "reason" : ""
+  },
+  {
+    "node" : "<http://example.org/a>",
+    "shape" : "<http://example.org/T>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        "Node :a: number of values (0) for path :q fits card *",
+        ":a passes OR"
+      ]
+    },
+    "reason" : "Node :a: number of values (0) for path :q fits card *\n:a passes OR"
+  },
+  {
+    "node" : "<http://example.org/b>",
+    "shape" : "<http://example.org/T>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+        "Node :b: number of values (1) for path :q fits card *",
+        ":b passes OR"
+      ]
+    },
+    "reason" : "Node :b: number of values (1) for path :q fits card *\n:b passes OR"
+  },
+  {
+    "node" : "<http://example.org/b>",
+    "shape" : "<http://example.org/S>",
+    "status" : "conformant",
+    "appInfo" : {
+      "evidences" : [
+      ]
+    },
+    "reason" : ""
+  }
+]

@@ -1,0 +1,10 @@
+prefix :       <http://example.org/> 
+
+# Example 2.1 from paper
+:S {
+    :p @:T
+}
+    
+:T {
+  :q . *
+} OR [ :a ]

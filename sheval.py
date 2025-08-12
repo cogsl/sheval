@@ -7,6 +7,20 @@ import csv
 from src.runners import *
 import logging
 
+SHACL_RUNNERS = [
+    SHACLRunner("shacl_tq", shacl_tq_bin, shacl_tq_cmd, shacl_tq),
+    SHACLRunner("shacl_s", shacl_s_bin, shacl_s_cmd, shacl_s),
+    SHACLRunner("jena_shacl", jena_shacl_bin, jena_shacl_cmd, jena_shacl),
+    SHACLRunner("pyshacl", pyshacl_bin, pyshacl_cmd, pyshacl),
+    SHACLRunner("rudof", rudof_bin, rudof_shacl_cmd, rudof_shacl)
+]
+
+SHEX_RUNNERS = [
+    ShExRunner("rudof", rudof_bin, rudof_shex_cmd, rudof_shex),
+    ShExRunner("shex_s", shex_s_bin, shex_s_cmd, shex_s),
+    ShExRunner("jena_shex", jena_shex_bin, jena_shex_cmd, jena_shex),
+]
+
 COLORS = {
     'DEBUG': '\033[36m',    # Cyan
     'INFO': '\033[32m',     # Green
@@ -73,7 +87,7 @@ def save_results_csv(results, output, include_description):
         file.close()
         logging.info(f"Results saved to CSV {output_file}")
 
-def run_shacl(results, test, manifest, name, description, results_folder, temp, technology, data_graph, nodes, shapes, pairs, prefix, include_message, include_descr):
+def run_shacl_test(results, test, manifest, name, description, results_folder, temp, technology, data_graph, nodes, shapes, pairs, prefix, include_message, include_descr):
     logging.debug(f"Running SHACL for {name}")
     shapes_graph = os.path.join(manifest['shacl_folder'], test['shapes_graph'])
     merged_filename = os.path.join(temp, test['name'] + ".ttl")
@@ -103,23 +117,41 @@ def run_shacl(results, test, manifest, name, description, results_folder, temp, 
             include_message=include_message,
             include_descr=include_descr
         )
-        match technology:
-            case "shacl_tq":
-                shacl_tq(shacl_params, results)
-            case "jena_shacl":
-                jena_shacl(shacl_params, results)
-            case "shacl_s":
-                shacl_s(shacl_params, results)
-            case "pyshacl":
-                pyshacl(shacl_params, results)
-            case "rudof":
-                rudof_shacl(shacl_params, results)
-            case _:
-                print(f"Unknown technology: {technology}")
-                exit(1)
+        runner = find_shacl_runner(technology)
+        if runner:
+            runner.run(shacl_params, results)
+        else:
+            print(f"Unknown technology: {technology}")
+            exit(1)
     return
 
-def run_shex(results, test, manifest, name, description, results_folder, temp, technology, nodes, shapes, pairs, prefix, include_message, include_descr):
+def run_shex(args, unknown_args) -> None:
+    if unknown_args:
+        print(f"Unknown arguments for ShEx: {unknown_args}")
+        return
+    runner = find_shex_runner(args.technology)
+    if runner:
+        command = mk_command_shex(runner.command_pattern, args.data, args.schema, args.shapemap, args.output)
+        run(command, args.output, 5)
+    else:
+        print(f"Unknown technology: {args.technology}")
+        return
+    return
+
+def run_shacl(args, unknown_args) -> None:
+    if unknown_args:
+        print(f"Unknown arguments for SHACL: {unknown_args}")
+        return
+    runner = find_shacl_runner(args.technology)
+    if runner:
+        command = mk_command_shacl(runner.command_pattern, args.data, args.shapes, args.output)
+        run(command, args.output, 5)
+    else:
+        print(f"Unknown technology: {args.technology}")
+        return
+    return
+
+def run_shex_test(results, test, manifest, name, description, results_folder, temp, technology, nodes, shapes, pairs, prefix, include_message, include_descr):
     logging.debug(f"Running Shex for {name}")
     data_file = os.path.join(manifest['rdf_folder'], test['data_graph'])
     shex_file = os.path.join(manifest['shex_folder'], test['shex_file'] )
@@ -149,17 +181,19 @@ def run_shex(results, test, manifest, name, description, results_folder, temp, t
             include_message=include_message,
             include_descr=include_descr
         )
-        match technology:
-            case "shex_s":
-                shex_s(shex_params, results)
-            case "jena_shex":
-                jena_shex(shex_params, results)
-            case "rudof":
-                rudof_shex(shex_params, results)
-            case _:
-                print(f"Unknown technology: {technology}")
-                exit(1)
+        runner = find_shex_runner(technology)
+        if runner:
+            runner.run(shex_params, results)
+        else:
+            print(f"Unknown technology: {technology}")
+            exit(1)
     return
+
+def find_shex_runner(name: str) -> ShExRunner:
+    for runner in SHEX_RUNNERS:
+        if runner.name == name:
+            return runner
+    return None
 
 def get_list(name, dict):
     if name in dict:
@@ -194,9 +228,9 @@ def run_test(results, test, args, results_folder, manifest) -> None:
             pairs = enrich_pairs_with_iris(pairs,prefix)
             match engine:
                 case "shacl":
-                    run_shacl(results, test, manifest, name, description, results_folder, args.temp, args.technology, data_graph, nodes, shapes, pairs, prefix, args.include_message, args.include_description)
+                    run_shacl_test(results, test, manifest, name, description, results_folder, args.temp, args.technology, data_graph, nodes, shapes, pairs, prefix, args.include_message, args.include_description)
                 case "shex":
-                    run_shex(results, test, manifest, name, description, results_folder, args.temp, args.technology, nodes, shapes, pairs, prefix, args.include_message, args.include_description)
+                    run_shex_test(results, test, manifest, name, description, results_folder, args.temp, args.technology, nodes, shapes, pairs, prefix, args.include_message, args.include_description)
     return
 
 def load_manifest(manifest_path):
@@ -214,7 +248,7 @@ def run_tests(args, unknown_args):
     manifest = load_manifest(args.manifest)
 
     shacl_folder = manifest['shacl_folder']
-    shex_folder = manifest['shex_folder']
+    # shex_folder = manifest['shex_folder']
     results_folder = manifest['results_folder']
 
     # Check if the results folder exists or create it
@@ -244,6 +278,13 @@ def run_tests(args, unknown_args):
                 logging.warning(f"Unknown format {format}. Supported formats are [yaml, csv]")
     return
 
+def find_shacl_runner(name: str) -> SHACLRunner:
+    for runner in SHACL_RUNNERS:
+        if runner.name == name:
+            return runner
+    logging.warning(f"SHACL runner {name} not found")
+    return None
+
 def find_binary(technology: str) -> str: 
     match technology:
         case "shacl_tq": return shacl_tq_bin
@@ -256,11 +297,14 @@ def find_binary(technology: str) -> str:
             print(f"Technology {technology} not found")
             exit(1)
     
+""" Runs the binary of some technology"""
 def run_check(args, unknown_args):
     setup_logging(args.logging)
     binary = find_binary(args.technology)
     run_args([binary] + unknown_args)
     return
+
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -269,7 +313,9 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     subparsers = parser.add_subparsers(help='subcommand help')
     parser_test = subparsers.add_parser("test", help='Run tests')
-    parser_check = subparsers.add_parser('check', help='Check some technology')
+    parser_shacl = subparsers.add_parser('shacl', help='Run SHACL with some technology')
+    parser_shex = subparsers.add_parser('shex', help='Run ShEx with some technology')
+    parser_check = subparsers.add_parser('check', help='Run checks with some technology')
 
     parser_test.add_argument("-l", 
        "--logging", 
@@ -328,19 +374,41 @@ def main():
     )
     parser_test.set_defaults(func=run_tests)
 
-    parser_check.add_argument(
+    parser_shex.add_argument(
         "-t", 
         "--technology", 
         help="Technology (can be jena, rudof, shacl_tq,...)", 
         default = None, 
         action="store")
-    parser_check.add_argument("-l", 
+    parser_shex.add_argument("-d", "--data", help="Data file", default = None, action="store")
+    parser_shex.add_argument("-s", "--schema", help="Schema file", default = None, action="store")
+    parser_shex.add_argument("-m", "--shapemap", help="Shape map file", default = None, action="store")
+    parser_shex.add_argument("-o", "--output", help="Output file", default = None, action="store")
+    parser_shex.add_argument("-l", 
        "--logging", 
        default = "warning", 
        action="store", 
        help="Logging level: [debug, info, warning]"
     )
-    parser_check.set_defaults(func=run_check)
+    parser_shex.set_defaults(func=run_shex)
+
+    parser_shacl.add_argument(
+        "-t", 
+        "--technology", 
+        help="Technology (can be jena, rudof, shacl_tq,...)", 
+        default = None, 
+        action="store")
+    parser_shacl.add_argument("-d", "--data", help="Data file", default = None, action="store")
+    parser_shacl.add_argument("-s", "--shapes", help="Shapes graph file", default = None, action="store")
+    parser_shacl.add_argument("--target", help="Target declarations file", default = None, action="store")
+    parser_shacl.add_argument("-l", 
+       "--logging", 
+       default = "warning", 
+       action="store", 
+       help="Logging level: [debug, info, warning]"
+    )
+    parser_shacl.set_defaults(func=run_check)
+
     args, unknown = parser.parse_known_args()
     args.func(args, unknown)
 
