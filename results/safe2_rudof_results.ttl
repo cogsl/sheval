@@ -1,28 +1,28 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-_:1 sh:result _:2 , _:3 , _:4 , _:5 ;
-	a sh:ValidationReport ;
-	sh:conforms false .
-_:2 sh:resultSeverity sh:Violation ;
-	sh:sourceShape <http://example.org/S> ;
-	sh:focusNode <http://example.org/c> ;
-	sh:sourceConstraintComponent sh:not ;
+_:1 a sh:ValidationReport ;
+	sh:conforms false ;
+	sh:result _:2 , _:3 , _:4 , _:5 .
+_:2 sh:resultMessage "No message" ;
 	a sh:ValidationResult ;
-	sh:resultMessage "No message" .
-_:3 sh:resultSeverity sh:Violation ;
-	sh:sourceShape <http://example.org/S> ;
+	sh:sourceConstraintComponent sh:not ;
+	sh:resultSeverity sh:Violation ;
 	sh:focusNode <http://example.org/b> ;
-	sh:sourceConstraintComponent sh:not ;
+	sh:sourceShape <http://example.org/S> .
+_:3 sh:resultMessage "No message" ;
 	a sh:ValidationResult ;
-	sh:resultMessage "No message" .
-_:4 sh:resultSeverity sh:Violation ;
-	sh:sourceShape <http://example.org/S> ;
+	sh:sourceConstraintComponent sh:not ;
+	sh:resultSeverity sh:Violation ;
+	sh:focusNode <http://example.org/c> ;
+	sh:sourceShape <http://example.org/S> .
+_:4 sh:resultMessage "No message" ;
+	a sh:ValidationResult ;
+	sh:sourceConstraintComponent sh:not ;
+	sh:resultSeverity sh:Violation ;
 	sh:focusNode <http://example.org/a> ;
-	sh:sourceConstraintComponent sh:not ;
+	sh:sourceShape <http://example.org/S> .
+_:5 sh:resultMessage "No message" ;
 	a sh:ValidationResult ;
-	sh:resultMessage "No message" .
-_:5 sh:resultSeverity sh:Violation ;
-	sh:sourceShape <http://example.org/S> ;
+	sh:sourceConstraintComponent sh:not ;
+	sh:resultSeverity sh:Violation ;
 	sh:focusNode <http://example.org/d> ;
-	sh:sourceConstraintComponent sh:not ;
-	a sh:ValidationResult ;
-	sh:resultMessage "No message" .
+	sh:sourceShape <http://example.org/S> .

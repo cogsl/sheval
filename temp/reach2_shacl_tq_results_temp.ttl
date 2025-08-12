@@ -13,7 +13,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   sh:conforms  false;
   sh:result    [ rdf:type                      sh:ValidationResult;
                  sh:focusNode                  :a;
-                 sh:resultMessage              "Value has shape _:1d0fa9a785923eea905190d67ba97875";
+                 sh:resultMessage              "Value has shape _:3a003e8411247d315171687014c214e2";
                  sh:resultSeverity             sh:Violation;
                  sh:sourceConstraintComponent  sh:NotConstraintComponent;
                  sh:sourceShape                :S;

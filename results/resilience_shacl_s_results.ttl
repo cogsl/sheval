@@ -3,47 +3,19 @@
 [ a            sh:ValidationReport ;
   sh:conforms  false ;
   sh:result    [ a                             sh:ValidationResult ;
-                 sh:focusNode                  <http://example.org/c> ;
-                 sh:resultMessage              "Not failed because <http://example.org/c> has shape RefNode(<http://example.org/S>) and it should not have" ;
-                 sh:resultSeverity             sh:Violation ;
-                 sh:sourceConstraintComponent  sh:notShape ;
-                 sh:sourceShape                <http://example.org/S1>
-               ] ;
-  sh:result    [ a                             sh:ValidationResult ;
-                 sh:focusNode                  <http://example.org/c> ;
-                 sh:resultMessage              "qualified shape error. Expected <http://example.org/c> to satisfy qualifiedValueShape. Value = 0, min: 1, max: -" ;
-                 sh:resultPath                 <http://example.org/p> ;
-                 sh:resultSeverity             sh:Violation ;
-                 sh:sourceConstraintComponent  sh:QualifiedShapeConstraintComponent ;
-                 sh:sourceShape                _:b0
-               ] ;
-  sh:result    [ a                             sh:ValidationResult ;
-                 sh:focusNode                  <http://example.org/b> ;
-                 sh:resultMessage              "<http://example.org/b> does not have nodeShape http://example.org/S because some shapes failed." ;
-                 sh:resultSeverity             sh:Info ;
-                 sh:sourceConstraintComponent  sh:ShapesFailed ;
-                 sh:sourceShape                <http://example.org/S>
-               ] ;
-  sh:result    [ a                             sh:ValidationResult ;
-                 sh:focusNode                  <http://example.org/b> ;
-                 sh:resultMessage              "<http://example.org/b> does not have nodeShape http://example.org/S1 because some shapes failed." ;
-                 sh:resultSeverity             sh:Info ;
-                 sh:sourceConstraintComponent  sh:ShapesFailed ;
-                 sh:sourceShape                <http://example.org/S1>
-               ] ;
-  sh:result    [ a                             sh:ValidationResult ;
-                 sh:focusNode                  <http://example.org/c> ;
-                 sh:resultMessage              "<http://example.org/c> does not have nodeShape http://example.org/S1 because some shapes failed." ;
-                 sh:resultSeverity             sh:Info ;
-                 sh:sourceConstraintComponent  sh:ShapesFailed ;
-                 sh:sourceShape                <http://example.org/S1>
-               ] ;
-  sh:result    [ a                             sh:ValidationResult ;
                  sh:focusNode                  <http://example.org/b> ;
                  sh:resultMessage              "Property shape failed" ;
                  sh:resultPath                 <http://example.org/p> ;
                  sh:resultSeverity             sh:Info ;
                  sh:sourceConstraintComponent  sh:ShapesFailed ;
+                 sh:sourceShape                _:b0
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/b> ;
+                 sh:resultMessage              "qualified shape error. Expected <http://example.org/b> to satisfy qualifiedValueShape. Value = 0, min: 1, max: -" ;
+                 sh:resultPath                 <http://example.org/p> ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:QualifiedShapeConstraintComponent ;
                  sh:sourceShape                _:b0
                ] ;
   sh:result    [ a                             sh:ValidationResult ;
@@ -61,6 +33,13 @@
                  sh:sourceShape                <http://example.org/S>
                ] ;
   sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/b> ;
+                 sh:resultMessage              "<http://example.org/b> does not have nodeShape http://example.org/S1 because some shapes failed." ;
+                 sh:resultSeverity             sh:Info ;
+                 sh:sourceConstraintComponent  sh:ShapesFailed ;
+                 sh:sourceShape                <http://example.org/S1>
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
                  sh:focusNode                  <http://example.org/c> ;
                  sh:resultMessage              "Property shape failed" ;
                  sh:resultPath                 <http://example.org/p> ;
@@ -70,10 +49,31 @@
                ] ;
   sh:result    [ a                             sh:ValidationResult ;
                  sh:focusNode                  <http://example.org/b> ;
-                 sh:resultMessage              "qualified shape error. Expected <http://example.org/b> to satisfy qualifiedValueShape. Value = 0, min: 1, max: -" ;
+                 sh:resultMessage              "<http://example.org/b> does not have nodeShape http://example.org/S because some shapes failed." ;
+                 sh:resultSeverity             sh:Info ;
+                 sh:sourceConstraintComponent  sh:ShapesFailed ;
+                 sh:sourceShape                <http://example.org/S>
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/c> ;
+                 sh:resultMessage              "qualified shape error. Expected <http://example.org/c> to satisfy qualifiedValueShape. Value = 0, min: 1, max: -" ;
                  sh:resultPath                 <http://example.org/p> ;
                  sh:resultSeverity             sh:Violation ;
                  sh:sourceConstraintComponent  sh:QualifiedShapeConstraintComponent ;
                  sh:sourceShape                _:b0
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/c> ;
+                 sh:resultMessage              "<http://example.org/c> does not have nodeShape http://example.org/S1 because some shapes failed." ;
+                 sh:resultSeverity             sh:Info ;
+                 sh:sourceConstraintComponent  sh:ShapesFailed ;
+                 sh:sourceShape                <http://example.org/S1>
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <http://example.org/c> ;
+                 sh:resultMessage              "Not failed because <http://example.org/c> has shape RefNode(<http://example.org/S>) and it should not have" ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:notShape ;
+                 sh:sourceShape                <http://example.org/S1>
                ]
 ] .

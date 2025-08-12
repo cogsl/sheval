@@ -1,73 +1,73 @@
-ShaclProcessor.validate with shape <http://example.org/R>
-Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
-NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
 ShaclProcessor.validate with shape <http://example.org/S>
 Shape.validate with shape <http://example.org/S> and source shape: <http://example.org/S>
 NativeEngine, evaluate with shape <http://example.org/S>
-Shape.validate with shape _:a5c466b102ff06c9ef02f5bddec264ce and source shape: _:a5c466b102ff06c9ef02f5bddec264ce
-NativeEngine, evaluate with shape _:a5c466b102ff06c9ef02f5bddec264ce
+Shape.validate with shape _:b742906eb2d518a27035c8a1af975509 and source shape: _:b742906eb2d518a27035c8a1af975509
+NativeEngine, evaluate with shape _:b742906eb2d518a27035c8a1af975509
 Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
 NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:a5c466b102ff06c9ef02f5bddec264ce and source shape: _:a5c466b102ff06c9ef02f5bddec264ce
-NativeEngine, evaluate with shape _:a5c466b102ff06c9ef02f5bddec264ce
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b742906eb2d518a27035c8a1af975509 and source shape: _:b742906eb2d518a27035c8a1af975509
+NativeEngine, evaluate with shape _:b742906eb2d518a27035c8a1af975509
 Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
 NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:a5c466b102ff06c9ef02f5bddec264ce and source shape: _:a5c466b102ff06c9ef02f5bddec264ce
-NativeEngine, evaluate with shape _:a5c466b102ff06c9ef02f5bddec264ce
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b742906eb2d518a27035c8a1af975509 and source shape: _:b742906eb2d518a27035c8a1af975509
+NativeEngine, evaluate with shape _:b742906eb2d518a27035c8a1af975509
 Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
 NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:a5c466b102ff06c9ef02f5bddec264ce and source shape: _:a5c466b102ff06c9ef02f5bddec264ce
-NativeEngine, evaluate with shape _:a5c466b102ff06c9ef02f5bddec264ce
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:b742906eb2d518a27035c8a1af975509 and source shape: _:b742906eb2d518a27035c8a1af975509
+NativeEngine, evaluate with shape _:b742906eb2d518a27035c8a1af975509
 Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
 NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
 NativeEngine, evaluate with shape <http://example.org/S>
 Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
 NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
 Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
 NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
 Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
 NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
 Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
 NativeEngine, evaluate with shape <http://example.org/R>
-Shape.validate with shape _:e50d4c0e2769d8b63dbc38d65922db4 and source shape: _:e50d4c0e2769d8b63dbc38d65922db4
-NativeEngine, evaluate with shape _:e50d4c0e2769d8b63dbc38d65922db4
-Shape.validate with shape _:b240624be86e3f272dbe2d2ee3cc28cd and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
-Shape.validate with shape _:f651e7838de9bd8a5391672c70b3c4b9 and source shape: _:b240624be86e3f272dbe2d2ee3cc28cd
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+ShaclProcessor.validate with shape <http://example.org/R>
+Shape.validate with shape <http://example.org/R> and source shape: <http://example.org/R>
+NativeEngine, evaluate with shape <http://example.org/R>
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f
+Shape.validate with shape _:bed1b5821af55c62bfc124bb092796f2 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:b92980284aa8ede725c0685a30879232 and source shape: _:bed1b5821af55c62bfc124bb092796f2
+Shape.validate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f and source shape: _:bc95b8991bc0b6fb7a2d4f793b040e7f
+NativeEngine, evaluate with shape _:bc95b8991bc0b6fb7a2d4f793b040e7f

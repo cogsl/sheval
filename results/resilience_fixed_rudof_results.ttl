@@ -1,16 +1,16 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-_:1 sh:result _:2 , _:3 ;
+_:1 sh:conforms false ;
 	a sh:ValidationReport ;
-	sh:conforms false .
-_:2 sh:sourceShape <http://example.org/S1> ;
-	sh:resultMessage "No message" ;
+	sh:result _:2 , _:3 .
+_:2 sh:focusNode <http://example.org/b> ;
 	a sh:ValidationResult ;
-	sh:resultSeverity sh:Violation ;
-	sh:sourceConstraintComponent sh:not ;
-	sh:focusNode <http://example.org/c> .
-_:3 sh:sourceShape <http://example.org/S1> ;
 	sh:resultMessage "No message" ;
-	a sh:ValidationResult ;
-	sh:resultSeverity sh:Violation ;
 	sh:sourceConstraintComponent sh:not ;
-	sh:focusNode <http://example.org/b> .
+	sh:sourceShape <http://example.org/S1> ;
+	sh:resultSeverity sh:Violation .
+_:3 sh:focusNode <http://example.org/c> ;
+	a sh:ValidationResult ;
+	sh:resultMessage "No message" ;
+	sh:sourceConstraintComponent sh:not ;
+	sh:sourceShape <http://example.org/S1> ;
+	sh:resultSeverity sh:Violation .

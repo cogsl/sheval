@@ -1,3 +1,3 @@
 ShaclProcessor.validate with shape <http://example.org/S>
 Shape.validate with shape <http://example.org/S> and source shape: <http://example.org/S>
-Shape.validate with shape _:fa7202380f084a475a0450fd09d60fbe and source shape: <http://example.org/S>
+Shape.validate with shape _:e632c94f9531e16590cfd9b8cf3cf519 and source shape: <http://example.org/S>
