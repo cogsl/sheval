@@ -44,19 +44,24 @@ docker run --rm --mount type=bind,src=.,dst=/app -it sheval test -o docker_outpu
 
 ### SHACL
 
-- shacl_tq: [SHACL_TQ](https://github.com/TopQuadrant/shacl): SHACL implementation in Java. Download the release 1.4.4 [available here](https://github.com/TopQuadrant/shacl/releases/tag/v1.4.4). Once installed, it can be run with `shaclvalidate.sh`
-- shaclex: [SHACLEX](https://github.com/weso/shaclex): SHACL implementation in Scala. Compiled the latest version available in the github repo. It can be run with `shaclex` selecting `SHACLEX` as engine.
-- jena: [Jena SHACL](https://jena.apache.org/documentation/shacl/). SHACL implementation in Java. It can be run with `shacl`
-- pyshacl: [PySHACL](https://github.com/RDFLib/pySHACL)
+- shacl_tq: [SHACL_TQ](https://github.com/TopQuadrant/shacl): SHACL implementation in Java. 
+- jena: [Jena SHACL](https://jena.apache.org/documentation/shacl/). SHACL implementation in Java. 
+- pyshacl: [PySHACL](https://github.com/RDFLib/pySHACL), SHACL implementation in Python.
+- shacl-s: [SHACLEX](https://github.com/weso/shacl-s): SHACL implementation in Scala. 
+- rudof: [rudof](https://rudof-project.github.io/), SHACL implementation in Rust. 
 
 ### ShEx
 
-- [SHACLEX](https://github.com/weso/shaclex): ShEx implementation in Scala. Compiled the latest version available in the github repo. It can be run with `shaclex` and selecting `SHEX` as an engine.
+- [shex-s](https://github.com/weso/shex-s): ShEx implementation in Scala. 
+- rudof: [rudof](https://rudof-project.github.io/), SHACL implementation in Rust. 
 
 ### Pending implementations
 
+Other implementations that we are planning to add in the future: 
 - [RDF4j SHACL](https://rdf4j.org/documentation/programming/shacl/)
 - [Shawell](https://github.com/cem-okulmus/shawell)
+- [shex-js](https://github.com/shexjs/shex.js/)
+- [maplib](https://github.com/DataTreehouse/maplib)
 
 ## Running the experiments
 
