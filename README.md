@@ -44,16 +44,17 @@ docker run --rm --mount type=bind,src=.,dst=/app -it sheval test -o docker_outpu
 
 ### SHACL
 
-- shacl_tq: [SHACL_TQ](https://github.com/TopQuadrant/shacl): SHACL implementation in Java. 
-- jena: [Jena SHACL](https://jena.apache.org/documentation/shacl/). SHACL implementation in Java. 
-- pyshacl: [PySHACL](https://github.com/RDFLib/pySHACL), SHACL implementation in Python.
-- shacl-s: [SHACLEX](https://github.com/weso/shacl-s): SHACL implementation in Scala. 
-- rudof: [rudof](https://rudof-project.github.io/), SHACL implementation in Rust. 
+- [Topbraid SHACL API](https://github.com/TopQuadrant/shacl): SHACL implementation in Java from TopBraid.
+- [Jena SHACL](https://jena.apache.org/documentation/shacl/). SHACL implementation in Java. 
+- [pySHACL](https://github.com/RDFLib/pySHACL), SHACL implementation in Python.
+- [SHACL-S](https://github.com/weso/shacl-s): SHACL implementation in Scala. 
+- [rudof](https://rudof-project.github.io/), SHACL implementation in Rust. 
 
 ### ShEx
 
-- [shex-s](https://github.com/weso/shex-s): ShEx implementation in Scala. 
-- rudof: [rudof](https://rudof-project.github.io/), SHACL implementation in Rust. 
+- [shex-s](https://github.com/weso/shex-s): ShEx implementation in Scala.
+- [Jena ShEx](https://jena.apache.org/documentation/shex/): ShEx implementation in Java
+- [rudof](https://rudof-project.github.io/), SHACL implementation in Rust. 
 
 ### Pending implementations
 
