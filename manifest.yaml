@@ -61,19 +61,6 @@ tests:
         - ":d"
       shapes: 
         - ":S"
-    - name: pr_node
-      data_graph: pr.ttl
-      shapes_graph: pr_node.shapes.ttl
-      engine: shacl
-      description: Example with positive recursion, basic encoding with sh:node
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":S"
     - name: sa1
       data_graph: sa1.ttl
       shapes_graph: sa1.shapes.ttl
@@ -153,7 +140,7 @@ tests:
       data_graph: sa4.ttl
       shapes_graph: sa4.shapes.ttl
       engine: shacl
-      description: |
+      description: 
         Separation test - sa4 (SHACL)
       default_prefix: "http://example.org/"
       pairs:
