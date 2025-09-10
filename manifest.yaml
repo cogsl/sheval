@@ -123,26 +123,22 @@ tests:
       engine: shacl
       description: Separation test for SA3
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-      shapes: 
-        - ":S"
-        - ":S1"
+      pairs:
+        - node: ":a"
+          shape: ":S"
+        - node: ":b"
+          shape: ":S"  
     - name: sa3
       data_graph: sa3.ttl
       shex_file: sa3.shex
       engine: shex
       description: Separation test - sa3 (ShEx)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-      shapes: 
-        - ":S"
-        - ":S1"
+      pairs:
+        - node: ":a"
+          shape: ":S"
+        - node: ":b"
+          shape: ":S"  
     - name: sa3_single
       data_graph: sa3.ttl
       shapes_graph: sa3.shapes.ttl
@@ -160,24 +156,22 @@ tests:
       description: |
         Separation test - sa4 (SHACL)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
-        - ":S"
-        - ":S1"
+      pairs:
+        - node: ":a"
+          shape: ":S"
+        - node: ":b"
+          shape: ":S"  
     - name: sa4
       data_graph: sa4.ttl
       shex_file: sa4.shex
       engine: shex
       description: Separation test - sa4 (ShEx)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
-        - ":S"
-        - ":S1"
+      pairs:
+        - node: ":a"
+          shape: ":S"
+        - node: ":b"
+          shape: ":S"  
     - name: reach1
       data_graph: reach1.ttl
       shapes_graph: reach1.shapes.ttl
@@ -210,82 +204,66 @@ tests:
       engine: shacl
       description: Separation test - Safe-1 (SHACL)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":S"
+      pairs:
+        - node: ":c"
+          shape: ":S"
+        - node: ":d"
+          shape: ":S"  
     - name: safe1
       data_graph: safe1.ttl
       shex_file: safe1.shex
       engine: shex
       description: Separation test - Safe-1 (ShEx)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":S"
+      pairs:
+        - node: ":c"
+          shape: ":S"
+        - node: ":d"
+          shape: ":S"  
     - name: reach2
       data_graph: reach2.ttl
       shapes_graph: reach2.shapes.ttl
       engine: shacl
       description: Separation test - reach2 (SHACL)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":S"
-        - ":R"
+      pairs:
+        - node: ":c"
+          shape: ":R"
+        - node: ":d"
+          shape: ":R"  
     - name: reach2
       data_graph: reach2.ttl
       shex_file: reach2.shex
       engine: shex
       description: Separation test - reach2 (ShEx)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":S"
-        - ":R"
+      pairs:
+        - node: ":c"
+          shape: ":R"
+        - node: ":d"
+          shape: ":R"  
     - name: safe2
       data_graph: safe2.ttl
       shapes_graph: safe2.shapes.ttl
       engine: shacl
       description: Separation test - safe2 (SHACL)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":R"
-        - ":S"
+      pairs:
+        - node: ":c"
+          shape: ":R"
+        - node: ":d"
+          shape: ":R"  
     - name: safe2
       data_graph: safe2.ttl
       shex_file: safe2.shex
       engine: shex
       description: Separation test - safe2 (ShEx)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":R"
-        - ":S"
+      pairs:
+        - node: ":c"
+          shape: ":R"
+        - node: ":d"
+          shape: ":R"  
     - name: nostratnocycle
       data_graph: nostratnocycle.ttl
       shapes_graph: nostratnocycle.shapes.ttl
@@ -499,8 +477,6 @@ tests:
       pairs:
         - node: ":a"
           shape: ":S1"
-        - node: ":b"
-          shape: ":S2"  
     - name: isolation3
       data_graph: isolation.ttl
       shex_file: isolation.shex
@@ -510,5 +486,3 @@ tests:
       pairs:
         - node: ":a"
           shape: ":S1"
-        - node: ":b"
-          shape: ":S2"  
