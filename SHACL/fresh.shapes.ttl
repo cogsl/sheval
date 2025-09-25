@@ -1,0 +1,5 @@
+prefix :       <http://example.org/> 
+prefix sh:     <http://www.w3.org/ns/shacl#> 
+
+# Trivially Satisfied Shape
+:S a sh:NodeShape .

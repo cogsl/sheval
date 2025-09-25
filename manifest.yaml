@@ -473,3 +473,21 @@ tests:
       pairs:
         - node: ":a"
           shape: ":S1"
+    - name: fresh
+      data_graph: fresh.ttl
+      shapes_graph: fresh.shapes.ttl
+      engine: shacl
+      description: Fresh Constant Support
+      default_prefix: "http://example.org/"
+      pairs:
+        - node: ":d"
+          shape: ":S"
+    - name: fresh
+      data_graph: fresh.ttl
+      shex_file: fresh.shex
+      engine: shex
+      description: Fresh Constant Support
+      default_prefix: "http://example.org/"
+      pairs:
+        - node: ":d"
+          shape: ":S"
