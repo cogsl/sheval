@@ -1,7 +1,0 @@
-ShaclProcessor.validate with shape <http://example.org/S2>
-Shape.validate with shape <http://example.org/S2> and source shape: <http://example.org/S2>
-<<<<<<< HEAD
-Shape.validate with shape _:c008c21691c797118a28ba77d7e348a4 and source shape: <http://example.org/S2>
-=======
-Shape.validate with shape _:a5964b911116f306cdc145b12ff8e1ed and source shape: <http://example.org/S2>
->>>>>>> ed1719870340f721c775f0099538882619e6c9df
