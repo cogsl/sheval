@@ -1,0 +1,37 @@
+rdf_folder: RDF
+shacl_folder: SHACL
+shacl_technologies: 
+  - pyshacl
+  - shacl_s
+  - jena_shacl
+  - shacl_tq
+  - rudof
+shex_technologies: 
+  - shex_s
+  - jena_shex
+  - rudof
+shex_folder: ShEx
+results_folder: results
+tests:
+    - name: example21
+      data_graph: example21.ttl
+      shapes_graph: example21.shapes.ttl
+      engine: shacl
+      description: Example 2.1 from paper in SHACL
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: example21
+      data_graph: example21.ttl
+      shex_file: example21.shex
+      engine: shex
+      description: Example 2.1 from paper in ShEx
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"

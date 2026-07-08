@@ -4,7 +4,7 @@ import sys
 import argparse
 import yaml
 import csv
-from src.runners import *
+from runners import *
 import logging
 
 SHACL_RUNNERS = [
@@ -233,10 +233,13 @@ def run_test(results, test, args, results_folder, manifest) -> None:
                     run_shex_test(results, test, manifest, name, description, results_folder, args.temp, args.technology, nodes, shapes, pairs, prefix, args.include_message, args.include_description)
     return
 
-def load_manifest(manifest_path):
+def load_manifest(manifest_path, test_suite_dir):
     with open(manifest_path, 'r') as file:
         manifest = yaml.safe_load(file)
         logging.debug(f"Manifest loaded: {len(manifest['tests'])} tests")
+        for folder_key in ('rdf_folder', 'shacl_folder', 'shex_folder'):
+            if folder_key in manifest:
+                manifest[folder_key] = os.path.join(test_suite_dir, manifest[folder_key])
         return manifest
 
 def run_tests(args, unknown_args):
@@ -245,7 +248,12 @@ def run_tests(args, unknown_args):
         print(f"Unknown args: {unknown_args}")
         exit(1)
     logging.info(f"Running tests with the following parameters: {args}")
-    manifest = load_manifest(args.manifest)
+    test_suite_dir = os.path.join("test_suites", args.test_suite)
+    if not os.path.exists(test_suite_dir):
+        print(f"Test suite folder {test_suite_dir} does not exist")
+        exit(1)
+    manifest_path = args.manifest if args.manifest is not None else os.path.join(test_suite_dir, "manifest.yaml")
+    manifest = load_manifest(manifest_path, test_suite_dir)
 
     shacl_folder = manifest['shacl_folder']
     # shex_folder = manifest['shex_folder']
@@ -307,15 +315,34 @@ def run_check(args, unknown_args):
 
 
 def main():
+    test_suites_dir = "test_suites"
+    available_test_suites = []
+    if os.path.isdir(test_suites_dir):
+        available_test_suites = sorted(
+            entry for entry in os.listdir(test_suites_dir)
+            if os.path.isdir(os.path.join(test_suites_dir, entry))
+        )
+
     parser = argparse.ArgumentParser(
         prog = "sheval",
-        description="Execute Recursion Shapes experiments",
+        description="Execute Shape Evaluation experiments with different ShEx/SHACL Engines",
+        epilog=(
+            "Available test suites (select with 'sheval test -s <test-suite>', "
+            f"default: recursive_shapes): {', '.join(available_test_suites) or 'none found'}. "
+            "Run 'sheval test --help' for all test options."
+        ),
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     subparsers = parser.add_subparsers(help='subcommand help')
-    parser_test = subparsers.add_parser("test", help='Run tests')
-    parser_shacl = subparsers.add_parser('shacl', help='Run SHACL with some technology')
-    parser_shex = subparsers.add_parser('shex', help='Run ShEx with some technology')
-    parser_check = subparsers.add_parser('check', help='Run checks with some technology')
+    parser_test = subparsers.add_parser(
+        "test",
+        help="Run tests (use -s/--test-suite to select a test suite)",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser_shacl = subparsers.add_parser('shacl', help='Run SHACL with some technology',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser_shex = subparsers.add_parser('shex', help='Run ShEx with some technology',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser_check = subparsers.add_parser('check', help='Run checks with some technology',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser_test.add_argument("-l", 
        "--logging", 
@@ -353,9 +380,16 @@ def main():
         action="store"
     )
     parser_test.add_argument(
-        "-m", "--manifest", 
-        help="Manifest file (in YAML format)", 
-        default = "manifest.yaml", 
+        "-s",
+        "--test-suite",
+        help="Name of the test suite (folder under test_suites)",
+        default = "recursive_shapes",
+        action="store"
+    )
+    parser_test.add_argument(
+        "-m", "--manifest",
+        help="Manifest file (in YAML format). Defaults to test_suites/<test-suite>/manifest.yaml",
+        default = None,
         action="store"
     )
     parser_test.add_argument("-o", 

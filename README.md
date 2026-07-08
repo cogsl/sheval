@@ -4,7 +4,12 @@ This repo contains code to compare different SHACL and ShEx engines.
 
 The code can be used to compare results of evaluating shapes with different graphs and target declarations or shape maps. 
 
-More concretely, the code has been used to compare how different implementations of SHACL and ShEx behave with recursive shapes.
+The code has been written in a generic way allowing to add new engines and test cases easily. At this moment, sheval contains one test-suite with recursive shapes, but more test-suites can be added in the future. 
+
+The recursive shapes test-suite has been described in this paper:
+[Common Foundations for Recursive Shape Languages](https://labra.weso.es/publication/2026_foundations_recursive_shapes_languages/), Shqiponja Ahmetaj, Iovka Boneva, Jan Hidders, Jose Emilio Labra Gayo, Wim Martens, Fabio Mogavero, Filip Murlak, Cem Okulmus, Ognjen Savković, Mantas Šimkus, Dominik Tomaszuk, 
+[23rd International Conference on Principles of Knowledge Representation and Reasoning](https://kr.org/KR2026/), 2026.
+
 
 ## Running the code
 
@@ -72,14 +77,24 @@ It is required to have [Python 3](https://www.python.org/downloads/) and [Java](
 
 The binaries for the validators are included in the `bin` folder.
 
+### Test suites
+
+Test cases are organized in test suites. Each test suite lives in its own folder under `test_suites/`, e.g. `test_suites/recursive_shapes`, and contains the `RDF`, `SHACL`, `ShEx`, `ShapeMaps` and `target_declarations` folders together with a `manifest.yaml` describing the test cases.
+
+The `-s`/`--test-suite` option of `src/sheval.py test` selects which folder under `test_suites` to use (it defaults to `recursive_shapes`):
+
+```sh
+python3 src/sheval.py test --test-suite recursive_shapes -f csv -o output.csv
+```
+
 ### Usage
 
-The script `sheval.py` runs all the experiments. It uses a `manifest.yaml` that describes each of the test cases.
+The script `src/sheval.py` runs all the experiments. It uses a `manifest.yaml` that describes each of the test cases. By default it reads `test_suites/<test-suite>/manifest.yaml`, but a different manifest file can be specified with `-m`/`--manifest`.
 
 The default way to run the experiments and generate a CSV fle with the results is:
 
 ```sh
-python3 sheval.py --manifest manifest.yaml -f csv -o output.csv
+python3 src/sheval.py test -f csv -o output.csv
 ```
 
 The contents of `manifest.yaml` declare the experiments that can be run. It consists of a list of configuration entries like:
@@ -120,30 +135,28 @@ For SHACL, the test runner will merge the RDF data graph and the shapes graph an
 For ShEx, the test runner will create a shape map with the corresponding nodes and shapes and run the ShEx validators using it.
 
 ```sh
-usage: sheval.py [-h] [-v] [--debug] [--temp TEMP] [--include-message] [--include-description] [-n NAME] [-e ENGINE] [-t TECHNOLOGY] [-m MANIFEST] [-o OUTPUT]
-                  [-f FORMAT]
-
-Execute Recursion Shapes experiments
+usage: src/sheval.py test [-h] [-l LOGGING] [--temp TEMP] [--include-message] [--include-description] [-n NAME] [-e ENGINE] [-t TECHNOLOGY] [-s TEST_SUITE] [-m MANIFEST] [-o OUTPUT]
+                       [-f [FORMAT ...]]
 
 options:
   -h, --help            show this help message and exit
-  -v, --verbose         increase verbosity (default: 0)
-  --debug               debug info (default: 0)
+  -l, --logging LOGGING
+                        Logging level: [debug, info, warning] (default: warning)
   --temp TEMP           Temporal folder (default: temp)
   --include-message     Include messages in output (default: False)
   --include-description
                         Include descriptions in output (default: False)
-  -n NAME, --name NAME  Name of test (default: None)
-  -e ENGINE, --engine ENGINE
-                        Engine (can be shacl or shex) (default: None)
-  -t TECHNOLOGY, --technology TECHNOLOGY
+  -n, --name NAME       Name of test (default: None)
+  -e, --engine ENGINE   Engine (can be shacl or shex) (default: None)
+  -t, --technology TECHNOLOGY
                         Technology (specific technology like shacl_tq, shaclex, ...) (default: None)
-  -m MANIFEST, --manifest MANIFEST
-                        Manifest file (in YAML format) (default: manifest.yaml)
-  -o OUTPUT, --output OUTPUT
-                        Output file (in YAML format) (default: None)
-  -f FORMAT, --format FORMAT
-                        Output format (yaml or csv) (default: yaml)
+  -s, --test-suite TEST_SUITE
+                        Name of the test suite (folder under test_suites) (default: recursive_shapes)
+  -m, --manifest MANIFEST
+                        Manifest file (in YAML format). Defaults to test_suites/<test-suite>/manifest.yaml (default: None)
+  -o, --output OUTPUT   Output file (in YAML format) (default: None)
+  -f, --format [FORMAT ...]
+                        List of output formats (yaml or csv) (default: ['yaml'])
 ```
 
 It is possible to run all the tests from a manifest or to select the tests of one technology or engine.
@@ -151,13 +164,13 @@ It is possible to run all the tests from a manifest or to select the tests of on
 For example, to run all the tests and generate a YAML output with the results:
 
 ```sh
-python3 sheval.py -f yaml -o output.yaml
+python3 src/sheval.py test -f yaml -o output.yaml
 ```
 
 To run all the tests and generate a CSV output with the results:
 
 ```sh
-python3 sheval.py -f csv -o output.csv
+python3 src/sheval.py test -f csv -o output.csv
 ```
 
 ### Running some specific test
@@ -167,19 +180,19 @@ It is also possible to run a single test by specifying its name.
 For example, to run only the test `consistency1`, you can use:
 
 ```sh
-python3 sheval.py test -f csv -o output.csv -n consistency1
+python3 src/sheval.py test -f csv -o output.csv -n consistency1
 ```
 
 It is also possible to specify one engine, which can be either `shex` or `shacl`:
 
 ```sh
-python3 sheval.py test -f csv -o output.csv -n consistency1 -e shex
+python3 src/sheval.py test -f csv -o output.csv -n consistency1 -e shex
 ```
 
 Or one specific technology, like `pyshacl`, `shaclex`, etc.
 
 ```sh
-python3 sheval.py test -f csv -o output.csv -n consistency1 -e shex -t pyshacl
+python3 src/sheval.py test -f csv -o output.csv -n consistency1 -e shex -t pyshacl
 ```
 
 If you want to see which command is executed, you can add `--logging debug`
@@ -191,7 +204,7 @@ It is possible to run the sheval script to launch different SHACL/ShEx technolog
 As an example, the following command command runs ShEx validation with `rudof`:
 
 ```sh
-python3 sheval.py shex -d RDF/example21.ttl -s ShEx/example21.shex -m ShapeMaps/example21.sm -t rudof -o results/example21.result_shex
+python3 src/sheval.py shex -d test_suites/recursive_shapes/RDF/example21.ttl -s test_suites/recursive_shapes/ShEx/example21.shex -m test_suites/recursive_shapes/ShapeMaps/example21.sm -t rudof -o results/example21.result_shex
 ```
 
 If you replace `-t rudof` by `-t jena_shex` the command will be run using Jena ShEx.
