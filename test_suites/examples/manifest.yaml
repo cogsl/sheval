@@ -13,6 +13,138 @@ shex_technologies:
 shex_folder: ShEx
 results_folder: results
 tests:
+    - name: example1
+      data_graph: example1.ttl
+      shapes_graph: example1.shapes.ttl
+      engine: shacl
+      description: Example 1 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S3"
+    - name: example1
+      data_graph: example1.ttl
+      shex_file: example1.shex
+      engine: shex
+      description: Example 1 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S3"
+    - name: example2
+      data_graph: example2.ttl
+      shapes_graph: example2.shapes.ttl
+      engine: shacl
+      description: Example 2 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: example2
+      data_graph: example2.ttl
+      shex_file: example2.shex
+      engine: shex
+      description: Example 2 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: example3
+      data_graph: example3.ttl
+      shapes_graph: example3.shapes.ttl
+      engine: shacl
+      description: Example 2 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: example3
+      data_graph: example3.ttl
+      shex_file: example3.shex
+      engine: shex
+      description: Example 3 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: example4
+      data_graph: example4.ttl
+      shapes_graph: example4.shapes.ttl
+      engine: shacl
+      description: Example 4 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: example4
+      data_graph: example4.ttl
+      shex_file: example4.shex
+      engine: shex
+      description: Example 4 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: example5
+      data_graph: example5.ttl
+      shex_file: example5.shex
+      engine: shex
+      description: Example 5 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":d"
+      shapes: 
+        - ":S"
+        - ":R"
+    - name: example5
+      data_graph: example5.ttl
+      shapes_graph: example5.shapes.ttl
+      engine: shacl
+      description: Example 5 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":d"
+      shapes: 
+        - ":S"
+        - ":R"
+    - name: example6
+      data_graph: example6.ttl
+      shex_file: example6.shex
+      engine: shex
+      description: Example 6 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":d"
+      shapes: 
+        - ":S"
+    - name: example6
+      data_graph: example6.ttl
+      shapes_graph: example6.shapes.ttl
+      engine: shacl
+      description: Example 6 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":d"
+      shapes: 
+        - ":S"
     - name: example21
       data_graph: example21.ttl
       shapes_graph: example21.shapes.ttl
@@ -35,3 +167,73 @@ tests:
         - ":b"
       shapes: 
         - ":S"
+    - name: pr
+      data_graph: pr.ttl
+      shapes_graph: pr.shapes.ttl
+      engine: shacl
+      description: Example with positive recursion, encoding using qualified value shapes
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+    - name: pr
+      data_graph: pr.ttl
+      shex_file: pr.shex
+      engine: shex
+      description: Positive recursion in ShEx 
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+    - name: example_dmkg1
+      data_graph: example_dmkg.ttl
+      shex_file: example_dmkg.shex
+      engine: shex
+      description: Example from paper submitted to DMKG
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":Person"
+    - name: example_dmkg1
+      data_graph: example_dmkg.ttl
+      shapes_graph: example_dmkg.shapes.ttl
+      engine: shacl
+      description: Example from paper submitted to DMKG
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":Person"
+    - name: example_dmkg2
+      data_graph: example_dmkg2.ttl
+      shex_file: example_dmkg2.shex
+      engine: shex
+      description: Example from paper submitted to DMKG
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":Person"
+    - name: example_dmkg2
+      data_graph: example_dmkg2.ttl
+      shapes_graph: example_dmkg2.shapes.ttl
+      engine: shacl
+      description: Example from paper submitted to DMKG
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":Person"

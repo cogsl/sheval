@@ -1,8 +1,11 @@
 prefix :       <http://example.org/> 
 prefix sh:     <http://www.w3.org/ns/shacl#> 
 
+:a :p :a .
+
 # Separation test SA1
 :S a sh:NodeShape ;
+   sh:targetNode :a ;
    sh:property 
           [ sh:path :p ;
             sh:qualifiedValueShape :S ;

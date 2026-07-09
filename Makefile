@@ -1,3 +1,3 @@
 clean:
-	rm results/*
-	rm temp/*
+	rm -f results/*
+	rm -f temp/*

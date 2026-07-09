@@ -1,7 +1,0 @@
-prefix :       <http://example.org/> 
-
-# Positive recursion 
-:S {
-    :p @:S + ;
-    :p . *
-} OR [ :d ]

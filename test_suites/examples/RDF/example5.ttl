@@ -1,0 +1,5 @@
+prefix :       <http://example.org/> 
+
+:a :p :b .
+:b :p :a .
+:b :q :d . # We use an IRI instead of a literal to avoid problmems with node selection in the YAML test suite

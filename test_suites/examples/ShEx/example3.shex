@@ -1,0 +1,6 @@
+prefix :       <http://example.org/> 
+
+# Example 3 from https://arxiv.org/pdf/2604.20946
+:S {
+  :p @:S + ;
+} 

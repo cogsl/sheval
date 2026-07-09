@@ -344,7 +344,7 @@ def rudof_shex(params: ShExParams, results) -> None:
         result1 = run(command, validation_output, 5)
         if result1 == CommandResult.OK:
             logging.debug(f"Command result is OK...before analyzing shapemap file: {validation_output}")
-            result = analyze_shapemap_shex_s(validation_output, params.nodes, params.shapes, params.pairs)
+            result = analyze_shapemap_rudof(validation_output, params.nodes, params.shapes, params.pairs)
             store_result(params.name, engine, technology_name, params.description, result, results)
         else:
             result = { 'conforms': "Error", 'failures': "Error running command" + str(result1) }
@@ -508,6 +508,63 @@ def analyze_shapemap_shex_s(filename,nodes,shapes,pairs):
             message = lines[0]
             conforms = False        
     logging.debug(f"After analyzing shapemap, Conforms: {conforms}")                    
+    return { 'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes }
+
+def analyze_shapemap_rudof(filename,nodes,shapes,pairs):
+    # Extend nodes and shapes with the individual ones declared using pairs
+    # so they can be found in the shapemap
+    for pair in pairs:
+        nodes.append(pair['node'])
+        shapes.append(pair['shape'])
+
+    conforms = None
+    failures = []
+    successes = []
+    with open(filename, 'r') as infile:
+        contents = infile.read()
+        # rudof prefixes its JSON output with a "Results:" line that must be stripped before parsing
+        if contents.lstrip().startswith("Results:"):
+            contents = contents.lstrip().removeprefix("Results:").lstrip()
+        try:
+            json_result = json.loads(contents)
+            logging.debug(f"JSON result: {json_result}")
+            if isinstance(json_result, list):
+                for result in json_result:
+                    logging.debug(f"Result: {result}")
+                    node = result['node']
+                    shape = result['shape']
+                    status = result['status']
+                    node = remove_gt_lt(node)
+                    shape = remove_gt_lt(shape)
+                    maybe_node = find_qname(nodes, node)
+                    maybe_shape = find_qname(shapes, shape)
+                    # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
+                    if maybe_node is not None:
+                        node = maybe_node
+                        if maybe_shape is not None:
+                            shape = maybe_shape
+                            if status == "conformant":
+                                successes.append({'node': node, 'shape': shape})
+                            else:
+                                failures.append({'node': node, 'shape': shape})
+                        else:
+                                logging.info(f"Shape {shape} not found in the shapes list: {shapes}")
+                    else:
+                        logging.info(f"Node {node} not found in the nodes list: {nodes}")
+                if failures:
+                    conforms = False
+                    message = "Some nodes are not conformant"
+                else:
+                    conforms = True
+                    message = "No failures"
+            else:
+                message = "No results in shapemap"
+                conforms = False
+        except json.JSONDecodeError as e:
+            lines = [line.rstrip() for line in contents.splitlines()]
+            message = lines[0] if lines else str(e)
+            conforms = False
+    logging.debug(f"After analyzing shapemap, Conforms: {conforms}")
     return { 'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes }
 
 def analyze_result_jena_shex(filename,nodes,shapes,pairs):

@@ -13,65 +13,7 @@ shex_technologies:
 shex_folder: ShEx
 results_folder: results
 tests:
-    - name: example21
-      data_graph: example21.ttl
-      shapes_graph: example21.shapes.ttl
-      engine: shacl
-      description: Example 2.1 from paper in SHACL
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
-        - ":S"
-    - name: example21
-      data_graph: example21.ttl
-      shex_file: example21.shex
-      engine: shex
-      description: Example 2.1 from paper in ShEx
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
-        - ":S"
-    - name: pr
-      data_graph: pr.ttl
-      shapes_graph: pr.shapes.ttl
-      engine: shacl
-      description: Example with positive recursion, encoding using qualified value shapes
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":S"
-    - name: pr
-      data_graph: pr.ttl
-      shex_file: pr.shex
-      engine: shex
-      description: Positive recursion in ShEx 
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":S"
-    - name: sa1
-      data_graph: sa1.ttl
-      shapes_graph: sa1.shapes.ttl
-      engine: shacl
-      description: Separation test for sa1
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-      shapes: 
-        - ":S"
-    - name: sa1
+    - name: bsep1_shex
       data_graph: sa1.ttl
       shex_file: sa1.shex
       engine: shex
@@ -81,7 +23,28 @@ tests:
         - ":a"
       shapes: 
         - ":S"
-    - name: sa2
+    - name: bsep1_shacl
+      data_graph: sa1.ttl
+      shapes_graph: sa1.shapes.ttl
+      engine: shacl
+      description: Separation test for sa1
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S"
+    - name: bsep2_shex
+      data_graph: sa2.ttl
+      shex_file: sa2.shex
+      engine: shex
+      description: Separation test for sa2 (ShEx)
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+    - name: bsep2_shacl
       data_graph: sa2.ttl
       shapes_graph: sa2.shapes.ttl
       engine: shacl
@@ -93,29 +56,7 @@ tests:
         - ":b"
       shapes: 
         - ":S"
-    - name: sa2
-      data_graph: sa2.ttl
-      shex_file: sa2.shex
-      engine: shex
-      description: Separation test for sa2 (ShEx)
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
-        - ":S"
-    - name: sa3
-      data_graph: sa3.ttl
-      shapes_graph: sa3.shapes.ttl
-      engine: shacl
-      description: Separation test for SA3
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":a"
-          shape: ":S"
-        - node: ":b"
-          shape: ":S"  
-    - name: sa3
+    - name: bsep3_shex
       data_graph: sa3.ttl
       shex_file: sa3.shex
       engine: shex
@@ -126,17 +67,29 @@ tests:
           shape: ":S"
         - node: ":b"
           shape: ":S"  
-    - name: sa3_single
+    - name: bsep3_shacl
       data_graph: sa3.ttl
       shapes_graph: sa3.shapes.ttl
       engine: shacl
-      description: Single SA3 (SHACL)
+      description: Separation test for SA3
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-      shapes: 
-        - ":S"
-    - name: sa4
+      pairs:
+        - node: ":a"
+          shape: ":S"
+        - node: ":b"
+          shape: ":S"  
+    - name: bsep4_shex
+      data_graph: sa4.ttl
+      shex_file: sa4.shex
+      engine: shex
+      description: Separation test - sa4 (ShEx)
+      default_prefix: "http://example.org/"
+      pairs:
+        - node: ":a"
+          shape: ":S"
+        - node: ":b"
+          shape: ":S"  
+    - name: bsep4_shacl
       data_graph: sa4.ttl
       shapes_graph: sa4.shapes.ttl
       engine: shacl
@@ -148,31 +101,7 @@ tests:
           shape: ":S"
         - node: ":b"
           shape: ":S"  
-    - name: sa4
-      data_graph: sa4.ttl
-      shex_file: sa4.shex
-      engine: shex
-      description: Separation test - sa4 (ShEx)
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":a"
-          shape: ":S"
-        - node: ":b"
-          shape: ":S"  
-    - name: reach1
-      data_graph: reach1.ttl
-      shapes_graph: reach1.shapes.ttl
-      engine: shacl
-      description: Separation test - reach1 (SHACL)
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-      shapes: 
-        - ":R"
-    - name: reach1
+    - name: reach1_shex
       data_graph: reach1.ttl
       shex_file: reach1.shex
       engine: shex
@@ -185,28 +114,19 @@ tests:
         - ":d"
       shapes: 
         - ":R"
-    - name: safe1
-      data_graph: safe1.ttl
-      shapes_graph: safe1.shapes.ttl
+    - name: reach1_shacl
+      data_graph: reach1.ttl
+      shapes_graph: reach1.shapes.ttl
       engine: shacl
-      description: Separation test - Safe-1 (SHACL)
+      description: Separation test - reach1 (SHACL)
       default_prefix: "http://example.org/"
-      pairs:
-        - node: ":c"
-          shape: ":S"
-        - node: ":d"
-          shape: ":S"  
-    - name: safe1
-      data_graph: safe1.ttl
-      shex_file: safe1.shex
-      engine: shex
-      description: Separation test - Safe-1 (ShEx)
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":c"
-          shape: ":S"
-        - node: ":d"
-          shape: ":S"  
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":R"
     - name: reach2
       data_graph: reach2.ttl
       shapes_graph: reach2.shapes.ttl
@@ -229,18 +149,29 @@ tests:
           shape: ":R"
         - node: ":d"
           shape: ":R"  
-    - name: safe2
-      data_graph: safe2.ttl
-      shapes_graph: safe2.shapes.ttl
-      engine: shacl
-      description: Separation test - safe2 (SHACL)
+    - name: safe1_shex
+      data_graph: safe1.ttl
+      shex_file: safe1.shex
+      engine: shex
+      description: Separation test - Safe-1 (ShEx)
       default_prefix: "http://example.org/"
       pairs:
         - node: ":c"
-          shape: ":R"
+          shape: ":S"
         - node: ":d"
-          shape: ":R"  
-    - name: safe2
+          shape: ":S"  
+    - name: safe1_shacl
+      data_graph: safe1.ttl
+      shapes_graph: safe1.shapes.ttl
+      engine: shacl
+      description: Separation test - Safe-1 (SHACL)
+      default_prefix: "http://example.org/"
+      pairs:
+        - node: ":c"
+          shape: ":S"
+        - node: ":d"
+          shape: ":S"  
+    - name: safe2_shex
       data_graph: safe2.ttl
       shex_file: safe2.shex
       engine: shex
@@ -251,21 +182,18 @@ tests:
           shape: ":R"
         - node: ":d"
           shape: ":R"  
-    - name: nostratnocycle
-      data_graph: nostratnocycle.ttl
-      shapes_graph: nostratnocycle.shapes.ttl
+    - name: safe2_shacl
+      data_graph: safe2.ttl
+      shapes_graph: safe2.shapes.ttl
       engine: shacl
-      description: Feature test - Non-stratified negation without cyclic data -- nostratnocycle (SHACL)
+      description: Separation test - safe2 (SHACL)
       default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-        - ":c"
-        - ":d"
-        - ":e"
-      shapes: 
-        - ":S"
-    - name: nostratnocycle
+      pairs:
+        - node: ":c"
+          shape: ":R"
+        - node: ":d"
+          shape: ":R"  
+    - name: nstrat1_shex
       data_graph: nostratnocycle.ttl
       shex_file: nostratnocycle.shex
       engine: shex
@@ -279,18 +207,21 @@ tests:
         - ":e"
       shapes: 
         - ":S"
-    - name: nostratcycle
-      data_graph: nostratcycle.ttl
-      shapes_graph: nostratcycle.shapes.ttl
+    - name: nstrat1_shacl
+      data_graph: nostratnocycle.ttl
+      shapes_graph: nostratnocycle.shapes.ttl
       engine: shacl
-      description: Feature test - Non-stratified negation with cyclic data -- nostratcycle (SHACL)
+      description: Feature test - Non-stratified negation without cyclic data -- nostratnocycle (SHACL)
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
         - ":b"
+        - ":c"
+        - ":d"
+        - ":e"
       shapes: 
         - ":S"
-    - name: nostratcycle
+    - name: nstrat2_shex
       data_graph: nostratcycle.ttl
       shex_file: nostratcycle.shex
       engine: shex
@@ -301,18 +232,36 @@ tests:
         - ":b"
       shapes: 
         - ":S"
-    - name: consistency1
-      data_graph: consistency1.ttl
-      shapes_graph: consistency1.shapes.ttl
+    - name: nstrat2_shacl
+      data_graph: nostratcycle.ttl
+      shapes_graph: nostratcycle.shapes.ttl
       engine: shacl
-      description: Consistency test 1
+      description: Feature test - Non-stratified negation with cyclic data -- nostratcycle (SHACL)
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
+        - ":b"
       shapes: 
         - ":S"
-        - ":S1"
-    - name: consistency1
+    - name: fresh_shex
+      data_graph: fresh.ttl
+      shex_file: fresh.shex
+      engine: shex
+      description: Fresh Constant Support
+      default_prefix: "http://example.org/"
+      pairs:
+        - node: ":d"
+          shape: ":S"
+    - name: fresh_shacl
+      data_graph: fresh.ttl
+      shapes_graph: fresh.shapes.ttl
+      engine: shacl
+      description: Fresh Constant Support
+      default_prefix: "http://example.org/"
+      pairs:
+        - node: ":d"
+          shape: ":S"
+    - name: cons1_shex
       data_graph: consistency1.ttl
       shex_file: consistency1.shex
       engine: shex
@@ -323,7 +272,7 @@ tests:
       shapes: 
         - ":S"
         - ":S1"
-    - name: consistency1_individually_S
+    - name: cons1_shacl
       data_graph: consistency1.ttl
       shapes_graph: consistency1.shapes.ttl
       engine: shacl
@@ -331,31 +280,10 @@ tests:
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
-      shapes: 
-        - ":S"
-    - name: consistency1_individually_S1
-      data_graph: consistency1.ttl
-      shapes_graph: consistency1.shapes.ttl
-      engine: shacl
-      description: Consistency test 1
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-      shapes: 
-        - ":S1"        
-    - name: consistency2
-      data_graph: consistency2.ttl
-      shapes_graph: consistency2.shapes.ttl
-      engine: shacl
-      description: Consistency test 2
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
       shapes: 
         - ":S"
         - ":S1"
-    - name: consistency2
+    - name: cons2_shex
       data_graph: consistency2.ttl
       shex_file: consistency2.shex
       engine: shex
@@ -367,127 +295,15 @@ tests:
       shapes: 
         - ":S"
         - ":S1"
-    - name: resilience
-      data_graph: resilience.ttl
-      shapes_graph: resilience.shapes.ttl
+    - name: cons2_shacl
+      data_graph: consistency2.ttl
+      shapes_graph: consistency2.shapes.ttl
       engine: shacl
-      description: Feature test Resilience
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":b"
-        - ":c"
-      shapes: 
-        - ":S"
-        - ":S1"
-    - name: resilience
-      data_graph: resilience.ttl
-      shex_file: resilience.shex
-      engine: shex
-      description: Feature test Resilience
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":b"
-        - ":c"
-      shapes: 
-        - ":S"
-        - ":S1"
-    - name: resilience_fixed
-      data_graph: resilience.ttl
-      shapes_graph: resilience.shapes.ttl
-      engine: shacl
-      description: Feature test Resilience
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":b"
-        - ":c"
-      shapes: 
-        - ":S"
-        - ":S1"
-    - name: resilience_fixed
-      data_graph: resilience.ttl
-      shex_file: resilience.shex
-      engine: shex
-      description: Feature test Resilience
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":b"
-        - ":c"
-      shapes: 
-        - ":S"
-        - ":S1"
-    - name: isolation1
-      data_graph: isolation.ttl
-      shapes_graph: isolation.shapes.ttl
-      engine: shacl
-      description: Assignment isolation test
+      description: Consistency test 2
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
-      shapes: 
-        - ":S1"
-    - name: isolation1
-      data_graph: isolation.ttl
-      shex_file: isolation.shex
-      engine: shex
-      description: Assignment isolation test 1
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-      shapes: 
-        - ":S1"
-    - name: isolation2
-      data_graph: isolation.ttl
-      shapes_graph: isolation.shapes.ttl
-      engine: shacl
-      description: Assignment isolation test
-      default_prefix: "http://example.org/"
-      nodes:
         - ":b"
       shapes: 
-        - ":S2"
-    - name: isolation2
-      data_graph: isolation.ttl
-      shex_file: isolation.shex
-      engine: shex
-      description: Assignment isolation test 2
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":b"
-      shapes: 
-        - ":S2"
-    - name: isolation3
-      data_graph: isolation.ttl
-      shapes_graph: isolation.shapes.ttl
-      engine: shacl
-      description: Assignment isolation test
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":a"
-          shape: ":S1"
-    - name: isolation3
-      data_graph: isolation.ttl
-      shex_file: isolation.shex
-      engine: shex
-      description: Assignment isolation test 3
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":a"
-          shape: ":S1"
-    - name: fresh
-      data_graph: fresh.ttl
-      shapes_graph: fresh.shapes.ttl
-      engine: shacl
-      description: Fresh Constant Support
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":d"
-          shape: ":S"
-    - name: fresh
-      data_graph: fresh.ttl
-      shex_file: fresh.shex
-      engine: shex
-      description: Fresh Constant Support
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":d"
-          shape: ":S"
+        - ":S"
+        - ":S1"

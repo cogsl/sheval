@@ -4,7 +4,7 @@ prefix xsd:    <http://www.w3.org/2001/XMLSchema#>
 prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
 
-# Fresh Constant Support -- fresh
+# Fresh constant support -- fresh
 :a :p :b .
 :b :p :c .
 :c :p :a .

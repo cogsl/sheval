@@ -1,0 +1,10 @@
+# Example DMKG
+prefix :       <http://example.org/> 
+
+:Person @:Human AND {
+    :knows . +
+}
+
+:Human @:Person AND {
+    :knows . +
+}

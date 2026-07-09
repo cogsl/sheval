@@ -1,0 +1,12 @@
+prefix :       <http://example.org/> 
+
+# Example 1 from https://arxiv.org/pdf/2604.20946
+:S1 [ "d" ]
+    
+:S2 {
+  :q @:S1 * ;
+} 
+
+:S3 {
+  :p @:S2 *
+}

@@ -2,7 +2,7 @@ prefix :       <http://example.org/>
 prefix sh:     <http://www.w3.org/ns/shacl#> 
 prefix xsd:    <http://www.w3.org/2001/XMLSchema#>
 
-# Example 2.1 in SHACL
+# Example 1 from https://arxiv.org/pdf/2604.20946 in SHACL
 :T a sh:NodeShape ;
    sh:or ( 
       [ sh:property 

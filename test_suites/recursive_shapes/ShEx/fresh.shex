@@ -1,5 +1,5 @@
 prefix :       <http://example.org/> 
 
-# Shape That Is Trivially Satisfied
+# Shape that is trivially satisfied
 :S  {
 }
