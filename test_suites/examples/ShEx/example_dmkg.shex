@@ -1,10 +1,12 @@
-# Example DMKG
-prefix :       <http://example.org/> 
+prefix :    <http://example.org/> 
+prefix xsd:  <http://www.w3.org/2001/XMLSchema#>
 
-:Person @:Human AND {
-    :knows . +
+:User @:Person AND {
+  :name xsd:string ;
+  :knows . +
 }
 
-:Human @:Person AND {
-    :knows . +
+:Person @:User AND {
+  :knows @:Person * ;
+  :knows .        *
 }

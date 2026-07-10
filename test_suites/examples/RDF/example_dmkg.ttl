@@ -1,4 +1,8 @@
 prefix :       <http://example.org/> 
 
-:a :knows :c .
-:b :knows :c .
+:a :name "Alice" ;
+   :knows :c     .
+:b :name "Bob"   ;
+   :knows :c     .
+:c :name "Carol" ;
+   :knows :a     .
