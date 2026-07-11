@@ -1,8 +1,14 @@
 import os
+import json
 import logging
 
-from .base import SHACLRunner, ShExRunner, SHACLParams, ShExParams, CommandResult, run, mk_command_shacl, mk_command_shex, store_result
-from .analysis import analyze_validation_report, analyze_shapemap_shaclex
+from .shacl_runner import SHACLRunner
+from .shex_runner import ShExRunner
+from .shacl_params import SHACLParams
+from .shex_params import ShExParams
+from .command_result import CommandResult
+from .commands import run, mk_command_shacl, mk_command_shex, store_result
+from .analysis import analyze_validation_report, extend_nodes_shapes, classify_shapemap_results
 
 BIN = "binaries/shaclex-0.2.7/bin/shaclex"
 
@@ -30,6 +36,20 @@ SHEX_CMD = [BIN,
             "--outFile", "$output_filename",
             "--checkWellFormed"
             ]
+
+
+def analyze_shapemap_shaclex(filename: str, nodes: list, shapes: list, pairs: list):
+    extend_nodes_shapes(nodes, shapes, pairs)
+
+    with open(filename, 'r') as infile:
+        json_result = json.load(infile)
+        logging.debug(f"JSON result: {json_result}")
+        conforms = json_result['valid']
+        message = json_result.get('message', "")
+        shapemap = json_result.get('shapeMap', [])
+        failures, successes = classify_shapemap_results(shapemap if isinstance(shapemap, list) else [], nodes, shapes)
+    logging.info(f"After analyzing shapemap, Conforms: {conforms}")
+    return {'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes}
 
 
 class ShaclexShaclRunner(SHACLRunner):

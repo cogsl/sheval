@@ -1,5 +1,3 @@
-import json
-import re
 import logging
 
 import rdflib
@@ -36,6 +34,65 @@ def split_file_by_regex(source, regex, file1, file2):
                 outfile2.write(line)
 
 
+def extend_nodes_shapes(nodes, shapes, pairs):
+    """
+    Extend nodes and shapes with the individual ones declared using pairs
+    so they can be found when resolving qnames
+    """
+    for pair in pairs:
+        nodes.append(pair['node'])
+        shapes.append(pair['shape'])
+
+
+def classify_shapemap_results(shapemap_results, nodes, shapes):
+    """
+    Classify a list of shapemap results (dicts with 'node', 'shape' and 'status' keys) into
+    failures and successes, resolving node/shape IRIs to the qnames we are interested in.
+    Results whose node or shape is not in the nodes/shapes lists are ignored.
+    return: a (failures, successes) tuple of lists of {'node': ..., 'shape': ...} dicts
+    """
+    failures = []
+    successes = []
+    for result in shapemap_results:
+        node = remove_gt_lt(result['node'])
+        shape = remove_gt_lt(result['shape'])
+        status = result['status']
+        maybe_node = find_qname(nodes, node)
+        maybe_shape = find_qname(shapes, shape)
+        if maybe_node is not None:
+            node = maybe_node
+            if maybe_shape is not None:
+                shape = maybe_shape
+                if status == "conformant":
+                    successes.append({'node': node, 'shape': shape})
+                else:
+                    failures.append({'node': node, 'shape': shape})
+            else:
+                logging.info(f"Shape {shape} not found in the shapes list: {shapes}")
+        else:
+            logging.info(f"Node {node} not found in the nodes list: {nodes}")
+    return failures, successes
+
+
+def summarize_shapemap_results(json_result, nodes, shapes):
+    """
+    Classify a parsed shapemap JSON result and derive a conforms/message summary from it.
+    Used by engines that report their shapemap results as a plain JSON list of
+    {'node', 'shape', 'status'} entries.
+    return: a (conforms, message, failures, successes) tuple
+    """
+    if isinstance(json_result, list):
+        failures, successes = classify_shapemap_results(json_result, nodes, shapes)
+        if failures:
+            conforms, message = False, "Some nodes are not conformant"
+        else:
+            conforms, message = True, "No failures"
+    else:
+        failures, successes = [], []
+        conforms, message = False, "No results in shapemap"
+    return conforms, message, failures, successes
+
+
 def analyze_validation_report(filename, nodes, shapes, pairs, include_message):
     """
     Analyze the validation report and extract the information about the failures and the conforms property
@@ -48,9 +105,7 @@ def analyze_validation_report(filename, nodes, shapes, pairs, include_message):
     return: a dictionary with the conforms property and a list of failures
     """
     logging.info(f"Analyzing validation report {filename}")
-    for pair in pairs:
-        nodes.append(pair['node'])
-        shapes.append(pair['shape'])
+    extend_nodes_shapes(nodes, shapes, pairs)
 
     # Load the validation report
     g = rdflib.Graph()
@@ -111,200 +166,3 @@ def analyze_validation_report(filename, nodes, shapes, pairs, include_message):
                  else:
                     logging.info(f"Node {node} not found in the nodes list: {nodes}")
     return {'conforms': conforms, 'failures': failures}
-
-
-def analyze_shapemap_shaclex(filename: str, nodes: list, shapes: list, pairs: list):
-    # Extend nodes and shapes with the individual ones declared using pairs
-    # so they can be found in the shapemap
-    for pair in pairs:
-        nodes.append(pair['node'])
-        shapes.append(pair['shape'])
-
-    conforms = None
-    failures = []
-    successes = []
-    with open(filename, 'r') as infile:
-        json_result = json.load(infile)
-        logging.debug(f"JSON result: {json_result}")
-        conforms = json_result['valid']
-        if 'message' in json_result:
-            message = json_result['message']
-        else:
-            message = ""
-
-        if 'shapeMap' in json_result and type(json_result['shapeMap']) is list:
-            for result in json_result['shapeMap']:
-                node = result['node']
-                shape = result['shape']
-                status = result['status']
-                node = remove_gt_lt(node)
-                shape = remove_gt_lt(shape)
-                maybe_node = find_qname(nodes, node)
-                maybe_shape = find_qname(shapes, shape)
-                 # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
-                if maybe_node is not None:
-                    node = maybe_node
-                    if maybe_shape is not None:
-                        shape = maybe_shape
-                        if status == "conformant":
-                            successes.append({'node': node, 'shape': shape})
-                        else:
-                            failures.append({'node': node, 'shape': shape})
-                    else:
-                        logging.info(f"Shape {shape} not found in the shapes list: {shapes}")
-                else:
-                    logging.info(f"Node {node} not found in the nodes list: {nodes}")
-    logging.info(f"After analyzing shapemap, Conforms: {conforms}")
-    return {'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes}
-
-
-def analyze_shapemap_shex_s(filename, nodes, shapes, pairs):
-    # Extend nodes and shapes with the individual ones declared using pairs
-    # so they can be found in the shapemap
-    for pair in pairs:
-        nodes.append(pair['node'])
-        shapes.append(pair['shape'])
-
-    conforms = None
-    failures = []
-    successes = []
-    with open(filename, 'r') as infile:
-        try:
-            json_result = json.load(infile)
-            logging.debug(f"JSON result: {json_result}")
-            if isinstance(json_result, list):
-                for result in json_result:
-                    logging.debug(f"Result: {result}")
-                    node = result['node']
-                    shape = result['shape']
-                    status = result['status']
-                    node = remove_gt_lt(node)
-                    shape = remove_gt_lt(shape)
-                    maybe_node = find_qname(nodes, node)
-                    maybe_shape = find_qname(shapes, shape)
-                    # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
-                    if maybe_node is not None:
-                        node = maybe_node
-                        if maybe_shape is not None:
-                            shape = maybe_shape
-                            if status == "conformant":
-                                successes.append({'node': node, 'shape': shape})
-                            else:
-                                failures.append({'node': node, 'shape': shape})
-                        else:
-                                logging.info(f"Shape {shape} not found in the shapes list: {shapes}")
-                    else:
-                        logging.info(f"Node {node} not found in the nodes list: {nodes}")
-                if failures:
-                    conforms = False
-                    message = "Some nodes are not conformant"
-                else:
-                    conforms = True
-                    message = "No failures"
-            else:
-                message = "No results in shapemap"
-                conforms = False
-        except json.JSONDecodeError as e:
-            infile.seek(0)
-            lines = [line.rstrip() for line in infile]
-            message = lines[0]
-            conforms = False
-    logging.debug(f"After analyzing shapemap, Conforms: {conforms}")
-    return {'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes}
-
-
-def analyze_shapemap_rudof(filename, nodes, shapes, pairs):
-    # Extend nodes and shapes with the individual ones declared using pairs
-    # so they can be found in the shapemap
-    for pair in pairs:
-        nodes.append(pair['node'])
-        shapes.append(pair['shape'])
-
-    conforms = None
-    failures = []
-    successes = []
-    with open(filename, 'r') as infile:
-        contents = infile.read()
-        # rudof prefixes its JSON output with a "Results:" line that must be stripped before parsing
-        if contents.lstrip().startswith("Results:"):
-            contents = contents.lstrip().removeprefix("Results:").lstrip()
-        try:
-            json_result = json.loads(contents)
-            logging.debug(f"JSON result: {json_result}")
-            if isinstance(json_result, list):
-                for result in json_result:
-                    logging.debug(f"Result: {result}")
-                    node = result['node']
-                    shape = result['shape']
-                    status = result['status']
-                    node = remove_gt_lt(node)
-                    shape = remove_gt_lt(shape)
-                    maybe_node = find_qname(nodes, node)
-                    maybe_shape = find_qname(shapes, shape)
-                    # We add to the list of failures only the ones that appear in the nodes and shapes that we are interested
-                    if maybe_node is not None:
-                        node = maybe_node
-                        if maybe_shape is not None:
-                            shape = maybe_shape
-                            if status == "conformant":
-                                successes.append({'node': node, 'shape': shape})
-                            else:
-                                failures.append({'node': node, 'shape': shape})
-                        else:
-                                logging.info(f"Shape {shape} not found in the shapes list: {shapes}")
-                    else:
-                        logging.info(f"Node {node} not found in the nodes list: {nodes}")
-                if failures:
-                    conforms = False
-                    message = "Some nodes are not conformant"
-                else:
-                    conforms = True
-                    message = "No failures"
-            else:
-                message = "No results in shapemap"
-                conforms = False
-        except json.JSONDecodeError as e:
-            lines = [line.rstrip() for line in contents.splitlines()]
-            message = lines[0] if lines else str(e)
-            conforms = False
-    logging.debug(f"After analyzing shapemap, Conforms: {conforms}")
-    return {'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes}
-
-
-def parse_jena_result_line(line):
-    regex = re.compile(r'<([^>]+)>\s@\s<([^>]+)>\s.*Status\s=\s(nonconformant|conformant).*')
-    m = regex.match(line)
-    (node, shape, conforms) = m.group(1, 2, 3)
-    return (node, shape, conforms)
-
-
-def analyze_result_jena_shex(filename, nodes, shapes, pairs):
-    conforms = True
-    failures = []
-    successes = []
-    message = ""
-    for pair in pairs:
-        nodes.append(pair['node'])
-        shapes.append(pair['shape'])
-
-    with open(filename, 'r') as infile:
-        for line in infile:
-            (node, shape, status) = parse_jena_result_line(line)
-
-            maybe_node = find_qname(nodes, node)
-            maybe_shape = find_qname(shapes, shape)
-            if maybe_node is not None:
-                node = maybe_node
-                if maybe_shape is not None:
-                    shape = maybe_shape
-                    if status == "conformant":
-                        successes.append({'node': node, 'shape': shape})
-                    else:
-                        failures.append({'node': node, 'shape': shape})
-                        conforms = False
-                else:
-                    logging.info(f"Shape {shape} not found in the shapes list: {shapes}")
-            else:
-                logging.info(f"Node {node} not found in the nodes list: {nodes}")
-
-    return {'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes}

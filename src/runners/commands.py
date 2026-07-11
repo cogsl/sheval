@@ -1,47 +1,7 @@
-from abc import ABC, abstractmethod
-from enum import Enum
-from dataclasses import dataclass
 import logging
 import subprocess
 
-
-@dataclass
-class SHACLParams:
-    filename: str
-    name: str
-    description: str
-    results_folder: str
-    temp: str
-    technology: str
-    data_graph: str
-    nodes: list
-    shapes: list
-    pairs: list
-    include_message: bool
-    include_descr: bool
-
-
-@dataclass
-class ShExParams:
-    data_file: str
-    shex_file: str
-    shapemap_file: str
-    name: str
-    description: str
-    results_folder: str
-    technology: str
-    nodes: list
-    shapes: list
-    pairs: list
-    include_message: bool
-    include_descr: bool
-
-
-class CommandResult(Enum):
-    OK = 0
-    TIMEOUT = 1
-    ERROR = 2
-    EXCEPTION = 3
+from .command_result import CommandResult
 
 
 def run_args(command: list[str]):
@@ -101,34 +61,3 @@ def store_result(name, engine, technology_name, descr, result, results):
         "description": descr,
         "result": result
     })
-
-
-class Runner(ABC):
-    """Base class for all technology runners. Subclasses set `engine` and implement `execute`."""
-    engine: str = ""
-
-    def __init__(self, name: str, bin_command: str, command_pattern: list):
-        self.name = name
-        self.bin_command = bin_command
-        self.command_pattern = command_pattern
-
-    @abstractmethod
-    def execute(self, params, results: list) -> None:
-        raise NotImplementedError
-
-    def run(self, params, results: list) -> None:
-        logging.info(f"Running {self.engine} for {params.name} with technology {params.technology}")
-        try:
-            self.execute(params, results)
-        except Exception as e:
-            logging.error(f"Error running {self.engine} for {params.name} with technology {params.technology}: {e}")
-            result = {'conforms': "Exception", 'failures': f"{e}"}
-            store_result(params.name, self.engine, self.name, params.description, result, results)
-
-
-class SHACLRunner(Runner):
-    engine = "shacl"
-
-
-class ShExRunner(Runner):
-    engine = "shex"

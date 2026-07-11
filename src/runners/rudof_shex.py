@@ -1,11 +1,36 @@
 import os
+import json
 import logging
 
-from .base import ShExRunner, ShExParams, CommandResult, run, mk_command_shex, store_result
-from .analysis import analyze_shapemap_rudof
+from .shex_runner import ShExRunner
+from .shex_params import ShExParams
+from .command_result import CommandResult
+from .commands import run, mk_command_shex, store_result
+from .analysis import extend_nodes_shapes, summarize_shapemap_results
 
 BIN = "binaries/rudof/rudof"
 CMD = [BIN, "shex-validate", "--schema", "$shex_filename", "--shapemap", "$shapemap_filename", "$data_filename", "--result-format", "json", "--force-overwrite", "--output-file", "$output_filename"]
+
+
+def analyze_shapemap_rudof(filename, nodes, shapes, pairs):
+    extend_nodes_shapes(nodes, shapes, pairs)
+
+    with open(filename, 'r') as infile:
+        contents = infile.read()
+    # rudof prefixes its JSON output with a "Results:" line that must be stripped before parsing
+    if contents.lstrip().startswith("Results:"):
+        contents = contents.lstrip().removeprefix("Results:").lstrip()
+    try:
+        json_result = json.loads(contents)
+        logging.debug(f"JSON result: {json_result}")
+        conforms, message, failures, successes = summarize_shapemap_results(json_result, nodes, shapes)
+    except json.JSONDecodeError as e:
+        lines = [line.rstrip() for line in contents.splitlines()]
+        message = lines[0] if lines else str(e)
+        conforms = False
+        failures, successes = [], []
+    logging.debug(f"After analyzing shapemap, Conforms: {conforms}")
+    return {'conforms': conforms, 'message': message, 'failures': failures, 'successes': successes}
 
 
 class RudofShexRunner(ShExRunner):

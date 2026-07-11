@@ -1,7 +1,10 @@
 import os
 import re
 
-from .base import SHACLRunner, SHACLParams, CommandResult, run, mk_command_shacl, store_result
+from .shacl_runner import SHACLRunner
+from .shacl_params import SHACLParams
+from .command_result import CommandResult
+from .commands import run, mk_command_shacl, store_result
 from .analysis import analyze_validation_report, split_file_by_regex
 
 BIN = "binaries/shacl-1.4.4/bin/shaclvalidate.sh"

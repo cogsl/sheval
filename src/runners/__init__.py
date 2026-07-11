@@ -1,10 +1,10 @@
-from .base import (
-    Runner,
-    SHACLRunner,
-    ShExRunner,
-    SHACLParams,
-    ShExParams,
-    CommandResult,
+from .runner import Runner
+from .shacl_runner import SHACLRunner
+from .shex_runner import ShExRunner
+from .shacl_params import SHACLParams
+from .shex_params import ShExParams
+from .command_result import CommandResult
+from .commands import (
     run_args,
     run,
     mk_command_shacl,
@@ -13,11 +13,6 @@ from .base import (
 )
 from .analysis import (
     analyze_validation_report,
-    analyze_shapemap_shaclex,
-    analyze_shapemap_shex_s,
-    analyze_shapemap_rudof,
-    analyze_result_jena_shex,
-    parse_jena_result_line,
     remove_gt_lt,
     find_qname,
     split_file_by_regex,
@@ -33,11 +28,11 @@ from .pyshacl import PyshaclRunner
 from .shacl_tq import ShaclTqRunner
 from .shacl_s import ShaclSRunner
 from .jena_shacl import JenaShaclRunner
-from .jena_shex import JenaShexRunner
-from .shex_s import ShexSRunner
-from .shaclex import ShaclexShaclRunner, ShaclexShexRunner
+from .jena_shex import JenaShexRunner, analyze_result_jena_shex, parse_jena_result_line
+from .shex_s import ShexSRunner, analyze_shapemap_shex_s
+from .shaclex import ShaclexShaclRunner, ShaclexShexRunner, analyze_shapemap_shaclex
 from .rudof_shacl import RudofShaclRunner
-from .rudof_shex import RudofShexRunner
+from .rudof_shex import RudofShexRunner, analyze_shapemap_rudof
 
 __all__ = [
     "Runner",

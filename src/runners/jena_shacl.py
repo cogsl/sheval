@@ -1,7 +1,10 @@
 import os
 import logging
 
-from .base import SHACLRunner, SHACLParams, CommandResult, run, mk_command_shacl, store_result
+from .shacl_runner import SHACLRunner
+from .shacl_params import SHACLParams
+from .command_result import CommandResult
+from .commands import run, mk_command_shacl, store_result
 from .analysis import analyze_validation_report
 
 BIN = "binaries/apache-jena-5.3.0/bin/shacl"
