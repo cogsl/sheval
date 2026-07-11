@@ -8,17 +8,17 @@ from runners import *
 import logging
 
 SHACL_RUNNERS = [
-    SHACLRunner("shacl_tq", shacl_tq_bin, shacl_tq_cmd, shacl_tq),
-    SHACLRunner("shacl_s", shacl_s_bin, shacl_s_cmd, shacl_s),
-    SHACLRunner("jena_shacl", jena_shacl_bin, jena_shacl_cmd, jena_shacl),
-    SHACLRunner("pyshacl", pyshacl_bin, pyshacl_cmd, pyshacl),
-    SHACLRunner("rudof", rudof_bin, rudof_shacl_cmd, rudof_shacl)
+    ShaclTqRunner(),
+    ShaclSRunner(),
+    JenaShaclRunner(),
+    PyshaclRunner(),
+    RudofShaclRunner(),
 ]
 
 SHEX_RUNNERS = [
-    ShExRunner("rudof", rudof_bin, rudof_shex_cmd, rudof_shex),
-    ShExRunner("shex_s", shex_s_bin, shex_s_cmd, shex_s),
-    ShExRunner("jena_shex", jena_shex_bin, jena_shex_cmd, jena_shex),
+    RudofShexRunner(),
+    ShexSRunner(),
+    JenaShexRunner(),
 ]
 
 COLORS = {
@@ -293,17 +293,12 @@ def find_shacl_runner(name: str) -> SHACLRunner:
     logging.warning(f"SHACL runner {name} not found")
     return None
 
-def find_binary(technology: str) -> str: 
-    match technology:
-        case "shacl_tq": return shacl_tq_bin
-        case "shacl_s": return shacl_s_bin
-        case "shex_s": return shex_s_bin
-        case "rudof": return rudof_bin
-        case "jena_shex": return jena_shex_bin
-        case "jena_shacl": return jena_shacl_bin
-        case _: 
-            print(f"Technology {technology} not found")
-            exit(1)
+def find_binary(technology: str) -> str:
+    for runner in SHACL_RUNNERS + SHEX_RUNNERS:
+        if runner.name == technology:
+            return runner.bin_command
+    print(f"Technology {technology} not found")
+    exit(1)
     
 """ Runs the binary of some technology"""
 def run_check(args, unknown_args):

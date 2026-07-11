@@ -1,0 +1,27 @@
+import os
+import re
+
+from .base import SHACLRunner, SHACLParams, CommandResult, run, mk_command_shacl, store_result
+from .analysis import analyze_validation_report, split_file_by_regex
+
+BIN = "binaries/shacl-1.4.4/bin/shaclvalidate.sh"
+CMD = [BIN, "-datafile", "$data_filename"]
+
+
+class ShaclTqRunner(SHACLRunner):
+    def __init__(self):
+        super().__init__(name="shacl_tq", bin_command=BIN, command_pattern=CMD)
+
+    def execute(self, params: SHACLParams, results: list) -> None:
+        validation_report_file_temp = os.path.join(params.temp, f"{params.name}_{self.name}_results_temp.ttl")
+        command = mk_command_shacl(self.command_pattern, params.filename, validation_report_file_temp)
+        result1 = run(command, validation_report_file_temp, 5)
+        if result1 == CommandResult.OK:
+            validation_report_file = os.path.join(params.results_folder, f"{params.name}_{self.name}_results_temp.ttl")
+            validation_output = os.path.join(params.results_folder, f"{params.name}_{self.name}_output.txt")
+            regex = re.compile('.*Failure.*')
+            split_file_by_regex(validation_report_file_temp, regex, validation_output, validation_report_file)
+            result = analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message)
+        else:
+            result = {'conforms': "Error", 'failures': "Error running command" + str(result1)}
+        store_result(params.name, self.engine, self.name, params.description, result, results)
