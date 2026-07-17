@@ -1,14 +1,14 @@
 rdf_folder: RDF
 shacl_folder: SHACL
+shex_technologies: 
+  - rudof
+  - shex_s
+  - jena_shex
 shacl_technologies: 
   - pyshacl
   - shacl_s
   - jena_shacl
   - shacl_tq
-  - rudof
-shex_technologies: 
-  - shex_s
-  - jena_shex
   - rudof
 shex_folder: ShEx
 results_folder: results
@@ -21,8 +21,35 @@ tests:
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
-      shapes: 
+      shapes:
         - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+              failing: []
+        brave:
+          quantifier: any
+          models: &bsep1_shex_sms_models
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *bsep1_shex_sms_models
     - name: bsep1_shacl
       data_graph: sa1.ttl
       shapes_graph: sa1.shapes.ttl
@@ -31,8 +58,35 @@ tests:
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
-      shapes: 
+      shapes:
         - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+              failing: []
+        brave:
+          quantifier: any
+          models: &bsep1_shacl_sms_models
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *bsep1_shacl_sms_models
     - name: bsep2_shex
       data_graph: sa2.ttl
       shex_file: sa2.shex
@@ -42,8 +96,55 @@ tests:
       nodes:
         - ":a"
         - ":b"
-      shapes: 
+      shapes:
         - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: []
+        brave:
+          quantifier: any
+          models: &bsep2_shex_sms_models
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+              failing:
+                - node: ":b"
+                  shape: ":S"
+            - passing:
+                - node: ":b"
+                  shape: ":S"
+              failing:
+                - node: ":a"
+                  shape: ":S"
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *bsep2_shex_sms_models
     - name: bsep2_shacl
       data_graph: sa2.ttl
       shapes_graph: sa2.shapes.ttl
@@ -54,8 +155,55 @@ tests:
       nodes:
         - ":a"
         - ":b"
-      shapes: 
+      shapes:
         - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: []
+        brave:
+          quantifier: any
+          models: &bsep2_shacl_sms_models
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+              failing:
+                - node: ":b"
+                  shape: ":S"
+            - passing:
+                - node: ":b"
+                  shape: ":S"
+              failing:
+                - node: ":a"
+                  shape: ":S"
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *bsep2_shacl_sms_models
     - name: bsep3_shex
       data_graph: sa3.ttl
       shex_file: sa3.shex
@@ -66,7 +214,54 @@ tests:
         - node: ":a"
           shape: ":S"
         - node: ":b"
-          shape: ":S"  
+          shape: ":S"
+      expected_results: &bsep3_expected
+        lfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: []
+        brave:
+          quantifier: any
+          models: &bsep3_sms_models
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+              failing:
+                - node: ":b"
+                  shape: ":S"
+            - passing:
+                - node: ":b"
+                  shape: ":S"
+              failing:
+                - node: ":a"
+                  shape: ":S"
+            - passing:
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *bsep3_sms_models
     - name: bsep3_shacl
       data_graph: sa3.ttl
       shapes_graph: sa3.shapes.ttl
@@ -77,7 +272,8 @@ tests:
         - node: ":a"
           shape: ":S"
         - node: ":b"
-          shape: ":S"  
+          shape: ":S"
+      expected_results: *bsep3_expected
     - name: bsep4_shex
       data_graph: sa4.ttl
       shex_file: sa4.shex
@@ -88,19 +284,21 @@ tests:
         - node: ":a"
           shape: ":S"
         - node: ":b"
-          shape: ":S"  
+          shape: ":S"
+      expected_results: *bsep3_expected
     - name: bsep4_shacl
       data_graph: sa4.ttl
       shapes_graph: sa4.shapes.ttl
       engine: shacl
-      description: 
+      description:
         Separation test - sa4 (SHACL)
       default_prefix: "http://example.org/"
       pairs:
         - node: ":a"
           shape: ":S"
         - node: ":b"
-          shape: ":S"  
+          shape: ":S"
+      expected_results: *bsep3_expected
     - name: reach1_shex
       data_graph: reach1.ttl
       shex_file: reach1.shex
@@ -112,8 +310,59 @@ tests:
         - ":b"
         - ":c"
         - ":d"
-      shapes: 
+      shapes:
         - ":R"
+      expected_results: &reach1_expected
+        lfp:
+          models:
+            - passing:
+                - node: ":a"
+                  shape: ":R"
+                - node: ":b"
+                  shape: ":R"
+              failing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+        gfp:
+          models:
+            - passing:
+                - node: ":a"
+                  shape: ":R"
+                - node: ":b"
+                  shape: ":R"
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+              failing: []
+        brave:
+          quantifier: any
+          models: &reach1_sms_models
+            - passing:
+                - node: ":a"
+                  shape: ":R"
+                - node: ":b"
+                  shape: ":R"
+              failing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+            - passing:
+                - node: ":a"
+                  shape: ":R"
+                - node: ":b"
+                  shape: ":R"
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *reach1_sms_models
     - name: reach1_shacl
       data_graph: reach1.ttl
       shapes_graph: reach1.shapes.ttl
@@ -125,8 +374,9 @@ tests:
         - ":b"
         - ":c"
         - ":d"
-      shapes: 
+      shapes:
         - ":R"
+      expected_results: *reach1_expected
     - name: reach2
       data_graph: reach2.ttl
       shapes_graph: reach2.shapes.ttl
@@ -137,7 +387,42 @@ tests:
         - node: ":c"
           shape: ":R"
         - node: ":d"
-          shape: ":R"  
+          shape: ":R"
+      expected_results: &reach2_expected
+        lfp:
+          models:
+            - passing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+              failing: []
+        gfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+        brave:
+          quantifier: any
+          models: &reach2_sms_models
+            - passing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+              failing: []
+            - passing: []
+              failing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+        cautious:
+          quantifier: all
+          models: *reach2_sms_models
     - name: reach2
       data_graph: reach2.ttl
       shex_file: reach2.shex
@@ -148,7 +433,8 @@ tests:
         - node: ":c"
           shape: ":R"
         - node: ":d"
-          shape: ":R"  
+          shape: ":R"
+      expected_results: *reach2_expected
     - name: safe1_shex
       data_graph: safe1.ttl
       shex_file: safe1.shex
@@ -159,7 +445,42 @@ tests:
         - node: ":c"
           shape: ":S"
         - node: ":d"
-          shape: ":S"  
+          shape: ":S"
+      expected_results: &safe1_expected
+        lfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing:
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: []
+        brave:
+          quantifier: any
+          models: &safe1_sms_models
+            - passing: []
+              failing:
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+            - passing:
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *safe1_sms_models
     - name: safe1_shacl
       data_graph: safe1.ttl
       shapes_graph: safe1.shapes.ttl
@@ -170,7 +491,8 @@ tests:
         - node: ":c"
           shape: ":S"
         - node: ":d"
-          shape: ":S"  
+          shape: ":S"
+      expected_results: *safe1_expected
     - name: safe2_shex
       data_graph: safe2.ttl
       shex_file: safe2.shex
@@ -181,7 +503,42 @@ tests:
         - node: ":c"
           shape: ":R"
         - node: ":d"
-          shape: ":R"  
+          shape: ":R"
+      expected_results: &safe2_expected
+        lfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+        gfp:
+          models:
+            - passing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+              failing: []
+        brave:
+          quantifier: any
+          models: &safe2_sms_models
+            - passing: []
+              failing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+            - passing:
+                - node: ":c"
+                  shape: ":R"
+                - node: ":d"
+                  shape: ":R"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *safe2_sms_models
     - name: safe2_shacl
       data_graph: safe2.ttl
       shapes_graph: safe2.shapes.ttl
@@ -192,7 +549,8 @@ tests:
         - node: ":c"
           shape: ":R"
         - node: ":d"
-          shape: ":R"  
+          shape: ":R"
+      expected_results: *safe2_expected
     - name: nstrat1_shex
       data_graph: nostratnocycle.ttl
       shex_file: nostratnocycle.shex
@@ -205,8 +563,11 @@ tests:
         - ":c"
         - ":d"
         - ":e"
-      shapes: 
+      shapes:
         - ":S"
+      expected_results: &nstrat1_expected
+        non_stratified:
+          conforms: false
     - name: nstrat1_shacl
       data_graph: nostratnocycle.ttl
       shapes_graph: nostratnocycle.shapes.ttl
@@ -219,8 +580,9 @@ tests:
         - ":c"
         - ":d"
         - ":e"
-      shapes: 
+      shapes:
         - ":S"
+      expected_results: *nstrat1_expected
     - name: nstrat2_shex
       data_graph: nostratcycle.ttl
       shex_file: nostratcycle.shex
@@ -230,8 +592,9 @@ tests:
       nodes:
         - ":a"
         - ":b"
-      shapes: 
+      shapes:
         - ":S"
+      expected_results: *nstrat1_expected
     - name: nstrat2_shacl
       data_graph: nostratcycle.ttl
       shapes_graph: nostratcycle.shapes.ttl
@@ -241,8 +604,9 @@ tests:
       nodes:
         - ":a"
         - ":b"
-      shapes: 
+      shapes:
         - ":S"
+      expected_results: *nstrat1_expected
     - name: fresh_shex
       data_graph: fresh.ttl
       shex_file: fresh.shex
@@ -252,6 +616,29 @@ tests:
       pairs:
         - node: ":d"
           shape: ":S"
+      expected_results: &fresh_expected
+        lfp:
+          models:
+            - passing:
+                - node: ":d"
+                  shape: ":S"
+              failing: []
+        gfp:
+          models:
+            - passing:
+                - node: ":d"
+                  shape: ":S"
+              failing: []
+        brave:
+          quantifier: any
+          models: &fresh_sms_models
+            - passing:
+                - node: ":d"
+                  shape: ":S"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *fresh_sms_models
     - name: fresh_shacl
       data_graph: fresh.ttl
       shapes_graph: fresh.shapes.ttl
@@ -261,6 +648,7 @@ tests:
       pairs:
         - node: ":d"
           shape: ":S"
+      expected_results: *fresh_expected
     - name: cons1_shex
       data_graph: consistency1.ttl
       shex_file: consistency1.shex
@@ -269,9 +657,12 @@ tests:
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
-      shapes: 
+      shapes:
         - ":S"
         - ":S1"
+      expected_results: &cons_expected
+        unsatisfiable_selector:
+          conforms: false
     - name: cons1_shacl
       data_graph: consistency1.ttl
       shapes_graph: consistency1.shapes.ttl
@@ -280,9 +671,10 @@ tests:
       default_prefix: "http://example.org/"
       nodes:
         - ":a"
-      shapes: 
+      shapes:
         - ":S"
         - ":S1"
+      expected_results: *cons_expected
     - name: cons2_shex
       data_graph: consistency2.ttl
       shex_file: consistency2.shex
@@ -292,9 +684,10 @@ tests:
       nodes:
         - ":a"
         - ":b"
-      shapes: 
+      shapes:
         - ":S"
         - ":S1"
+      expected_results: *cons_expected
     - name: cons2_shacl
       data_graph: consistency2.ttl
       shapes_graph: consistency2.shapes.ttl
@@ -304,6 +697,7 @@ tests:
       nodes:
         - ":a"
         - ":b"
-      shapes: 
+      shapes:
         - ":S"
         - ":S1"
+      expected_results: *cons_expected

@@ -7,10 +7,13 @@ from .command_result import CommandResult
 from .commands import (
     run_args,
     run,
+    RunOutcome,
     mk_command_shacl,
     mk_command_shex,
     store_result,
 )
+from .error_type import ErrorType
+from .error_classification import classify_error, resolve_result
 from .analysis import (
     analyze_validation_report,
     remove_gt_lt,
@@ -33,6 +36,8 @@ from .shex_s import ShexSRunner, analyze_shapemap_shex_s
 from .shaclex import ShaclexShaclRunner, ShaclexShexRunner, analyze_shapemap_shaclex
 from .rudof_shacl import RudofShaclRunner
 from .rudof_shex import RudofShexRunner, analyze_shapemap_rudof
+from .semantics import match_expected_results, all_interesting_pairs
+from .latex_export import save_results_latex
 
 __all__ = [
     "Runner",
@@ -43,6 +48,10 @@ __all__ = [
     "CommandResult",
     "run_args",
     "run",
+    "RunOutcome",
+    "ErrorType",
+    "classify_error",
+    "resolve_result",
     "mk_command_shacl",
     "mk_command_shex",
     "store_result",
@@ -70,4 +79,7 @@ __all__ = [
     "ShaclexShexRunner",
     "RudofShaclRunner",
     "RudofShexRunner",
+    "match_expected_results",
+    "all_interesting_pairs",
+    "save_results_latex",
 ]

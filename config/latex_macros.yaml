@@ -1,0 +1,103 @@
+# Macro definitions used by `sheval test -f latex` when rendering the results
+# table (mirroring Table 2 of the "Common Foundations for Recursive Shape
+# Languages" paper). Each entry under `macros` maps a result category to a
+# LaTeX macro name and its expansion:
+#
+#   pass    - the validator/semantics accepted (conforms)
+#   fail    - the validator/semantics rejected (does not conform)
+#   na      - not applicable / no data (e.g. GFP/LFP/bSMS/cSMS columns for
+#             feature tests that don't prescribe a fixed-point semantics)
+#   error   - the validator errored in a way that doesn't match any of the
+#             more specific categories below (generic fallback)
+#
+# The remaining categories mirror runners/error_type.py's ErrorType values
+# (see latex_export._ERROR_TYPE_CATEGORIES for the mapping):
+#
+#   cycles_detected_stopped    - engine noticed cycles and stopped cleanly
+#   non_stratified_stopped     - engine noticed non-stratified negation and
+#                                 stopped cleanly
+#   timeout                    - engine was killed after the configured time limit
+#   crashed                    - engine terminated unexpectedly, unrelated to
+#                                 (or without evidence of) cycle/stratification
+#                                 detection
+#   cycles_detected_crashed    - engine noticed cycles but kept processing and
+#                                 then crashed
+#   non_stratified_crashed     - engine noticed non-stratified negation but kept
+#                                 processing and then crashed
+#   cycles_detected_conformant     - engine noticed cycles, warned, kept going
+#                                     and produced a report saying conforms=true
+#   cycles_detected_non_conformant - engine noticed cycles, warned, kept going
+#                                     and produced a report saying conforms=false
+#
+# The generated .tex defines these with \providecommand, so you can override
+# any of them in your own preamble (loaded before \input-ing the table) without
+# editing this file; the table body only ever calls the macro names below.
+macros:
+  pass:
+    name: shevalPass
+    latex: "$\\bullet$"
+  fail:
+    name: shevalFail
+    latex: "$\\blacksquare$"
+  na:
+    name: shevalNA
+    latex: "--"
+  error:
+    name: shevalError
+    latex: "\\textsf{X}"
+  cycles_detected_stopped:
+    name: shevalCyclesDetectedStopped
+    latex: "\\textsf{C}"
+  non_stratified_stopped:
+    name: shevalNonStratifiedStopped
+    latex: "\\textsf{N}"
+  timeout:
+    name: shevalTimeout
+    latex: "\\textsf{T}"
+  crashed:
+    name: shevalCrashed
+    latex: "\\textsf{X}"
+  cycles_detected_crashed:
+    name: shevalCyclesDetectedCrashed
+    latex: "\\textsf{C!}"
+  non_stratified_crashed:
+    name: shevalNonStratifiedCrashed
+    latex: "\\textsf{N!}"
+  cycles_detected_conformant:
+    name: shevalCyclesDetectedConformant
+    latex: "\\textsf{C+}"
+  cycles_detected_non_conformant:
+    name: shevalCyclesDetectedNonConformant
+    latex: "\\textsf{C-}"
+
+# Column header for each technology, keyed by the technology name as it appears in a
+# manifest's shex_technologies/shacl_technologies lists. The table's technology columns
+# are ordered following those lists (rendering fails if a manifest uses a technology
+# missing from this section). As with `macros` above, the generated .tex defines these
+# with \providecommand, so you can rename a technology in the table without editing this
+# file by overriding its macro in your own preamble.
+technologies:
+  rudof:
+    name: shevalTechRudof
+    latex: "rudof"
+  shex_s:
+    name: shevalTechShexS
+    latex: "ShEx-S"
+  jena_shex:
+    name: shevalTechJenaShex
+    latex: "Jena ShEx"
+  pyshacl:
+    name: shevalTechPyshacl
+    latex: "pySHACL"
+  shacl_s:
+    name: shevalTechShaclS
+    latex: "SHACL-S"
+  jena_shacl:
+    name: shevalTechJenaShacl
+    latex: "Jena SHACL"
+  shacl_tq:
+    name: shevalTechShaclTq
+    latex: "SHACL-TQ"
+
+caption: "Results of comparative study of the semantics of SHACL and ShEx validators for recursive shape catalogues."
+label: "tab:sheval-results"

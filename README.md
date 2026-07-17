@@ -156,7 +156,9 @@ options:
                         Manifest file (in YAML format). Defaults to test_suites/<test-suite>/manifest.yaml (default: None)
   -o, --output OUTPUT   Output file (in YAML format) (default: None)
   -f, --format [FORMAT ...]
-                        List of output formats (yaml or csv) (default: ['yaml'])
+                        List of output formats (yaml, csv or latex) (default: ['yaml'])
+  --latex-macros LATEX_MACROS
+                        LaTeX macros config file, used by the 'latex' output format (default: config/latex_macros.yaml)
 ```
 
 It is possible to run all the tests from a manifest or to select the tests of one technology or engine.
@@ -208,5 +210,19 @@ python3 src/sheval.py shex -d test_suites/recursive_shapes/RDF/example21.ttl -s 
 ```
 
 If you replace `-t rudof` by `-t jena_shex` the command will be run using Jena ShEx.
+
+### Expected results and semantics
+
+A test's manifest entry can declare an optional `expected_results` section listing, per semantics (`lfp`, `gfp`, `brave`, `cautious`, or a `conforms`-only entry for tests where no fixed-point semantics applies, like `non_stratified` or `unsatisfiable_selector`), the candidate model(s) of passing/failing node-shape pairs. When present, each technology's result is annotated with a `semantics_match` map showing which semantics its actual output agrees with (`gfp`, `lfp`, `brave` i.e. brave SMS, `cautious` i.e. cautious SMS), surfaced in both the YAML output and as `gfp`/`lfp`/`bsms`/`csms` columns in the CSV output.
+
+### Generating a LaTeX table
+
+Passing `-f latex` renders the results as a LaTeX table mirroring Table 2 of the paper: one row per test, one column per (engine, technology), plus GFP/LFP/bSMS/cSMS columns showing the verdict prescribed by each semantics (computed from the manifest's `expected_results`, independent of any specific engine run).
+
+```sh
+python3 src/sheval.py test -f latex -o output
+```
+
+This writes `output.tex`, a self-contained table (wrapped in `\begin{table}...\end{table}`) meant to be `\input`-ed into a paper. The concrete LaTeX for each mark (pass/fail/error/not-applicable) is not hardcoded: it comes from the macros config file at `config/latex_macros.yaml` (override with `--latex-macros`), which defines, per category, a macro name and its LaTeX expansion. The generated `.tex` declares these with `\providecommand`, so you can override any of them in your own preamble instead of editing the config.
 
 

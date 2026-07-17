@@ -57,9 +57,9 @@ def save_results_csv(results, output, include_description):
         file = sys.stdout
     writer = csv.writer(file)
     if include_description:
-        writer.writerow(["name", "engine", "technology", "description", "conforms", "message", "successes", "failures"])
+        writer.writerow(["name", "engine", "technology", "description", "conforms", "error_type", "message", "successes", "failures", "gfp", "lfp", "bsms", "csms"])
     else:
-        writer.writerow(["name", "engine", "technology", "conforms", "message", "successes", "failures"])
+        writer.writerow(["name", "engine", "technology", "conforms", "error_type", "message", "successes", "failures", "gfp", "lfp", "bsms", "csms"])
     for entry in results:
         name = entry['name']
         technology_name = entry['technology_name']
@@ -67,6 +67,7 @@ def save_results_csv(results, output, include_description):
         description = entry['description']
         result = entry['result']
         conforms = result['conforms']
+        error_type = result.get('error_type', "")
         if 'message' in result:
             message = result['message']
         else:
@@ -79,10 +80,15 @@ def save_results_csv(results, output, include_description):
             failures = result['failures']
         else:
             failures = []
+        semantics_match = result.get('semantics_match', {})
+        gfp = semantics_match.get('gfp', "")
+        lfp = semantics_match.get('lfp', "")
+        bsms = semantics_match.get('brave', "")
+        csms = semantics_match.get('cautious', "")
         if include_description:
-            writer.writerow([name, engine_name, technology_name, description, conforms, message, successes, failures])
+            writer.writerow([name, engine_name, technology_name, description, conforms, error_type, message, successes, failures, gfp, lfp, bsms, csms])
         else:
-            writer.writerow([name, engine_name, technology_name, conforms, message, successes, failures])
+            writer.writerow([name, engine_name, technology_name, conforms, error_type, message, successes, failures, gfp, lfp, bsms, csms])
     if output_file is not None:
         file.close()
         logging.info(f"Results saved to CSV {output_file}")
@@ -205,7 +211,20 @@ def get_str(name, dict, default):
         return dict[name]
     return default
 
-""" Runs a single test case 
+""" If the test declares expected_results, attach a 'semantics_match' entry to every
+    result produced for it (one per technology), recording which semantics (lfp, gfp, sums, ...)
+    the technology's reported successes/failures agree with.
+"""
+def attach_semantics_matches(new_results, test, raw_nodes, raw_shapes, raw_pairs) -> None:
+    expected_results = test.get('expected_results')
+    if not expected_results:
+        return
+    all_pairs = all_interesting_pairs(raw_nodes, raw_shapes, raw_pairs)
+    for entry in new_results:
+        entry['result']['semantics_match'] = match_expected_results(expected_results, all_pairs, entry['result'])
+    return
+
+""" Runs a single test case
     Stores the results in the results list
 """
 def run_test(results, test, args, results_folder, manifest) -> None:
@@ -219,18 +238,20 @@ def run_test(results, test, args, results_folder, manifest) -> None:
             logging.info(f"Test engine: {engine}")
             prefix = test['default_prefix']
             data_graph = os.path.join(manifest['rdf_folder'], test['data_graph'])
-            nodes = get_list('nodes', test)
-            shapes = get_list('shapes', test)
-            pairs = get_list('pairs', test)
+            raw_nodes = get_list('nodes', test)
+            raw_shapes = get_list('shapes', test)
+            raw_pairs = get_list('pairs', test)
             prefix = test['default_prefix']
-            nodes = enrich_with_iris(nodes,prefix)
-            shapes = enrich_with_iris(shapes,prefix)
-            pairs = enrich_pairs_with_iris(pairs,prefix)
+            nodes = enrich_with_iris(raw_nodes,prefix)
+            shapes = enrich_with_iris(raw_shapes,prefix)
+            pairs = enrich_pairs_with_iris(raw_pairs,prefix)
+            start = len(results)
             match engine:
                 case "shacl":
                     run_shacl_test(results, test, manifest, name, description, results_folder, args.temp, args.technology, data_graph, nodes, shapes, pairs, prefix, args.include_message, args.include_description)
                 case "shex":
                     run_shex_test(results, test, manifest, name, description, results_folder, args.temp, args.technology, nodes, shapes, pairs, prefix, args.include_message, args.include_description)
+            attach_semantics_matches(results[start:], test, raw_nodes, raw_shapes, raw_pairs)
     return
 
 def load_manifest(manifest_path, test_suite_dir):
@@ -282,8 +303,10 @@ def run_tests(args, unknown_args):
                 save_results_yaml(results, args.output)
             case "csv":
                 save_results_csv(results, args.output, args.include_description)
+            case "latex":
+                save_results_latex(results, manifest, args.output, args.latex_macros)
             case _:
-                logging.warning(f"Unknown format {format}. Supported formats are [yaml, csv]")
+                logging.warning(f"Unknown format {format}. Supported formats are [yaml, csv, latex]")
     return
 
 def find_shacl_runner(name: str) -> SHACLRunner:
@@ -394,12 +417,18 @@ def main():
         action="store"
     )
     parser_test.add_argument(
-        "-f", 
-        "--format", 
-        help="List of output formats (yaml or csv)", 
-        default = ["yaml"], 
-        type = str, 
+        "-f",
+        "--format",
+        help="List of output formats (yaml, csv or latex)",
+        default = ["yaml"],
+        type = str,
         nargs='*'
+    )
+    parser_test.add_argument(
+        "--latex-macros",
+        help="LaTeX macros config file, used by the 'latex' output format",
+        default = "config/latex_macros.yaml",
+        action="store"
     )
     parser_test.set_defaults(func=run_tests)
 

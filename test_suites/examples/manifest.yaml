@@ -1,14 +1,14 @@
 rdf_folder: RDF
 shacl_folder: SHACL
+shex_technologies: 
+  - rudof
+  - shex_s
+  - jena_shex
 shacl_technologies: 
   - pyshacl
   - shacl_s
   - jena_shacl
   - shacl_tq
-  - rudof
-shex_technologies: 
-  - shex_s
-  - jena_shex
   - rudof
 shex_folder: ShEx
 results_folder: results
@@ -193,7 +193,7 @@ tests:
         - ":d"
       shapes: 
         - ":S"
-    - name: example_dmkg1
+    - name: example_dmkg
       data_graph: example_dmkg.ttl
       shex_file: example_dmkg.shex
       engine: shex
@@ -203,8 +203,55 @@ tests:
         - ":a"
         - ":b"
       shapes: 
-        - ":Person"
-    - name: example_dmkg1
+        - ":User"
+      expected_results: &expected_results_dmkg
+        lfp:
+          models:
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":User"
+                - node: ":b"
+                  shape: ":User"
+        gfp:
+          models:
+            - passing:
+                - node: ":a"
+                  shape: ":User"
+                - node: ":b"
+                  shape: ":User"
+              failing: []
+        brave:
+          quantifier: any
+          models: &dmkg_example_models
+            - passing: []
+              failing:
+                - node: ":a"
+                  shape: ":User"
+                - node: ":b"
+                  shape: ":User"
+            - passing:
+                - node: ":a"
+                  shape: ":User"
+              failing: 
+                - node: ":b"
+                  shape: ":User"
+            - passing:
+                - node: ":b"
+                  shape: ":User"
+              failing: 
+                - node: ":a"
+                  shape: ":User"
+            - passing:
+                - node: ":a"
+                  shape: ":User"
+                - node: ":b"
+                  shape: ":User"
+              failing:  []
+        cautious:
+          quantifier: all
+          models: *dmkg_example_models
+    - name: example_dmkg
       data_graph: example_dmkg.ttl
       shapes_graph: example_dmkg.shapes.ttl
       engine: shacl
@@ -214,26 +261,5 @@ tests:
         - ":a"
         - ":b"
       shapes: 
-        - ":Person"
-    - name: example_dmkg2
-      data_graph: example_dmkg2.ttl
-      shex_file: example_dmkg2.shex
-      engine: shex
-      description: Example from paper submitted to DMKG
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
-        - ":Person"
-    - name: example_dmkg2
-      data_graph: example_dmkg2.ttl
-      shapes_graph: example_dmkg2.shapes.ttl
-      engine: shacl
-      description: Example from paper submitted to DMKG
-      default_prefix: "http://example.org/"
-      nodes:
-        - ":a"
-        - ":b"
-      shapes: 
-        - ":Person"
+        - ":User"
+      expected_results: *expected_results_dmkg

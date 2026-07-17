@@ -23,5 +23,5 @@ class Runner(ABC):
             self.execute(params, results)
         except Exception as e:
             logging.error(f"Error running {self.engine} for {params.name} with technology {params.technology}: {e}")
-            result = {'conforms': "Exception", 'failures': f"{e}"}
+            result = {'conforms': None, 'error_type': None, 'message': f"{e}"}
             store_result(params.name, self.engine, self.name, params.description, result, results)

@@ -6,9 +6,9 @@ from .shacl_runner import SHACLRunner
 from .shex_runner import ShExRunner
 from .shacl_params import SHACLParams
 from .shex_params import ShExParams
-from .command_result import CommandResult
 from .commands import run, mk_command_shacl, mk_command_shex, store_result
 from .analysis import analyze_validation_report, extend_nodes_shapes, classify_shapemap_results
+from .error_classification import resolve_result
 
 BIN = "binaries/shaclex-0.2.7/bin/shaclex"
 
@@ -61,11 +61,8 @@ class ShaclexShaclRunner(SHACLRunner):
         validation_output = os.path.join(params.results_folder, f"{params.name}_{self.name}_output.txt")
         command = mk_command_shacl(self.command_pattern, params.filename, validation_report_file)
         logging.info(f"Running: {command}")
-        result1 = run(command, validation_output, 5)
-        if result1 == CommandResult.OK:
-            result = analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message)
-        else:
-            result = {'conforms': "Error", 'failures': "Error running command" + str(result1)}
+        outcome = run(command, validation_output, 5)
+        result = resolve_result(self.name, outcome, lambda: analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message))
         store_result(params.name, self.engine, self.name, params.description, result, results)
 
 
@@ -77,10 +74,6 @@ class ShaclexShexRunner(ShExRunner):
         validation_output = os.path.join(params.results_folder, f"{params.name}_{self.name}_output.json")
         command = mk_command_shex(self.command_pattern, params.data_file, params.shex_file, params.shapemap_file, validation_output)
         logging.info(f"Running: {command}")
-        result1 = run(command, validation_output, 5)
-        if result1 == CommandResult.OK:
-            logging.debug(f"Command result is OK...before analyzing shapemap file: {validation_output}")
-            result = analyze_shapemap_shaclex(validation_output, params.nodes, params.shapes, params.pairs)
-        else:
-            result = {'conforms': "Error", 'failures': "Error running command" + str(result1)}
+        outcome = run(command, validation_output, 5)
+        result = resolve_result(self.name, outcome, lambda: analyze_shapemap_shaclex(validation_output, params.nodes, params.shapes, params.pairs))
         store_result(params.name, self.engine, self.name, params.description, result, results)
