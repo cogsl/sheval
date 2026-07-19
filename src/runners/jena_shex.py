@@ -37,5 +37,5 @@ class JenaShexRunner(ShExRunner):
         output_file = os.path.join(params.results_folder, f"{params.name}_{self.name}_results.txt")
         command = mk_command_shex(self.command_pattern, params.data_file, params.shex_file, params.shapemap_file, output_file)
         outcome = run(command, output_file, 5)
-        result = resolve_result(self.name, outcome, lambda: analyze_result_jena_shex(output_file, params.nodes, params.shapes, params.pairs))
+        result = resolve_result(self, outcome, lambda: analyze_result_jena_shex(output_file, params.nodes, params.shapes, params.pairs))
         store_result(params.name, self.engine, self.name, params.description, result, results)

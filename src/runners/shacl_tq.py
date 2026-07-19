@@ -27,5 +27,5 @@ class ShaclTqRunner(SHACLRunner):
             split_file_by_regex(validation_report_file_temp, regex, validation_output, validation_report_file)
             return analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message)
 
-        result = resolve_result(self.name, outcome, analyze)
+        result = resolve_result(self, outcome, analyze)
         store_result(params.name, self.engine, self.name, params.description, result, results)

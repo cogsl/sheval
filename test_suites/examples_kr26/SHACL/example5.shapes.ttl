@@ -1,0 +1,22 @@
+prefix :       <http://example.org/> 
+prefix sh:     <http://www.w3.org/ns/shacl#> 
+prefix xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+# Example 5 from https://arxiv.org/pdf/2604.20946 in SHACL
+:R a sh:NodeShape ;
+  sh:or (
+    [ sh:hasValue :a ]
+    [ sh:path :p ;
+      sh:qualifiedValueShape :R ;
+      sh:qualifiedMinCount 1
+    ]
+  ) .
+
+:S a sh:NodeShape ;
+  sh:or (
+    [ sh:not [ sh:node :R ] ]
+    [ sh:path :q ;
+      sh:qualifiedValueShape :S ;
+      sh:qualifiedMinCount 1
+    ]
+  ) .

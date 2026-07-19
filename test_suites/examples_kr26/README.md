@@ -1,0 +1,1 @@
+This folder contains the examples presented in the paper [Common Foundations of Recursive Shape Languages](https://arxiv.org/abs/2604.20946)

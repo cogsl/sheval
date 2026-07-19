@@ -62,7 +62,7 @@ class ShaclexShaclRunner(SHACLRunner):
         command = mk_command_shacl(self.command_pattern, params.filename, validation_report_file)
         logging.info(f"Running: {command}")
         outcome = run(command, validation_output, 5)
-        result = resolve_result(self.name, outcome, lambda: analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message))
+        result = resolve_result(self, outcome, lambda: analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message))
         store_result(params.name, self.engine, self.name, params.description, result, results)
 
 
@@ -75,5 +75,5 @@ class ShaclexShexRunner(ShExRunner):
         command = mk_command_shex(self.command_pattern, params.data_file, params.shex_file, params.shapemap_file, validation_output)
         logging.info(f"Running: {command}")
         outcome = run(command, validation_output, 5)
-        result = resolve_result(self.name, outcome, lambda: analyze_shapemap_shaclex(validation_output, params.nodes, params.shapes, params.pairs))
+        result = resolve_result(self, outcome, lambda: analyze_shapemap_shaclex(validation_output, params.nodes, params.shapes, params.pairs))
         store_result(params.name, self.engine, self.name, params.description, result, results)

@@ -1,0 +1,10 @@
+prefix :       <http://example.org/> 
+
+# Example 5 from https://arxiv.org/pdf/2604.20946
+:R [ :a ] OR {
+  :p @:R + ;
+}
+
+:S NOT @:R OR {
+  :q @:S +
+}

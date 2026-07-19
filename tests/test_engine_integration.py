@@ -107,6 +107,15 @@ def test_rudof_shex_recursion_is_not_an_error(tmp_path):
     assert "error_type" not in result
 
 
+@_requires("rudof")
+def test_rudof_shex_non_stratified(tmp_path):
+    # Unlike ordinary recursion, non-stratified negation fails schema
+    # compilation entirely (see nstrat1_shex/nstrat2_shex).
+    result = run_sheval(tmp_path, "rudof", "shex", "nstrat1_shex")
+    assert result["conforms"] is None
+    assert result["error_type"] == "NonStratified"
+
+
 # --- pyshacl: crashes on positive (non-negated) mutual recursion -------
 
 @pytest.mark.skipif(not _PYSHACL_AVAILABLE, reason="pyshacl not installed in this environment")
@@ -178,3 +187,14 @@ def test_jena_shex_normal_run_is_not_an_error(tmp_path):
 def test_shex_s_normal_run_is_not_an_error(tmp_path):
     result = run_sheval(tmp_path, "shex_s", "shex", "bsep3_shex")
     assert "error_type" not in result
+
+
+@_requires("shex_s")
+def test_shex_s_non_stratified(tmp_path):
+    # Like rudof (see test_rudof_shex_non_stratified above), shex_s refuses to
+    # compile a schema with non-stratified negation -- but it reports the
+    # failure on stdout, not stderr, so this also exercises that the message
+    # (redirected into the result file) still gets picked up.
+    result = run_sheval(tmp_path, "shex_s", "shex", "nstrat1_shex")
+    assert result["conforms"] is False
+    assert result["error_type"] == "NonStratified"
