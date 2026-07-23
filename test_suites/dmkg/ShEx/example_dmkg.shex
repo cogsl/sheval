@@ -2,11 +2,10 @@ prefix :    <http://example.org/>
 prefix xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 :User @:Person AND {
-  :name xsd:string ;
-  :knows . +
+  :name  xsd:string   ;
+  :knows .          +
 }
 
 :Person @:User AND {
   :knows @:Person * ;
-  :knows .        *
 }

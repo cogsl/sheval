@@ -20,6 +20,13 @@ _RULES = [
     (re.compile(r"Validation path too deep"), ErrorType.CYCLES_DETECTED_CRASHED),
 ]
 
+# On simpler recursive shapes (see bsep1/bsep2), pyshacl doesn't crash: it
+# warns "A Recursive Shape was detected ... Backing out." on stderr, then
+# exits 0 with a full report. Same situation as jena_shacl's "Cycle detected"
+# warning -- the report is real but its verdict isn't guaranteed correct, so
+# it's classified by 'conforms' like jena_shacl.py does, not trusted outright.
+_RECURSION_WARNING = re.compile(r"ShapeRecursionWarning|Recursive Shape was detected")
+
 
 class PyshaclRunner(SHACLRunner):
     def __init__(self):
@@ -30,6 +37,8 @@ class PyshaclRunner(SHACLRunner):
         for pattern, error_type in _RULES:
             if pattern.search(text):
                 return error_type
+        if conforms in (True, False) and _RECURSION_WARNING.search(text):
+            return ErrorType.CYCLES_DETECTED_CONFORMANT if conforms else ErrorType.CYCLES_DETECTED_NON_CONFORMANT
         return None
 
     def execute(self, params: SHACLParams, results: list) -> None:

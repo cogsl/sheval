@@ -607,48 +607,6 @@ tests:
       shapes:
         - ":S"
       expected_results: *nstrat1_expected
-    - name: fresh_shex
-      data_graph: fresh.ttl
-      shex_file: fresh.shex
-      engine: shex
-      description: Fresh Constant Support
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":d"
-          shape: ":S"
-      expected_results: &fresh_expected
-        lfp:
-          models:
-            - passing:
-                - node: ":d"
-                  shape: ":S"
-              failing: []
-        gfp:
-          models:
-            - passing:
-                - node: ":d"
-                  shape: ":S"
-              failing: []
-        brave:
-          quantifier: any
-          models: &fresh_sms_models
-            - passing:
-                - node: ":d"
-                  shape: ":S"
-              failing: []
-        cautious:
-          quantifier: all
-          models: *fresh_sms_models
-    - name: fresh_shacl
-      data_graph: fresh.ttl
-      shapes_graph: fresh.shapes.ttl
-      engine: shacl
-      description: Fresh Constant Support
-      default_prefix: "http://example.org/"
-      pairs:
-        - node: ":d"
-          shape: ":S"
-      expected_results: *fresh_expected
     - name: cons1_shex
       data_graph: consistency1.ttl
       shex_file: consistency1.shex
@@ -701,3 +659,301 @@ tests:
         - ":S"
         - ":S1"
       expected_results: *cons_expected
+    - name: fresh_shex
+      data_graph: fresh.ttl
+      shex_file: fresh.shex
+      engine: shex
+      description: Fresh Constant Support
+      default_prefix: "http://example.org/"
+      pairs:
+        - node: ":d"
+          shape: ":S"
+      expected_results: &fresh_expected
+        lfp:
+          models:
+            - passing:
+                - node: ":d"
+                  shape: ":S"
+              failing: []
+        gfp:
+          models:
+            - passing:
+                - node: ":d"
+                  shape: ":S"
+              failing: []
+        brave:
+          quantifier: any
+          models: &fresh_sms_models
+            - passing:
+                - node: ":d"
+                  shape: ":S"
+              failing: []
+        cautious:
+          quantifier: all
+          models: *fresh_sms_models
+    - name: fresh_shacl
+      data_graph: fresh.ttl
+      shapes_graph: fresh.shapes.ttl
+      engine: shacl
+      description: Fresh Constant Support
+      default_prefix: "http://example.org/"
+      pairs:
+        - node: ":d"
+          shape: ":S"
+      expected_results: *fresh_expected
+    - name: dual1_shex
+      data_graph: dual1.ttl
+      shex_file: dual1.shex
+      engine: shex
+      description: Example with duality
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: 
+                - node: ":c"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing: 
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        brave:
+          quantifier: any
+          models: &dual1_shex_sms_models
+            - passing: 
+                - node: ":c"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+            - passing: 
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        cautious:
+          quantifier: all
+          models: *dual1_shex_sms_models
+    - name: dual1_shacl
+      data_graph: dual1.ttl
+      shapes_graph: dual1.shapes.ttl
+      engine: shacl
+      description: Duality example 1 in SHACL
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: 
+                - node: ":c"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing: 
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        brave:
+          quantifier: any
+          models: &dual1_shacl_sms_models
+            - passing: 
+                - node: ":c"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+            - passing: 
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        cautious:
+          quantifier: all
+          models: *dual1_shacl_sms_models
+    - name: dual2_shex
+      data_graph: dual2.ttl
+      shex_file: dual2.shex
+      engine: shex
+      description: Duality example 2
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":c"
+                  shape: ":S"
+        brave:
+          quantifier: any
+          models: &dual2_shex_sms_models
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":c"
+                  shape: ":S"
+        cautious:
+          quantifier: all
+          models: *dual2_shex_sms_models
+    - name: dual2_shacl
+      data_graph: dual2.ttl
+      shapes_graph: dual2.shapes.ttl
+      engine: shacl
+      description: Duality example 2 SHACL
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":c"
+        - ":d"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":c"
+                  shape: ":S"
+        brave:
+          quantifier: any
+          models: &dual2_shacl_sms_models
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":c"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":c"
+                  shape: ":S"
+        cautious:
+          quantifier: all
+          models: *dual2_shacl_sms_models

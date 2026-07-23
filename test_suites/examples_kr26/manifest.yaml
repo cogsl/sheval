@@ -125,26 +125,194 @@ tests:
       shapes: 
         - ":S"
         - ":R"
-    - name: example6
+    - name: example6_shex
       data_graph: example6.ttl
       shex_file: example6.shex
       engine: shex
       description: Example 6 from https://arxiv.org/pdf/2604.20946
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
         - ":d"
       shapes: 
         - ":S"
-    - name: example6
+      expected_results:
+        lfp:
+          models:
+            - passing: 
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing: 
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        brave:
+          quantifier: any
+          models: &example6_shex_sms_models
+            - passing: 
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        cautious:
+          quantifier: all
+          models: *example6_shex_sms_models
+    - name: example6_shacl
       data_graph: example6.ttl
       shapes_graph: example6.shapes.ttl
       engine: shacl
       description: Example 6 from https://arxiv.org/pdf/2604.20946
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
         - ":d"
       shapes: 
         - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: 
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing: 
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        brave:
+          quantifier: any
+          models: &example6_shacl_sms_models
+            - passing: 
+                - node: ":d"
+                  shape: ":S"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+        cautious:
+          quantifier: all
+          models: *example6_shacl_sms_models
+    - name: example7_shex
+      data_graph: example7.ttl
+      shex_file: example7.shex
+      engine: shex
+      description: Example 7 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":d"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":d"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":d"
+                  shape: ":S"
+        brave:
+          quantifier: any
+          models: &example7_shex_sms_models
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":d"
+                  shape: ":S"
+        cautious:
+          quantifier: all
+          models: *example7_shex_sms_models
+    - name: example7_shacl
+      data_graph: example7.ttl
+      shapes_graph: example7.shapes.ttl
+      engine: shacl
+      description: Example 7 from https://arxiv.org/pdf/2604.20946
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+        - ":d"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models:
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":d"
+                  shape: ":S"
+        gfp:
+          models:
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":d"
+                  shape: ":S"
+        brave:
+          quantifier: any
+          models: &example7_shacl_sms_models
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":S"
+              failing: 
+                - node: ":d"
+                  shape: ":S"
+        cautious:
+          quantifier: all
+          models: *example7_shacl_sms_models
     - name: example21
       data_graph: example21.ttl
       shapes_graph: example21.shapes.ttl

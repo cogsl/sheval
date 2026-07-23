@@ -25,7 +25,11 @@ test_suites/recursive_shapes fixtures, not guessed:
   recursive validation path, exceeds its own internal depth guard, and raises
   "Validator encountered a Runtime Error:\\nValidation path too deep!" instead
   of the graceful "ShapeRecursionWarning ... Backing out." it uses for
-  simpler recursion (which is not an error at all).
+  simpler recursion (see bsep1/bsep2). That graceful case is not a crash --
+  it exits 0 with a full report -- but the warning means the verdict isn't
+  guaranteed correct, so it's classified as
+  CyclesDetectedConformant/CyclesDetectedNonConformant the same way as
+  jena_shacl's cycle warning below, rather than trusted outright.
 - jena_shacl: on cyclic shapes (see bsep1, bsep3), it prints "Cycle detected"
   warnings to stderr but keeps going and exits 0 with a full validation
   report, unlike rudof (which aborts) or pyshacl (which can crash on the

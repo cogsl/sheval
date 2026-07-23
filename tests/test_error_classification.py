@@ -89,9 +89,12 @@ def test_pyshacl_cycles_detected_crashed():
     assert classify_error(PyshaclRunner(), CommandResult.OK, 2, PYSHACL_PATH_TOO_DEEP_STDERR) == ErrorType.CYCLES_DETECTED_CRASHED
 
 
-def test_pyshacl_graceful_recursion_backoff_is_not_an_error():
-    # pyshacl's normal recursion handling: warns and backs out, exit 0.
-    # This is a successful run, not one of our error categories.
+def test_pyshacl_graceful_recursion_backoff_is_not_a_crash():
+    # pyshacl's normal recursion handling: warns and backs out, exit 0. The
+    # top-level classify_error() (used on the run-failed path) always calls
+    # the runner with conforms=None, so it can't classify this as
+    # Conformant/NonConformant -- that only happens via resolve_result()
+    # below, once the real 'conforms' value from the report is known.
     assert classify_error(PyshaclRunner(), CommandResult.OK, 0, PYSHACL_BACKING_OUT_STDERR) is None
 
 
@@ -249,6 +252,23 @@ def test_resolve_result_jena_shacl_cycle_warning_conformant():
 def test_resolve_result_jena_shacl_cycle_warning_non_conformant():
     outcome = RunOutcome(status=CommandResult.OK, stderr=JENA_SHACL_CYCLE_WARN_STDERR, returncode=0)
     result = resolve_result(JenaShaclRunner(), outcome, lambda: {'conforms': False, 'failures': [{'node': ':a'}]})
+    assert result['conforms'] is False
+    assert result['error_type'] == ErrorType.CYCLES_DETECTED_NON_CONFORMANT.value
+
+
+def test_resolve_result_pyshacl_recursion_warning_conformant():
+    # pyshacl exits 0 and produces a real report even after warning about
+    # recursion (see bsep1/bsep2) -- conforms is kept, but flagged as suspect,
+    # same as jena_shacl's cycle warning above.
+    outcome = RunOutcome(status=CommandResult.OK, stderr=PYSHACL_BACKING_OUT_STDERR, returncode=0)
+    result = resolve_result(PyshaclRunner(), outcome, lambda: {'conforms': True, 'failures': []})
+    assert result['conforms'] is True
+    assert result['error_type'] == ErrorType.CYCLES_DETECTED_CONFORMANT.value
+
+
+def test_resolve_result_pyshacl_recursion_warning_non_conformant():
+    outcome = RunOutcome(status=CommandResult.OK, stderr=PYSHACL_BACKING_OUT_STDERR, returncode=0)
+    result = resolve_result(PyshaclRunner(), outcome, lambda: {'conforms': False, 'failures': [{'node': ':a'}]})
     assert result['conforms'] is False
     assert result['error_type'] == ErrorType.CYCLES_DETECTED_NON_CONFORMANT.value
 

@@ -1,0 +1,1 @@
+This folder contains the examples presented in the paper [sheval: A Framework for Evaluating Shape Languages](https://arxiv.org/abs/2604.20946)

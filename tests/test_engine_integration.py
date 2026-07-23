@@ -126,12 +126,16 @@ def test_pyshacl_cycles_detected_crashed(tmp_path):
 
 
 @pytest.mark.skipif(not _PYSHACL_AVAILABLE, reason="pyshacl not installed in this environment")
-def test_pyshacl_simple_recursion_backs_out_without_error(tmp_path):
+def test_pyshacl_simple_recursion_backs_out_conformant(tmp_path):
     # bsep1 is recursive but not the mutually-recursive sh:and shape that
-    # crashes pyshacl -- it warns internally and still produces a valid report.
+    # crashes pyshacl -- it warns "ShapeRecursionWarning ... Backing out." on
+    # stderr and still produces a valid report (conforms=true). The warning
+    # means that verdict isn't guaranteed correct, so it's flagged
+    # CyclesDetectedConformant rather than trusted outright, same as
+    # jena_shacl's cycle warning below.
     result = run_sheval(tmp_path, "pyshacl", "shacl", "bsep1_shacl")
     assert result["conforms"] is True
-    assert "error_type" not in result
+    assert result["error_type"] == "CyclesDetectedConformant"
 
 
 # --- jena_shacl: warns and continues, never observed to crash ----------

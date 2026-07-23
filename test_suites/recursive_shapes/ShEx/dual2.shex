@@ -1,0 +1,7 @@
+prefix :       <http://example.org/> 
+
+# Example 7 from https://arxiv.org/pdf/2604.20946
+:S [ :b ] OR {
+  :p @:S + ;
+  :p . *
+}
