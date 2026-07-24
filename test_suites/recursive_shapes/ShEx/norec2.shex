@@ -1,0 +1,8 @@
+prefix :       <http://example.org/> 
+
+:S {
+  :p NOT @:T + ;
+  :p .   * 
+}
+
+:T [ :a ]

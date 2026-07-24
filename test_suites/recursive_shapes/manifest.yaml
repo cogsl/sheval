@@ -957,3 +957,121 @@ tests:
         cautious:
           quantifier: all
           models: *dual2_shacl_sms_models
+    - name: norec1_shex
+      data_graph: norec1.ttl
+      shex_file: norec1.shex
+      engine: shex
+      description: Non recursive example 1
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models: &norec1_shex_lfp
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":a"
+                  shape: ":T"
+              failing: []
+        gfp: 
+          models: *norec1_shex_lfp
+        brave:
+          quantifier: any
+          models: *norec1_shex_lfp
+        cautious:
+          quantifier: all
+          models: *norec1_shex_lfp
+    - name: norec1_shacl
+      data_graph: norec1.ttl
+      shapes_graph: norec1.shapes.ttl
+      engine: shacl
+      description: Non recursive example 1 SHACL
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models: &norec1_shacl_lfp
+            - passing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":a"
+                  shape: ":T"
+              failing: []
+        gfp:
+          models: *norec1_shacl_lfp
+        brave:
+          quantifier: any
+          models: *norec1_shacl_lfp
+        cautious:
+          quantifier: all
+          models: *norec1_shacl_lfp
+    - name: norec2_shex
+      data_graph: norec2.ttl
+      shex_file: norec2.shex
+      engine: shex
+      description: Non recursive example 2
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models: &norec2_shex_lfp
+            - passing: 
+                - node: ":b"
+                  shape: ":S"
+                - node: ":a"
+                  shape: ":T"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":T"
+        gfp: 
+          models: *norec2_shex_lfp
+        brave:
+          quantifier: any
+          models: *norec2_shex_lfp
+        cautious:
+          quantifier: all
+          models: *norec2_shex_lfp
+    - name: norec2_shacl
+      data_graph: norec2.ttl
+      shapes_graph: norec2.shapes.ttl
+      engine: shacl
+      description: Non recursive example 2 SHACL
+      default_prefix: "http://example.org/"
+      nodes:
+        - ":a"
+        - ":b"
+      shapes: 
+        - ":S"
+      expected_results:
+        lfp:
+          models: &norec2_shacl_lfp
+            - passing: 
+                - node: ":b"
+                  shape: ":S"
+                - node: ":a"
+                  shape: ":T"
+              failing: 
+                - node: ":a"
+                  shape: ":S"
+                - node: ":b"
+                  shape: ":T"
+        gfp:
+          models: *norec2_shacl_lfp
+        brave:
+          quantifier: any
+          models: *norec2_shacl_lfp
+        cautious:
+          quantifier: all
+          models: *norec2_shacl_lfp
