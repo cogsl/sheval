@@ -22,6 +22,7 @@ tests:
       nodes:
         - ":a"
         - ":b"
+        - ":c"
       shapes: 
         - ":User"
       expected_results: &expected_results_dmkg
@@ -33,6 +34,8 @@ tests:
                   shape: ":User"
                 - node: ":b"
                   shape: ":User"
+                - node: ":c"
+                  shape: ":User"
         gfp:
           models:
             - passing:
@@ -40,6 +43,8 @@ tests:
                   shape: ":User"
                 - node: ":b"
                   shape: ":User"
+                - node: ":c"
+                  shape: ":User"  
               failing: []
         brave:
           quantifier: any
@@ -50,24 +55,24 @@ tests:
                   shape: ":User"
                 - node: ":b"
                   shape: ":User"
+                - node: ":c"
+                  shape: ":User"  
             - passing:
                 - node: ":a"
                   shape: ":User"
+                - node: ":c"
+                  shape: ":User"  
               failing: 
                 - node: ":b"
                   shape: ":User"
             - passing:
-                - node: ":b"
-                  shape: ":User"
-              failing: 
-                - node: ":a"
-                  shape: ":User"
-            - passing:
                 - node: ":a"
                   shape: ":User"
                 - node: ":b"
                   shape: ":User"
-              failing:  []
+                - node: ":c"
+                  shape: ":User"
+              failing: []
         cautious:
           quantifier: all
           models: *dmkg_example_models
@@ -80,6 +85,7 @@ tests:
       nodes:
         - ":a"
         - ":b"
+        - ":c"
       shapes: 
         - ":User"
       expected_results: *expected_results_dmkg

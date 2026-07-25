@@ -16,6 +16,7 @@ touching code.
 import yaml
 
 from .error_type import ErrorType
+from .semantics import all_interesting_pairs
 
 _LATEX_SPECIAL_CHARS = {
     '\\': r'\textbackslash{}',
@@ -105,12 +106,15 @@ def _ordered_base_names(manifest_tests):
     return seen
 
 
-def _model_accepts(model):
-    """A model accepts the schema if every declared pair is expected to pass under it."""
-    return len(model.get('failing', [])) == 0
+def _model_accepts(model, target_pairs):
+    """A model accepts the test if every one of the test's target (node, shape) pairs
+    is declared passing under it. Pairs the model mentions for other nodes (documenting
+    the rest of the model) don't affect the verdict."""
+    passing = set((pair['node'], pair['shape']) for pair in model.get('passing', []))
+    return target_pairs <= passing
 
 
-def _semantics_accepts(semantics_entry):
+def _semantics_accepts(semantics_entry, target_pairs):
     """
     The verdict prescribed by one semantics entry, independent of any engine:
     True/False if it declares models, None if it's a 'conforms'-only entry
@@ -121,17 +125,17 @@ def _semantics_accepts(semantics_entry):
         return None
     quantifier = semantics_entry.get('quantifier', 'any')
     if quantifier == 'all':
-        return all(_model_accepts(model) for model in models)
-    return any(_model_accepts(model) for model in models)
+        return all(_model_accepts(model, target_pairs) for model in models)
+    return any(_model_accepts(model, target_pairs) for model in models)
 
 
-def prescribed_marks(expected_results):
+def prescribed_marks(expected_results, target_pairs):
     """The GFP/LFP/bSMS/cSMS category ('pass'/'fail'/'na') prescribed by a test's expected_results, regardless of engine."""
     def mark_for(key):
         entry = expected_results.get(key)
         if entry is None:
             return 'na'
-        accepts = _semantics_accepts(entry)
+        accepts = _semantics_accepts(entry, target_pairs)
         if accepts is None:
             return 'na'
         return 'pass' if accepts else 'fail'
@@ -210,11 +214,19 @@ def build_latex_table(results, manifest, config):
                     break
             row.append(macro(_engine_mark(result)))
         expected_results = {}
+        target_pairs = set()
         for name in variant_names:
-            expected_results = tests_by_name[name].get('expected_results', {})
-            if expected_results:
+            variant_test = tests_by_name[name]
+            variant_expected = variant_test.get('expected_results', {})
+            if variant_expected:
+                expected_results = variant_expected
+                target_pairs = all_interesting_pairs(
+                    variant_test.get('nodes', []),
+                    variant_test.get('shapes', []),
+                    variant_test.get('pairs', []),
+                )
                 break
-        marks = prescribed_marks(expected_results)
+        marks = prescribed_marks(expected_results, target_pairs)
         row.extend(macro(marks[key]) for key in ('GFP', 'LFP', 'bSMS', 'cSMS'))
         lines.append(" & ".join(row) + " \\\\")
 
