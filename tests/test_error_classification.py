@@ -9,7 +9,7 @@ tests/test_engine_integration.py for the full end-to-end versions of the
 rudof/pyshacl/shacl_s cases.
 
 Engine-specific classification rules live on each Runner subclass's
-`classify_error` method (see rudof_shacl.py, pyshacl.py, jena_shacl.py);
+`classify_error` method (see rudof_shacl_none.py, pyshacl.py, jena_shacl.py);
 these tests exercise them through real runner instances rather than strings,
 plus the cross-cutting logic in error_classification.py itself.
 """
@@ -17,7 +17,8 @@ from runners.command_result import CommandResult
 from runners.commands import RunOutcome
 from runners.error_classification import classify_error, resolve_result
 from runners.error_type import ErrorType
-from runners.rudof_shacl import RudofShaclRunner
+from runners.rudof_shacl_none import RudofShaclNoneRunner as RudofShaclRunner
+from runners.shawell import ShawellRunner
 from runners.rudof_shex import RudofShexRunner
 from runners.pyshacl import PyshaclRunner
 from runners.jena_shacl import JenaShaclRunner
@@ -176,7 +177,7 @@ def test_rudof_shex_non_stratified():
 # --- cross-cutting behavior ---------------------------------------------
 
 def test_timeout_is_universal_regardless_of_technology():
-    runners = [RudofShaclRunner(), PyshaclRunner(), JenaShaclRunner(), JenaShexRunner(), ShaclSRunner(), ShaclTqRunner(), ShexSRunner()]
+    runners = [RudofShaclRunner(), ShawellRunner(), PyshaclRunner(), JenaShaclRunner(), JenaShexRunner(), ShaclSRunner(), ShaclTqRunner(), ShexSRunner()]
     for runner in runners:
         assert classify_error(runner, CommandResult.TIMEOUT, None, "") == ErrorType.TIMEOUT
 
@@ -288,3 +289,18 @@ def test_resolve_result_unclassified_exception_keeps_conforms_none_and_error_typ
     result = resolve_result(PyshaclRunner(), outcome, analyze)
     assert result['conforms'] is None
     assert result['error_type'] is None
+
+
+# --- shawell -------------------------------------------------------------
+
+# real: shaWell recovers its own panic in main(), prints it and exits 1
+# (seen on nstrat2/cons1/cons2, all with negation inside a cycle)
+SHAWELL_MISMATCH_STDERR = "Mismatch between ValidationResult & ValidationReports result!  false true\n"
+
+
+def test_shawell_report_mismatch_is_crashed():
+    assert classify_error(ShawellRunner(), CommandResult.OK, 1, SHAWELL_MISMATCH_STDERR) == ErrorType.CRASHED
+
+
+def test_shawell_clean_run_is_not_flagged():
+    assert ShawellRunner().classify_error("", 0, True) is None

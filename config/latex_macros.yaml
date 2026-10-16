@@ -80,6 +80,15 @@ technologies:
   rudof:
     name: shevalTechRudof
     latex: "rudof"
+  rudof_none:
+    name: shevalTechRudofNone
+    latex: "rudof (none)"
+  rudof_cautious:
+    name: shevalTechRudofCautious
+    latex: "rudof (cautious)"
+  rudof_brave:
+    name: shevalTechRudofBrave
+    latex: "rudof (brave)"
   shex_s:
     name: shevalTechShexS
     latex: "ShEx-S"
@@ -98,6 +107,9 @@ technologies:
   shacl_tq:
     name: shevalTechShaclTq
     latex: "SHACL-TQ"
+  shawell:
+    name: shevalTechShawell
+    latex: "shaWell"
 
 caption: "Results of comparative study of the semantics of SHACL and ShEx validators for recursive shape catalogues."
 label: "tab:sheval-results"

@@ -54,6 +54,7 @@ docker run --rm --mount type=bind,src=.,dst=/app -it sheval test -o docker_outpu
 - [pySHACL](https://github.com/RDFLib/pySHACL), SHACL implementation in Python.
 - [SHACL-S](https://github.com/weso/shacl-s): SHACL implementation in Scala. 
 - [rudof](https://rudof-project.github.io/), SHACL implementation in Rust. 
+- [shaWell](https://github.com/cem-okulmus/shawell), SHACL implementation in Go using well-founded semantics. It delegates recursive shapes to [DLV](https://dlv.demacs.unical.it/) and loads the data into an in-memory [Oxigraph](https://github.com/oxigraph/oxigraph) SPARQL endpoint that it starts for each validation. The binaries live in `binaries/shawell` (rebuild them with `make shawell`, which needs Go). If they are missing, the runner falls back to a `shawell` docker image (`make shawell-docker`, or set `SHAWELL_IMAGE`).
 
 ### ShEx
 
@@ -65,7 +66,6 @@ docker run --rm --mount type=bind,src=.,dst=/app -it sheval test -o docker_outpu
 
 Other implementations that we are planning to add in the future: 
 - [RDF4j SHACL](https://rdf4j.org/documentation/programming/shacl/)
-- [Shawell](https://github.com/cem-okulmus/shawell)
 - [shex-js](https://github.com/shexjs/shex.js/)
 - [maplib](https://github.com/DataTreehouse/maplib)
 
@@ -223,6 +223,10 @@ Passing `-f latex` renders the results as a LaTeX table mirroring Table 2 of the
 python3 src/sheval.py test -f latex -o output
 ```
 
-This writes `output.tex`, a self-contained table (wrapped in `\begin{table}...\end{table}`) meant to be `\input`-ed into a paper. The concrete LaTeX for each mark (pass/fail/error/not-applicable) is not hardcoded: it comes from the macros config file at `config/latex_macros.yaml` (override with `--latex-macros`), which defines, per category, a macro name and its LaTeX expansion. The generated `.tex` declares these with `\providecommand`, so you can override any of them in your own preamble instead of editing the config.
+This writes `output.tex`, a self-contained table (wrapped in `\begin{table}...\end{table}`) meant to be `\input`-ed into a paper. 
+The concrete LaTeX for each mark (pass/fail/error/not-applicable) is not hardcoded: 
+ it comes from the macros config file at `config/latex_macros.yaml` (override with `--latex-macros`), 
+ which defines, per category, a macro name and its LaTeX expansion. 
+ The generated `.tex` declares these with `\providecommand`, so you can override any of them in your own preamble instead of editing the config.
 
 

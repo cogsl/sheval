@@ -12,7 +12,10 @@ SHACL_RUNNERS = [
     ShaclSRunner(),
     JenaShaclRunner(),
     PyshaclRunner(),
-    RudofShaclRunner(),
+    RudofShaclNoneRunner(),
+    RudofShaclBraveRunner(),
+    RudofShaclCautiousRunner(),
+    ShawellRunner(),
 ]
 
 SHEX_RUNNERS = [

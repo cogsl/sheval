@@ -21,6 +21,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 _BINARIES = {
     "rudof": REPO_ROOT / "binaries/rudof/rudof",
+    "shawell": REPO_ROOT / "binaries/shawell/shawell",
     "jena_shacl": REPO_ROOT / "binaries/apache-jena-5.3.0/bin/shacl",
     "jena_shex": REPO_ROOT / "binaries/apache-jena-5.3.0/bin/shex",
     "shacl_s": REPO_ROOT / "binaries/shacl_s-0.1.87/bin/shacl_s",
@@ -79,14 +80,14 @@ def run_sheval(tmp_path, technology, engine, test_name):
 
 @_requires("rudof")
 def test_rudof_shacl_cycles_detected(tmp_path):
-    result = run_sheval(tmp_path, "rudof", "shacl", "bsep1_shacl")
+    result = run_sheval(tmp_path, "rudof_none", "shacl", "bsep1_shacl")
     assert result["conforms"] is None
     assert result["error_type"] == "CyclesDetected"
 
 
 @_requires("rudof")
 def test_rudof_shacl_non_stratified(tmp_path):
-    result = run_sheval(tmp_path, "rudof", "shacl", "nstrat1_shacl")
+    result = run_sheval(tmp_path, "rudof_none", "shacl", "nstrat1_shacl")
     assert result["conforms"] is None
     assert result["error_type"] == "NonStratified"
 
@@ -94,7 +95,7 @@ def test_rudof_shacl_non_stratified(tmp_path):
 @_requires("rudof")
 def test_rudof_shacl_normal_run_is_not_an_error(tmp_path):
     # "fresh" has no recursion at all -- rudof handles it fine.
-    result = run_sheval(tmp_path, "rudof", "shacl", "fresh_shacl")
+    result = run_sheval(tmp_path, "rudof_none", "shacl", "fresh_shacl")
     assert result["conforms"] is True
     assert "error_type" not in result
 
@@ -202,3 +203,31 @@ def test_shex_s_non_stratified(tmp_path):
     result = run_sheval(tmp_path, "shex_s", "shex", "nstrat1_shex")
     assert result["conforms"] is False
     assert result["error_type"] == "NonStratified"
+
+
+# --- shawell: well-founded semantics, local Oxigraph endpoint -----------
+
+@_requires("shawell")
+def test_shawell_recursive_run_is_not_an_error(tmp_path):
+    # reach2 is recursive (positive cycle c -> d -> c), which shaWell hands
+    # to DLV; under well-founded semantics :S is false on the cycle, so the
+    # :R targets (sh:not :S) conform.
+    result = run_sheval(tmp_path, "shawell", "shacl", "reach2")
+    assert result["conforms"] is True
+    assert "error_type" not in result
+
+
+@_requires("shawell")
+def test_shawell_non_conformant_report_is_parsed(tmp_path):
+    # Checks that the relative "false"^^<boolean> datatype shaWell writes is
+    # normalized, and that failures without sh:resultMessage are still read.
+    result = run_sheval(tmp_path, "shawell", "shacl", "reach1_shacl")
+    assert result["conforms"] is False
+    assert {"node": ":c", "shape": ":R"} in result["failures"]
+
+
+@_requires("shawell")
+def test_shawell_report_mismatch_is_crashed(tmp_path):
+    result = run_sheval(tmp_path, "shawell", "shacl", "cons1_shacl")
+    assert result["conforms"] is None
+    assert result["error_type"] == "Crashed"
