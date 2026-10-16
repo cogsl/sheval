@@ -24,6 +24,7 @@ from .graph_utils import (
     shacl_prefix,
     prepare_shapemap,
     prepare_target_declarations,
+    merge_graphs,
     enrich_with_iris,
     enrich_pairs_with_iris,
 )
@@ -70,6 +71,7 @@ __all__ = [
     "shacl_prefix",
     "prepare_shapemap",
     "prepare_target_declarations",
+    "merge_graphs",
     "enrich_with_iris",
     "enrich_pairs_with_iris",
     "PyshaclRunner",

@@ -4,7 +4,8 @@ import shutil
 
 from .shacl_runner import SHACLRunner
 from .shacl_params import SHACLParams
-from .commands import run, store_result
+from .commands import run, store_result, RunOutcome
+from .command_result import CommandResult
 from .analysis import analyze_validation_report
 from .error_classification import resolve_result
 from .error_type import ErrorType
@@ -40,9 +41,23 @@ TIMEOUT = 30
 _RELATIVE_BOOLEAN = re.compile(r'\^\^<boolean>')
 _XSD_BOOLEAN = '^^<http://www.w3.org/2001/XMLSchema#boolean>'
 
+# shaWell checks the targets twice: once for the sh:conforms verdict and once
+# for the sh:result entries of the report. The verdict treats a target that
+# is undefined in the well-founded model as "not a violation", but the report
+# does not look at the undefined atoms. When the two disagree (non-stratified
+# negation, e.g. consistency1/consistency2/nstrat2), shaWell aborts with this
+# message. A rerun with --omitVR skips the report and gives the verdict.
+_REPORT_MISMATCH = re.compile(r"Mismatch between ValidationResult & ValidationReports")
+_OMIT_VR_NOTE = (
+    "shaWell could not create the validation report (Mismatch between ValidationResult & "
+    "ValidationReports): the well-founded model has undefined atoms. The result comes from "
+    "a rerun with --omitVR. It has sh:conforms only, without sh:result, and shaWell counts "
+    "undefined targets as conformant."
+)
+
 # shaWell recovers panics in main(), prints them to stderr and exits 1.
 _RULES = [
-    (re.compile(r"Mismatch between ValidationResult & ValidationReports"), ErrorType.CRASHED),
+    (_REPORT_MISMATCH, ErrorType.CRASHED),
     (re.compile(r"oxigraph (binary not found|did not respond)|starting oxigraph"), ErrorType.CRASHED),
 ]
 
@@ -79,6 +94,22 @@ class ShawellRunner(SHACLRunner):
             raise FileNotFoundError(f"shawell not found at {BIN} and docker is not available (run `make shawell` or `make shawell-docker`)")
         return [arg.replace("$data_filename", data_filename).replace("$output_filename", output_filename) for arg in pattern]
 
+    def run_command(self, command: list[str], stdout_file: str, report_file: str, timeout: int) -> RunOutcome:
+        outcome = run(command, stdout_file, timeout, env=self.command_env())
+        if outcome.status != CommandResult.OK or not _REPORT_MISMATCH.search(outcome.stderr):
+            return outcome
+        # shaWell appends to --outputVR, so remove what the first run wrote
+        if os.path.exists(report_file):
+            os.remove(report_file)
+        retry = run(command + ["--omitVR"], stdout_file, timeout, env=self.command_env())
+        retry.note = _OMIT_VR_NOTE
+        return retry
+
+    def command_env(self) -> dict:
+        # The native shawell looks for oxigraph in the PATH
+        bin_dir = os.path.abspath(os.path.join(SHAWELL_HOME, "bin"))
+        return dict(os.environ, PATH=bin_dir + os.pathsep + os.environ.get("PATH", ""))
+
     def execute(self, params: SHACLParams, results: list) -> None:
         validation_report_file = os.path.join(params.results_folder, f"{params.name}_{self.name}_results.ttl")
         validation_output = os.path.join(params.results_folder, f"{params.name}_{self.name}_output.txt")
@@ -86,15 +117,18 @@ class ShawellRunner(SHACLRunner):
         if os.path.exists(validation_report_file):
             os.remove(validation_report_file)
         command = self.mk_command(params.filename, validation_report_file)
-        bin_dir = os.path.abspath(os.path.join(SHAWELL_HOME, "bin"))
-        env = dict(os.environ, PATH=bin_dir + os.pathsep + os.environ.get("PATH", ""))
-        outcome = run(command, validation_output, TIMEOUT, env=env)
+        outcome = self.run_command(command, validation_output, validation_report_file, TIMEOUT)
         result = resolve_result(self, outcome, lambda: self.analyze(validation_report_file, params))
+        if outcome.note and result.get('error_type') is None:
+            result = dict(result, message=outcome.note)
         store_result(params.name, self.engine, self.name, params.description, result, results)
 
-    def analyze(self, validation_report_file: str, params: SHACLParams) -> dict:
-        with open(validation_report_file) as f:
+    def postprocess_report(self, report_file: str) -> None:
+        with open(report_file) as f:
             report = f.read()
-        with open(validation_report_file, "w") as f:
+        with open(report_file, "w") as f:
             f.write(_RELATIVE_BOOLEAN.sub(_XSD_BOOLEAN, report))
+
+    def analyze(self, validation_report_file: str, params: SHACLParams) -> dict:
+        self.postprocess_report(validation_report_file)
         return analyze_validation_report(validation_report_file, params.nodes, params.shapes, params.pairs, params.include_message)

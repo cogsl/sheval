@@ -134,31 +134,82 @@ def run_shacl_test(results, test, manifest, name, description, results_folder, t
             exit(1)
     return
 
-def run_shex(args, unknown_args) -> None:
-    if unknown_args:
-        print(f"Unknown arguments for ShEx: {unknown_args}")
-        return
-    runner = find_shex_runner(args.technology)
-    if runner:
-        command = mk_command_shex(runner.command_pattern, args.data, args.schema, args.shapemap, args.output)
-        run(command, args.output, 5)
+def run_cli_command(runner, command, report_file, output, timeout) -> None:
+    """
+    Run a single validation from the command line. Some engines write the
+    result to `report_file` and others print it to stdout, so the result is
+    the report file if the engine wrote it, else the engine's stdout. The
+    result goes to `output` if it is given, else to stdout. The engine's
+    stderr goes to stderr.
+    """
+    if os.path.exists(report_file):
+        os.remove(report_file)
+    stdout_file = report_file + ".stdout"
+    outcome = runner.run_command(command, stdout_file, report_file, timeout)
+    if outcome.stderr:
+        print(outcome.stderr, end="", file=sys.stderr)
+    if outcome.note:
+        print(f"Note: {outcome.note}", file=sys.stderr)
+    if os.path.exists(report_file) and os.path.getsize(report_file) > 0:
+        if os.path.getsize(stdout_file) > 0:
+            with open(stdout_file) as f:
+                print(f.read(), end="", file=sys.stderr)
+        os.remove(stdout_file)
+        runner.postprocess_report(report_file)
     else:
-        print(f"Unknown technology: {args.technology}")
-        return
-    return
+        os.replace(stdout_file, report_file)
+    if output is None:
+        with open(report_file) as f:
+            print(f.read(), end="")
+        os.remove(report_file)
+    if outcome.status == CommandResult.TIMEOUT:
+        print(f"Timeout: the engine did not finish in {timeout} seconds", file=sys.stderr)
+        exit(1)
+    if outcome.returncode:
+        exit(outcome.returncode)
+
+
+def require_args(args, names, subcommand) -> None:
+    missing = [name for name in names if getattr(args, name) is None]
+    if missing:
+        options = ", ".join("--" + name for name in missing)
+        print(f"Missing options for {subcommand}: {options}", file=sys.stderr)
+        exit(2)
+
+
+def run_shex(args, unknown_args) -> None:
+    setup_logging(args.logging)
+    if unknown_args:
+        print(f"Unknown arguments for ShEx: {unknown_args}", file=sys.stderr)
+        exit(2)
+    require_args(args, ["technology", "data", "schema", "shapemap"], "shex")
+    runner = find_shex_runner(args.technology)
+    if runner is None:
+        print(f"Unknown ShEx technology: {args.technology}. Available: {[r.name for r in SHEX_RUNNERS]}", file=sys.stderr)
+        exit(2)
+    os.makedirs(args.temp, exist_ok=True)
+    report_file = args.output or os.path.join(args.temp, f"cli_{runner.name}_result.txt")
+    command = runner.mk_command(args.data, args.schema, args.shapemap, report_file)
+    run_cli_command(runner, command, report_file, args.output, args.timeout)
+
 
 def run_shacl(args, unknown_args) -> None:
+    setup_logging(args.logging)
     if unknown_args:
-        print(f"Unknown arguments for SHACL: {unknown_args}")
-        return
+        print(f"Unknown arguments for SHACL: {unknown_args}", file=sys.stderr)
+        exit(2)
+    require_args(args, ["technology", "data"], "shacl")
     runner = find_shacl_runner(args.technology)
-    if runner:
-        command = mk_command_shacl(runner.command_pattern, args.data, args.shapes, args.output)
-        run(command, args.output, 5)
-    else:
-        print(f"Unknown technology: {args.technology}")
-        return
-    return
+    if runner is None:
+        print(f"Unknown SHACL technology: {args.technology}. Available: {[r.name for r in SHACL_RUNNERS]}", file=sys.stderr)
+        exit(2)
+    # The SHACL engines read data, shapes and target declarations from one file
+    os.makedirs(args.temp, exist_ok=True)
+    merged_file = os.path.join(args.temp, f"cli_{runner.name}_input.ttl")
+    merge_graphs([f for f in [args.data, args.shapes, args.target] if f is not None], merged_file)
+    report_file = args.output or os.path.join(args.temp, f"cli_{runner.name}_report.ttl")
+    command = runner.mk_command(merged_file, report_file)
+    run_cli_command(runner, command, report_file, args.output, args.timeout)
 
 def run_shex_test(results, test, manifest, name, description, results_folder, temp, technology, nodes, shapes, pairs, prefix, include_message, include_descr):
     logging.debug(f"Running Shex for {name}")
@@ -330,6 +381,9 @@ def find_binary(technology: str) -> str:
 def run_check(args, unknown_args):
     setup_logging(args.logging)
     binary = find_binary(args.technology)
+    if binary is None:
+        print(f"Unknown technology: {args.technology}", file=sys.stderr)
+        exit(2)
     run_args([binary] + unknown_args)
     return
 
@@ -362,7 +416,10 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser_shex = subparsers.add_parser('shex', help='Run ShEx with some technology',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser_check = subparsers.add_parser('check', help='Run checks with some technology',
+    # No -h/--help for check, so that --help goes to the engine binary
+    parser_check = subparsers.add_parser('check',
+        help='Run the binary of some technology with the other arguments unchanged (e.g. check -t rudof_none --help)',
+        add_help=False,
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser_test.add_argument("-l", 
@@ -438,13 +495,15 @@ def main():
     parser_shex.add_argument(
         "-t", 
         "--technology", 
-        help="Technology (can be jena, rudof, shacl_tq,...)", 
+        help=f"Technology (one of {', '.join(r.name for r in SHEX_RUNNERS)})", 
         default = None, 
         action="store")
     parser_shex.add_argument("-d", "--data", help="Data file", default = None, action="store")
     parser_shex.add_argument("-s", "--schema", help="Schema file", default = None, action="store")
     parser_shex.add_argument("-m", "--shapemap", help="Shape map file", default = None, action="store")
-    parser_shex.add_argument("-o", "--output", help="Output file", default = None, action="store")
+    parser_shex.add_argument("-o", "--output", help="Output file. If it is not given, the result goes to stdout", default = None, action="store")
+    parser_shex.add_argument("--temp", help="Temporal folder", default = "temp", action="store")
+    parser_shex.add_argument("--timeout", help="Timeout in seconds", default = 60, type = int)
     parser_shex.add_argument("-l", 
        "--logging", 
        default = "warning", 
@@ -456,19 +515,36 @@ def main():
     parser_shacl.add_argument(
         "-t", 
         "--technology", 
-        help="Technology (can be jena, rudof, shacl_tq,...)", 
+        help=f"Technology (one of {', '.join(r.name for r in SHACL_RUNNERS)})", 
         default = None, 
         action="store")
     parser_shacl.add_argument("-d", "--data", help="Data file", default = None, action="store")
     parser_shacl.add_argument("-s", "--shapes", help="Shapes graph file", default = None, action="store")
     parser_shacl.add_argument("--target", help="Target declarations file", default = None, action="store")
+    parser_shacl.add_argument("-o", "--output", help="Output file. If it is not given, the validation report goes to stdout", default = None, action="store")
+    parser_shacl.add_argument("--temp", help="Temporal folder", default = "temp", action="store")
+    parser_shacl.add_argument("--timeout", help="Timeout in seconds", default = 60, type = int)
     parser_shacl.add_argument("-l", 
        "--logging", 
        default = "warning", 
        action="store", 
        help="Logging level: [debug, info, warning]"
     )
-    parser_shacl.set_defaults(func=run_check)
+    parser_shacl.set_defaults(func=run_shacl)
+
+    parser_check.add_argument(
+        "-t",
+        "--technology",
+        help="Technology. All the other arguments go to the binary of that technology unchanged",
+        default = None,
+        action="store")
+    parser_check.add_argument("-l",
+       "--logging",
+       default = "warning",
+       action="store",
+       help="Logging level: [debug, info, warning]"
+    )
+    parser_check.set_defaults(func=run_check)
 
     args, unknown = parser.parse_known_args()
     args.func(args, unknown)

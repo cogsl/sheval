@@ -211,6 +211,26 @@ python3 src/sheval.py shex -d test_suites/recursive_shapes/RDF/example21.ttl -s 
 
 If you replace `-t rudof` by `-t jena_shex` the command will be run using Jena ShEx.
 
+The following command runs SHACL validation with `shawell`:
+
+```sh
+python3 src/sheval.py shacl -t shawell -d test_suites/recursive_shapes/RDF/consistency1.ttl -s test_suites/recursive_shapes/SHACL/consistency1.shapes.ttl --target test_suites/recursive_shapes/target_declarations/consistency.ttl
+```
+
+The SHACL engines read the data, the shapes and the target declarations from one file. Thus, sheval merges the files of `-d`, `-s` and `--target` into one file in the `temp` folder. The `-s` and `--target` options are optional.
+
+Notes:
+
+- If you do not give `-o`, the validation report (or the ShEx result) goes to stdout. The messages of the engine go to stderr.
+- The `--timeout` option sets the maximum time in seconds for the engine (default 60).
+- The `-t` option accepts the same technology names as the manifests (for example `rudof_none`, `rudof_brave`, `jena_shacl`, `pyshacl`, `shawell`). Run `python3 src/sheval.py shacl --help` to see the full list.
+
+To run the binary of a technology with your own arguments, use `check`. sheval gives all the arguments after `-t <technology>` to the binary unchanged:
+
+```sh
+python3 src/sheval.py check -t shawell --help
+```
+
 ### Expected results and semantics
 
 A test's manifest entry can declare an optional `expected_results` section listing, per semantics (`lfp`, `gfp`, `brave`, `cautious`, or a `conforms`-only entry for tests where no fixed-point semantics applies, like `non_stratified` or `unsatisfiable_selector`), the candidate model(s) of passing/failing node-shape pairs. When present, each technology's result is annotated with a `semantics_match` map showing which semantics its actual output agrees with (`gfp`, `lfp`, `brave` i.e. brave SMS, `cautious` i.e. cautious SMS), surfaced in both the YAML output and as `gfp`/`lfp`/`bsms`/`csms` columns in the CSV output.

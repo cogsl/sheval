@@ -24,6 +24,8 @@ class RunOutcome:
     status: CommandResult
     stderr: str = ""
     returncode: int | None = None
+    # Set by a runner that changed how it ran the engine (see shawell.py)
+    note: str = ""
 
 
 def run_args(command: list[str]):
