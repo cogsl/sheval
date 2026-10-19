@@ -234,6 +234,7 @@ tests:
         - ":d"
       shapes: 
         - ":S"
+        - ":DualS"
       expected_results:
         lfp:
           models:

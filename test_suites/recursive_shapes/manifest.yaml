@@ -711,6 +711,9 @@ tests:
       description: Example with duality
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
+        - ":c"
         - ":d"
       shapes: 
         - ":S"
@@ -772,6 +775,9 @@ tests:
       description: Duality example 1 in SHACL
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
+        - ":c"
         - ":d"
       shapes: 
         - ":S"
@@ -833,6 +839,9 @@ tests:
       description: Duality example 2
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
+        - ":c"
         - ":d"
       shapes: 
         - ":S"
@@ -845,8 +854,6 @@ tests:
                 - node: ":b"
                   shape: ":S"
               failing: 
-                - node: ":c"
-                  shape: ":S"
                 - node: ":d"
                   shape: ":S"
         gfp:
@@ -894,6 +901,9 @@ tests:
       description: Duality example 2 SHACL
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
+        - ":c"
         - ":d"
       shapes: 
         - ":S"
