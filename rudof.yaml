@@ -1,7 +1,7 @@
 # This file contains a manifest that allows the rudof web demo to run the test suite
 - comment: 'bsep1 (Separation test)'
   schemaLabel: sa1
-  schemaURL: test_suites/ShEx/recursive_shapes/sa1.shex
+  schemaURL: test_suites/recursive_shapes/ShEx/sa1.shex
   dataLabel: sa1
   dataURL: test_suites/recursive_shapes/RDF/sa1.ttl
   queryMap: |
