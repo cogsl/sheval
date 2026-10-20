@@ -1,5 +1,5 @@
 # This file contains a manifest that allows the rudof web demo to run the test suite
-- comment: 'bsep1 (Separation test)'
+- comment: 'bsep1 ShEx - (Separation test 1)'
   schemaLabel: sa1
   schemaURL: test_suites/recursive_shapes/ShEx/sa1.shex
   dataLabel: sa1
@@ -8,11 +8,62 @@
      :a@:S
   status: conformant
   action: validate  
-- comment: 'bsep1 - SHACL (Separation test)'
+- comment: 'bsep1 SHACL (Separation test 1)'
   schemaLabel: sa1
   schemaURL: test_suites/recursive_shapes/SHACL/sa1.shapes.ttl
   dataLabel: sa1
   dataURL: test_suites/recursive_shapes/RDF/sa1.ttl
   targetsURL: test_suites/recursive_shapes/target_declarations/sa1.ttl
+  status: nonconformant
+  action: validate
+- comment: 'bsep2 ShEx - (Separation test 2)'
+  schemaLabel: sa2
+  schemaURL: test_suites/recursive_shapes/ShEx/sa2.shex
+  dataLabel: sa2
+  dataURL: test_suites/recursive_shapes/RDF/sa2.ttl
+  queryMap: |
+     :a@:S, :b@:S
   status: conformant
+  action: validate  
+- comment: 'bsep2 SHACL (Separation test 2)'
+  schemaLabel: sa2
+  schemaURL: test_suites/recursive_shapes/SHACL/sa2.shapes.ttl
+  dataLabel: sa2
+  dataURL: test_suites/recursive_shapes/RDF/sa2.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/sa2.ttl
+  status: nonconformant
+  action: validate  
+- comment: 'bsep3 ShEx - (Separation test 3)'
+  schemaLabel: sa3
+  schemaURL: test_suites/recursive_shapes/ShEx/sa3.shex
+  dataLabel: sa3
+  dataURL: test_suites/recursive_shapes/RDF/sa3.ttl
+  queryMap: |
+     :a@:S, :b@:S
+  status: conformant
+  action: validate  
+- comment: 'bsep3 SHACL (Separation test 3)'
+  schemaLabel: sa3
+  schemaURL: test_suites/recursive_shapes/SHACL/sa3.shapes.ttl
+  dataLabel: sa3
+  dataURL: test_suites/recursive_shapes/RDF/sa3.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/sa3.ttl
+  status: nonconformant
+  action: validate    
+- comment: 'bsep4 ShEx - (Separation test 4)'
+  schemaLabel: sa4
+  schemaURL: test_suites/recursive_shapes/ShEx/sa4.shex
+  dataLabel: sa4
+  dataURL: test_suites/recursive_shapes/RDF/sa4.ttl
+  queryMap: |
+     :a@:S, :b@:S
+  status: conformant
+  action: validate  
+- comment: 'bsep4 SHACL (Separation test 4)'
+  schemaLabel: sa4
+  schemaURL: test_suites/recursive_shapes/SHACL/sa4.shapes.ttl
+  dataLabel: sa4
+  dataURL: test_suites/recursive_shapes/RDF/sa4.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/sa4.ttl
+  status: nonconformant
   action: validate
