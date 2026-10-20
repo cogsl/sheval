@@ -21,6 +21,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 _BINARIES = {
     "rudof": REPO_ROOT / "binaries/rudof/rudof",
+    "shawell": REPO_ROOT / "binaries/shawell/shawell",
     "jena_shacl": REPO_ROOT / "binaries/apache-jena-5.3.0/bin/shacl",
     "jena_shex": REPO_ROOT / "binaries/apache-jena-5.3.0/bin/shex",
     "shacl_s": REPO_ROOT / "binaries/shacl_s-0.1.87/bin/shacl_s",
@@ -79,14 +80,14 @@ def run_sheval(tmp_path, technology, engine, test_name):
 
 @_requires("rudof")
 def test_rudof_shacl_cycles_detected(tmp_path):
-    result = run_sheval(tmp_path, "rudof", "shacl", "bsep1_shacl")
+    result = run_sheval(tmp_path, "rudof_none", "shacl", "bsep1_shacl")
     assert result["conforms"] is None
     assert result["error_type"] == "CyclesDetected"
 
 
 @_requires("rudof")
 def test_rudof_shacl_non_stratified(tmp_path):
-    result = run_sheval(tmp_path, "rudof", "shacl", "nstrat1_shacl")
+    result = run_sheval(tmp_path, "rudof_none", "shacl", "nstrat1_shacl")
     assert result["conforms"] is None
     assert result["error_type"] == "NonStratified"
 
@@ -94,7 +95,7 @@ def test_rudof_shacl_non_stratified(tmp_path):
 @_requires("rudof")
 def test_rudof_shacl_normal_run_is_not_an_error(tmp_path):
     # "fresh" has no recursion at all -- rudof handles it fine.
-    result = run_sheval(tmp_path, "rudof", "shacl", "fresh_shacl")
+    result = run_sheval(tmp_path, "rudof_none", "shacl", "fresh_shacl")
     assert result["conforms"] is True
     assert "error_type" not in result
 
@@ -202,3 +203,94 @@ def test_shex_s_non_stratified(tmp_path):
     result = run_sheval(tmp_path, "shex_s", "shex", "nstrat1_shex")
     assert result["conforms"] is False
     assert result["error_type"] == "NonStratified"
+
+
+# --- shawell: well-founded semantics, local Oxigraph endpoint -----------
+
+@_requires("shawell")
+def test_shawell_recursive_run_is_not_an_error(tmp_path):
+    # reach2 is recursive (positive cycle c -> d -> c), which shaWell hands
+    # to DLV; under well-founded semantics :S is false on the cycle, so the
+    # :R targets (sh:not :S) conform.
+    result = run_sheval(tmp_path, "shawell", "shacl", "reach2")
+    assert result["conforms"] is True
+    assert "error_type" not in result
+
+
+@_requires("shawell")
+def test_shawell_non_conformant_report_is_parsed(tmp_path):
+    # Checks that the relative "false"^^<boolean> datatype shaWell writes is
+    # normalized, and that failures without sh:resultMessage are still read.
+    result = run_sheval(tmp_path, "shawell", "shacl", "reach1_shacl")
+    assert result["conforms"] is False
+    assert {"node": ":c", "shape": ":R"} in result["failures"]
+
+
+@_requires("shawell")
+def test_shawell_report_mismatch_is_retried_with_omit_vr(tmp_path):
+    # In consistency1, :a conforms to :S only if it does not conform to :S.
+    # The well-founded model makes that undefined. shaWell then cannot create
+    # the report and aborts, so sheval reruns it with --omitVR and keeps the
+    # verdict (undefined counts as conformant), with a note in the message.
+    result = run_sheval(tmp_path, "shawell", "shacl", "cons1_shacl")
+    assert result["conforms"] is True
+    assert result["failures"] == []
+    assert "error_type" not in result
+    assert "--omitVR" in result["message"]
+
+
+@_requires("shawell")
+def test_cli_shacl_shawell_retries_with_omit_vr(tmp_path):
+    suite = "test_suites/recursive_shapes"
+    result = run_cli(tmp_path, "shacl", "-t", "shawell",
+                     "-d", f"{suite}/RDF/consistency1.ttl",
+                     "-s", f"{suite}/SHACL/consistency1.shapes.ttl",
+                     "--target", f"{suite}/target_declarations/consistency.ttl")
+    assert result.returncode == 0, result.stderr
+    assert "XMLSchema#boolean" in result.stdout
+    assert "Note: shaWell could not create the validation report" in result.stderr
+
+
+# --- single validations from the command line (sheval shacl / shex) -----
+
+def run_cli(tmp_path, *args):
+    return subprocess.run(
+        [sys.executable, "src/sheval.py", *args, "--temp", str(tmp_path)],
+        cwd=REPO_ROOT, capture_output=True, text=True, timeout=120,
+    )
+
+
+@_requires("jena_shacl")
+def test_cli_shacl_uses_data_shapes_and_targets(tmp_path):
+    # Before, the shacl subcommand ran the bare binary, which printed its help
+    suite = "test_suites/recursive_shapes"
+    result = run_cli(tmp_path, "shacl", "-t", "jena_shacl",
+                     "-d", f"{suite}/RDF/consistency1.ttl",
+                     "-s", f"{suite}/SHACL/consistency1.shapes.ttl",
+                     "--target", f"{suite}/target_declarations/consistency.ttl")
+    assert "sh:ValidationReport" in result.stdout
+    assert "focusNode" in result.stdout
+
+
+@_requires("shawell")
+def test_cli_shacl_shawell_report_is_corrected(tmp_path):
+    suite = "test_suites/recursive_shapes"
+    output = tmp_path / "report.ttl"
+    result = run_cli(tmp_path, "shacl", "-t", "shawell",
+                     "-d", f"{suite}/RDF/reach2.ttl",
+                     "-s", f"{suite}/SHACL/reach2.shapes.ttl",
+                     "--target", f"{suite}/target_declarations/example21.ttl",
+                     "-o", str(output))
+    assert result.returncode == 0, result.stderr
+    assert "XMLSchema#boolean" in output.read_text()
+
+
+@_requires("rudof")
+def test_cli_shex(tmp_path):
+    shapemap = tmp_path / "sa1.sm"
+    shapemap.write_text("<http://example.org/a>@<http://example.org/S>")
+    suite = "test_suites/recursive_shapes"
+    result = run_cli(tmp_path, "shex", "-t", "rudof",
+                     "-d", f"{suite}/RDF/sa1.ttl", "-s", f"{suite}/ShEx/sa1.shex", "-m", str(shapemap))
+    assert result.returncode == 0, result.stderr
+    assert '"status": "conformant"' in result.stdout

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import logging
 
-from .commands import store_result
+from .commands import store_result, run, RunOutcome
 from .error_type import ErrorType
 
 
@@ -17,6 +17,21 @@ class Runner(ABC):
     @abstractmethod
     def execute(self, params, results: list) -> None:
         raise NotImplementedError
+
+    def run_command(self, command: list[str], stdout_file: str, report_file: str, timeout: int) -> RunOutcome:
+        """Run the engine's command, with its stdout to `stdout_file`. An
+        engine can override this to react to a failure (see shawell.py).
+        `report_file` is where the engine writes its report, if it writes one."""
+        return run(command, stdout_file, timeout, env=self.command_env())
+
+    def command_env(self) -> dict | None:
+        """Environment for the engine's process. None keeps the current one."""
+        return None
+
+    def postprocess_report(self, report_file: str) -> None:
+        """Correct an engine's report file in place before it is read.
+        Default: no change."""
+        return None
 
     def classify_error(self, stderr: str, returncode: int | None, conforms: bool | None = None, stdout: str = "") -> ErrorType | None:
         """

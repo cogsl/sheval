@@ -1,0 +1,22 @@
+- description: Separation test - reach2 (SHACL)
+  engine_name: shacl
+  name: reach2
+  result:
+    conforms: false
+    error_type: CyclesDetected
+    failures:
+    - node: :d
+      shape: :R
+    - node: :c
+      shape: :R
+    message: "WARN shacl/src/ir/schema.rs:247: The dependency graph has cycles. This\
+      \ is known as a recursive schema and the SHACL semantics for these schemas is\
+      \ implementation dependent\n WARN shacl/src/ir/schema.rs:288: The cycle is stratified\
+      \ (any negation in it targets recursion-free shapes): validation will handle\
+      \ it via the configured recursion semantics."
+    semantics_match:
+      brave: true
+      cautious: false
+      gfp: true
+      lfp: false
+  technology_name: rudof_brave

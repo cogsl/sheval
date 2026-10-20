@@ -9,7 +9,10 @@ shacl_technologies:
   - shacl_s
   - jena_shacl
   - shacl_tq
-  - rudof
+  - rudof_none
+  - rudof_cautious
+  - rudof_brave
+  - shawell
 shex_folder: ShEx
 results_folder: results
 tests:
@@ -231,6 +234,7 @@ tests:
         - ":d"
       shapes: 
         - ":S"
+        - ":DualS"
       expected_results:
         lfp:
           models:

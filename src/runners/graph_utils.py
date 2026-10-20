@@ -55,6 +55,14 @@ def prepare_target_declarations(data_graph, shapes_graph, nodes, shapes, pairs, 
     return
 
 
+def merge_graphs(filenames: list[str], merged_filename: str) -> None:
+    """Merge the Turtle files in `filenames` into one Turtle file."""
+    g = rdflib.Graph()
+    for filename in filenames:
+        g.parse(filename, format='turtle')
+    g.serialize(destination=merged_filename, format='turtle')
+
+
 def enrich_with_iris(nodes, prefix):
     """
     Enrich the nodes with their IRIs

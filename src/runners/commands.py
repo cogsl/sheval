@@ -24,6 +24,8 @@ class RunOutcome:
     status: CommandResult
     stderr: str = ""
     returncode: int | None = None
+    # Set by a runner that changed how it ran the engine (see shawell.py)
+    note: str = ""
 
 
 def run_args(command: list[str]):
@@ -41,12 +43,12 @@ def run_args(command: list[str]):
     return result
 
 
-def run(command, output_filename, timeout=2):
+def run(command, output_filename, timeout=2, env=None):
     try:
         with open(output_filename, "w") as output:
             command_str = " ".join(command) + " > " + str(output_filename)
             logging.info(f"Command: {command_str}")
-            completed = subprocess.run(command, stdout=output, stderr=subprocess.PIPE, timeout=timeout, text=True)
+            completed = subprocess.run(command, stdout=output, stderr=subprocess.PIPE, timeout=timeout, text=True, env=env)
             return RunOutcome(status=CommandResult.OK, stderr=_strip_ansi(completed.stderr), returncode=completed.returncode)
     except subprocess.TimeoutExpired as timeoutErr:
         print("Timeout expired running command: %s" % (command))

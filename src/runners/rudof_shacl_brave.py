@@ -9,7 +9,7 @@ from .error_classification import resolve_result
 from .error_type import ErrorType
 
 BIN = "binaries/rudof/rudof"
-CMD = [BIN, "shacl-validate", "$data_filename", "--result-format", "turtle", "--force-overwrite", "--output-file", "$output_filename"]
+CMD = [BIN, "shacl-validate", "$data_filename", "--result-format", "turtle", "--force-overwrite", "--recursion-semantics", "brave", "--output-file", "$output_filename"]
 
 # rudof's SHACL validator aborts cleanly (no report written) on a recursive
 # schema, printing one of these to stderr. See error_classification.py for
@@ -20,9 +20,9 @@ _RULES = [
 ]
 
 
-class RudofShaclRunner(SHACLRunner):
+class RudofShaclBraveRunner(SHACLRunner):
     def __init__(self):
-        super().__init__(name="rudof", bin_command=BIN, command_pattern=CMD)
+        super().__init__(name="rudof_brave", bin_command=BIN, command_pattern=CMD)
 
     def classify_error(self, stderr: str, returncode: int | None, conforms: bool | None = None, stdout: str = "") -> ErrorType | None:
         text = stderr or ""

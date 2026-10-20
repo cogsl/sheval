@@ -141,14 +141,14 @@ def analyze_validation_report(filename, nodes, shapes, pairs, include_message):
                 ?s a sh:ValidationReport ;
                     sh:result ?failure .
                 ?failure sh:focusNode ?focusNode ;
-                        sh:resultMessage ?resultMessage ;
-                        sh:sourceShape ?sourceShape
+                        sh:sourceShape ?sourceShape .
+                OPTIONAL { ?failure sh:resultMessage ?resultMessage }
             }
             """
             validation_results = g.query(failures_query)
             for validation_result in validation_results:
                  node = str(validation_result['focusNode'])
-                 message = str(validation_result['resultMessage'])
+                 message = str(validation_result['resultMessage'] or '')
                  shape = str(validation_result['sourceShape'])
                  maybe_node = find_qname(nodes, node)
                  maybe_shape = find_qname(shapes, shape)

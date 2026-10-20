@@ -9,7 +9,10 @@ shacl_technologies:
   - shacl_s
   - jena_shacl
   - shacl_tq
-  - rudof
+  - rudof_none
+  - rudof_cautious
+  - rudof_brave
+  - shawell
 shex_folder: ShEx
 results_folder: results
 tests:
@@ -708,6 +711,9 @@ tests:
       description: Example with duality
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
+        - ":c"
         - ":d"
       shapes: 
         - ":S"
@@ -769,6 +775,9 @@ tests:
       description: Duality example 1 in SHACL
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
+        - ":c"
         - ":d"
       shapes: 
         - ":S"
@@ -830,6 +839,9 @@ tests:
       description: Duality example 2
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
+        - ":c"
         - ":d"
       shapes: 
         - ":S"
@@ -842,8 +854,6 @@ tests:
                 - node: ":b"
                   shape: ":S"
               failing: 
-                - node: ":c"
-                  shape: ":S"
                 - node: ":d"
                   shape: ":S"
         gfp:
@@ -891,6 +901,9 @@ tests:
       description: Duality example 2 SHACL
       default_prefix: "http://example.org/"
       nodes:
+        - ":a"
+        - ":b"
+        - ":c"
         - ":d"
       shapes: 
         - ":S"

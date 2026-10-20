@@ -24,6 +24,7 @@ from .graph_utils import (
     shacl_prefix,
     prepare_shapemap,
     prepare_target_declarations,
+    merge_graphs,
     enrich_with_iris,
     enrich_pairs_with_iris,
 )
@@ -34,7 +35,10 @@ from .jena_shacl import JenaShaclRunner
 from .jena_shex import JenaShexRunner, analyze_result_jena_shex, parse_jena_result_line
 from .shex_s import ShexSRunner, analyze_shapemap_shex_s
 from .shaclex import ShaclexShaclRunner, ShaclexShexRunner, analyze_shapemap_shaclex
-from .rudof_shacl import RudofShaclRunner
+from .rudof_shacl_none import RudofShaclNoneRunner
+from .rudof_shacl_brave import RudofShaclBraveRunner
+from .rudof_shacl_cautious import RudofShaclCautiousRunner
+from .shawell import ShawellRunner
 from .rudof_shex import RudofShexRunner, analyze_shapemap_rudof
 from .semantics import match_expected_results, all_interesting_pairs
 from .latex_export import save_results_latex
@@ -67,6 +71,7 @@ __all__ = [
     "shacl_prefix",
     "prepare_shapemap",
     "prepare_target_declarations",
+    "merge_graphs",
     "enrich_with_iris",
     "enrich_pairs_with_iris",
     "PyshaclRunner",
@@ -77,7 +82,10 @@ __all__ = [
     "ShexSRunner",
     "ShaclexShaclRunner",
     "ShaclexShexRunner",
-    "RudofShaclRunner",
+    "RudofShaclNoneRunner",
+    "RudofShaclBraveRunner",
+    "RudofShaclCautiousRunner",
+    "ShawellRunner",
     "RudofShexRunner",
     "match_expected_results",
     "all_interesting_pairs",
