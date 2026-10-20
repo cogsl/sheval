@@ -8,3 +8,11 @@
      :a@:S
   status: conformant
   action: validate  
+- comment: 'bsep1 - SHACL (Separation test)'
+  schemaLabel: sa1
+  schemaURL: test_suites/recursive_shapes/SHACL/sa1.shapes.ttl
+  dataLabel: sa1
+  dataURL: test_suites/recursive_shapes/RDF/sa1.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/sa1.ttl
+  status: conformant
+  action: validate
