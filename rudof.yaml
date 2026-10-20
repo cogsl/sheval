@@ -67,3 +67,71 @@
   targetsURL: test_suites/recursive_shapes/target_declarations/sa4.ttl
   status: nonconformant
   action: validate
+- comment: 'reach1 ShEx - (Reachability test 1)'
+  schemaLabel: reach1
+  schemaURL: test_suites/recursive_shapes/ShEx/reach1.shex
+  dataLabel: reach1
+  dataURL: test_suites/recursive_shapes/RDF/reach1.ttl
+  queryMap: |
+     :a@:R, :b@:R, :c@:R, :d@:R
+  status: conformant
+  action: validate  
+- comment: 'reach1 SHACL (Reachability test 4)'
+  schemaLabel: reach1
+  schemaURL: test_suites/recursive_shapes/SHACL/reach1.shapes.ttl
+  dataLabel: reach1
+  dataURL: test_suites/recursive_shapes/RDF/reach1.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/reach1.ttl
+  status: nonconformant
+  action: validate  
+- comment: 'reach2 ShEx - (Reachability test 2)'
+  schemaLabel: reach2
+  schemaURL: test_suites/recursive_shapes/ShEx/reach2.shex
+  dataLabel: reach2
+  dataURL: test_suites/recursive_shapes/RDF/reach2.ttl
+  queryMap: |
+     :c@:R, :d@:R
+  status: conformant
+  action: validate  
+- comment: 'reach2 SHACL (Reachability test 2)'
+  schemaLabel: reach2
+  schemaURL: test_suites/recursive_shapes/SHACL/reach2.shapes.ttl
+  dataLabel: reach2
+  dataURL: test_suites/recursive_shapes/RDF/reach2.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/reach2.ttl
+  status: nonconformant
+  action: validate    
+- comment: 'safe1 ShEx - (Safety test 1)'
+  schemaLabel: safe1
+  schemaURL: test_suites/recursive_shapes/ShEx/safe1.shex
+  dataLabel: safe1
+  dataURL: test_suites/recursive_shapes/RDF/safe1.ttl
+  queryMap: |
+     :c@:S, :d@:S
+  status: conformant
+  action: validate  
+- comment: 'safe1 SHACL (Safety test 1)'
+  schemaLabel: safe1
+  schemaURL: test_suites/recursive_shapes/SHACL/safe1.shapes.ttl
+  dataLabel: safe1
+  dataURL: test_suites/recursive_shapes/RDF/safe1.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/safe1.ttl
+  status: nonconformant
+  action: validate      
+- comment: 'safe2 ShEx - (Safety test 2)'
+  schemaLabel: safe1
+  schemaURL: test_suites/recursive_shapes/ShEx/safe2.shex
+  dataLabel: safe2
+  dataURL: test_suites/recursive_shapes/RDF/safe2.ttl
+  queryMap: |
+     :c@:R, :d@:R
+  status: conformant
+  action: validate  
+- comment: 'safe2 SHACL (Safety test 2)'
+  schemaLabel: safe2
+  schemaURL: test_suites/recursive_shapes/SHACL/safe2.shapes.ttl
+  dataLabel: safe2
+  dataURL: test_suites/recursive_shapes/RDF/safe2.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/safe2.ttl
+  status: nonconformant
+  action: validate        
