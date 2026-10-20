@@ -135,3 +135,138 @@
   targetsURL: test_suites/recursive_shapes/target_declarations/safe2.ttl
   status: nonconformant
   action: validate        
+- comment: 'nstrat1 ShEx - (Non-stratified no cycle test)'
+  schemaLabel: nostratnocycle
+  schemaURL: test_suites/recursive_shapes/ShEx/nostratnocycle.shex
+  dataLabel: nostratnocycle
+  dataURL: test_suites/recursive_shapes/RDF/nostratnocycle.ttl
+  queryMap: |
+     :a@:S, :b@:S, :c@:S, :d@:S, :e@:S
+  action: validate  
+- comment: 'nstrat1 SHACL (Non-stratified no cycle test)'
+  schemaLabel: nostratnocycle
+  schemaURL: test_suites/recursive_shapes/SHACL/nostratnocycle.shapes.ttl
+  dataLabel: nostratnocycle
+  dataURL: test_suites/recursive_shapes/RDF/nostratnocycle.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/nostratnocycle.ttl
+  action: validate
+- comment: 'nstrat2 ShEx - (Non-stratified cycle test)'
+  schemaLabel: nostratcycle
+  schemaURL: test_suites/recursive_shapes/ShEx/nostratcycle.shex
+  dataLabel: nostratcycle
+  dataURL: test_suites/recursive_shapes/RDF/nostratcycle.ttl
+  queryMap: |
+     :a@:S, :b@:S
+  action: validate  
+- comment: 'nstrat2 SHACL (Non-stratified cycle test)'
+  schemaLabel: nostratcycle
+  schemaURL: test_suites/recursive_shapes/SHACL/nostratcycle.shapes.ttl
+  dataLabel: nostratcycle
+  dataURL: test_suites/recursive_shapes/RDF/nostratcycle.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/nostratcycle.ttl
+  action: validate  
+- comment: 'cons1 ShEx - (Consistency test 1)'
+  schemaLabel: cons1
+  schemaURL: test_suites/recursive_shapes/ShEx/consistency1.shex
+  dataLabel: cons1
+  dataURL: test_suites/recursive_shapes/RDF/consistency1.ttl
+  queryMap: |
+     :a@:S, :a@:S1
+  action: validate  
+- comment: 'cons1 SHACL (Consistency test 1)'
+  schemaLabel: cons1
+  schemaURL: test_suites/recursive_shapes/SHACL/consistency1.shapes.ttl
+  dataLabel: cons1
+  dataURL: test_suites/recursive_shapes/RDF/consistency1.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/consistency1.ttl
+  action: validate
+- comment: 'cons2 ShEx - (Consistency test 2)'
+  schemaLabel: cons2
+  schemaURL: test_suites/recursive_shapes/ShEx/consistency2.shex
+  dataLabel: cons2
+  dataURL: test_suites/recursive_shapes/RDF/consistency2.ttl
+  queryMap: |
+     :a@:S, :a@:S1, :b@:S, :b@:S2
+  action: validate  
+- comment: 'cons2 SHACL (Consistency test 2)'
+  schemaLabel: cons2
+  schemaURL: test_suites/recursive_shapes/SHACL/consistency2.shapes.ttl
+  dataLabel: cons2
+  dataURL: test_suites/recursive_shapes/RDF/consistency2.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/consistency2.ttl
+  action: validate  
+- comment: 'fresh ShEx - (Fresh test)'
+  schemaLabel: fresh
+  schemaURL: test_suites/recursive_shapes/ShEx/fresh.shex
+  dataLabel: fresh
+  dataURL: test_suites/recursive_shapes/RDF/fresh.ttl
+  queryMap: |
+     :d@:S
+  action: validate  
+- comment: 'fresh SHACL (Fresh test)'
+  schemaLabel: fresh
+  schemaURL: test_suites/recursive_shapes/SHACL/fresh.shapes.ttl
+  dataLabel: fresh
+  dataURL: test_suites/recursive_shapes/RDF/fresh.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/fresh.ttl
+  action: validate    
+- comment: 'dual1 ShEx - (Duality test 1)'
+  schemaLabel: dual1
+  schemaURL: test_suites/recursive_shapes/ShEx/dual1.shex
+  dataLabel: dual1
+  dataURL: test_suites/recursive_shapes/RDF/dual1.ttl
+  queryMap: |
+     :a@:S, :b@:S, :c@:S, :d@:S
+  action: validate  
+- comment: 'dual1 SHACL (Duality test 1)'
+  schemaLabel: dual1
+  schemaURL: test_suites/recursive_shapes/SHACL/dual1.shapes.ttl
+  dataLabel: dual1
+  dataURL: test_suites/recursive_shapes/RDF/dual1.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/dual1.ttl
+  action: validate      
+- comment: 'dual2 ShEx - (Duality test 2)'
+  schemaLabel: dual2
+  schemaURL: test_suites/recursive_shapes/ShEx/dual2.shex
+  dataLabel: dual2
+  dataURL: test_suites/recursive_shapes/RDF/dual2.ttl
+  queryMap: |
+     :a@:S, :b@:S, :c@:S, :d@:S
+  action: validate  
+- comment: 'dual2 SHACL (Duality test 2)'
+  schemaLabel: dual2
+  schemaURL: test_suites/recursive_shapes/SHACL/dual2.shapes.ttl
+  dataLabel: dual2
+  dataURL: test_suites/recursive_shapes/RDF/dual2.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/dual2.ttl
+  action: validate        
+- comment: 'norec1 ShEx - (Non-recursion test 1)'
+  schemaLabel: norec1
+  schemaURL: test_suites/recursive_shapes/ShEx/norec1.shex
+  dataLabel: norec1
+  dataURL: test_suites/recursive_shapes/RDF/norec1.ttl
+  queryMap: |
+     :a@:S
+  action: validate  
+- comment: 'norec1 SHACL (Non-recursion test 1)'
+  schemaLabel: norec1
+  schemaURL: test_suites/recursive_shapes/SHACL/norec1.shapes.ttl
+  dataLabel: norec1
+  dataURL: test_suites/recursive_shapes/RDF/norec1.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/norec1.ttl
+  action: validate        
+- comment: 'norec2 ShEx - (Non-recursion test 2)'
+  schemaLabel: norec2
+  schemaURL: test_suites/recursive_shapes/ShEx/norec2.shex
+  dataLabel: norec2
+  dataURL: test_suites/recursive_shapes/RDF/norec2.ttl
+  queryMap: |
+     :a@:S, :b@:S
+  action: validate  
+- comment: 'norec2 SHACL (Non-recursion test 2)'
+  schemaLabel: norec2
+  schemaURL: test_suites/recursive_shapes/SHACL/norec2.shapes.ttl
+  dataLabel: norec2
+  dataURL: test_suites/recursive_shapes/RDF/norec2.ttl
+  targetsURL: test_suites/recursive_shapes/target_declarations/norec2.ttl
+  action: validate            
