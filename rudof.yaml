@@ -1,4 +1,21 @@
 # This file contains a manifest that allows the rudof web demo to run the test suite
+- comment: 'Running example DMKG26 paper'
+  schemaLabel: running_example
+  schemaURL: test_suites/dmkg/ShEx/example_dmkg.shex
+  dataLabel: running_example
+  dataURL: test_suites/dmkg/RDF/example_dmkg.ttl
+  queryMap: |
+     :a@:User, :b@:User, :c@:User
+  status: conformant
+  action: validate  
+- comment: 'Running example DMKG26 paper'
+  schemaLabel: running_example
+  schemaURL: test_suites/dmkg/SHACL/example_dmkg.shapes.ttl
+  dataLabel: running_example
+  dataURL: test_suites/dmkg/RDF/example_dmkg.ttl
+  targetsURL: test_suites/dmkg/target_declarations/example_dmkg.ttl
+  status: nonconformant
+  action: validate
 - comment: 'bsep1 ShEx - (Separation test 1)'
   schemaLabel: sa1
   schemaURL: test_suites/recursive_shapes/ShEx/sa1.shex
