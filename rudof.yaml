@@ -91,7 +91,7 @@
   dataURL: test_suites/recursive_shapes/RDF/reach2.ttl
   queryMap: |
      :c@:R, :d@:R
-  status: conformant
+  status: nonconformant
   action: validate  
 - comment: 'reach2 SHACL (Reachability test 2)'
   schemaLabel: reach2
@@ -99,7 +99,7 @@
   dataLabel: reach2
   dataURL: test_suites/recursive_shapes/RDF/reach2.ttl
   targetsURL: test_suites/recursive_shapes/target_declarations/reach2.ttl
-  status: nonconformant
+  status: conformant
   action: validate    
 - comment: 'safe1 ShEx - (Safety test 1)'
   schemaLabel: safe1
@@ -119,7 +119,7 @@
   status: nonconformant
   action: validate      
 - comment: 'safe2 ShEx - (Safety test 2)'
-  schemaLabel: safe1
+  schemaLabel: safe2
   schemaURL: test_suites/recursive_shapes/ShEx/safe2.shex
   dataLabel: safe2
   dataURL: test_suites/recursive_shapes/RDF/safe2.ttl
@@ -202,13 +202,15 @@
   dataURL: test_suites/recursive_shapes/RDF/fresh.ttl
   queryMap: |
      :d@:S
-  action: validate  
+  action: validate
+  status: conformant  
 - comment: 'fresh SHACL (Fresh test)'
   schemaLabel: fresh
   schemaURL: test_suites/recursive_shapes/SHACL/fresh.shapes.ttl
   dataLabel: fresh
   dataURL: test_suites/recursive_shapes/RDF/fresh.ttl
   targetsURL: test_suites/recursive_shapes/target_declarations/fresh.ttl
+  status: conformant  
   action: validate    
 - comment: 'dual1 ShEx - (Duality test 1)'
   schemaLabel: dual1
@@ -217,6 +219,7 @@
   dataURL: test_suites/recursive_shapes/RDF/dual1.ttl
   queryMap: |
      :a@:S, :b@:S, :c@:S, :d@:S
+  status: conformant  
   action: validate  
 - comment: 'dual1 SHACL (Duality test 1)'
   schemaLabel: dual1
@@ -224,6 +227,7 @@
   dataLabel: dual1
   dataURL: test_suites/recursive_shapes/RDF/dual1.ttl
   targetsURL: test_suites/recursive_shapes/target_declarations/dual1.ttl
+  status: conformant  
   action: validate      
 - comment: 'dual2 ShEx - (Duality test 2)'
   schemaLabel: dual2
@@ -232,6 +236,7 @@
   dataURL: test_suites/recursive_shapes/RDF/dual2.ttl
   queryMap: |
      :a@:S, :b@:S, :c@:S, :d@:S
+  status: conformant  
   action: validate  
 - comment: 'dual2 SHACL (Duality test 2)'
   schemaLabel: dual2
@@ -239,6 +244,7 @@
   dataLabel: dual2
   dataURL: test_suites/recursive_shapes/RDF/dual2.ttl
   targetsURL: test_suites/recursive_shapes/target_declarations/dual2.ttl
+  status: conformant  
   action: validate        
 - comment: 'norec1 ShEx - (Non-recursion test 1)'
   schemaLabel: norec1
@@ -247,6 +253,7 @@
   dataURL: test_suites/recursive_shapes/RDF/norec1.ttl
   queryMap: |
      :a@:S
+  status: conformant  
   action: validate  
 - comment: 'norec1 SHACL (Non-recursion test 1)'
   schemaLabel: norec1
@@ -254,6 +261,7 @@
   dataLabel: norec1
   dataURL: test_suites/recursive_shapes/RDF/norec1.ttl
   targetsURL: test_suites/recursive_shapes/target_declarations/norec1.ttl
+  status: conformant  
   action: validate        
 - comment: 'norec2 ShEx - (Non-recursion test 2)'
   schemaLabel: norec2
@@ -262,6 +270,7 @@
   dataURL: test_suites/recursive_shapes/RDF/norec2.ttl
   queryMap: |
      :a@:S, :b@:S
+  status: nonconformant  
   action: validate  
 - comment: 'norec2 SHACL (Non-recursion test 2)'
   schemaLabel: norec2
@@ -269,4 +278,5 @@
   dataLabel: norec2
   dataURL: test_suites/recursive_shapes/RDF/norec2.ttl
   targetsURL: test_suites/recursive_shapes/target_declarations/norec2.ttl
+  status: nonconformant  
   action: validate            
